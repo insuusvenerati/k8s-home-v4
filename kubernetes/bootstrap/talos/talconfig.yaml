@@ -41,7 +41,7 @@ nodes:
     patches:
       - "@./patches/controller/api-access.yaml"
       - "@./patches/controller/cluster.yaml"
-#      - "@./patches/controller/disable-admission-controller.yaml"
+      - "@./patches/controller/disable-admission-controller.yaml"
       - "@./patches/controller/etcd.yaml"
 
 # Global patches
@@ -59,6 +59,6 @@ controlPlane:
   patches:
     - "@./patches/controller/api-access.yaml"
     - "@./patches/controller/cluster.yaml"
-#    - "@./patches/controller/disable-admission-controller.yaml"
+    - "@./patches/controller/disable-admission-controller.yaml"
     - "@./patches/controller/etcd.yaml"
 
