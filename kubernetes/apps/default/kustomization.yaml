@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   #- ./echo-server/ks.yaml
-  - ./hajimari/ks.yaml
+#  - ./hajimari/ks.yaml
   - ./pvc-ssd.yaml
   - ./sonarr
   - ./radarr
