@@ -18,3 +18,7 @@ spec:
     jaeger:
       create: true
       namespace: monitoring
+    rbac:
+      create: true
+      pspEnabled: true
+      clusterRole: true
