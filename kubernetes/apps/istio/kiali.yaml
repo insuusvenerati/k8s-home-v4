@@ -49,4 +49,4 @@ spec:
             in_cluster_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
           tracing:
             enabled: true
-            in_cluster_url: http://jaeger-query:16685
+            in_cluster_url: http://jaeger-jaeger-operator-jaeger-query.monitoring.svc.cluster.local:16685
