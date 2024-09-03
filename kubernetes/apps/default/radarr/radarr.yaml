@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: radarr
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      version: 16.3.2
+  interval: 6h
+  install:
+    remediation:
+      retries: 30
+  upgrade:
+    remediation:
+      retries: 30
+  values:
+    env:
+      TZ: America/Chicago
+      PUID: 1000
+      PGID: 1000
+    image:
+      repository: linuxserver/radarr
+      pullPolicy: IfNotPresent
+      tag: 5.9.1
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          hajimari.io/enable: "true"
+          hajimari.io/group: Media
+          hajimari.io/icon: mdi:movie
+        hosts:
+          - host: &host radarr.internal.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: radarr-tls
+    # podSecurityContext:
+    #   runAsUser: 1000
+    #   runAsGroup: 1000
+    persistence:
+      config:
+        enabled: true
+        storageClass: openebs-hostpath
+      vids:
+        enabled: true
+        mountPath: /data
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteMany
+        existingClaim: media-pvc-ssd
+        size: 250Gi
+    metrics:
+      enabled: false
