@@ -31,7 +31,8 @@ spec:
                   cert-manager.io/cluster-issuer: letsencrypt-production
               spec:
                 rules:
-                  - http:
+                  - host: kiali.internal.${SECRET_DOMAIN}
+                    http:
                       paths:
                         - path: /
                           pathType: Prefix
