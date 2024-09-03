@@ -22,3 +22,4 @@ resources:
   - ./istio.yaml
   - ./portainer.yaml
   - ./grafana.yaml
+  - ./jaeger.yaml

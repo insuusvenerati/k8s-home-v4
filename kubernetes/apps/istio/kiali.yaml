@@ -7,35 +7,46 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: kiali-server
+      chart: kiali-operator
       sourceRef:
         name: kiali
         kind: HelmRepository
         namespace: flux-system
   values:
-    server:
-      web_fqdn: kiali.internal.${SECRET_DOMAIN}
-    auth:
-      strategy: anonymous
-    deployment:
-      ingress:
-        enabled: true
-        class_name: internal
-        override_yaml:
-          metadata:
-            name: kiali
-            namespace: istio-system
-            annotations:
-              cert-manager.io/cluster-issuer: letsencrypt-production
-          spec:
-            rules:
-              - host: kiali.internal.${SECRET_DOMAIN}
-                http:
-                  paths:
-                    - path: /
-                      pathType: Prefix
-                      backend:
-                        service:
-                          name: kiali
-                          port:
-                            number: 20001
+    cr:
+      create: true
+      namespace: istio-system
+      spec:
+        auth:
+          strategy: anonymous
+        deployment:
+          accessible_namespaces: ["**"]
+          view_only_mode: false
+          ingress:
+            enabled: true
+            class_name: internal
+            override_yaml:
+              metadata:
+                annotations:
+                  cert-manager.io/cluster-issuer: letsencrypt-production
+              spec:
+                rules:
+                  - http:
+                      paths:
+                        - path: /
+                          pathType: Prefix
+                          backend:
+                              service:
+                              name: kiali
+                              port:
+                                  number: 20001
+        external_services:
+          grafana:
+            enabled: true
+            in_cluster_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
+          prometheus:
+            enabled: true
+            in_cluster_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+          tracing:
+            enabled: true
+            in_cluster_url: http://jaeger-query:16685
