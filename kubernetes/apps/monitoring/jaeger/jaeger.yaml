@@ -20,5 +20,5 @@ spec:
       namespace: monitoring
     rbac:
       create: true
-      pspEnabled: true
+      pspEnabled: false
       clusterRole: true
