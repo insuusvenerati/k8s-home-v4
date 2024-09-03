@@ -15,3 +15,8 @@ resources:
   - ./external-dns.yaml
   - ./ingress-nginx.yaml
   - ./k8s-gateway.yaml
+  - ./istio.yaml
+  - ./nfs-subdir-external.yaml
+  - ./kiali.yaml
+  - ./portainer.yaml
+  - ./plex.yaml
