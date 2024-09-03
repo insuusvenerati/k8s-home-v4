@@ -21,3 +21,4 @@ resources:
   - ./nfs-subdir-external.yaml
   - ./istio.yaml
   - ./portainer.yaml
+  - ./grafana.yaml
