@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   hosts:
-    - "*"
+    - tubearchivist-redis
   tcp:
     - route:
         - destination:
