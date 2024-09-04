@@ -33,6 +33,10 @@ metadata:
     app.kubernetes.io/part-of: "kiali"
 data:
   config.yaml: |
+    istio_labels:
+      app_label_name: app.kubernetes.io/name
+      version_label_name: app.kubernetes.io/version
+      ingress_gateway_label: app=istio-ingress
     additional_display_details:
       - annotation: kiali.io/api-spec
         icon_annotation: kiali.io/api-type
@@ -131,7 +135,6 @@ data:
           port: 9090
       port: 20001
       web_root: /kiali
-...
 ---
 # Source: kiali-server/templates/role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -473,4 +476,3 @@ spec:
           configMap:
             name: kiali-cabundle
             optional: true
-...
