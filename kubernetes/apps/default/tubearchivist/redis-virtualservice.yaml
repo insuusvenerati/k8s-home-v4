@@ -6,11 +6,9 @@ metadata:
 spec:
   hosts:
     - tubearchivist-redis
-  tcp:
+  http:
     - route:
         - destination:
             host: tubearchivist-redis
             port:
               number: 6379
-    - match:
-        - port: 6379
