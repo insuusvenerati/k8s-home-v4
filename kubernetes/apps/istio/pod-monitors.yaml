@@ -13,6 +13,7 @@ spec:
   selector:
     matchLabels:
       app: istiod
+      app.kubernetes.io/managed-by: Helm
   podMetricsEndpoints:
     - port: http-monitoring
       interval: 30s
