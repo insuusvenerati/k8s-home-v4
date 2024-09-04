@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  hosts:
+    - loki-gateway.monitoring.svc.cluster.local
+  tcp:
+    - match:
+        - port: 80
+      route:
+        - destination:
+            host: loki-gateway.monitoring.svc.cluster.local
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: tubearchivist-redis
+  namespace: default
+spec:
+  host: loki-gateway.monitoring.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
