@@ -95,7 +95,7 @@ spec:
         enabled: true
         controller: redis
         ports:
-          http:
+          tcp-redis:
             enabled: true
             primary: true
             port: 6379
