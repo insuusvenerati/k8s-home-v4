@@ -7,6 +7,9 @@ metadata:
     app.kubernetes.io/name: istiod
 spec:
   jobLabel: istiod
+  namespaceSelector:
+    matchNames:
+      - istio-system
   selector:
     matchLabels:
       app: istiod
