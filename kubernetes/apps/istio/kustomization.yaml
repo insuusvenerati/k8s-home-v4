@@ -6,4 +6,6 @@ resources:
   - ./istio-d.yaml
   - ./istio-ingress.yaml
   - ./kiali.yaml
-  - ./pod-monitors.yaml
+  - ./jaeger.yaml
+  - ./grafana.yaml
+  - ./prometheus.yaml
