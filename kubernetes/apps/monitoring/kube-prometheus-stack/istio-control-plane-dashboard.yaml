@@ -4,7 +4,7 @@ metadata:
   name: istio-control-plane-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard: "99"
+    grafana_dashboard: "1"
 data:
   7645_rev227.json: |-
     {

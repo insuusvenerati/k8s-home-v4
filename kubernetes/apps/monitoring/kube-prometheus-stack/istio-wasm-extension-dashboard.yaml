@@ -4,7 +4,7 @@ metadata:
   name: istio-wasm-extension-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard: "100"
+    grafana_dashboard: "1"
 data:
   13277_rev184.json: |-
     {
