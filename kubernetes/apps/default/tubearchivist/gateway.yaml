@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: tubearchivist-gateway
+  namespace: default
+spec:
+  selector:
+    app.kubernetes.io/name: tubearchivist-main
+  servers:
+    - hosts:
+        - tubearchivist.internal.${SECRET_DOMAIN}
+      port:
+        name: http
+        number: 8000
+        protocol: TCP
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: tubearchivist-virtualservice
+  namespace: default
+spec:
+    hosts:
+        - *
+    gateways:
+        - tubearchivist-gateway
+    http:
+        - route:
+            - destination:
+                host: tubearchivist-main
+                port:
+                  number: 8000

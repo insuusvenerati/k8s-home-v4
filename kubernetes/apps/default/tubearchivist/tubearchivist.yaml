@@ -101,7 +101,7 @@ spec:
             port: 6379
     ingress:
       main:
-        enabled: true
+        enabled: false
         className: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production

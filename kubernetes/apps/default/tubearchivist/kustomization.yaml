@@ -4,3 +4,4 @@ resources:
   - ./secret.sops.yaml
   - ./tubearchivist.yaml
   - ./redis-virtualservice.yaml
+  - ./gateway.yaml
