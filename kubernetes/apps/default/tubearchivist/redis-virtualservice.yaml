@@ -12,3 +12,5 @@ spec:
             host: tubearchivist-redis
             port:
               number: 6379
+    - match:
+        - port: 6379
