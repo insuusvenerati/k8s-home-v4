@@ -42,6 +42,10 @@ spec:
                               port:
                                 number: 20001
         external_services:
+          custom_dashboards:
+            enabled: true
+          istio:
+            root_namespace: istio-system
           grafana:
             enabled: true
             in_cluster_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
