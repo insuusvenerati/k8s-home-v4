@@ -22,3 +22,28 @@ spec:
                 name: kiali
                 port:
                   number: 20001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: istio-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+    tls:
+        - hosts:
+            - istio-grafana.internal.${SECRET_DOMAIN}
+          secretName: istio-grafana-tls
+    ingressClassName: internal
+    rules:
+        - host: istio-grafana.internal.${SECRET_DOMAIN}
+          http:
+              paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                      name: grafana
+                      port:
+                        number: 3000
