@@ -1,4 +1,10 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-control-plane-dashboard
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "99"
 data:
   7645_rev227.json: |-
     {
@@ -2211,7 +2217,3 @@ data:
       "weekStart": "",
       "gnetId": 7645
     }
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: istio-control-plane-dashboard
