@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: istiod
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/name: istiod
+spec:
+  jobLabel: istiod
+  selector:
+    matchLabels:
+      app: istiod
+  podMetricsEndpoints:
+    - port: "15014"
+      interval: 30s
+      path: /metrics
