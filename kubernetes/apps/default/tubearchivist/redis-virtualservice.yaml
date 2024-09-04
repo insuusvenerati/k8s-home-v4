@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: tubearchivist-redis
+  namespace: default
+spec:
+  hosts:
+    - tubearchivist-redis
+  tcp:
+    - route:
+        - destination:
+            host: tubearchivist-redis
+            port:
+              number: 6379
