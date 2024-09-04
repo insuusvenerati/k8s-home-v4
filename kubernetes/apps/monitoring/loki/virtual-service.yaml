@@ -19,7 +19,7 @@ apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
   name: loki
-  namespace: default
+  namespace: monitoring
 spec:
   host: loki-gateway.monitoring.svc.cluster.local
   trafficPolicy:
