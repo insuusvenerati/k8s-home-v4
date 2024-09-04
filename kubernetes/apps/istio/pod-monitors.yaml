@@ -5,6 +5,7 @@ metadata:
   namespace: istio-system
   labels:
     app.kubernetes.io/name: istiod
+    app: istiod
 spec:
   jobLabel: istiod
   namespaceSelector:
@@ -13,7 +14,6 @@ spec:
   selector:
     matchLabels:
       app: istiod
-      operator.istio.io/component: Pilot
   podMetricsEndpoints:
     - port: http-monitoring
       interval: 30s
