@@ -18,7 +18,7 @@ spec:
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
-  name: tubearchivist-redis
+  name: loki
   namespace: default
 spec:
   host: loki-gateway.monitoring.svc.cluster.local
