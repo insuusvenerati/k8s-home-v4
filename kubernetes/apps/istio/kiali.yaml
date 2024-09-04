@@ -23,7 +23,7 @@ spec:
         auth:
           strategy: anonymous
         deployment:
-          accessible_namespaces: ["**"]
+          accessible_namespaces: [ "**" ]
           view_only_mode: false
           ingress:
             enabled: true
@@ -33,6 +33,10 @@ spec:
                 annotations:
                   cert-manager.io/cluster-issuer: letsencrypt-production
               spec:
+                tls:
+                  - hosts:
+                    - kiali.internal.${SECRET_DOMAIN}
+                    secretName: kiali-tls
                 rules:
                   - host: kiali.internal.${SECRET_DOMAIN}
                     http:
