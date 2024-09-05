@@ -35,6 +35,8 @@ spec:
             schema: v13
     singleBinary:
       replicas: 1
+      persistence:
+        storageClass: openebs-hostpath
     read:
       replicas: 0
     backend:
