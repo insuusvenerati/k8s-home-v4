@@ -1,12 +1,12 @@
 apiVersion: trust.cert-manager.io/v1alpha1
 kind: Bundle
 metadata:
-  name: linkerd-identity-trust-roots
+  name: linkerd-trust-roots
   namespace: linkerd
 spec:
   sources:
     - secret:
-        name: "linkerd-identity-trust-anchor"
+        name: "linkerd-trust-anchor"
         key: "ca.crt"
   target:
     configMap:
