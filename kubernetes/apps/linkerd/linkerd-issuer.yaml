@@ -9,8 +9,8 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: linkerd-identity-issuer
+  name: linkerd-trust-anchor
   namespace: linkerd
 spec:
   ca:
-    secretName: linkerd-identity-trust-anchor
+    secretName: linkerd-trust-anchor

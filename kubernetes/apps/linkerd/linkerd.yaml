@@ -82,7 +82,7 @@ spec:
     enablePodDisruptionBudget: false
     enablePprof: false
     identity:
-      externalCA: true
+      externalCA: false
       issuer:
         clockSkewAllowance: 20s
         issuanceLifetime: 24h0m0s
@@ -159,9 +159,9 @@ spec:
     policyValidator:
       caBundle: ""
       crtPEM: ""
-      externalSecret: true
+      externalSecret: false
       injectCaFrom: ""
-      injectCaFromSecret: "linkerd-identity-trust-anchor"
+      injectCaFromSecret: ""
       keyPEM: ""
       namespaceSelector:
         matchExpressions:
@@ -173,9 +173,9 @@ spec:
     profileValidator:
       caBundle: ""
       crtPEM: ""
-      externalSecret: true
+      externalSecret: false
       injectCaFrom: ""
-      injectCaFromSecret: "linkerd-identity-trust-anchor"
+      injectCaFromSecret: ""
       keyPEM: ""
       namespaceSelector:
         matchExpressions:
@@ -273,9 +273,9 @@ spec:
     proxyInjector:
       caBundle: ""
       crtPEM: ""
-      externalSecret: true
+      externalSecret: false
       injectCaFrom: ""
-      injectCaFromSecret: "linkerd-identity-trust-anchor"
+      injectCaFromSecret: ""
       keyPEM: ""
       livenessProbe:
         timeoutSeconds: 1
