@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - ./secret.sops.yaml
   - ./issuers.yaml
-#  - ./linkerd-identity-issuer.yaml
-#  - ./linkerd-issuer.yaml
+  - ./linkerd-identity-issuer-cert.yaml
+  - ./linkerd-issuer.yaml
+  - ./linkerd-ca-trust-bundle.yaml

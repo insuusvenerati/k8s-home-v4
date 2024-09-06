@@ -23,14 +23,14 @@ spec:
       name: linkerd-trust-anchor
       valuesKey: tls.crt
       targetPath: identityTrustAnchorsPEM
-    - kind: Secret
-      name: linkerd-issuer
-      valuesKey: tls.crt
-      targetPath: identity.issuer.tls.crtPEM
-    - kind: Secret
-      name: linkerd-issuer
-      valuesKey: tls.key
-      targetPath: identity.issuer.tls.keyPEM
+#    - kind: Secret
+#      name: linkerd-issuer
+#      valuesKey: tls.crt
+#      targetPath: identity.issuer.tls.crtPEM
+#    - kind: Secret
+#      name: linkerd-issuer
+#      valuesKey: tls.key
+#      targetPath: identity.issuer.tls.keyPEM
   values:
     clusterDomain: cluster.local
     clusterNetworks: 10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,fd00::/8
@@ -77,23 +77,23 @@ spec:
     enablePodAntiAffinity: false
     enablePodDisruptionBudget: false
     enablePprof: false
-#    identity:
-#      externalCA: false
-#      issuer:
-#        clockSkewAllowance: 20s
-#        issuanceLifetime: 24h0m0s
-#        scheme: linkerd.io/tls
-#        tls:
-#          crtPEM: ""
-#          keyPEM: ""
-#      kubeAPI:
-#        clientBurst: 200
-#        clientQPS: 100
-#      livenessProbe:
-#        timeoutSeconds: 1
-#      readinessProbe:
-#        timeoutSeconds: 1
-#      serviceAccountTokenProjection: true
+    identity:
+      externalCA: true
+      issuer:
+        clockSkewAllowance: 20s
+        issuanceLifetime: 24h0m0s
+        scheme: kubernetes.io/tls
+        tls:
+          crtPEM: ""
+          keyPEM: ""
+      kubeAPI:
+        clientBurst: 200
+        clientQPS: 100
+      livenessProbe:
+        timeoutSeconds: 1
+      readinessProbe:
+        timeoutSeconds: 1
+      serviceAccountTokenProjection: true
     identityTrustAnchorsPEM: ""
     identityTrustDomain: ""
     imagePullPolicy: IfNotPresent
