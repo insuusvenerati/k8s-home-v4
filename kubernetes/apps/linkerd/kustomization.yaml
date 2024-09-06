@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./linkerd.yaml
   - ./secret.sops.yaml
+  - ./issuer-secret.sops.yaml
