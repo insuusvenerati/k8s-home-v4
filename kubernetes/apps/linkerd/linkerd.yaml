@@ -161,7 +161,7 @@ spec:
       crtPEM: ""
       externalSecret: true
       injectCaFrom: ""
-      injectCaFromSecret: ""
+      injectCaFromSecret: "linkerd-identity-trust-anchor"
       keyPEM: ""
       namespaceSelector:
         matchExpressions:
@@ -173,9 +173,9 @@ spec:
     profileValidator:
       caBundle: ""
       crtPEM: ""
-      externalSecret: false
+      externalSecret: true
       injectCaFrom: ""
-      injectCaFromSecret: ""
+      injectCaFromSecret: "linkerd-identity-trust-anchor"
       keyPEM: ""
       namespaceSelector:
         matchExpressions:
@@ -273,9 +273,9 @@ spec:
     proxyInjector:
       caBundle: ""
       crtPEM: ""
-      externalSecret: false
+      externalSecret: true
       injectCaFrom: ""
-      injectCaFromSecret: ""
+      injectCaFromSecret: "linkerd-identity-trust-anchor"
       keyPEM: ""
       livenessProbe:
         timeoutSeconds: 1
