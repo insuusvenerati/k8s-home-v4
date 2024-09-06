@@ -9,3 +9,4 @@ resources:
   - ./linkerd-issuer.yaml
   - ./viz.yaml
   - ./smi.yaml
+  - ./viz-ingress.yaml
