@@ -24,3 +24,4 @@ resources:
   - ./grafana.yaml
   - ./jaeger.yaml
   - ./komodor.yaml
+  - ./linkerd.yaml
