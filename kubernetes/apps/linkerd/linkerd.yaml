@@ -82,7 +82,7 @@ spec:
     enablePodDisruptionBudget: false
     enablePprof: false
     identity:
-      externalCA: false
+      externalCA: true
       issuer:
         clockSkewAllowance: 20s
         issuanceLifetime: 24h0m0s

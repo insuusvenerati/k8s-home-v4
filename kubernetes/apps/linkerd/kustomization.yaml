@@ -4,8 +4,8 @@ resources:
   - ./crds.yaml
   - ./namespace.yaml
   - ./linkerd.yaml
-  - ./secret.sops.yaml
+#  - ./secret.sops.yaml
 #  - ./issuer-secret.sops.yaml
-#  - ./linkerd-ca-trust-bundle.yaml
+  - ./linkerd-ca-trust-bundle.yaml
   - ./linkerd-identity-issuer-cert.yaml
   - ./linkerd-issuer.yaml

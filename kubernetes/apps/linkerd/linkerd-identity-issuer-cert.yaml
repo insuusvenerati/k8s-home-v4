@@ -2,18 +2,18 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: linkerd-trust-anchor
-  namespace: linkerd
+  namespace: cert-manager
 spec:
-  commonName: root.linkerd.cluster.local
   isCA: true
-  duration: 87600h0m0s
-  renewBefore: 87264h0m0s
-  issuerRef:
-    name: linkerd-trust-anchor
-    kind: Issuer
+  commonName: root.linkerd.cluster.local
+  secretName: linkerd-identity-trust-roots
   privateKey:
     algorithm: ECDSA
-  secretName: linkerd-trust-anchor
+    size: 256
+  issuerRef:
+    name: linkerd-self-signed-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -26,7 +26,7 @@ spec:
   renewBefore: 25h
   issuerRef:
     name: linkerd-trust-anchor
-    kind: Issuer
+    kind: ClusterIssuer
   commonName: identity.linkerd.cluster.local
   dnsNames:
     - identity.linkerd.cluster.local
