@@ -16,6 +16,10 @@ spec:
   dependsOn:
   - name: linkerd-crds
     namespace: linkerd
+  - name: cert-manager
+    namespace: cert-manager
+  - name: trust-manager
+    namespace: cert-manager
   interval: 6h0m0s
   targetNamespace: linkerd
   valuesFrom:
