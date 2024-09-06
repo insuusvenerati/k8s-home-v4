@@ -74,7 +74,7 @@ spec:
       issuer:
         clockSkewAllowance: 20s
         issuanceLifetime: 24h0m0s
-        scheme: kubernetes.io/tls
+        scheme: linkerd.io/tls
         tls:
           crtPEM: ""
           keyPEM: ""
