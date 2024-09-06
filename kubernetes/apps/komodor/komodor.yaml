@@ -99,7 +99,7 @@ spec:
       telemetry:
         collectApiServerMetrics: false
         enabled: true
-    clusterName: null
+    clusterName: k8s-home
     communications:
       apiServerUrl: https://kubernetes.default.svc.cluster.local
       mgmtServerHost: https://app.komodor.com
