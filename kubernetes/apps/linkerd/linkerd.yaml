@@ -22,11 +22,11 @@ spec:
     namespace: cert-manager
   interval: 6h0m0s
   targetNamespace: linkerd
-  valuesFrom:
-    - kind: Secret
-      name: linkerd-trust-anchor
-      valuesKey: tls.crt
-      targetPath: identityTrustAnchorsPEM
+#  valuesFrom:
+#    - kind: Secret
+#      name: linkerd-trust-anchor
+#      valuesKey: tls.crt
+#      targetPath: identityTrustAnchorsPEM
 #    - kind: Secret
 #      name: linkerd-issuer
 #      valuesKey: tls.crt
@@ -159,7 +159,7 @@ spec:
     policyValidator:
       caBundle: ""
       crtPEM: ""
-      externalSecret: false
+      externalSecret: true
       injectCaFrom: ""
       injectCaFromSecret: ""
       keyPEM: ""
