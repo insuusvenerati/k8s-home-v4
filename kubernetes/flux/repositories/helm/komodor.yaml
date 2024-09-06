@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: komodor
+  namespace: flux-system
+spec:
+  url: https://helm-charts.komodor.io
+  interval: 6h
