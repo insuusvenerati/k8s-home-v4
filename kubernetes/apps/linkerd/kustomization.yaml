@@ -4,3 +4,4 @@ resources:
   - ./crds.yaml
   - ./namespace.yaml
   - ./linkerd.yaml
+  - ./secret.sops.yaml
