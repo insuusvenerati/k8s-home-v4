@@ -18,6 +18,11 @@ spec:
     namespace: linkerd
   interval: 6h0m0s
   targetNamespace: linkerd
+  valuesFrom:
+    - kind: Secret
+      name: linkerd-trust-anchor
+      valuesKey: tls.crt
+      targetPath: identityTrustAnchorsPEM
   values:
     clusterDomain: cluster.local
     clusterNetworks: 10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,fd00::/8
@@ -69,7 +74,7 @@ spec:
       issuer:
         clockSkewAllowance: 20s
         issuanceLifetime: 24h0m0s
-        scheme: linkerd.io/tls
+        scheme: kubernetes.io/tls
         tls:
           crtPEM: ""
           keyPEM: ""
