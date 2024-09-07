@@ -23,7 +23,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: clickhouse/clickhouse-server
-        tag: "23.11"
+        tag: "23.12"
       imagePullSecrets: []
       nodeSelector: {}
       persistence:
