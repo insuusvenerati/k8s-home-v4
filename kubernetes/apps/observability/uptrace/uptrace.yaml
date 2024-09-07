@@ -16,6 +16,9 @@ spec:
   interval: 6h0m0s
   releaseName: uptrace
   targetNamespace: observability
+  dependsOn:
+    - name: opentelemetry-operator
+      namespace: observability
   values:
     clickhouse:
       affinity: {}
