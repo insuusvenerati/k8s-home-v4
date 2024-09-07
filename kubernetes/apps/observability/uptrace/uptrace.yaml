@@ -61,9 +61,9 @@ spec:
       enabled: true
       nodeSelector: {}
       otlpExporter:
-        endpoint: http://my-uptrace:14317
+        endpoint: http://uptrace:14317
         headers:
-          uptrace-dsn: http://project1_secret_token@localhost:14317/1
+          uptrace-dsn: http://project1_secret_token@localhost:14318?grpc=14317
         tls:
           insecure: true
       resources: {}
