@@ -1,0 +1,179 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: opentelemetry-operator
+  namespace: observability
+spec:
+  chart:
+    spec:
+      chart: opentelemetry-operator
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: open-telemetry
+        namespace: flux-system
+  interval: 6h0m0s
+  releaseName: opentelemetry-operator
+  targetNamespace: observability
+  values:
+    additionalLabels: {}
+    admissionWebhooks:
+      autoGenerateCert:
+        certPeriodDays: 365
+        enabled: true
+        recreate: true
+      caFile: ""
+      certFile: ""
+      certManager:
+        certificateAnnotations: {}
+        duration: ""
+        enabled: true
+        issuerAnnotations: {}
+        issuerRef: {}
+        renewBefore: ""
+      create: true
+      failurePolicy: Fail
+      keyFile: ""
+      namePrefix: ""
+      namespaceSelector: {}
+      objectSelector: {}
+      pods:
+        failurePolicy: Ignore
+      secretAnnotations: {}
+      secretLabels: {}
+      secretName: ""
+      serviceAnnotations: {}
+      servicePort: 443
+      timeoutSeconds: 10
+    affinity: {}
+    clusterDomain: cluster.local
+    clusterRole:
+      create: true
+    crds:
+      create: true
+    fullnameOverride: "open-telemetry-operator"
+    hostNetwork: false
+    imagePullSecrets: []
+    kubeRBACProxy:
+      enabled: true
+      extraArgs: []
+      image:
+        repository: quay.io/brancz/kube-rbac-proxy
+        tag: v0.15.0
+      ports:
+        proxyPort: 8443
+      resources:
+        limits:
+          cpu: 500m
+          memory: 128Mi
+        requests:
+          cpu: 5m
+          memory: 64Mi
+      securityContext: {}
+    manager:
+      autoInstrumentationImage:
+        apacheHttpd:
+          repository: ""
+          tag: ""
+        dotnet:
+          repository: ""
+          tag: ""
+        go:
+          repository: ""
+          tag: ""
+        java:
+          repository: ""
+          tag: ""
+        nodejs:
+          repository: ""
+          tag: ""
+        python:
+          repository: ""
+          tag: ""
+      collectorImage:
+        repository: "otel/opentelemetry-collector-k8s"
+        tag: 0.107.0
+      createRbacPermissions: false
+      deploymentAnnotations: {}
+      env:
+        ENABLE_WEBHOOKS: "true"
+      extraArgs: []
+      featureGates: ""
+      image:
+        repository: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator
+        tag: ""
+      leaderElection:
+        enabled: true
+      opampBridgeImage:
+        repository: ""
+        tag: ""
+      podAnnotations: {}
+      podLabels: {}
+      ports:
+        healthzPort: 8081
+        metricsPort: 8080
+        webhookPort: 9443
+      prometheusRule:
+        annotations: {}
+        defaultRules:
+          additionalRuleAnnotations: {}
+          additionalRuleLabels: {}
+          enabled: false
+        enabled: false
+        extraLabels: {}
+        groups: []
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 64Mi
+      rolling: false
+      securityContext: {}
+      serviceAccount:
+        annotations: {}
+        create: true
+        name: ""
+      serviceAnnotations: {}
+      serviceMonitor:
+        annotations: {}
+        enabled: false
+        extraLabels: {}
+        metricRelabelings: []
+        metricsEndpoints:
+        - port: metrics
+        relabelings: []
+      targetAllocatorImage:
+        repository: ""
+        tag: ""
+      verticalPodAutoscaler:
+        controlledResources: []
+        enabled: false
+        maxAllowed: {}
+        minAllowed: {}
+        updatePolicy:
+          minReplicas: 2
+          updateMode: Auto
+    nameOverride: ""
+    nodeSelector: {}
+    pdb:
+      create: false
+      maxUnavailable: ""
+      minAvailable: 1
+    priorityClassName: ""
+    replicaCount: 1
+    role:
+      create: true
+    securityContext:
+      fsGroup: 65532
+      runAsGroup: 65532
+      runAsNonRoot: true
+      runAsUser: 65532
+    testFramework:
+      image:
+        repository: busybox
+        tag: latest
+    tolerations: []
+    topologySpreadConstraints: []
