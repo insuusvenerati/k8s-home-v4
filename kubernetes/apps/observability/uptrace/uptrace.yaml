@@ -73,7 +73,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: postgres
-        tag: 15-alpine
+        tag: 16-alpine
       imagePullSecrets: []
       nodeSelector: {}
       persistence:
