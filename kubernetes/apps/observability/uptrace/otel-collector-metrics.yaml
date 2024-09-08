@@ -4,7 +4,7 @@ metadata:
   name: otel-node-collector
   namespace: observability
   labels:
-    app: otelcontribcol
+    app: otel-node-collector
 spec:
   mode: daemonset
   processors:
