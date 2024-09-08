@@ -27,3 +27,4 @@ resources:
   - ./linkerd.yaml
   - ./otel.yaml
   - ./uptrace.yaml
+  - ./linkerd-smi.yaml
