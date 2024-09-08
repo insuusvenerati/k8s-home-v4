@@ -37,11 +37,11 @@ spec:
     service:
       pipelines:
         metrics:
-          receivers: [otlp/uptrace, hostmetrics]
+          receivers: [otlp, hostmetrics]
           processors: [cumulativetodelta, batch, resourcedetection]
-          exporters: [otlp/uptrace]
+          exporters: [otlp]
     exporters:
-      otlp/uptrace:
+      otlp:
         endpoint: http://my-uptrace:4317
         headers: { 'uptrace-dsn': 'http://project2_secret_token@my-uptrace:14318?grpc=14317' }
         tls: { insecure: true }
