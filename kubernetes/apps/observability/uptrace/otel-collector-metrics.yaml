@@ -12,6 +12,8 @@ spec:
       resourcedetection:
         detectors: [env, system]
       cumulativetodelta:
+      batch:
+        timeout: 15s
 
     receivers:
       hostmetrics:
