@@ -11,6 +11,10 @@ spec:
     receivers:
       k8s_cluster:
         auth_type: serviceAccount
+      otlp:
+        protocols:
+          grpc:
+          http:
 
     exporters:
       otlp:
