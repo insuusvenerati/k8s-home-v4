@@ -42,6 +42,6 @@ spec:
           exporters: [otlp]
     exporters:
       otlp:
-        endpoint: http://my-uptrace:4317
+        endpoint: http://my-uptrace:14317
         headers: { 'uptrace-dsn': 'http://project2_secret_token@my-uptrace:14318?grpc=14317' }
         tls: { insecure: true }
