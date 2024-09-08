@@ -15,6 +15,6 @@ spec:
       chart: linkerd-smi
       sourceRef:
         kind: HelmRepository
-        name: linkerd-smi
+        name: linkerd
         namespace: flux-system
       interval: 12h
