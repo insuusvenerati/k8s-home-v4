@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: uptrace
+  name: my-uptrace
   namespace: observability
 spec:
   chart:
@@ -14,7 +14,7 @@ spec:
         name: uptrace
         namespace: flux-system
   interval: 6h0m0s
-  releaseName: uptrace
+  releaseName: my-uptrace
   targetNamespace: observability
   dependsOn:
     - name: opentelemetry-operator
@@ -40,7 +40,7 @@ spec:
         tcp_port: 9000
         type: ClusterIP
       tolerations: []
-    fullnameOverride: "uptrace"
+    fullnameOverride: "my-uptrace"
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
@@ -61,7 +61,7 @@ spec:
       enabled: true
       nodeSelector: {}
       otlpExporter:
-        endpoint: http://uptrace:14317
+        endpoint: http://my-uptrace:14317
         headers:
           uptrace-dsn: http://project1_secret_token@localhost:14318?grpc=14317
         tls:
