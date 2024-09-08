@@ -37,7 +37,7 @@ spec:
     service:
       pipelines:
         metrics:
-          receivers: [otlp, hostmetrics]
+          receivers: [hostmetrics]
           processors: [cumulativetodelta, batch, resourcedetection]
           exporters: [otlp]
     exporters:
