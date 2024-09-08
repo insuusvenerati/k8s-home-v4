@@ -2,10 +2,10 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: linkerd-smi
-  namespace: linkerd-smi
+  namespace: linkerd
 spec:
   interval: 30m
-  targetNamespace: linkerd-smi
+  targetNamespace: linkerd
   dependsOn:
     - name: linkerd
       namespace: linkerd
