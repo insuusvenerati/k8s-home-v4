@@ -8,52 +8,29 @@ metadata:
 spec:
   mode: daemonset
   config:
+    receivers:
+      k8s_cluster:
+        auth_type: serviceAccount
+
+    exporters:
+      otlp:
+        endpoint: http://my-uptrace:14317
+        headers: { 'uptrace-dsn': 'http://project2_secret_token@my-uptrace:14318?grpc=14317' }
+
     processors:
       resourcedetection:
         detectors: [env, system]
       cumulativetodelta:
       batch:
-        send_batch_size: 10000
         timeout: 10s
-
-    receivers:
-      otlp:
-        protocols:
-          grpc:
-          http:
-      hostmetrics:
-        scrapers:
-          cpu:
-          disk:
-          filesystem:
-          load:
-          memory:
-          network:
-          paging:
-
-    exporters:
-      debug:
-      otlp/uptrace:
-        endpoint: http://my-uptrace:14317
-        tls: { insecure: true }
-        headers:
-          uptrace-dsn: 'http://project2_secret_token@my-uptrace:14318?grpc=14317'
 
     service:
       pipelines:
         traces:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlp/uptrace, debug]
+          exporters: [otlp]
         metrics:
-          receivers: [otlp]
-          processors: [cumulativetodelta, batch]
-          exporters: [otlp/uptrace, debug]
-        metrics/host:
-          receivers: [hostmetrics]
+          receivers: [otlp, k8s_cluster]
           processors: [cumulativetodelta, batch, resourcedetection]
-          exporters: [otlp/uptrace, debug]
-        logs:
-          receivers: [otlp]
-          processors: [batch]
-          exporters: [otlp/uptrace, debug]
+          exporters: [otlp]
