@@ -22,6 +22,8 @@ spec:
     remediation:
       retries: 50
   values:
+    podAnnotations:
+      instrumentation.opentelemetry.io/inject-nodejs: "openobserve-collector/openobserve-nodejs"
     resources:
       limits:
         cpu: 500m
