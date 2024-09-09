@@ -10,4 +10,4 @@ resources:
   - ./viz.yaml
   - ./smi.yaml
   - ./viz-ingress.yaml
-#  - ./jaeger.yaml
+  - ./jaeger.yaml
