@@ -21,7 +21,7 @@ spec:
   # https://artifacthub.io/packages/helm/linkerd2/linkerd-viz
   values:
     grafana:
-      enabled: true
+      enabled: false
     prometheus:
-      enabled: true
-    jaegerUrl: "http://linkerd-jaeger.linkerd-jaeger.svc.cluster.local:16686"
+      enabled: false
+#    jaegerUrl: "http://linkerd-jaeger.linkerd-jaeger.svc.cluster.local:16686"
