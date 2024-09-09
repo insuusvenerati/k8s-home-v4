@@ -23,5 +23,5 @@ spec:
     grafana:
       enabled: false
     prometheus:
-      enabled: false
+      enabled: true
 #    jaegerUrl: "http://linkerd-jaeger.linkerd-jaeger.svc.cluster.local:16686"
