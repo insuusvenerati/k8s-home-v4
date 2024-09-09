@@ -25,7 +25,7 @@ spec:
       command: /otelcol-contrib
       config:
         exporters:
-          otlp/jaeger:
+          otlp:
             endpoint: jaeger.${POD_NAMESPACE}:14250
             tls:
               insecure: true
@@ -100,7 +100,7 @@ spec:
           pipelines:
             traces:
               exporters:
-              - otlp/jaeger
+              - otlp
               processors:
               - resource
               - k8sattributes
