@@ -2,10 +2,10 @@ apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
   name: nodejs-instrumentation
-  namespace: observability
+  namespace: default
 spec:
   exporter:
-    endpoint: http://nodejs-collector-collector.observability.svc.cluster.local:4317
+    endpoint: http://nodejs-collector-collector.default.svc.cluster.local:4317
   propagators:
     - tracecontext
     - baggage
