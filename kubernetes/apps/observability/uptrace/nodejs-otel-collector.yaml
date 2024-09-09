@@ -34,5 +34,8 @@ spec:
           http:
           grpc:
       opencensus:
+      jaeger:
+        protocols:
+          grpc:
     extensions:
       health_check:
