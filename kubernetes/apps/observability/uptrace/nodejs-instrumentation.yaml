@@ -5,7 +5,7 @@ metadata:
   namespace: observability
 spec:
   exporter:
-    endpoint: http://my-uptrace.observability.svc.cluster.local:14317
+    endpoint: http://nodejs-collector-collector.observability.svc.cluster.local:4317
   propagators:
     - tracecontext
     - baggage
