@@ -6,7 +6,7 @@ metadata:
 spec:
   isCA: true
   commonName: root.linkerd.cluster.local
-  secretName: linkerd-identity-trust-roots
+  secretName: linkerd-trust-anchor
   privateKey:
     algorithm: ECDSA
     size: 256

@@ -5,7 +5,7 @@ metadata:
 spec:
   sources:
     - secret:
-        name: "linkerd-identity-trust-roots"
+        name: "linkerd-trust-anchor"
         key: "ca.crt"
   target:
     configMap:
