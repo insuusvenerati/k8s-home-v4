@@ -31,4 +31,4 @@ spec:
     receivers:
       otlp:
         protocols:
-          http:
+          http: http://nodejs-collector-collector:4318
