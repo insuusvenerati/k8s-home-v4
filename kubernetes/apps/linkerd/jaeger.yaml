@@ -186,7 +186,7 @@ spec:
         name: cr.l5d.io/linkerd/jaeger-webhook
         pullPolicy: ""
         version: edge-24.9.1
-      injectCaFrom: "linkerd-trust-anchor"
+      injectCaFrom: ""
       injectCaFromSecret: ""
       keyPEM: ""
       logLevel: info
