@@ -9,7 +9,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp]
+          receivers: [otlp,opencensus]
           processors: [batch]
           exporters: [otlp/uptrace]
         metrics:
@@ -33,3 +33,6 @@ spec:
         protocols:
           http:
           grpc:
+      opencensus:
+    extensions:
+      health_check:
