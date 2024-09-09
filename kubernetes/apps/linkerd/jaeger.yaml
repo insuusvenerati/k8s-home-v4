@@ -180,7 +180,7 @@ spec:
       collectorSvcAccount: collector
       collectorSvcAddr: collector.linkerd-jaeger:55678
       crtPEM: ""
-      externalSecret: true
+      externalSecret: false
       failurePolicy: Ignore
       image:
         name: cr.l5d.io/linkerd/jaeger-webhook

@@ -24,3 +24,4 @@ spec:
       enabled: true
     prometheus:
       enabled: true
+    jaegerUrl: "http://linkerd-jaeger.linkerd-jaeger.svc.cluster.local:16686"
