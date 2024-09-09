@@ -93,7 +93,7 @@ spec:
               from_attribute: linkerd.io/workload-ns
               key: k8s.namespace.name
         receivers:
-          opencensus: null
+          opencensus:
         service:
           extensions:
           - health_check
