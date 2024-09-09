@@ -112,7 +112,7 @@ spec:
       image:
         name: otel/opentelemetry-collector-contrib
         pullPolicy: ""
-        version: 0.83.0
+        version: 0.108.0
       nodeSelector:
         kubernetes.io/os: linux
       replicas: 1
