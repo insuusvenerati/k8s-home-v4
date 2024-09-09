@@ -12,10 +12,10 @@ metadata:
   labels:
     linkerd.io/extension: viz
     toolkit.fluxcd.io/tenant: sre-team
-#---
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-#  name: linkerd-jaeger
-#  labels:
-#    linkerd.io/extension: jaeger
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: linkerd-jaeger
+  labels:
+    linkerd.io/extension: jaeger
