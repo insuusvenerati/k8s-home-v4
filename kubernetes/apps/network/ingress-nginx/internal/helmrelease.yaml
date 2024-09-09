@@ -24,6 +24,8 @@ spec:
   values:
     fullnameOverride: ingress-nginx-internal
     controller:
+      podAnnotations:
+        linkerd.io/inject: enabled
       service:
         annotations:
           io.cilium/lb-ipam-ips: "192.168.1.202"
