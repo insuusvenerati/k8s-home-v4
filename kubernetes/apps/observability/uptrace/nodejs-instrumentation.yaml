@@ -2,6 +2,7 @@ apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
   name: nodejs-instrumentation
+  namespace: observability
 spec:
   exporter:
     endpoint: http://my-uptrace.observability.svc.cluster.local:14317
