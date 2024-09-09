@@ -168,9 +168,7 @@ spec:
         uptrace_go: null
       env:
       - name: K8S_NODE_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: spec.nodeName
+        value: controller
       envFrom: []
       image:
         pullPolicy: IfNotPresent
