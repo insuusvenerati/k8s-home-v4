@@ -1,0 +1,210 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: linkerd-jaeger
+  namespace: linkerd-jaeger
+spec:
+  chart:
+    spec:
+      chart: linkerd-jaeger
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+        namespace: flux-system
+  install:
+    createNamespace: true
+  interval: 6h0m0s
+  targetNamespace: linkerd-jaeger
+  values:
+    clusterDomain: cluster.local
+    collector:
+      GID: null
+      UID: null
+      command: /otelcol-contrib
+      config:
+        exporters:
+          jaeger:
+            endpoint: jaeger.${POD_NAMESPACE}:14250
+            tls:
+              insecure: true
+        extensions:
+          health_check: null
+        processors:
+          batch: null
+          k8sattributes:
+            auth_type: serviceAccount
+            extract:
+              labels:
+              - from: pod
+                key: app.kubernetes.io/name
+                tag_name: kube_app_name
+              - from: pod
+                key: app.kubernetes.io/instance
+                tag_name: kube_app_instance
+              - from: pod
+                key: app.kubernetes.io/version
+                tag_name: kube_app_version
+              - from: pod
+                key: app.kubernetes.io/component
+                tag_name: kube_app_component
+              - from: pod
+                key: app.kubernetes.io/part-of
+                tag_name: kube_app_part_of
+              - from: pod
+                key: app.kubernetes.io/managed-by
+                tag_name: kube_app_managed_by
+              metadata:
+              - k8s.pod.name
+              - k8s.pod.uid
+              - k8s.deployment.name
+              - k8s.node.name
+              - k8s.namespace.name
+              - k8s.pod.start_time
+              - k8s.replicaset.name
+              - k8s.replicaset.uid
+              - k8s.daemonset.name
+              - k8s.daemonset.uid
+              - k8s.job.name
+              - k8s.job.uid
+              - k8s.cronjob.name
+              - k8s.statefulset.name
+              - k8s.statefulset.uid
+              - container.image.name
+              - container.image.tag
+              - container.id
+              - k8s.container.name
+              - container.image.name
+              - container.image.tag
+              - container.id
+            pod_association:
+            - sources:
+              - from: resource_attribute
+                name: k8s.pod.name
+              - from: resource_attribute
+                name: k8s.namespace.name
+          resource:
+            attributes:
+            - action: insert
+              from_attribute: host.name
+              key: k8s.pod.name
+            - action: insert
+              from_attribute: linkerd.io/workload-ns
+              key: k8s.namespace.name
+        receivers:
+          opencensus: null
+        service:
+          extensions:
+          - health_check
+          pipelines:
+            traces:
+              exporters:
+              - jaeger
+              processors:
+              - resource
+              - k8sattributes
+              - batch
+              receivers:
+              - opencensus
+      enabled: true
+      env: []
+      image:
+        name: otel/opentelemetry-collector-contrib
+        pullPolicy: ""
+        version: 0.83.0
+      nodeSelector:
+        kubernetes.io/os: linux
+      replicas: 1
+      resources:
+        cpu:
+          limit: null
+          request: null
+        ephemeral-storage:
+          limit: ""
+          request: ""
+        memory:
+          limit: null
+          request: null
+      tolerations: null
+    commonLabels: {}
+    createNamespaceMetadataJob: true
+    defaultGID: 2103
+    defaultUID: 2103
+    enablePSP: false
+    enablePodAntiAffinity: false
+    imagePullSecrets: []
+    jaeger:
+      GID: null
+      UID: null
+      args:
+      - --query.base-path=/jaeger
+      enabled: true
+      image:
+        name: jaegertracing/all-in-one
+        pullPolicy: ""
+        version: 1.31
+      nodeSelector:
+        kubernetes.io/os: linux
+      resources:
+        cpu:
+          limit: null
+          request: null
+        ephemeral-storage:
+          limit: ""
+          request: ""
+        memory:
+          limit: null
+          request: null
+      tolerations: null
+    linkerdNamespace: linkerd
+    linkerdVersion: edge-24.9.1
+    namespaceMetadata:
+      image:
+        name: extension-init
+        pullPolicy: ""
+        registry: cr.l5d.io/linkerd
+        tag: v0.1.1
+      nodeSelector:
+        kubernetes.io/os: linux
+      tolerations: null
+    nodeSelector:
+      kubernetes.io/os: linux
+    podLabels: {}
+    revisionHistoryLimit: 10
+    tolerations: null
+    webhook:
+      GID: null
+      UID: null
+      caBundle: ""
+      collectorSvcAccount: collector
+      collectorSvcAddr: collector.linkerd-jaeger:55678
+      crtPEM: ""
+      externalSecret: true
+      failurePolicy: Ignore
+      image:
+        name: cr.l5d.io/linkerd/jaeger-webhook
+        pullPolicy: ""
+        version: edge-24.9.1
+      injectCaFrom: "linkerd-trust-anchor"
+      injectCaFromSecret: ""
+      keyPEM: ""
+      logLevel: info
+      namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: NotIn
+          values:
+          - kube-system
+      nodeSelector:
+        kubernetes.io/os: linux
+      objectSelector: null
+      replicas: 1
+      resources:
+        cpu:
+          limit: null
+          request: null
+        memory:
+          limit: null
+          request: null
+      tolerations: null
