@@ -23,7 +23,7 @@ spec:
       retries: 50
   values:
     podAnnotations:
-      instrumentation.opentelemetry.io/inject-nodejs: "observability/nodejs-collector"
+      instrumentation.opentelemetry.io/inject-nodejs: "observability/nodejs-instrumentation"
     resources:
       limits:
         cpu: 500m
