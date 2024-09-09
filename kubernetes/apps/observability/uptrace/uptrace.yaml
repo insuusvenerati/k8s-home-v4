@@ -156,7 +156,7 @@ spec:
           token: project2_secret_token
         secret_key: 102c1a557c314fc28198acd017960843
         site:
-          addr: https://uptrace.internal.stiforr.com/
+          addr: 'http://localhost:14318/'
         smtp_mailer:
           enabled: false
           from: uptrace@localhost
