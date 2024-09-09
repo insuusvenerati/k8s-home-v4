@@ -4,7 +4,7 @@ metadata:
   name: nodejs-collector
   namespace: observability
 spec:
-  mode: sidecar
+  mode: deployment
   config: |
     service:
       pipelines:
