@@ -1,0 +1,13 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: nodejs-instrumentation
+spec:
+  exporter:
+    endpoint: http://my-uptrace.observability.svc.cluster.local:14317
+  propagators:
+    - tracecontext
+    - baggage
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1"
