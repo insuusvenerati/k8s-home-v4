@@ -2,6 +2,7 @@ apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
   name: nodejs-collector
+  namespace: observability
 spec:
   mode: sidecar
   config: |
