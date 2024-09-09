@@ -20,15 +20,15 @@ spec:
           receivers: [otlp]
           processors: [batch]
           exporters: [otlp/uptrace]
-      exporters:
-        otlp/uptrace:
-          endpoint: http://my-uptrace.observability.svc.cluster.local:14317
-          tls: { insecure: true }
-          headers: { 'uptrace-dsn': 'http://project2_secret_token@localhost:14318?grpc=14317' }
-      processors:
-        batch:
-          timeout: 15s
-      receivers:
-        otlp:
-          protocols:
-            http:
+    exporters:
+      otlp/uptrace:
+        endpoint: http://my-uptrace.observability.svc.cluster.local:14317
+        tls: { insecure: true }
+        headers: { 'uptrace-dsn': 'http://project2_secret_token@localhost:14318?grpc=14317' }
+    processors:
+      batch:
+        timeout: 15s
+    receivers:
+      otlp:
+        protocols:
+          http:
