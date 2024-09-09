@@ -74,22 +74,22 @@ spec:
     manager:
       autoInstrumentationImage:
         apacheHttpd:
-          repository: ""
+          repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-apache-httpd"
           tag: ""
         dotnet:
-          repository: ""
+          repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-dotnet"
           tag: ""
         go:
           repository: ""
           tag: ""
         java:
-          repository: ""
+          repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java"
           tag: ""
         nodejs:
-          repository: ""
+          repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-nodejs"
           tag: ""
         python:
-          repository: ""
+          repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python"
           tag: ""
       collectorImage:
         repository: "otel/opentelemetry-collector-k8s"
@@ -102,7 +102,7 @@ spec:
       featureGates: ""
       image:
         repository: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator
-        tag: ""
+        tag: "v0.108.0"
       leaderElection:
         enabled: true
       opampBridgeImage:
@@ -139,7 +139,7 @@ spec:
       serviceAnnotations: {}
       serviceMonitor:
         annotations: {}
-        enabled: false
+        enabled: true
         extraLabels: {}
         metricRelabelings: []
         metricsEndpoints:
