@@ -32,3 +32,4 @@ spec:
       otlp:
         protocols:
           http:
+          grpc:
