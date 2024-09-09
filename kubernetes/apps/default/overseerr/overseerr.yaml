@@ -24,7 +24,6 @@ spec:
   values:
     podAnnotations:
       instrumentation.opentelemetry.io/inject-nodejs: "observability/nodejs-instrumentation"
-      sidecar.opentelemetry.io/inject: 'true'
     resources:
       limits:
         cpu: 500m
