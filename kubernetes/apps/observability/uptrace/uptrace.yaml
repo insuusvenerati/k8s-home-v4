@@ -58,7 +58,7 @@ spec:
     nameOverride: ""
     otelcol:
       affinity: {}
-      enabled: false
+      enabled: true
       nodeSelector: {}
       otlpExporter:
         endpoint: http://localhost:14317
