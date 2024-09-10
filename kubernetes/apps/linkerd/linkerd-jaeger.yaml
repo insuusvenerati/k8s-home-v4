@@ -32,7 +32,7 @@ spec:
               insecure: true
           jaeger: null
         extensions:
-          health_check: null
+          health_check:
         processors:
           batch:
           k8sattributes: null
