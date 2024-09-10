@@ -22,19 +22,6 @@ spec:
     namespace: cert-manager
   interval: 6h0m0s
   targetNamespace: linkerd
-#  valuesFrom:
-#    - kind: Secret
-#      name: linkerd-trust-anchor
-#      valuesKey: tls.crt
-#      targetPath: identityTrustAnchorsPEM
-#    - kind: Secret
-#      name: linkerd-issuer
-#      valuesKey: tls.crt
-#      targetPath: identity.issuer.tls.crtPEM
-#    - kind: Secret
-#      name: linkerd-issuer
-#      valuesKey: tls.key
-#      targetPath: identity.issuer.tls.keyPEM
   values:
     clusterDomain: cluster.local
     clusterNetworks: 10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,fd00::/8

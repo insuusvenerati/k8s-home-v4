@@ -9,7 +9,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp,opencensus]
+          receivers: [otlp,opencensus,jaeger]
           processors: [batch]
           exporters: [otlp/uptrace]
         metrics:

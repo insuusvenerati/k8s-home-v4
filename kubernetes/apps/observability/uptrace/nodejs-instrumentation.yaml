@@ -10,6 +10,7 @@ spec:
     - tracecontext
     - baggage
     - b3
+    - jaeger
   sampler:
     type: parentbased_traceidratio
     argument: "1"
