@@ -35,7 +35,7 @@
       }
     ]
   },
-  "description": "Flux logs collected from Kubernetes, stored in Loki",
+  "description": "Flux logs collected from Kubernetes, stored in loki",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -44,7 +44,7 @@
   "panels": [
     {
       "datasource": {
-        "name": "Loki",
+        "name": "loki",
         "type": "loki",
         "uid": "P8E80F9AEF21F6940"
       },
@@ -316,7 +316,7 @@
       {
         "current": {
           "selected": true,
-          "text": "Loki",
+          "text": "loki",
           "value": "P8E80F9AEF21F6940"
         },
         "hide": 0,
