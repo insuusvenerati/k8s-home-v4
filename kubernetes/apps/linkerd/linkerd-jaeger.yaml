@@ -25,8 +25,8 @@ spec:
       command: /otelcol-contrib
       config:
         exporters:
-          jaeger:
-            endpoint: http://jaeger-collector.observability.svc.cluster.local:14250
+          otlp:
+            endpoint: http://jaeger-collector.observability.svc.cluster.local:4317
             tls:
               insecure: true
         extensions:
@@ -52,7 +52,7 @@ spec:
             traces:
               receivers: [otlp,opencensus,zipkin,jaeger]
               processors: [batch]
-              exporters: [jaeger]
+              exporters: [otlp]
       enabled: true
       env: []
       image:
