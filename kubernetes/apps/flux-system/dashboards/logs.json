@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_LOKI",
+      "label": "Loki",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "loki",
+      "pluginName": "Loki"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -35,19 +45,17 @@
       }
     ]
   },
-  "description": "Flux logs collected from Kubernetes, stored in loki",
+  "description": "Flux logs collected from Kubernetes, stored in Loki",
   "editable": true,
-  "fiscalYearStartMonth": 0,
+  "gnetId": null,
   "graphTooltip": 0,
+  "id": 29,
+  "iteration": 1653748775696,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "name": "loki",
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "${DS_LOKI}",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -55,13 +63,9 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -70,7 +74,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -114,9 +117,8 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
+          "displayMode": "hidden",
+          "placement": "bottom"
         },
         "tooltip": {
           "mode": "single",
@@ -125,10 +127,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "${DS_LOKI}",
           "expr": "sum(count_over_time({namespace=~\"$namespace\", stream=~\"$stream\", app =~\"$controller\"} | json | __error__!=\"JSONParserErr\" | level=~\"$level\" |= \"$query\" [$__interval]))",
           "instant": false,
           "legendFormat": "Log count",
@@ -139,11 +138,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "name": "${DS_LOKI}",
-        "type": "loki",
-        "uid": "${DS_LOKI}"
-      },
+      "datasource": "${DS_LOKI}",
       "description": "Logs from services running in Kubernetes",
       "gridPos": {
         "h": 25,
@@ -164,10 +159,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "${DS_LOKI}"
-          },
+          "datasource": "${DS_LOKI}",
           "expr": "{namespace=~\"$namespace\", stream=~\"$stream\", app =~\"$controller\"} | json | __error__!=\"JSONParserErr\" | level=~\"$level\" |= \"$query\"",
           "refId": "A"
         }
@@ -176,7 +168,8 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 39,
+  "schemaVersion": 36,
+  "style": "light",
   "tags": [
     "flux"
   ],
@@ -247,9 +240,7 @@
             "$__all"
           ]
         },
-        "datasource": {
-          "uid": ""
-        },
+        "datasource": "${DS_LOKI}",
         "definition": "label_values(app)",
         "hide": 0,
         "includeAll": true,
@@ -274,9 +265,7 @@
             "flux-system"
           ]
         },
-        "datasource": {
-          "uid": ""
-        },
+        "datasource": "${DS_LOKI}",
         "definition": "label_values(namespace)",
         "hide": 0,
         "includeAll": true,
@@ -297,9 +286,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": {
-          "uid": ""
-        },
+        "datasource": "${DS_LOKI}",
         "definition": "label_values(stream)",
         "hide": 0,
         "includeAll": true,
@@ -315,9 +302,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "loki",
-          "value": "P8E80F9AEF21F6940"
+          "selected": false,
+          "text": "Loki",
+          "value": "Loki"
         },
         "hide": 0,
         "includeAll": false,
@@ -326,7 +313,6 @@
         "name": "DS_LOKI",
         "options": [],
         "query": "loki",
-        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -342,6 +328,5 @@
   "timezone": "",
   "title": "Flux Logs",
   "uid": "flux-logs",
-  "version": 1,
-  "weekStart": ""
+  "version": 2
 }
