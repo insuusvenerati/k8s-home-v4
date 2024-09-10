@@ -7,6 +7,7 @@ resources:
   - ./pod-monitor.yaml
 configMapGenerator:
   - name: flux-grafana-dashboards
+    namespace: monitoring
     files:
       - dashboards/cluster.json
       - dashboards/control-plane.json
