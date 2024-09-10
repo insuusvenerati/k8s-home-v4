@@ -17,6 +17,7 @@ spec:
     createNamespace: true
   interval: 6h0m0s
   targetNamespace: linkerd-jaeger
+  releaseName: linkerd-jaeger
   values:
     clusterDomain: cluster.local
     collector:
