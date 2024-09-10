@@ -30,10 +30,13 @@ spec:
             endpoint: http://jaeger-collector.observability.svc.cluster.local:4317
             tls:
               insecure: true
+          jaeger: null
         extensions:
           health_check: null
         processors:
-          batch: null
+          batch:
+          k8sattributes: null
+          resource: null
         receivers:
           otlp:
             protocols:
