@@ -7,8 +7,8 @@ metadata:
 spec:
   chart:
     spec:
-      chart: loki
-      reconcileStrategy: ChartVersion
+      chart: loki-stack
+      reconcileStrategy: Revision
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -17,30 +17,16 @@ spec:
   releaseName: loki
   targetNamespace: monitoring
   values:
-    fullnameOverride: loki
-    deploymentMode: SingleBinary
+    promtail:
+      enabled: true
     loki:
-      auth_enabled: false
-      commonConfig:
-        replication_factor: 1
-      storage:
-        type: 'filesystem'
-      schemaConfig:
-        configs:
-          - from: "2024-01-01"
-            store: tsdb
-            index:
-              prefix: loki_index_
-              period: 24h
-            object_store: filesystem # we're storing on filesystem so there's no real persistence here.
-            schema: v13
-    singleBinary:
-      replicas: 1
-      persistence:
-        storageClass: openebs-hostpath
-    read:
-      replicas: 0
-    backend:
-      replicas: 0
-    write:
-      replicas: 0
+      enabled: true
+      isDefault: false
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          app.kubernetes.io/part-of: kube-prometheus-stack
+      config:
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 12h

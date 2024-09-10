@@ -17,7 +17,20 @@ spec:
   interval: 1h0m0s
   releaseName: kube-prometheus-stack
   targetNamespace: monitoring
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths:
+          - "/metadata/annotations/prometheus-operator-validated"
+        target:
+          kind: PrometheusRule
   values:
+    alertmanager:
+      enabled: false
     grafana:
       ingress:
         enabled: true
@@ -32,6 +45,12 @@ spec:
               - grafana.internal.${SECRET_DOMAIN}
     prometheus:
       prometheusSpec:
+        retention: 24h
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+        podMonitorNamespaceSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
