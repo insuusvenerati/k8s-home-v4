@@ -28,3 +28,4 @@ resources:
   - ./otel.yaml
   - ./uptrace.yaml
   - ./linkerd-smi.yaml
+  - ./onechart.yaml
