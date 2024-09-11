@@ -43,7 +43,11 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": "",
+      "datasource": {
+        "name": "Loki",
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -121,7 +125,10 @@
       },
       "targets": [
         {
-          "datasource": "",
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
           "expr": "sum(count_over_time({namespace=~\"$namespace\", stream=~\"$stream\", app =~\"$controller\"} | json | __error__!=\"JSONParserErr\" | level=~\"$level\" |= \"$query\" [$__interval]))",
           "instant": false,
           "legendFormat": "Log count",
