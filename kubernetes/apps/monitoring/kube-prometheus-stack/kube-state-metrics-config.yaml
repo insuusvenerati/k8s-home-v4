@@ -8,6 +8,7 @@ kube-state-metrics:
   rbac:
     extraRules:
       - apiGroups:
+          - ""
           - source.toolkit.fluxcd.io
           - kustomize.toolkit.fluxcd.io
           - helm.toolkit.fluxcd.io
@@ -27,6 +28,18 @@ kube-state-metrics:
           - imagerepositories
           - imagepolicies
           - imageupdateautomations
+          - configmaps
+          - secrets
+          - nodes
+          - pods
+          - services
+          - resourcequotas
+          - replicationcontrollers
+          - limitranges
+          - persistentvolumeclaims
+          - persistentvolumes
+          - namespaces
+          - endpoints
         verbs: [ "list", "watch" ]
   customResourceState:
     enabled: true
