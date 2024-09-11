@@ -22,42 +22,42 @@ spec:
   allowFirstLastIPs: "Yes"
   blocks:
     - cidr: "192.168.1.0/24"
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: allow-all-with-l7-visibility
-spec:
-  endpointSelector: {}
-  egress:
-    - toEndpoints: []
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-            - port: "443"
-              protocol: TCP
-            - port: "53"
-              protocol: ANY
-          rules:
-            http:
-              - {}
-    - toEntities:
-      - world
-      - cluster
-      - host
-  ingress:
-    - fromEndpoints: []
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-            - port: "443"
-              protocol: TCP
-          rules:
-            http:
-              - {}
-    - fromEntities:
-      - world
-      - cluster
-      - host
+#---
+#apiVersion: cilium.io/v2
+#kind: CiliumNetworkPolicy
+#metadata:
+#  name: allow-all-with-l7-visibility
+#spec:
+#  endpointSelector: {}
+#  egress:
+#    - toEndpoints: []
+#      toPorts:
+#        - ports:
+#            - port: "80"
+#              protocol: TCP
+#            - port: "443"
+#              protocol: TCP
+#            - port: "53"
+#              protocol: ANY
+#          rules:
+#            http:
+#              - {}
+#    - toEntities:
+#      - world
+#      - cluster
+#      - host
+#  ingress:
+#    - fromEndpoints: []
+#      toPorts:
+#        - ports:
+#            - port: "80"
+#              protocol: TCP
+#            - port: "443"
+#              protocol: TCP
+#          rules:
+#            http:
+#              - {}
+#    - fromEntities:
+#      - world
+#      - cluster
+#      - host
