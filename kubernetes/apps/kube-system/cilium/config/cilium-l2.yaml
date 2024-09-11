@@ -40,6 +40,8 @@ spec:
           rules:
             http:
               - {}
+    - toEntities:
+      - all
   ingress:
     - fromEndpoints: []
       toPorts:
@@ -51,3 +53,5 @@ spec:
           rules:
             http:
               - {}
+    - fromEntities:
+      - all
