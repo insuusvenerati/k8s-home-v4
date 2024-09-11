@@ -48,12 +48,12 @@ spec:
           serviceMonitor:
             enabled: true
       ui:
-        enabled: false
+        enabled: true
         rollOutPods: true
         ingress:
           enabled: true
           className: internal
-          hosts: ["hubble.${SECRET_DOMAIN}"]
+          hosts: ["hubble.internal.${SECRET_DOMAIN}"]
     operator:
       prometheus:
         enabled: true
