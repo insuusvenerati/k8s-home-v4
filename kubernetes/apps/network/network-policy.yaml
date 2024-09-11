@@ -3,7 +3,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: allow-all-with-l7-visibility
-  namespace: default
+  namespace: network
 spec:
   endpointSelector: {}
   egress:
