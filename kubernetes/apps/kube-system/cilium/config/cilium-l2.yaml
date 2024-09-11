@@ -41,7 +41,9 @@ spec:
             http:
               - {}
     - toEntities:
-      - all
+      - world
+      - cluster
+      - host
   ingress:
     - fromEndpoints: []
       toPorts:
@@ -54,4 +56,6 @@ spec:
             http:
               - {}
     - fromEntities:
-      - all
+      - world
+      - cluster
+      - host
