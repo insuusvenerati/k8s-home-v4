@@ -14,7 +14,20 @@ kube-state-metrics:
           - helm.toolkit.fluxcd.io
           - notification.toolkit.fluxcd.io
           - image.toolkit.fluxcd.io
+          - extensions
+          - apps
+          - authentication.k8s.io
+          - autoscaling
         resources:
+          - horizontalpodautoscalers
+          - tokenreviews
+          - statefulsets
+          - daemonsets
+          - deployments
+          - replicasets
+          - daemonsets
+          - deployments
+          - replicasets
           - gitrepositories
           - buckets
           - helmrepositories
