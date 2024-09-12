@@ -25,8 +25,9 @@
   "panels": [
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": ""
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -88,8 +89,10 @@
             "type": "prometheus",
             "uid": ""
           },
-          "expr": "round(sum(irate(istio_requests_total{reporter=\"source\"}[1m])), 0.001)",
+          "editorMode": "code",
+          "expr": "round(sum(irate(istio_requests_total{reporter=\"waypoint\"}[1m])), 0.001)",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A",
           "step": 4
         }
@@ -99,8 +102,9 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": ""
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -172,9 +176,11 @@
             "type": "prometheus",
             "uid": ""
           },
-          "expr": "sum(rate(istio_requests_total{reporter=\"source\", response_code!~\"5.*\"}[1m])) / sum(rate(istio_requests_total{reporter=\"source\"}[1m]))",
+          "editorMode": "code",
+          "expr": "sum(rate(istio_requests_total{reporter=\"waypoint\", response_code!~\"5.*\"}[1m])) / sum(rate(istio_requests_total{reporter=\"waypoint\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A",
           "step": 4
         }
@@ -184,8 +190,9 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": ""
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -253,9 +260,11 @@
             "type": "prometheus",
             "uid": ""
           },
-          "expr": "sum(irate(istio_requests_total{reporter=\"source\", response_code=~\"4.*\"}[1m]))",
+          "editorMode": "code",
+          "expr": "sum(irate(istio_requests_total{reporter=\"waypoint\", response_code=~\"4.*\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A",
           "step": 4
         }
@@ -265,8 +274,9 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": ""
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -334,9 +344,11 @@
             "type": "prometheus",
             "uid": ""
           },
-          "expr": "sum(irate(istio_requests_total{reporter=\"source\", response_code=~\"5.*\"}[1m]))",
+          "editorMode": "code",
+          "expr": "sum(irate(istio_requests_total{reporter=\"waypoint\", response_code=~\"5.*\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A",
           "step": 4
         }
@@ -586,8 +598,9 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": ""
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -655,9 +668,11 @@
             "type": "prometheus",
             "uid": ""
           },
+          "editorMode": "code",
           "expr": "max(pilot_k8s_cfg_events{type=\"WorkloadEntry\", event=\"add\"}) - (max(pilot_k8s_cfg_events{type=\"WorkloadEntry\", event=\"delete\"}) or max(up * 0))",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -986,8 +1001,9 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": ""
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1324,7 +1340,8 @@
             "type": "prometheus",
             "uid": ""
           },
-          "expr": "label_join(sum(rate(istio_requests_total{reporter=\"source\", response_code=\"200\"}[1m])) by (destination_workload, destination_workload_namespace, destination_service), \"destination_workload_var\", \".\", \"destination_workload\", \"destination_workload_namespace\")",
+          "editorMode": "code",
+          "expr": "label_join(sum(rate(istio_requests_total{reporter=\"waypoint\", response_code=\"200\"}[1m])) by (destination_workload, destination_workload_namespace, destination_service), \"destination_workload_var\", \".\", \"destination_workload\", \"destination_workload_namespace\")",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1419,7 +1436,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1483,7 +1501,8 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "rgba(245, 54, 54, 0.9)"
+                      "color": "rgba(245, 54, 54, 0.9)",
+                      "value": null
                     },
                     {
                       "color": "rgba(237, 129, 40, 0.89)"
@@ -1650,7 +1669,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "11.2.0",
       "repeatDirection": "v",
       "targets": [
         {
@@ -1692,16 +1711,66 @@
       "type": "table"
     },
     {
-      "aliasColors": {},
-      "autoMigrateFrom": "graph",
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "prometheus",
         "uid": ""
       },
-      "fill": 1,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 9,
         "w": 24,
@@ -1709,28 +1778,18 @@
         "y": 48
       },
       "id": 111,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "datasource": {
@@ -1744,35 +1803,8 @@
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Istio Components by Version",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "timeseries",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     }
   ],
   "schemaVersion": 39,
@@ -1800,7 +1832,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
