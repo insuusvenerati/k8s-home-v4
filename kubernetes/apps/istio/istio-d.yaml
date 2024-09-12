@@ -110,11 +110,12 @@ spec:
       injectionURL: ""
     meshConfig:
       enablePrometheusMerge: false
+      ingressClass: istio-ingress
     ownerName: ""
     pilot:
       affinity: { }
       autoscaleBehavior: { }
-      autoscaleEnabled: true
+      autoscaleEnabled: false
       autoscaleMax: 5
       autoscaleMin: 1
       cni:
