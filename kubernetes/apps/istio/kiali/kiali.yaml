@@ -64,10 +64,12 @@ spec:
             url: https://grafana.internal.stiforr.com
           prometheus:
             url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+          istio:
+            ingress_gateway_namespace: "istio-ingress"
         istio_labels:
-          app_label_name: app.kubernetes.io/name
-          ingress_gateway_label: istio=ingress
-          version_label_name: app.kubernetes.io/version
+          app_label_name: "app.kubernetes.io/name"
+          ingress_gateway_label: "istio=ingress"
+          version_label_name: "app.kubernetes.io/version"
     debug:
       enableProfiler: false
       enabled: true
