@@ -80,6 +80,7 @@ spec:
                 action: keep
                 regex: '.*-envoy-prom'
           - job_name: 'istio-ztunnel'
+            scrape_interval: 15s
             metrics_path: /stats/prometheus
             kubernetes_sd_configs:
               - role: pod
