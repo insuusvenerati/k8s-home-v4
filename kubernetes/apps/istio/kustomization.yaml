@@ -16,7 +16,7 @@ configMapGenerator:
     options:
       labels:
         app.kubernetes.io/part-of: istio
-        grafana_dashboard: 1
+        grafana_dashboard: "1"
     files:
       - ./dashboards/control_plane.json
       - ./dashboards/mesh.json
