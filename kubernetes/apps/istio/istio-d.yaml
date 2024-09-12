@@ -109,7 +109,7 @@ spec:
       injectionPath: /inject
       injectionURL: ""
     meshConfig:
-      enablePrometheusMerge: false
+      enablePrometheusMerge: true
       ingressClass: istio-ingress
     ownerName: ""
     pilot:
