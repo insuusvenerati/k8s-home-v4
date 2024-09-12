@@ -87,11 +87,11 @@ spec:
                   names:
                     - istio-system
             relabel_configs:
-              - source_labels: [__meta_kubernetes_pod_ip]
-                action: replace
-                target_label: __address__
-                regex: (.+)
-                replacement: $1:15020
+#              - source_labels: [__meta_kubernetes_pod_ip]
+#                action: replace
+#                target_label: __address__
+#                regex: (.+)
+#                replacement: $1:15020
               - source_labels: [ __meta_kubernetes_pod_container_name ]
                 action: keep
                 regex: istio-proxy  # Match the ztunnel container
