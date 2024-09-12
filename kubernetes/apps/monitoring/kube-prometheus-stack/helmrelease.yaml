@@ -89,7 +89,7 @@ spec:
             relabel_configs:
               - source_labels: [ __meta_kubernetes_pod_container_name ]
                 action: keep
-                regex: ztunnel  # Match the ztunnel container
+                regex: istio-proxy  # Match the ztunnel container
               - source_labels: [ __meta_kubernetes_pod_annotation_prometheus_io_scrape ]
                 action: keep
                 regex: true
