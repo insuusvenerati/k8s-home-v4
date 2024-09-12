@@ -4,7 +4,7 @@ metadata:
   name: istio-ingress
   namespace: istio-ingress
 spec:
-  interval: 5m
+  interval: 6h
   dependsOn:
     - name: istio-base
       namespace: istio-system
@@ -17,8 +17,10 @@ spec:
         kind: HelmRepository
         name: istio
         namespace: flux-system
-      interval: 1m
+      interval: 6h
   values:
     service:
       annotations:
         io.cilium/lb-ipam-ips: "192.168.1.205"
+    autoscaling:
+      enabled: false
