@@ -79,10 +79,6 @@ spec:
               - source_labels: [ __meta_kubernetes_pod_container_port_name ]
                 action: keep
                 regex: '.*-envoy-prom'
-              - source_labels: [__meta_kubernetes_namespace]
-                action: keep
-                regex: *
-                target_label: namespace
           - job_name: 'istio-ztunnel'
             scrape_interval: 15s
             scrape_timeout: 10s
