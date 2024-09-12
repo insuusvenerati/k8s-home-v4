@@ -78,7 +78,7 @@ data:
         class_name: nginx
         override_yaml:
           metadata: {}
-      ingress_enabled: false
+      ingress_enabled: true
       instance_name: kiali
       logger:
         log_format: text

@@ -6,6 +6,7 @@ resources:
   - ./istio-d.yaml
   - ./istio-ingress.yaml
   - ./ingress.yaml
-  - ./kiali.yaml
+#  - ./kiali.yaml
   - ./istio-cni.yaml
   - ./istio-ztunnel.yaml
+  - ./kiali
