@@ -11,6 +11,7 @@ resources:
   - ./istio-ztunnel.yaml
   - ./kiali
   - ./waypoint.yaml
+  - ./ingress-class.yaml
 configMapGenerator:
   - name: istio-grafana-dashboards
     namespace: monitoring
