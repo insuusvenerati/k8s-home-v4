@@ -25,3 +25,4 @@ configMapGenerator:
       - ./dashboards/service.json
       - ./dashboards/ztunnel.json
       - ./dashboards/workload.json
+      - ./dashboards/grafana-loki-dashboard.json
