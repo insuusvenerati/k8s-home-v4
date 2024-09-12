@@ -6,3 +6,4 @@ metadata:
     linkerd.io/inject: disabled
   labels:
     istio.io/dataplane-mode: ambient
+    istio.io/use-waypoint: waypoint
