@@ -26,6 +26,12 @@ spec:
         enabled: true
         additionalLabels:
           app.kubernetes.io/part-of: kube-prometheus-stack
+      persistence:
+        enabled: true
+        accessModes:
+          - ReadWriteOnce
+        size: 10Gi
+        storageClassName: openebs-hostpath
       config:
         table_manager:
           retention_deletes_enabled: true
