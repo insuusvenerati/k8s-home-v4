@@ -109,7 +109,7 @@ spec:
       injectionPath: /inject
       injectionURL: ""
     meshConfig:
-      enablePrometheusMerge: true
+      enablePrometheusMerge: false
     ownerName: ""
     pilot:
       affinity: { }
