@@ -10,6 +10,7 @@ resources:
   - ./istio-cni.yaml
   - ./istio-ztunnel.yaml
   - ./kiali
+  - ./waypoint.yaml
 configMapGenerator:
   - name: istio-grafana-dashboards
     namespace: monitoring
