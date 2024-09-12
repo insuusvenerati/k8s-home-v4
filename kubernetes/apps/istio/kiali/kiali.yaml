@@ -44,6 +44,9 @@ spec:
           custom_dashboards:
             enabled: true
           grafana:
+            auth:
+              username: "admin"
+              password: "prom-operator"
             dashboards:
             - name: Istio Service Dashboard
               variables:
