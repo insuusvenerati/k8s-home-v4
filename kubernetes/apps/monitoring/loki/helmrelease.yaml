@@ -26,6 +26,10 @@ spec:
             enabled: false
     loki:
       enabled: true
+      image:
+        repository: grafana/loki
+        tag: 2.9.10
+        pullPolicy: IfNotPresent
       isDefault: false
       serviceMonitor:
         enabled: true
