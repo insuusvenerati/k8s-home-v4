@@ -111,6 +111,9 @@ spec:
     meshConfig:
       enablePrometheusMerge: true
       ingressClass: istio-ingress
+      defaultConfig:
+        proxyMetadata:
+          ISTIO_META_DNS_CAPTURE: "true"
     ownerName: ""
     pilot:
       affinity: { }
