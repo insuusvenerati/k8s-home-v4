@@ -32,7 +32,7 @@ spec:
         additionalLabels:
           app.kubernetes.io/part-of: kube-prometheus-stack
       persistence:
-        enabled: true
+        enabled: false
         accessModes:
           - ReadWriteOnce
         size: 10Gi
