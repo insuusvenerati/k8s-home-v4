@@ -22,8 +22,8 @@ spec:
     remediation:
       retries: 50
   values:
-    podAnnotations:
-      instrumentation.opentelemetry.io/inject-nodejs: "default/nodejs-instrumentation"
+    #podAnnotations:
+      #instrumentation.opentelemetry.io/inject-nodejs: "default/nodejs-instrumentation"
     resources:
       limits:
         cpu: 1
