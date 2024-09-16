@@ -90,7 +90,7 @@
             "uid": ""
           },
           "editorMode": "code",
-          "expr": "round(sum(irate(istio_requests_total{reporter=\"waypoint\"}[1m])), 0.001)",
+          "expr": "round(sum(irate(istio_requests_total{reporter=\"source\"}[1m])), 0.001)",
           "intervalFactor": 1,
           "range": true,
           "refId": "A",
@@ -177,7 +177,7 @@
             "uid": ""
           },
           "editorMode": "code",
-          "expr": "sum(rate(istio_requests_total{reporter=\"waypoint\", response_code!~\"5.*\"}[1m])) / sum(rate(istio_requests_total{reporter=\"waypoint\"}[1m]))",
+          "expr": "sum(rate(istio_requests_total{reporter=\"source\", response_code!~\"5.*\"}[1m])) / sum(rate(istio_requests_total{reporter=\"source\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "range": true,
@@ -261,7 +261,7 @@
             "uid": ""
           },
           "editorMode": "code",
-          "expr": "sum(irate(istio_requests_total{reporter=\"waypoint\", response_code=~\"4.*\"}[1m]))",
+          "expr": "sum(irate(istio_requests_total{reporter=\"source\", response_code=~\"4.*\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "range": true,
@@ -345,7 +345,7 @@
             "uid": ""
           },
           "editorMode": "code",
-          "expr": "sum(irate(istio_requests_total{reporter=\"waypoint\", response_code=~\"5.*\"}[1m]))",
+          "expr": "sum(irate(istio_requests_total{reporter=\"source\", response_code=~\"5.*\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "range": true,
@@ -1341,7 +1341,7 @@
             "uid": ""
           },
           "editorMode": "code",
-          "expr": "label_join(sum(rate(istio_requests_total{reporter=\"waypoint\", response_code=\"200\"}[1m])) by (destination_workload, destination_workload_namespace, destination_service), \"destination_workload_var\", \".\", \"destination_workload\", \"destination_workload_namespace\")",
+          "expr": "label_join(sum(rate(istio_requests_total{reporter=\"source\", response_code=\"200\"}[1m])) by (destination_workload, destination_workload_namespace, destination_service), \"destination_workload_var\", \".\", \"destination_workload\", \"destination_workload_namespace\")",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1436,8 +1436,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1501,8 +1500,7 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": null
+                      "color": "rgba(245, 54, 54, 0.9)"
                     },
                     {
                       "color": "rgba(237, 129, 40, 0.89)"
@@ -1758,8 +1756,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1813,7 +1810,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Prometheus",
           "value": "prometheus"
         },
