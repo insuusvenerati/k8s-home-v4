@@ -10,7 +10,7 @@ resources:
 #  - ./istio-cni.yaml
 #  - ./istio-ztunnel.yaml
   - ./kiali
-  - ./waypoint.yaml
+#  - ./waypoint.yaml
   - ./ingress-class.yaml
 configMapGenerator:
   - name: istio-grafana-dashboards
