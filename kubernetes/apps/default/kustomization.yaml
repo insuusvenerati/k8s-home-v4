@@ -24,4 +24,3 @@ resources:
   - ./portainer
   - ./tubearchivist
   - ./plex
-  - ./network-policy.yaml
