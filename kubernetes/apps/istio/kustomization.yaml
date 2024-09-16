@@ -7,8 +7,8 @@ resources:
   - ./istio-ingress.yaml
   - ./ingress.yaml
 #  - ./kiali.yaml
-  - ./istio-cni.yaml
-  - ./istio-ztunnel.yaml
+#  - ./istio-cni.yaml
+#  - ./istio-ztunnel.yaml
   - ./kiali
   - ./waypoint.yaml
   - ./ingress-class.yaml
@@ -24,6 +24,6 @@ configMapGenerator:
       - ./dashboards/mesh.json
       - ./dashboards/performance.json
       - ./dashboards/service.json
-      - ./dashboards/ztunnel.json
+#      - ./dashboards/ztunnel.json
       - ./dashboards/workload.json
       - ./dashboards/grafana-loki-dashboard.json

@@ -20,7 +20,7 @@ spec:
   releaseName: istiod
   targetNamespace: istio-system
   values:
-    profile: ambient
+    profile: default
     base:
       enableIstioConfigCRDs: true
     experimental:
