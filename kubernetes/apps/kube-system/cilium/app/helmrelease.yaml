@@ -55,6 +55,9 @@ spec:
           enabled: true
           className: internal
           hosts: [ "hubble.internal.${SECRET_DOMAIN}" ]
+      tls:
+        auto:
+          method: cronJob
     operator:
       prometheus:
         enabled: true
