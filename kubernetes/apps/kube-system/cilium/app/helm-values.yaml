@@ -1,4 +1,6 @@
 ---
+socketLB:
+  hostNamespaceOnly: true
 autoDirectNodeRoutes: true
 bpf:
   masquerade: false # Required for Talos `.machine.features.hostDNS.forwardKubeDNSToHost`
