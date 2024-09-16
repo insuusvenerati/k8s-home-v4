@@ -119,7 +119,7 @@ spec:
               - tubearchivist.internal.${SECRET_DOMAIN}
     serviceMonitor:
       main:
-        enabled: true
+        enabled: false
         serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
         endpoints:
           - port: http
