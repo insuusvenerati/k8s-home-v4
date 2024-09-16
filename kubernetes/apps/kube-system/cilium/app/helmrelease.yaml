@@ -28,13 +28,14 @@ spec:
       enabled: true
       metrics:
         enabled:
-          - dns:query
+          - dns:query;ignoreAAAA
           - drop
           - tcp
           - flow
           - port-distribution
           - icmp
-          - httpV2
+          - httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction
+        enableOpenMetrics: true
         serviceMonitor:
           enabled: true
         dashboards:
@@ -53,7 +54,7 @@ spec:
         ingress:
           enabled: true
           className: internal
-          hosts: ["hubble.internal.${SECRET_DOMAIN}"]
+          hosts: [ "hubble.internal.${SECRET_DOMAIN}" ]
     operator:
       prometheus:
         enabled: true
