@@ -48,15 +48,6 @@ spec:
   egress:
     - toEntities:
         - world
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-            - port: "443"
-              protocol: TCP
-          rules:
-            http:
-              - {}
   endpointSelector: {}
 ---
 apiVersion: cilium.io/v2
