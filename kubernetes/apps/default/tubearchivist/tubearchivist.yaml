@@ -105,6 +105,7 @@ spec:
         className: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/service-upstream: "true"
         hosts:
           - host: tubearchivist.internal.${SECRET_DOMAIN}
             paths:
