@@ -46,7 +46,7 @@ spec:
         namespace: flux-system
       interval: 6h
   values:
-    name: istio-egress
+    name: istio-egressgateway
     service:
       type: ClusterIP
     autoscaling:
