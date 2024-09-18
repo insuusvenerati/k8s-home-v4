@@ -88,7 +88,7 @@ spec:
                 path: "/.*" # Allow all POST requests
   egress:
     - toEntities:
-        - world
+        - all
     - toEndpoints:
         - matchLabels:
             istio: sidecar-proxy # Ensuring traffic goes to the Istio sidecar
