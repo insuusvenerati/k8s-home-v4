@@ -53,7 +53,7 @@ spec:
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: nginx-ingress-l7-policy
+  name: nginx-ingress-istio-l7-policy
   namespace: default # Adjust the namespace if needed
 spec:
   endpointSelector:
@@ -63,8 +63,7 @@ spec:
   ingress:
     - fromEndpoints:
         - matchLabels:
-            app.kubernetes.io/name: ingress-nginx
-            app.kubernetes.io/instance: ingress-nginx-internal
+            app: istio-proxy # Targeting Istio sidecar for ingress
       toPorts:
         - ports:
             - port: "80"
@@ -74,25 +73,26 @@ spec:
           rules:
             http:
               - method: GET
-                path: "/.*" # This example matches all paths; adjust as needed
+                path: "/.*" # Allow all GET requests
               - method: POST
-                path: "/.*" # You can be more specific with paths and methods
-    - toPorts:
+                path: "/.*" # Allow all POST requests
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            istio: sidecar-proxy # Ensuring traffic goes to the Istio sidecar
+      toPorts:
         - ports:
+            - port: "80"
+              protocol: TCP
             - port: "443"
               protocol: TCP
-            - port: "80"
+    - toPorts:
+        - ports:
+            - port: "15006"
               protocol: TCP
           rules:
             http:
-              - path: "/.*" # L7 visibility for all HTTP requests
+              - path: "/.*" # Visibility for HTTP requests through Istio sidecars
                 method: GET
               - path: "/.*"
                 method: POST
-  egress:
-    - toPorts:
-        - ports:
-            - port: "443"
-              protocol: TCP
-            - port: "80"
-              protocol: TCP
