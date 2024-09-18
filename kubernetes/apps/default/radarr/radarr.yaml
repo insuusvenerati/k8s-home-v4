@@ -22,6 +22,9 @@ spec:
     remediation:
       retries: 30
   values:
+    global:
+      labels:
+        app: radarr
     env:
       TZ: America/Chicago
       PUID: 1000
@@ -64,4 +67,4 @@ spec:
         existingClaim: media-pvc-ssd
         size: 250Gi
     metrics:
-      enabled: false
+      enabled: true

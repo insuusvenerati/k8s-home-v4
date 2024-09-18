@@ -22,6 +22,9 @@ spec:
     remediation:
       retries: 50
   values:
+    global:
+      labels:
+        app: overseerr
     #podAnnotations:
       #instrumentation.opentelemetry.io/inject-nodejs: "default/nodejs-instrumentation"
     resources:

@@ -21,6 +21,9 @@ spec:
     remediation:
       retries: 30
   values:
+    global:
+      labels:
+        app: sonarr
     env:
       TZ: America/Chicago
       PUID: 568
@@ -58,3 +61,5 @@ spec:
         accessMode: ReadWriteMany
         existingClaim: media-pvc-ssd
         size: 250Gi
+    metrics:
+      enabled: true
