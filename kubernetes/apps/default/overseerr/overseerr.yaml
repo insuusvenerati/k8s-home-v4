@@ -46,6 +46,12 @@ spec:
         mountPath: /app/config
         storageClass: openebs-hostpath
         size: 10Gi
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+            targetPort: 5055
     ingress:
       main:
         enabled: true
