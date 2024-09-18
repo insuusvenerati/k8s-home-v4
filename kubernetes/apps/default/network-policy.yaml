@@ -16,7 +16,8 @@ spec:
               protocol: TCP
             - port: "8081" # arr apps to qbittorrent
               protocol: TCP
-          rules: []
+          rules:
+            http: [{}]
 #            http:
 #              - method: GET
 #                path: "/.*" # Log all HTTP GET requests
