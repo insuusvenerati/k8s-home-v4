@@ -20,6 +20,12 @@ endpointRoutes:
   enabled: true
 envoy:
   enabled: true
+  debug:
+    admin:
+      enabled: true
+  prometheus:
+    serviceMonitor:
+      enabled: true
 hubble:
   enabled: false
 ipam:
