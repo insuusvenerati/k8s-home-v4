@@ -16,12 +16,12 @@ spec:
               protocol: TCP
             - port: "8081" # arr apps to qbittorrent
               protocol: TCP
-          rules:
-            http:
-              - method: GET
-                path: "/.*" # Log all HTTP GET requests
-              - method: POST
-                path: "/.*" # Log all HTTP POST requests
+          rules: []
+#            http:
+#              - method: GET
+#                path: "/.*" # Log all HTTP GET requests
+#              - method: POST
+#                path: "/.*" # Log all HTTP POST requests
         - ports:
             - port: "53"
               protocol: ANY
