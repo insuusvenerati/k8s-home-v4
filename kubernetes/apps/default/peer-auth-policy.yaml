@@ -10,7 +10,7 @@ spec:
   mtls:
     mode: UNSET
   portLevelMtls:
-    7878:
+    "7878":
       mode: DISABLE
 ---
 apiVersion: security.istio.io/v1
@@ -25,5 +25,5 @@ spec:
   mtls:
     mode: UNSET
   portLevelMtls:
-    8989:
+    "8989":
       mode: DISABLE
