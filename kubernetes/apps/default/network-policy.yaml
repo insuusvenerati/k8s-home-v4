@@ -80,14 +80,19 @@ spec:
               protocol: TCP
             - port: "443"
               protocol: TCP
-            - port: "10254" #prometheus
-              protocol: TCP
           rules:
             http:
               - method: GET
                 path: "/.*" # Allow all GET requests
               - method: POST
                 path: "/.*" # Allow all POST requests
+    - fromEndpoints:
+        - matchLabels:
+            name: prometheus
+      toPorts:
+        - ports:
+            - port: "10254"
+              protocol: TCP
   egress:
     - toEntities:
         - all
