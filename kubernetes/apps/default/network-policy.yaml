@@ -82,12 +82,12 @@ spec:
               protocol: TCP
             - port: "80"
               protocol: TCP
-      rules:
-        http:
-          - path: "/.*" # L7 visibility for all HTTP requests
-            method: GET
-          - path: "/.*"
-            method: POST
+          rules:
+            http:
+              - path: "/.*" # L7 visibility for all HTTP requests
+                method: GET
+              - path: "/.*"
+                method: POST
   egress:
     - toPorts:
         - ports:
