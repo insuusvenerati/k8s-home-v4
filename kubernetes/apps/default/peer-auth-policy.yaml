@@ -1,18 +1,29 @@
 apiVersion: security.istio.io/v1
 kind: PeerAuthentication
 metadata:
-  name: default
+  name: radarr
   namespace: default
 spec:
   selector:
     matchLabels:
       "k8s:app.kubernetes.io/name": radar
-      "k8s:app.kubernetes.io/name": sonarr
-      "k8s:app.kubernetes.io/name": overseerr
   mtls:
     mode: UNSET
   portLevelMtls:
     7878:
       mode: DISABLE
+---
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: sonarr
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      "k8s:app.kubernetes.io/name": sonar
+  mtls:
+    mode: UNSET
+  portLevelMtls:
     8989:
       mode: DISABLE
