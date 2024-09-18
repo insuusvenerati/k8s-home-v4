@@ -54,7 +54,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: nginx-ingress-istio-l7-policy
-  namespace: default # Adjust the namespace if needed
+  namespace: network # Adjust the namespace if needed
 spec:
   endpointSelector:
     matchLabels:
