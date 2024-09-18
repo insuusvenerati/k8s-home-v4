@@ -30,8 +30,6 @@ spec:
               protocol: ANY
           rules:
             dns: [{}]
-            l7: [{}]
-            http: [{}]
     - toFQDNs:
         - matchPattern: '*'
     - toEntities:
