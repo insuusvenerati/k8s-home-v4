@@ -61,7 +61,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/group: Media
           hajimari.io/icon: mdi:movie
-#          nginx.ingress.kubernetes.io/service-upstream: "true"
+          nginx.ingress.kubernetes.io/service-upstream: "true"
         hosts:
           - host: &host overseerr.internal.${SECRET_DOMAIN}
             paths:
