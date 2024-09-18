@@ -61,6 +61,16 @@ spec:
       app.kubernetes.io/name: ingress-nginx
       app.kubernetes.io/instance: ingress-nginx-internal
   ingress:
+    # Allow traffic from the external world (e.g., the internet) on ports 80 and 443
+    - fromEntities:
+        - world # This allows ingress traffic from the internet
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "443"
+              protocol: TCP
+    # Allow traffic from Istio sidecar (internal mesh traffic)
     - fromEndpoints:
         - matchLabels:
             app: istio-proxy # Targeting Istio sidecar for ingress
