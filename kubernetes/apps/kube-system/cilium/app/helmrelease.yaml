@@ -24,6 +24,8 @@ spec:
     - kind: ConfigMap
       name: cilium-helm-values
   values:
+    envoyConfig:
+      enabled: true
     hubble:
       enabled: true
       metrics:
