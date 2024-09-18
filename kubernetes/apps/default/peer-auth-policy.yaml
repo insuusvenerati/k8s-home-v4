@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      "app.kubernetes.io/name": "radarr"
+      app: radarr
   mtls:
     mode: UNSET
   portLevelMtls:
@@ -21,7 +21,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      "app.kubernetes.io/name": "sonarr"
+      app: sonarr
   mtls:
     mode: UNSET
   portLevelMtls:
