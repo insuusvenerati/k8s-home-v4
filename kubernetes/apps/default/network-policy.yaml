@@ -36,7 +36,7 @@ spec:
     - toEntities:
         - all
   endpointSelector:
-    matchLabels: {}
+    matchLabels: { }
 ---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
@@ -48,43 +48,50 @@ spec:
   egress:
     - toEntities:
         - world
-  endpointSelector: {}
-#---
-#apiVersion: cilium.io/v2
-#kind: CiliumNetworkPolicy
-#metadata:
-#  name: l7-ingress-visibility
-#  namespace: default
-#spec:
-#  description: L7 policy
-#  endpointSelector: {}
-#  ingress:
-#    - toPorts:
-#        - ports:
-#            - port: "6379"
-#              protocol: TCP
-#            - port: "8000"
-#              protocol: TCP
-#            - port: "9200"
-#              protocol: TCP
-#            - port: "50000"
-#              protocol: TCP
-#            - port: "5055"
-#              protocol: TCP
-#            - port: "15090"
-#              protocol: TCP
-#            - port: "443"
-#              protocol: TCP
-#            - port: "80"
-#              protocol: TCP
-#            - port: "7878"
-#              protocol: TCP
-#            - port: "8989"
-#              protocol: TCP
-#            - port: "9793"
-#              protocol: TCP
-#            - port: "9794"
-#              protocol: TCP
-#          rules:
-#            http:
-#              - {}
+  endpointSelector: { }
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: nginx-ingress-l7-policy
+  namespace: default # Adjust the namespace if needed
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/instance: ingress-nginx-internal
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "443"
+              protocol: TCP
+          rules:
+            http:
+              - method: GET
+                path: "/.*" # This example matches all paths; adjust as needed
+              - method: POST
+                path: "/.*" # You can be more specific with paths and methods
+    - toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
+            - port: "80"
+              protocol: TCP
+      rules:
+        http:
+          - path: "/.*" # L7 visibility for all HTTP requests
+            method: GET
+          - path: "/.*"
+            method: POST
+  egress:
+    - toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
+            - port: "80"
+              protocol: TCP
