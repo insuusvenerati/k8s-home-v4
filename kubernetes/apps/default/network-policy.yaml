@@ -7,7 +7,7 @@ spec:
   endpointSelector: {} # Apply to all pods in the default namespace
   egress:
     - toEntities:
-        - world # Allow egress to external destinations
+        - all # Allow egress to external destinations
       toPorts:
         - ports:
             - port: "80"
