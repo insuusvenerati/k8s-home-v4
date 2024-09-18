@@ -29,8 +29,9 @@ spec:
             - port: "53"
               protocol: ANY
           rules:
-            dns:
-              - matchPattern: '*'
+            dns: [{}]
+            l7: [{}]
+            http: [{}]
     - toFQDNs:
         - matchPattern: '*'
     - toEntities:
