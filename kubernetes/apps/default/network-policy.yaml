@@ -1,55 +1,55 @@
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: allow-all-within-namespace
-  namespace: default
-spec:
-  description: Allow all within namespace
-  egress:
-    - toEndpoints:
-        - { }
-  endpointSelector: { }
-  ingress:
-    - fromEndpoints:
-        - { }
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: dns-visibility
-  namespace: default
-spec:
-  egress:
-    - toEndpoints:
-        - matchLabels:
-            k8s:io.kubernetes.pod.namespace: kube-system
-            k8s:k8s-app: kube-dns
-      toPorts:
-        - ports:
-            - port: "53"
-              protocol: ANY
-          rules:
-            dns:
-              - matchPattern: '*'
-    - toFQDNs:
-        - matchPattern: '*'
-    - toEntities:
-        - all
-  endpointSelector:
-    matchLabels: { }
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: l7-egress-visibility
-  namespace: default
-spec:
-  description: L7 policy
-  egress:
-    - toEntities:
-        - world
-  endpointSelector: { }
----
+#apiVersion: cilium.io/v2
+#kind: CiliumNetworkPolicy
+#metadata:
+#  name: allow-all-within-namespace
+#  namespace: default
+#spec:
+#  description: Allow all within namespace
+#  egress:
+#    - toEndpoints:
+#        - { }
+#  endpointSelector: { }
+#  ingress:
+#    - fromEndpoints:
+#        - { }
+#---
+#apiVersion: cilium.io/v2
+#kind: CiliumNetworkPolicy
+#metadata:
+#  name: dns-visibility
+#  namespace: default
+#spec:
+#  egress:
+#    - toEndpoints:
+#        - matchLabels:
+#            k8s:io.kubernetes.pod.namespace: kube-system
+#            k8s:k8s-app: kube-dns
+#      toPorts:
+#        - ports:
+#            - port: "53"
+#              protocol: ANY
+#          rules:
+#            dns:
+#              - matchPattern: '*'
+#    - toFQDNs:
+#        - matchPattern: '*'
+#    - toEntities:
+#        - all
+#  endpointSelector:
+#    matchLabels: { }
+#---
+#apiVersion: cilium.io/v2
+#kind: CiliumNetworkPolicy
+#metadata:
+#  name: l7-egress-visibility
+#  namespace: default
+#spec:
+#  description: L7 policy
+#  egress:
+#    - toEntities:
+#        - world
+#  endpointSelector: { }
+#---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
