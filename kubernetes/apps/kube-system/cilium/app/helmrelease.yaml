@@ -53,7 +53,13 @@ spec:
         ingress:
           enabled: true
           className: internal
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-production
           hosts: [ "hubble.internal.${SECRET_DOMAIN}" ]
+          tls:
+            - secretName: hubble-tls
+              hosts:
+                - hubble.internal.${SECRET_DOMAIN}
       tls:
         auto:
           method: cronJob
