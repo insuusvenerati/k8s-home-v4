@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1
 kind: ServiceEntry
 metadata:
   name: external-svc-https
+  namespace: default
 spec:
   hosts:
     - api.radarr.video
