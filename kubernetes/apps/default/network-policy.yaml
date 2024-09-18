@@ -81,6 +81,10 @@ spec:
               protocol: TCP
             - port: "8989"
               protocol: TCP
+            - port: "9793"
+              protocol: TCP
+            - port: "9794"
+              protocol: TCP
           rules:
             http:
               - {}
