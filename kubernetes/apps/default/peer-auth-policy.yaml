@@ -4,9 +4,6 @@ metadata:
   name: radarr
   namespace: default
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: radarr
   mtls:
     mode: UNSET
   portLevelMtls:
@@ -19,9 +16,6 @@ metadata:
   name: sonarr
   namespace: default
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: sonarr
   mtls:
     mode: UNSET
   portLevelMtls:
