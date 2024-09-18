@@ -82,6 +82,8 @@ spec:
               protocol: TCP
             - port: "80"
               protocol: TCP
+            - port: "15090"
+              protocol: TCP
           rules:
             http:
               - path: "/.*" # L7 visibility for all HTTP requests
