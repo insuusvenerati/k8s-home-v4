@@ -22,7 +22,8 @@ spec:
                 path: "/.*" # Log all HTTP GET requests
               - method: POST
                 path: "/.*" # Log all HTTP POST requests
-            dns: [{}] # Enable DNS visibility for requests
+            dns:
+              - matchPattern: "*"
 ---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
