@@ -14,14 +14,16 @@ spec:
               protocol: TCP
             - port: "443"
               protocol: TCP
-            - port: "53" # DNS
-              protocol: UDP
           rules:
             http:
               - method: GET
                 path: "/.*" # Log all HTTP GET requests
               - method: POST
                 path: "/.*" # Log all HTTP POST requests
+        - ports:
+            - port: "53"
+              protocol: ANY
+          rules:
             dns:
               - matchPattern: "*"
 ---
