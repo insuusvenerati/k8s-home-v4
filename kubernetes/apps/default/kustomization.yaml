@@ -25,3 +25,4 @@ resources:
   - ./tubearchivist
   - ./plex
   - ./network-policy.yaml
+  - ./peer-auth-policy.yaml
