@@ -115,7 +115,6 @@ spec:
         proxyMetadata:
           ISTIO_META_DNS_CAPTURE: "true"
       accessLogFile: /dev/stdout
-      accessLogEncoding: JSON
     ownerName: ""
     pilot:
       affinity: { }
