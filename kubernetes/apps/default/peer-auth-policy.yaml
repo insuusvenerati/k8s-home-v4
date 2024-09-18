@@ -1,29 +1,8 @@
 apiVersion: security.istio.io/v1
 kind: PeerAuthentication
 metadata:
-  name: radarr
+  name: disable-mtls
   namespace: default
 spec:
-  selector:
-    matchLabels:
-      app: radarr
   mtls:
-    mode: UNSET
-  portLevelMtls:
-    "7878":
-      mode: DISABLE
----
-apiVersion: security.istio.io/v1
-kind: PeerAuthentication
-metadata:
-  name: sonarr
-  namespace: default
-spec:
-  selector:
-    matchLabels:
-      app: sonarr
-  mtls:
-    mode: UNSET
-  portLevelMtls:
-    "8989":
-      mode: DISABLE
+    mode: DISABLE
