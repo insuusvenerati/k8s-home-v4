@@ -70,8 +70,6 @@ spec:
               protocol: TCP
             - port: "443"
               protocol: TCP
-            - port: "10254" # prometheus
-              protocol: TCP
     # Allow traffic from Istio sidecar (internal mesh traffic)
     - fromEndpoints:
         - matchLabels:
@@ -81,6 +79,8 @@ spec:
             - port: "80"
               protocol: TCP
             - port: "443"
+              protocol: TCP
+            - port: "10254" #prometheus
               protocol: TCP
           rules:
             http:
