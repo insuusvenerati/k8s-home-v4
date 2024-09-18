@@ -22,8 +22,9 @@ envoy:
   enabled: true
   debug:
     admin:
-      enabled: true
+      enabled: false
   prometheus:
+    enabled: true
     serviceMonitor:
       enabled: true
 hubble:
