@@ -1,48 +1,48 @@
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: allow-egress-with-visibility
-  namespace: default
-spec:
-  endpointSelector: { } # Apply to all pods in the default namespace
-  egress:
-    - toEntities:
-        - all # Allow egress to external destinations
-    - toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-            - port: "443"
-              protocol: TCP
-            - port: "8081" # arr apps to qbittorrent
-              protocol: TCP
-          rules:
-            http: [{}]
-#            http:
-#              - method: GET
-#                path: "/.*" # Log all HTTP GET requests
-#              - method: POST
-#                path: "/.*" # Log all HTTP POST requests
-        - ports:
-            - port: "53"
-              protocol: ANY
-          rules:
-            dns:
-              - matchPattern: "*"
-    # Allow traffic to Istio sidecar ports
-    - toPorts:
-        - ports:
-            - port: "15001"
-              protocol: TCP
-            - port: "15006"
-              protocol: TCP
-            - port: "15010"
-              protocol: TCP
-            - port: "15012"
-              protocol: TCP
-            - port: "15014"
-              protocol: TCP
----
+#apiVersion: cilium.io/v2
+#kind: CiliumNetworkPolicy
+#metadata:
+#  name: allow-egress-with-visibility
+#  namespace: default
+#spec:
+#  endpointSelector: { } # Apply to all pods in the default namespace
+#  egress:
+#    - toEntities:
+#        - all # Allow egress to external destinations
+#    - toPorts:
+#        - ports:
+#            - port: "80"
+#              protocol: TCP
+#            - port: "443"
+#              protocol: TCP
+#            - port: "8081" # arr apps to qbittorrent
+#              protocol: TCP
+#          rules:
+#            http: [{}]
+##            http:
+##              - method: GET
+##                path: "/.*" # Log all HTTP GET requests
+##              - method: POST
+##                path: "/.*" # Log all HTTP POST requests
+#        - ports:
+#            - port: "53"
+#              protocol: ANY
+#          rules:
+#            dns:
+#              - matchPattern: "*"
+#    # Allow traffic to Istio sidecar ports
+#    - toPorts:
+#        - ports:
+#            - port: "15001"
+#              protocol: TCP
+#            - port: "15006"
+#              protocol: TCP
+#            - port: "15010"
+#              protocol: TCP
+#            - port: "15012"
+#              protocol: TCP
+#            - port: "15014"
+#              protocol: TCP
+#---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
