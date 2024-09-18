@@ -16,6 +16,8 @@ spec:
               protocol: TCP
             - port: "8081" # arr apps to qbittorrent
               protocol: TCP
+            - port: "15012" # istiod
+              protocol: TCP
           rules:
             http:
               - method: GET
