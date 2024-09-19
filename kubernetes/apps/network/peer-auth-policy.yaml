@@ -1,0 +1,8 @@
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: disable-mtls
+  namespace: network
+spec:
+  mtls:
+    mode: DISABLE
