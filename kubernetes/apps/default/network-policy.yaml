@@ -7,12 +7,6 @@ spec:
   endpointSelector: { } # Apply to all pods in the default namespace
   egress:
     - toEntities:
-        - all
-      icmps:
-        - fields:
-            - type: 8
-            - type: 0
-    - toEntities:
         - all # Allow egress to external destinations
     - toPorts:
         - ports:
@@ -75,11 +69,7 @@ spec:
             - port: "443"
               protocol: TCP
           rules:
-            http:
-              - method: GET
-                path: "/.*" # Allow all GET requests
-              - method: POST
-                path: "/.*" # Allow all POST requests
+            http: [{}]
     - fromEntities:
         - cluster
       toPorts:
@@ -103,8 +93,4 @@ spec:
             - port: "15006"
               protocol: TCP
           rules:
-            http:
-              - path: "/.*" # Visibility for HTTP requests through Istio sidecars
-                method: GET
-              - path: "/.*"
-                method: POST
+            http: [{}]
