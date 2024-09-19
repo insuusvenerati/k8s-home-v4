@@ -51,7 +51,7 @@ spec:
   ingress:
     # Allow traffic from the external world (e.g., the internet) on ports 80 and 443
     - fromEntities:
-        - world # This allows ingress traffic from the internet
+        - all # This allows ingress traffic from the internet
       toPorts:
         - ports:
             - port: "80"
@@ -71,7 +71,7 @@ spec:
           rules:
             http: [{}]
     - fromEntities:
-        - cluster
+        - all
       toPorts:
         - ports:
             - port: "10254"
