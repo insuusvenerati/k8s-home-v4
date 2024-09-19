@@ -7,6 +7,12 @@ spec:
   endpointSelector: { } # Apply to all pods in the default namespace
   egress:
     - toEntities:
+        - all
+      icmps:
+        - fields:
+            - type: 8
+            - type: 0
+    - toEntities:
         - all # Allow egress to external destinations
     - toPorts:
         - ports:
