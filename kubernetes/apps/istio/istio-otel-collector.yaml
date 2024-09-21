@@ -16,7 +16,6 @@ spec:
     processors:
       batch:
     exporters:
-      logging:
       otlp/uptrace:
         endpoint: my-uptrace.observability.svc.cluster.local:14317
         tls:
@@ -37,7 +36,7 @@ spec:
         logs:
           receivers: [otlp]
           processors: [batch]
-          exporters: [logging]
+          exporters: []
         traces:
           receivers:
           - otlp
