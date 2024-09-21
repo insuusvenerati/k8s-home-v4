@@ -40,7 +40,7 @@ spec:
       imagePullSecrets: []
       pullPolicy: IfNotPresent
       repository: jaegertracing/jaeger-operator
-      tag: 1.60.1
+      tag: 1.61.0
     jaeger:
       create: false
       namespace: null
