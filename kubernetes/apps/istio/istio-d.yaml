@@ -115,6 +115,8 @@ spec:
       defaultConfig:
         proxyMetadata:
           ISTIO_META_DNS_CAPTURE: "true"
+        tracing:
+          sampling: 100.0
       accessLogFile: /dev/stdout
       extensionProviders:
         - name: otel-tracing
