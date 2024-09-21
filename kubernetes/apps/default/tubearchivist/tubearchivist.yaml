@@ -23,6 +23,9 @@ spec:
     controllers:
       main:
         enabled: true
+        pod:
+          annotations:
+            instrumentation.opentelemetry.io/inject-python: "default/python-instrumentation"
         type: deployment
         replicas: 1
         containers:
