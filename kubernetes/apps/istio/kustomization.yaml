@@ -6,12 +6,10 @@ resources:
   - ./istio-d.yaml
   - ./istio-ingress.yaml
   - ./ingress.yaml
-#  - ./kiali.yaml
-#  - ./istio-cni.yaml
-#  - ./istio-ztunnel.yaml
   - ./kiali
-#  - ./waypoint.yaml
   - ./ingress-class.yaml
+#  - ./jaeger
+  - ./istio-otel-collector.yaml
 configMapGenerator:
   - name: istio-grafana-dashboards
     namespace: monitoring

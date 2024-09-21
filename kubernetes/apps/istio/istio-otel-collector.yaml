@@ -1,0 +1,47 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: istio-collector
+  namespace: istio-system
+spec:
+  mode: deployment
+  config: |
+    receivers:
+      opencensus:
+        endpoint: 0.0.0.0:55678
+      otlp:
+        protocols:
+          grpc:
+          http:
+    processors:
+      batch:
+    exporters:
+      logging:
+      otlp/uptrace:
+        endpoint: my-uptrace.observability.svc.cluster.local:14317
+        tls:
+          insecure: true
+        sending_queue:
+          enabled: true
+        retry_on_failure:
+          enabled: true
+        headers:
+          uptrace-dsn: 'http://project2_secret_token@localhost:14318?grpc=14317'
+    extensions:
+      health_check:
+        port: 13133
+    service:
+      extensions:
+      - health_check
+      pipelines:
+        logs:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging]
+        traces:
+          receivers:
+          - otlp
+          - opencensus
+          exporters:
+          - logging
+          - otlp/uptrace

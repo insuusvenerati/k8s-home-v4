@@ -6,4 +6,3 @@ resources:
   - ./prometheus-operator-crds/ks.yaml
   - ./open-telemetry-operator
   - ./uptrace
-  - ./jaeger
