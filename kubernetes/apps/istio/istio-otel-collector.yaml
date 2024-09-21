@@ -38,8 +38,7 @@ spec:
           exporters: [otlp/uptrace]
         traces:
           receivers:
-          - otlp
-          - opencensus
+            - otlp
+            - opencensus
           exporters:
-          - logging
-          - otlp/uptrace
+            - otlp/uptrace
