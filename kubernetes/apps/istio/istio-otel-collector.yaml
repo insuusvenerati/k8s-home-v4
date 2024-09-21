@@ -36,7 +36,7 @@ spec:
         logs:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlp/uptrace]
+          exporters: [otlp/uptrace, debug]
         traces:
           receivers:
             - otlp
