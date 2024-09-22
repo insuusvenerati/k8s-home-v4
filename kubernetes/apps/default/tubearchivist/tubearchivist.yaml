@@ -31,6 +31,8 @@ spec:
               repository: stiforr/tubearchivist
               tag: latest
             env:
+              - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                value: http://istio-collector-collector.istio-system.svc.cluster.local:4317
               - name: TZ
                 value: America/Chicago
               - name: PUID
