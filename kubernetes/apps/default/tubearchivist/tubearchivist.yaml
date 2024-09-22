@@ -23,16 +23,13 @@ spec:
     controllers:
       main:
         enabled: true
-        pod:
-          annotations:
-            instrumentation.opentelemetry.io/inject-python: "default/python-instrumentation"
         type: deployment
         replicas: 1
         containers:
           main:
             image:
-              repository: bbilly1/tubearchivist
-              tag: v0.4.10
+              repository: stiforr/tubearchivist
+              tag: latest
             env:
               - name: TZ
                 value: America/Chicago
