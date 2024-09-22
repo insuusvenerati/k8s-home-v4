@@ -30,6 +30,7 @@ spec:
             image:
               repository: stiforr/tubearchivist
               tag: latest
+              pullPolicy: Always
             env:
               - name: OTEL_EXPORTER_OTLP_ENDPOINT
                 value: http://istio-collector-collector.istio-system.svc.cluster.local:4317
