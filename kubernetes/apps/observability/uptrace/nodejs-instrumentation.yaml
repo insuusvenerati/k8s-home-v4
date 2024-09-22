@@ -29,6 +29,10 @@ spec:
   sampler:
     type: parentbased_traceidratio
     argument: "1"
+  python:
+    env:
+      - name: OTEL_PYTHON_DISABLED_INSTRUMENTATIONS
+        value: opentelemetry-instrumentation-celery
 #  python:
 #    env:
 #      - name: OTEL_LOGS_EXPORTER
