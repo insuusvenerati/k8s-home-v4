@@ -14,6 +14,10 @@ spec:
   sampler:
     type: parentbased_traceidratio
     argument: "1"
+  nodejs:
+    env:
+      - name: OTEL_NODE_DISABLED_INSTRUMENTATIONS
+        value: fs
 ---
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
