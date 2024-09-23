@@ -7,8 +7,6 @@ spec:
   mode: deployment
   config: |
     receivers:
-      opencensus:
-        endpoint: 0.0.0.0:55678
       otlp:
         protocols:
           grpc:
@@ -16,7 +14,6 @@ spec:
     processors:
       batch:
     exporters:
-      debug:
       otlp/uptrace:
         endpoint: my-uptrace.observability.svc.cluster.local:14317
         tls:
@@ -36,11 +33,9 @@ spec:
         logs:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlp/uptrace, debug]
+          exporters: [otlp/uptrace]
         traces:
           receivers:
             - otlp
-            - opencensus
           exporters:
             - otlp/uptrace
-            - debug
