@@ -32,13 +32,17 @@ spec:
           main:
             image:
               repository: stiforr/tubearchivist
-              tag: v0.4.10.rc2
+              tag: v0.4.10.rc3
             env:
+              - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+                value: true
               - name: OTEL_DISABLED_INSTRUMENTATIONS
                 value: fs
               - name: OTEL_TRACES_EXPORTER
                 value: otlp
               - name: OTEL_METRICS_EXPORTER
+                value: otlp
+              - name: OTEL_LOGS_EXPORTER
                 value: otlp
               - name: OTEL_RESOURCE_ATTRIBUTES
                 value: service.name=tubearchivist,application=tubearchivist
