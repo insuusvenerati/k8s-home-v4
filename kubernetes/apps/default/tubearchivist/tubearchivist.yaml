@@ -25,25 +25,27 @@ spec:
         enabled: true
         type: deployment
         replicas: 1
-        pod:
-          annotations:
-            instrumentation.opentelemetry.io/inject-python: "default/python-instrumentation"
+#        pod:
+#          annotations:
+#            instrumentation.opentelemetry.io/inject-python: "default/python-instrumentation"
         containers:
           main:
             image:
-              repository: bbilly1/tubearchivist
-              tag: v0.4.10
+              repository: stiforr/tubearchivist
+              tag: v0.4.10.rc1
             env:
+              - name: OTEL_DISABLED_INSTRUMENTATIONS
+                value: fs
               - name: OTEL_TRACES_EXPORTER
-                value: "otlp"
+                value: otlp
               - name: OTEL_METRICS_EXPORTER
-                value: "otlp"
+                value: otlp
               - name: OTEL_RESOURCE_ATTRIBUTES
-                value: "service.name=tubearchivist,application=tubearchivist"
+                value: service.name=tubearchivist,application=tubearchivist
               - name: DJANGO_SETTINGS_MODULE
-                value: "config.settings"
+                value: config.settings
               - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
-                value: "/api/notification,/api/ping"
+                value: /api/notification,/api/ping
               - name: OTEL_EXPORTER_OTLP_ENDPOINT
                 value: http://istio-collector-collector.istio-system.svc.cluster.local:4317
               - name: TZ
