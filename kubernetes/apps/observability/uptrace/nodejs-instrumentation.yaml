@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   exporter:
-    endpoint: http://default-collector.svc.cluster.local:4317
+    endpoint: http://istio-collector-collector.istio-system.svc.cluster.local:4317
   propagators:
     - tracecontext
     - baggage
@@ -26,7 +26,7 @@ metadata:
   namespace: default
 spec:
   exporter:
-    endpoint: http://default-collector.svc.cluster.local:4318
+    endpoint: http://istio-collector-collector.istio-system.svc.cluster.local:4318
   propagators:
     - tracecontext
     - baggage

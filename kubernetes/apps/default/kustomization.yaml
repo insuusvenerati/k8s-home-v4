@@ -26,4 +26,3 @@ resources:
   - ./plex
 #  - ./network-policy.yaml
 #  - ./peer-auth-policy.yaml
-  - ./default-otel-collector.yaml
