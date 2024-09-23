@@ -18,6 +18,10 @@ spec:
     env:
       - name: OTEL_NODE_DISABLED_INSTRUMENTATIONS
         value: fs
+      - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+        value: DELTA
+      - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
+        value: BASE2_EXPONENTIAL_BUCKET_HISTOGRAM
 ---
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
