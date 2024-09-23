@@ -23,7 +23,7 @@ spec:
         retry_on_failure:
           enabled: true
         headers:
-          uptrace-dsn: 'http://project2_secret_token@localhost:14318?grpc=14317'
+          uptrace-dsn: 'http://istio_secret_token@localhost:14318?grpc=14317'
     extensions:
       health_check:
     service:
