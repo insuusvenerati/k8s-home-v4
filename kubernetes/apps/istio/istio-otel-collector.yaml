@@ -11,8 +11,20 @@ spec:
         protocols:
           grpc:
           http:
+      hostmetrics:
+        scrapers:
+          cpu:
+          disk:
+          filesystem:
+          load:
+          memory:
+          network:
+          paging:
     processors:
       batch:
+      resourcedetection:
+        detectors: [env, system]
+      cumulativetodelta:
     exporters:
       otlp/uptrace:
         endpoint: my-uptrace.observability.svc.cluster.local:14317
@@ -39,3 +51,7 @@ spec:
             - otlp
           exporters:
             - otlp/uptrace
+        metrics:
+          receivers: [otlp]
+          processors: [cumulativetodelta, batch]
+          exporters: [otlp/uptrace]
