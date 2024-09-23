@@ -32,12 +32,12 @@ spec:
           main:
             image:
               repository: stiforr/tubearchivist
-              tag: v0.4.10.rc3
+              tag: v0.4.10.rc5
             env:
               - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-                value: true
+                value: "true"
               - name: OTEL_DISABLED_INSTRUMENTATIONS
-                value: fs
+                value: fs,elasticsearch
               - name: OTEL_TRACES_EXPORTER
                 value: otlp
               - name: OTEL_METRICS_EXPORTER
@@ -51,7 +51,7 @@ spec:
               - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
                 value: /api/notification,/api/ping
               - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                value: http://istio-collector-collector.istio-system.svc.cluster.local:4318
+                value: http://default-collector.svc.cluster.local:4318
               - name: TZ
                 value: America/Chicago
               - name: PUID
