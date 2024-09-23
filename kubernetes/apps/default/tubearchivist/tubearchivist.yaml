@@ -66,13 +66,6 @@ spec:
         enabled: true
         type: deployment
         replicas: 1
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 1024Mi
-          requests:
-            cpu: 500m
-            memory: 512Mi
         containers:
           elasticsearch:
             image:
@@ -89,6 +82,13 @@ spec:
                 value: "true"
             envFrom:
               - secret: ta-creds
+            resources:
+              limits:
+                cpu: 1000m
+                memory: 1024Mi
+              requests:
+                cpu: 500m
+                memory: 512Mi
       redis:
         enabled: true
         type: deployment
