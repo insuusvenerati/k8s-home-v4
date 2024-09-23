@@ -32,7 +32,7 @@ spec:
           main:
             image:
               repository: stiforr/tubearchivist
-              tag: v0.4.10.rc1
+              tag: v0.4.10.rc2
             env:
               - name: OTEL_DISABLED_INSTRUMENTATIONS
                 value: fs
