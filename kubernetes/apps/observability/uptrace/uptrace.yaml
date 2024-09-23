@@ -154,6 +154,14 @@ spec:
           - deployment_environment
           prom_compat: true
           token: project2_secret_token
+        - id: 3
+          name: Istio
+          pinned_attrs:
+            - service_name
+            - host_name
+            - deployment_environment
+          prom_compat: true
+          token: istio_secret_token
         secret_key: 102c1a557c314fc28198acd017960843
         site:
           addr: 'http://localhost:14318/'

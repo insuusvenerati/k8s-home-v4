@@ -36,7 +36,7 @@ spec:
   python:
     env:
       - name: OTEL_PYTHON_DISABLED_INSTRUMENTATIONS
-        value: opentelemetry-instrumentation-celery,opentelemetry-instrumentation-aws-lambda
+        value: fs
 #  python:
 #    env:
 #      - name: OTEL_LOGS_EXPORTER
