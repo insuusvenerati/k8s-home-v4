@@ -1,11 +1,12 @@
-apiVersion: opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: k8s-collector
   namespace: kube-system
 spec:
+  managementState: []
   mode: deployment
-  config: |
+  config:
     receivers:
       k8s_cluster:
         auth_type: serviceAccount
@@ -18,7 +19,7 @@ spec:
     processors:
       resourcedetection:
         detectors: [env, system]
-      cumulativetodelta:
+      cumulativetodelta: {}
       batch:
         timeout: 10s
 

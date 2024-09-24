@@ -17,6 +17,10 @@ spec:
   interval: 6h0m0s
   releaseName: opentelemetry-operator
   targetNamespace: observability
+  upgrade:
+    crds: CreateReplace
+  install:
+    crds: Create
   values:
     additionalLabels: {}
     admissionWebhooks:
@@ -93,8 +97,8 @@ spec:
           repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python"
           tag: "0.48b0"
       collectorImage:
-        repository: "otel/opentelemetry-collector-k8s"
-        tag: 0.109.0
+        repository: "ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib"
+        tag: 0.110.0
       createRbacPermissions: true
       deploymentAnnotations: {}
       env:

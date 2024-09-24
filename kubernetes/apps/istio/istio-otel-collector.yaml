@@ -1,28 +1,22 @@
-apiVersion: opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: istio-collector
   namespace: istio-system
 spec:
-  args:
-    feature-gates: ""
+  managementState: []
   mode: deployment
-  config: |
+  config:
     receivers:
-      loki:
-        protocols:
-          http:
-          grpc:
-        use_incoming_timestamp: true
       otlp:
         protocols:
-          grpc:
-          http:
+          grpc: {}
+          http: {}
     processors:
       batch:
         send_batch_size: 10000
         timeout: 10s
-      cumulativetodelta:
+      cumulativetodelta: {}
     exporters:
       otlp/uptrace:
         endpoint: my-uptrace.observability.svc.cluster.local:14317
@@ -35,20 +29,20 @@ spec:
         headers:
           uptrace-dsn: 'http://istio_secret_token@localhost:14318?grpc=14317'
     extensions:
-      health_check:
+      health_check: {}
     service:
       extensions:
-      - health_check
+        - health_check
       pipelines:
         logs:
-          receivers: [otlp, loki]
-          processors: [batch]
-          exporters: [otlp/uptrace]
+          receivers: [ otlp ]
+          processors: [ batch ]
+          exporters: [ otlp/uptrace ]
         traces:
-          receivers: [otlp]
-          exporters: [otlp/uptrace]
-          processors: [batch]
+          receivers: [ otlp ]
+          exporters: [ otlp/uptrace ]
+          processors: [ batch ]
         metrics:
-          receivers: [otlp]
-          processors: [cumulativetodelta, batch]
-          exporters: [otlp/uptrace]
+          receivers: [ otlp ]
+          processors: [ cumulativetodelta, batch ]
+          exporters: [ otlp/uptrace ]
