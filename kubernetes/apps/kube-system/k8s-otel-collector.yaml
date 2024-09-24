@@ -23,12 +23,7 @@ spec:
         timeout: 10s
 
     service:
-      pipelines:
-        traces:
-          receivers: [otlp]
-          processors: [batch]
-          exporters: [otlp]
         metrics:
-          receivers: [otlp, k8s_cluster]
+          receivers: [k8s_cluster]
           processors: [cumulativetodelta, batch, resourcedetection]
           exporters: [otlp/uptrace]
