@@ -7,6 +7,11 @@ spec:
   mode: deployment
   config: |
     receivers:
+      loki:
+        protocols:
+          http:
+          grpc:
+        use_incoming_timestamp: true
       otlp:
         protocols:
           grpc:
@@ -34,16 +39,13 @@ spec:
       - health_check
       pipelines:
         logs:
-          receivers: [otlp]
+          receivers: [otlp, loki]
           processors: [batch]
           exporters: [otlp/uptrace]
         traces:
-          receivers:
-            - otlp
-          exporters:
-            - otlp/uptrace
-          processors:
-            - batch
+          receivers: [otlp]
+          exporters: [otlp/uptrace]
+          processors: [batch]
         metrics:
           receivers: [otlp]
           processors: [cumulativetodelta, batch]
