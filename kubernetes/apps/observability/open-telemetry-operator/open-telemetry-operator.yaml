@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: open-telemetry
         namespace: flux-system
+      version: 0.69.0
   interval: 6h0m0s
   releaseName: opentelemetry-operator
   targetNamespace: observability
@@ -75,26 +76,26 @@ spec:
       autoInstrumentationImage:
         apacheHttpd:
           repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-apache-httpd"
-          tag: ""
+          tag: "1.0.4"
         dotnet:
           repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-dotnet"
-          tag: ""
+          tag: "1.7.0"
         go:
           repository: ""
           tag: ""
         java:
           repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java"
-          tag: ""
+          tag: "2.8.0"
         nodejs:
           repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-nodejs"
-          tag: ""
+          tag: "0.52.1"
         python:
           repository: "ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python"
-          tag: ""
+          tag: "0.48b0"
       collectorImage:
         repository: "otel/opentelemetry-collector-k8s"
-        tag: 0.108.0
-      createRbacPermissions: false
+        tag: 0.110.0
+      createRbacPermissions: true
       deploymentAnnotations: {}
       env:
         ENABLE_WEBHOOKS: "true"
@@ -102,7 +103,7 @@ spec:
       featureGates: ""
       image:
         repository: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator
-        tag: "v0.108.0"
+        tag: 0.109.0
       leaderElection:
         enabled: true
       opampBridgeImage:
