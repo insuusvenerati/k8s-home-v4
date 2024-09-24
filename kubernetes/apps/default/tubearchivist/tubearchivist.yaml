@@ -43,13 +43,13 @@ spec:
               - name: OTEL_METRICS_EXPORTER
                 value: otlp
               - name: OTEL_LOGS_EXPORTER
-                value: otlp
+                value: console,otlp
               - name: OTEL_RESOURCE_ATTRIBUTES
                 value: service.name=tubearchivist,application=tubearchivist
               - name: DJANGO_SETTINGS_MODULE
                 value: config.settings
               - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
-                value: /api/notification,/api/ping
+                value: /api/notification,/api/ping,/health
               - name: OTEL_EXPORTER_OTLP_ENDPOINT
                 value: http://istio-collector-collector.istio-system.svc.cluster.local:4318
               - name: TZ
