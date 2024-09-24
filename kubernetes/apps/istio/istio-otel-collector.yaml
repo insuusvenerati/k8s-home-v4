@@ -11,19 +11,10 @@ spec:
         protocols:
           grpc:
           http:
-      hostmetrics:
-        scrapers:
-          cpu:
-          disk:
-          filesystem:
-          load:
-          memory:
-          network:
-          paging:
     processors:
       batch:
-      resourcedetection:
-        detectors: [env, system]
+        send_batch_size: 10000
+        timeout: 10s
       cumulativetodelta:
     exporters:
       otlp/uptrace:
@@ -51,6 +42,8 @@ spec:
             - otlp
           exporters:
             - otlp/uptrace
+          processors:
+            - batch
         metrics:
           receivers: [otlp]
           processors: [cumulativetodelta, batch]
