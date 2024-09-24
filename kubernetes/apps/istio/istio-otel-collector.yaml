@@ -4,7 +4,6 @@ metadata:
   name: istio-collector
   namespace: istio-system
 spec:
-  managementState: []
   mode: deployment
   config:
     receivers:

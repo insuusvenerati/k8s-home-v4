@@ -4,7 +4,6 @@ metadata:
   name: k8s-collector
   namespace: kube-system
 spec:
-  managementState: []
   mode: deployment
   config:
     receivers:
