@@ -44,6 +44,10 @@ spec:
                 value: otlp
               - name: OTEL_LOGS_EXPORTER
                 value: otlp
+              - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+                value: DELTA
+              - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
+                value: BASE2_EXPONENTIAL_BUCKET_HISTOGRAM
               - name: OTEL_RESOURCE_ATTRIBUTES
                 value: service.name=tubearchivist,application=tubearchivist
               - name: DJANGO_SETTINGS_MODULE
