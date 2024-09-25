@@ -22,6 +22,10 @@ spec:
         value: DELTA
       - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
         value: BASE2_EXPONENTIAL_BUCKET_HISTOGRAM
+      - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
+        value: grpc
+      - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
+        value: grpc
 ---
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
