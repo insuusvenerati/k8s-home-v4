@@ -32,7 +32,7 @@ spec:
           main:
             image:
               repository: stiforr/tubearchivist
-              tag: v0.4.10.rc6
+              tag: v0.4.10.rc7
             env:
               - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
                 value: true
