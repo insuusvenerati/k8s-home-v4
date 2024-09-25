@@ -4,8 +4,6 @@ metadata:
   name: istio-collector
   namespace: istio-system
 spec:
-  args:
-    feature-gates: ""
   mode: deployment
   config:
     receivers:

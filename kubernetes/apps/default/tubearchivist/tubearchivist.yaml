@@ -32,10 +32,10 @@ spec:
           main:
             image:
               repository: stiforr/tubearchivist
-              tag: v0.4.10.rc5
+              tag: v0.4.10.rc6
             env:
               - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-                value: "true"
+                value: true
               - name: OTEL_DISABLED_INSTRUMENTATIONS
                 value: fs,elasticsearch
               - name: OTEL_TRACES_EXPORTER
@@ -58,6 +58,8 @@ spec:
                 value: http://istio-collector-collector.istio-system.svc.cluster.local:4318
               - name: OTEL_EXPORTER_OTLP_PROTOCOL
                 value: http/protobuf
+              - name: OTEL_PYTHON_LOG_CORRELATION
+                value: true
               - name: TZ
                 value: America/Chicago
               - name: PUID
