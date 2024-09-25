@@ -10,6 +10,7 @@ resources:
   - ./ingress-class.yaml
 #  - ./jaeger
   - ./istio-otel-collector.yaml
+  - ./tracing-config.yaml
 configMapGenerator:
   - name: istio-grafana-dashboards
     namespace: monitoring
