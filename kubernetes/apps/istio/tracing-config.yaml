@@ -8,8 +8,3 @@ spec:
     - providers:
         - name: otel-tracing
       randomSamplingPercentage: 100
-      match:
-        mode: CLIENT_AND_SERVER
-  selector:
-    matchLabels:
-      app: radarr
