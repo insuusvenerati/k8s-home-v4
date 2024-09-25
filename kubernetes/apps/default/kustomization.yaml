@@ -21,7 +21,7 @@ resources:
   # - ./ptero-ingress
   # - ./qbittorrent
   - ./nfs-subdir-external-ssd
-  - ./portainer
+#  - ./portainer
   - ./tubearchivist
   - ./plex
 #  - ./network-policy.yaml
