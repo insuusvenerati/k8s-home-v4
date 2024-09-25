@@ -146,14 +146,6 @@ spec:
           - deployment_environment
           prom_compat: true
           token: project1_secret_token
-        - id: 2
-          name: My project
-          pinned_attrs:
-          - service_name
-          - host_name
-          - deployment_environment
-          prom_compat: true
-          token: project2_secret_token
         - id: 3
           name: Istio
           pinned_attrs:
