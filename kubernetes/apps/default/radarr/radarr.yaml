@@ -25,6 +25,9 @@ spec:
     global:
       labels:
         app: radarr
+    podAnnotations:
+      instrumentation.opentelemetry.io/inject-dotnet: "default/dotnet-instrumentation"
+      instrumentation.opentelemetry.io/container-names: "radarr"
     env:
       TZ: America/Chicago
       PUID: 1000
