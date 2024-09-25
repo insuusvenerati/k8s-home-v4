@@ -72,3 +72,5 @@ spec:
         value: grpc
       - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
         value: grpc
+      - name: OTEL_DOTNET_AUTO_TRACES_CONSOLE_EXPORTER_ENABLED
+        value: "true"
