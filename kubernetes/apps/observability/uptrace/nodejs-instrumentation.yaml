@@ -51,3 +51,24 @@ spec:
 #        value: otlp
 #      - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
 #        value: 'true'
+---
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: dotnet-instrumentation
+  namespace: default
+spec:
+  exporter:
+    endpoint: http://istio-collector-collector.istio-system.svc.cluster.local:4318
+  propagators:
+    - tracecontext
+    - baggage
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1"
+  dotnet:
+    env:
+      - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
+        value: grpc
+      - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
+        value: grpc
