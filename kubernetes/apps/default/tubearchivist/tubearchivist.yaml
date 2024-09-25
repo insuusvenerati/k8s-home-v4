@@ -142,6 +142,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/service-upstream: "true"
+          nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
         hosts:
           - host: tubearchivist.internal.${SECRET_DOMAIN}
             paths:
