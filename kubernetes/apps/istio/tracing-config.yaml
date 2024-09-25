@@ -7,4 +7,9 @@ spec:
   tracing:
     - providers:
         - name: otel-tracing
+          opentelemetry:
+            port: 4317
+            service: istio-collector-collector.istio-system.svc.cluster.local
+            resource_detectors:
+              environment: {}
       randomSamplingPercentage: 100
