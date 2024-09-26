@@ -77,7 +77,11 @@ spec:
       envFrom: [ ]
       extraArgs: [ ]
       extraEnv: [ ]
-      extraPorts: [ ]
+      extraPorts:
+       - name: "grpc"
+         port: 4317
+         targetPort: 4317
+         protocol: "TCP"
       listenAddr: 0.0.0.0
       listenPort: 12345
       listenScheme: HTTP
