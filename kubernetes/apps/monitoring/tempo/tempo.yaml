@@ -114,7 +114,7 @@ spec:
       memBallastSizeMbs: 1024
       metricsGenerator:
         enabled: true
-        remoteWriteUrl: http://kube-prometheus-stack-prometheus.monitoring:9090/api/v1/write
+        remoteWriteUrl: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write
       multitenancyEnabled: false
       overrides: { }
       pullPolicy: IfNotPresent
