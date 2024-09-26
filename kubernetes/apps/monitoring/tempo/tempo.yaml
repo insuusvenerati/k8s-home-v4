@@ -113,8 +113,8 @@ spec:
       ingester: { }
       memBallastSizeMbs: 1024
       metricsGenerator:
-        enabled: false
-        remoteWriteUrl: http://prometheus.monitoring:9090/api/v1/write
+        enabled: true
+        remoteWriteUrl: http://kube-prometheus-stack-prometheus.monitoring:9090/api/v1/write
       multitenancyEnabled: false
       overrides: { }
       pullPolicy: IfNotPresent
