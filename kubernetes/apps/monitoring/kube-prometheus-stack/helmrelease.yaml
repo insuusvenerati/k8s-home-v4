@@ -20,7 +20,7 @@ spec:
   install:
     crds: Create
   upgrade:
-    crds: CreateReplace
+    crds: Create
   driftDetection:
     mode: enabled
     ignore:
@@ -37,6 +37,7 @@ spec:
       enabled: true
       ingress:
         enabled: true
+        ingressClassName: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
