@@ -20,7 +20,7 @@ spec:
   releaseName: grafana-alloy
   targetNamespace: monitoring
   upgrade:
-    crds: CreateReplace
+    crds: Create
   values:
     alloy:
       clustering:
