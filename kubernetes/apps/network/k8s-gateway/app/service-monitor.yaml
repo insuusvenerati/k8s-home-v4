@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      k8s-app: kube-dns  # Ensure it matches the labels of the CoreDNS service
+      k8s-app: k8s-gateway
   namespaceSelector:
     matchNames:
       - network
