@@ -39,14 +39,14 @@ spec:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          hosts:
-            - alertmanager.internal.${SECRET_DOMAIN}
-          paths:
-            - /
-          tls:
-            - secretName: alertmanager-general-tls
-              hosts:
-                - alertmanager.internal.${SECRET_DOMAIN}
+        hosts:
+          - alertmanager.internal.${SECRET_DOMAIN}
+        paths:
+          - /
+        tls:
+          - secretName: alertmanager-general-tls
+            hosts:
+              - alertmanager.internal.${SECRET_DOMAIN}
     defaultRules:
       kubeControllerManager: false
       kubeProxy: false
