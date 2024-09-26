@@ -48,11 +48,6 @@ spec:
           - secretName: alertmanager-general-tls
             hosts:
               - alertmanager.internal.${SECRET_DOMAIN}
-    defaultRules:
-      kubeControllerManager: false
-      kubeProxy: false
-      disabled:
-        KubeSchedulerDown: true
     grafana:
       image:
         # -- The Docker registry
