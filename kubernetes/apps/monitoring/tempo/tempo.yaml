@@ -155,14 +155,14 @@ spec:
         enabled: true
         extraPaths: [ ]
         hosts:
-          - query.tempo.internal.${SECRET_DOMAIN}
+          - tempo.internal.${SECRET_DOMAIN}
         labels: { }
         path: /
         pathType: Prefix
         tls:
           - secretName: grafana-tls
             hosts:
-              - query.tempo.internal.${SECRET_DOMAIN}
+              - tempo.internal.${SECRET_DOMAIN}
       pullPolicy: IfNotPresent
       repository: grafana/tempo-query
       resources: { }
