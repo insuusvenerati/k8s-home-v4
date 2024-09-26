@@ -4,6 +4,7 @@ metadata:
   name: k8s-gateway
   namespace: monitoring
 spec:
+  jobLabel: k8s-gateway
   selector:
     matchLabels:
       k8s-app: k8s-gateway
