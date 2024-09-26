@@ -1,0 +1,193 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana-alloy
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: alloy
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 0.7.0
+  install:
+    crds: Create
+  interval: 6h0m0s
+  releaseName: grafana-alloy
+  targetNamespace: monitoring
+  upgrade:
+    crds: CreateReplace
+  values:
+    alloy:
+      clustering:
+        enabled: false
+        name: ""
+        portName: http
+      configMap:
+        content: |
+          otelcol.exporter.otlp "istio-collector-exporter" {
+            client {
+              endpoint = http://grafana-tempo.monitoring.svc.cluster.local:4317
+            }
+          }
+          otelcol.processor.batch "istio-collector-processor" {
+            output {
+              metrics = [otelcol.exporter.otlp.istio-collector-exporter.input]
+              logs    = [otelcol.exporter.otlp.istio-collector-exporter.input]
+              traces  = [otelcol.exporter.otlp.istio-collector-exporter.input]
+            }
+          }
+          otelcol.receiver.otlp "istio-collector-receiver" {
+            output {
+              metrics = [otelcol.processor.batch.istio-collector-processor.input]
+              logs    = [otelcol.processor.batch.istio-collector-processor.input]
+              traces  = [otelcol.processor.batch.istio-collector-processor.input]
+            }
+            grpc {
+              endpoint = 0.0.0.0:4317
+            }
+            http {
+              endpoint = 0.0.0.0:4318
+            }
+          }
+          otelcol.exporter.loki "default" {
+          	forward_to = [loki.write.default.receiver]
+          }
+          loki.write "default" {
+          	endpoint {
+              url = "http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"
+            }
+          }
+          otelcol.exporter.prometheus "default" {
+          	forward_to = [prometheus.remote_write.default.receiver]
+          }
+          prometheus.remote_write "default" {
+          	endpoint {
+          		url = "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write"
+          	}
+          }
+        create: true
+        key: null
+        name: null
+      enableReporting: true
+      envFrom: [ ]
+      extraArgs: [ ]
+      extraEnv: [ ]
+      extraPorts: [ ]
+      listenAddr: 0.0.0.0
+      listenPort: 12345
+      listenScheme: HTTP
+      mounts:
+        dockercontainers: false
+        extra: [ ]
+        varlog: false
+      resources: { }
+      securityContext: { }
+      stabilityLevel: generally-available
+      storagePath: /tmp/alloy
+      uiPathPrefix: /
+    configReloader:
+      customArgs: [ ]
+      enabled: true
+      image:
+        digest: ""
+        registry: ghcr.io
+        repository: jimmidyson/configmap-reload
+        tag: v0.12.0
+      resources:
+        requests:
+          cpu: 1m
+          memory: 5Mi
+      securityContext: { }
+    controller:
+      affinity: { }
+      autoscaling:
+        enabled: false
+        maxReplicas: 5
+        minReplicas: 1
+        scaleDown:
+          policies: [ ]
+          selectPolicy: Max
+          stabilizationWindowSeconds: 300
+        scaleUp:
+          policies: [ ]
+          selectPolicy: Max
+          stabilizationWindowSeconds: 0
+        targetCPUUtilizationPercentage: 0
+        targetMemoryUtilizationPercentage: 80
+      dnsPolicy: ClusterFirst
+      enableStatefulSetAutoDeletePVC: false
+      extraAnnotations: { }
+      extraContainers: [ ]
+      hostNetwork: false
+      hostPID: false
+      initContainers: [ ]
+      nodeSelector: { }
+      parallelRollout: true
+      podAnnotations: { }
+      podDisruptionBudget:
+        enabled: false
+        maxUnavailable: null
+        minAvailable: null
+      podLabels: { }
+      priorityClassName: ""
+      replicas: 1
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      type: daemonset
+      updateStrategy: { }
+      volumeClaimTemplates: [ ]
+      volumes:
+        extra: [ ]
+    crds:
+      create: true
+    fullnameOverride: null
+    global:
+      image:
+        pullSecrets: [ ]
+        registry: ""
+      podSecurityContext: { }
+    image:
+      digest: null
+      pullPolicy: IfNotPresent
+      pullSecrets: [ ]
+      registry: docker.io
+      repository: grafana/alloy
+      tag: null
+    ingress:
+      annotations: { }
+      enabled: false
+      extraPaths: [ ]
+      faroPort: 12347
+      hosts:
+        - chart-example.local
+      labels: { }
+      path: /
+      pathType: Prefix
+      tls: [ ]
+    nameOverride: null
+    rbac:
+      create: true
+    service:
+      annotations: { }
+      clusterIP: ""
+      enabled: true
+      internalTrafficPolicy: Cluster
+      nodePort: 31128
+      type: ClusterIP
+    serviceAccount:
+      additionalLabels: { }
+      annotations: { }
+      create: true
+      name: null
+    serviceMonitor:
+      additionalLabels: { }
+      enabled: false
+      interval: ""
+      metricRelabelings: [ ]
+      relabelings: [ ]
+      tlsConfig: { }

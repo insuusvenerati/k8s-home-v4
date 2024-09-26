@@ -1,0 +1,173 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana-tempo
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: tempo
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 1.10.3
+  install:
+    crds: Create
+  interval: 6h0m0s
+  releaseName: grafana-tempo
+  targetNamespace: monitoring
+  upgrade:
+    crds: CreateReplace
+  values:
+    affinity: { }
+    annotations: { }
+    config: |
+      multitenancy_enabled: {{ .Values.tempo.multitenancyEnabled }}
+      usage_report:
+        reporting_enabled: {{ .Values.tempo.reportingEnabled }}
+      compactor:
+        compaction:
+          block_retention: {{ .Values.tempo.retention }}
+      distributor:
+        receivers:
+          {{- toYaml .Values.tempo.receivers | nindent 8 }}
+      ingester:
+        {{- toYaml .Values.tempo.ingester | nindent 6 }}
+      server:
+        {{- toYaml .Values.tempo.server | nindent 6 }}
+      storage:
+        {{- toYaml .Values.tempo.storage | nindent 6 }}
+      querier:
+        {{- toYaml .Values.tempo.querier | nindent 6 }}
+      query_frontend:
+        {{- toYaml .Values.tempo.queryFrontend | nindent 6 }}
+      overrides:
+        {{- toYaml .Values.tempo.global_overrides | nindent 6 }}
+        {{- if .Values.tempo.metricsGenerator.enabled }}
+            metrics_generator_processors:
+            - 'service-graphs'
+            - 'span-metrics'
+      metrics_generator:
+            storage:
+              path: "/tmp/tempo"
+              remote_write:
+                - url: {{ .Values.tempo.metricsGenerator.remoteWriteUrl }}
+        {{- end }}
+    extraLabels: { }
+    extraVolumes: [ ]
+    fullnameOverride: ""
+    labels: { }
+    nameOverride: ""
+    networkPolicy:
+      allowExternal: true
+      egress:
+        blockDNSResolution: false
+        enabled: false
+        ports: [ ]
+        to: [ ]
+      enabled: false
+      explicitNamespacesSelector: { }
+      ingress: true
+    nodeSelector: { }
+    persistence:
+      accessModes:
+        - ReadWriteOnce
+      enabled: true
+      size: 10Gi
+    podAnnotations: { }
+    podLabels: { }
+    priorityClassName: null
+    replicas: 1
+    securityContext:
+      fsGroup: 10001
+      runAsGroup: 10001
+      runAsNonRoot: true
+      runAsUser: 10001
+    service:
+      annotations: { }
+      labels: { }
+      targetPort: ""
+      type: ClusterIP
+    serviceAccount:
+      annotations: { }
+      automountServiceAccountToken: true
+      create: true
+      imagePullSecrets: [ ]
+      labels: { }
+      name: null
+    serviceMonitor:
+      additionalLabels: { }
+      annotations: { }
+      enabled: false
+      interval: ""
+    tempo:
+      extraArgs: { }
+      extraEnv: [ ]
+      extraEnvFrom: [ ]
+      extraVolumeMounts: [ ]
+      global_overrides:
+        per_tenant_override_config: /conf/overrides.yaml
+      ingester: { }
+      memBallastSizeMbs: 1024
+      metricsGenerator:
+        enabled: false
+        remoteWriteUrl: http://prometheus.monitoring:9090/api/v1/write
+      multitenancyEnabled: false
+      overrides: { }
+      pullPolicy: IfNotPresent
+      querier: { }
+      queryFrontend: { }
+      receivers:
+        otlp:
+          protocols:
+            grpc:
+              endpoint: 0.0.0.0:4317
+            http:
+              endpoint: 0.0.0.0:4318
+      reportingEnabled: false
+      repository: grafana/tempo
+      resources: { }
+      retention: 24h
+      securityContext: { }
+      server:
+        http_listen_port: 3100
+      storage:
+        trace:
+          backend: local
+          local:
+            path: /var/tempo/traces
+          wal:
+            path: /var/tempo/wal
+      tag: ""
+      updateStrategy: RollingUpdate
+    tempoQuery:
+      enabled: true
+      extraArgs: { }
+      extraEnv: [ ]
+      extraVolumeMounts: [ ]
+      ingress:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        ingressClassName: internal
+        enabled: true
+        extraPaths: [ ]
+        hosts:
+          - query.tempo.internal.${SECRET_DOMAIN}
+        labels: { }
+        path: /
+        pathType: Prefix
+        tls:
+          - secretName: grafana-tls
+            hosts:
+              - query.tempo.internal.${SECRET_DOMAIN}
+      pullPolicy: IfNotPresent
+      repository: grafana/tempo-query
+      resources: { }
+      securityContext: { }
+      service:
+        port: 16686
+      tag: null
+    tolerations: [ ]
