@@ -54,22 +54,22 @@ spec:
               endpoint = "0.0.0.0:4318"
             }
           }
-          otelcol.exporter.loki "default" {
-          	forward_to = [loki.write.default.receiver]
-          }
-          loki.write "default" {
-          	endpoint {
-              url = "http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"
-            }
-          }
-          otelcol.exporter.prometheus "default" {
-          	forward_to = [prometheus.remote_write.default.receiver]
-          }
-          prometheus.remote_write "default" {
-          	endpoint {
-          		url = "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write"
-          	}
-          }
+#          otelcol.exporter.loki "default" {
+#          	forward_to = [loki.write.default.receiver]
+#          }
+#          loki.write "default" {
+#          	endpoint {
+#              url = "http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"
+#            }
+#          }
+#          otelcol.exporter.prometheus "default" {
+#          	forward_to = [prometheus.remote_write.default.receiver]
+#          }
+#          prometheus.remote_write "default" {
+#          	endpoint {
+#          		url = "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write"
+#          	}
+#          }
         create: true
         key: null
         name: null
