@@ -34,6 +34,9 @@ spec:
       valuesKey: kube-state-metrics-config.yaml
   values:
     namespaceOverride: "monitoring"
+    defaultRules:
+      rules:
+        kubeProxy: false
     alertmanager:
       enabled: true
       ingress:
@@ -107,7 +110,7 @@ spec:
       serviceMonitor:
         insecureSkipVerify: true
     kubeProxy:
-      enabled: true
+      enabled: false
       service:
         enabled: true
         selector:
