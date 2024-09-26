@@ -33,6 +33,7 @@ spec:
       name: flux-kube-state-metrics-config
       valuesKey: kube-state-metrics-config.yaml
   values:
+    namespaceOverride: "monitoring"
     alertmanager:
       enabled: true
       ingress:
