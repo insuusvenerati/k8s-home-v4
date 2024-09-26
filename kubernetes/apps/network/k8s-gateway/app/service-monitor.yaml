@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: coredns
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kube-dns  # Ensure it matches the labels of the CoreDNS service
+  namespaceSelector:
+    matchNames:
+      - network
+  endpoints:
+    - port: metrics
+      interval: 30s
+      scrapeTimeout: 10s
+      path: /metrics
