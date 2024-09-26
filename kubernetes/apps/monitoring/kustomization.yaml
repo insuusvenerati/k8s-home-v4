@@ -5,3 +5,5 @@ resources:
   - ./namespace.yaml
   - ./kube-prometheus-stack
   - ./loki
+  - ./alloy
+  - ./tempo
