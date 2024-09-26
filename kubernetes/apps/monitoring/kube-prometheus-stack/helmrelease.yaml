@@ -22,7 +22,7 @@ spec:
   upgrade:
     crds: Create
   driftDetection:
-    mode: enabled
+    mode: warn
     ignore:
       - paths:
           - "/metadata/annotations/prometheus-operator-validated"
