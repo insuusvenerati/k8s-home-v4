@@ -32,6 +32,9 @@ spec:
           otelcol.exporter.otlp "default" {
             client {
               endpoint = "http://grafana-tempo.monitoring.svc.cluster.local:4317"
+              tls {
+                insecure = true
+              }
             }
           }
           otelcol.processor.batch "default" {
