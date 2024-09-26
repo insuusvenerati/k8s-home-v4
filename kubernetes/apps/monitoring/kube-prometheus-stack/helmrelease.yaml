@@ -82,6 +82,8 @@ spec:
           targetPort: 10257
         serviceMonitor:
           insecureSkipVerify: true
+          selector:
+            k8s-app: kube-controller-manager
       coreDns:
         enabled: true
       kubeEtcd:
