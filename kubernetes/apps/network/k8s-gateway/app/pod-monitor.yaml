@@ -1,5 +1,5 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: k8s-gateway
   namespace: network
@@ -11,8 +11,8 @@ spec:
   namespaceSelector:
     matchNames:
       - network
-  endpoints:
+  podMetricsEndpoints:
     - port: metrics
+      path: /metrics
       interval: 30s
       scrapeTimeout: 10s
-      path: /metrics
