@@ -35,6 +35,18 @@ spec:
   values:
     alertmanager:
       enabled: true
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          hosts:
+            - alertmanager.internal.${SECRET_DOMAIN}
+          paths:
+            - /
+          tls:
+            - secretName: alertmanager-general-tls
+              hosts:
+                - alertmanager.internal.${SECRET_DOMAIN}
     defaultRules:
       kubeControllerManager: false
       kubeProxy: false
@@ -59,6 +71,39 @@ spec:
           - secretName: grafana-tls
             hosts:
               - grafana.internal.${SECRET_DOMAIN}
+      kubeApiServer:
+        enabled: true
+        tlsConfig:
+          insecureSkipVerify: true
+      kubelet:
+        enabled: true
+      kubeControllerManager:
+        enabled: true
+        endpoints:
+          - 192.168.1.135
+        service:
+          port: 10257
+          targetPort: 10257
+        serviceMonitor:
+          insecureSkipVerify: true
+      coreDns:
+        enabled: true
+      kubeEtcd:
+        enabled: true
+        endpoints:
+          - 192.168.1.135
+        service:
+      kubeScheduler:
+        enabled: true
+        endpoints:
+          - 192.168.1.135
+        service:
+          port: 10259
+          targetPort: 10259
+        serviceMonitor:
+          insecureSkipVerify: true
+      kubeProxy:
+        enabled: false
     prometheus:
       prometheusSpec:
         retention: 24h
@@ -94,33 +139,3 @@ spec:
               - source_labels: [ __meta_kubernetes_pod_container_port_name ]
                 action: keep
                 regex: '.*-envoy-prom'
-#          - job_name: 'istio-ztunnel'
-#            scrape_interval: 15s
-#            scrape_timeout: 10s
-#            metrics_path: /stats/prometheus
-#            scrape_protocols:
-#              - OpenMetricsText1.0.0
-#            kubernetes_sd_configs:
-#              - role: pod
-#                namespaces:
-#                  names:
-#                    - istio-system
-#            relabel_configs:
-#              - source_labels: [ __meta_kubernetes_pod_container_name ]
-#                action: keep
-#                regex: istio-proxy  # Match the ztunnel container
-#              - source_labels: [ __meta_kubernetes_pod_annotation_prometheus_io_scrape ]
-#                action: keep
-#                regex: true
-#              - source_labels: [ __meta_kubernetes_pod_annotation_prometheus_io_path ]
-#                action: replace
-#                target_label: __metrics_path__
-#                regex: (.+)
-#              - action: labelmap
-#                regex: __meta_kubernetes_pod_label_(.+)
-#              - source_labels: [ __meta_kubernetes_namespace ]
-#                action: replace
-#                target_label: namespace
-#              - source_labels: [ __meta_kubernetes_pod_name ]
-#                action: replace
-#                target_label: pod
