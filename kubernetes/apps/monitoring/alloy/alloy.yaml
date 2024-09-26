@@ -31,7 +31,7 @@ spec:
         content: |
           otelcol.exporter.otlp "default" {
             client {
-              endpoint = http://grafana-tempo.monitoring.svc.cluster.local:4317
+              endpoint = "http://grafana-tempo.monitoring.svc.cluster.local:4317"
             }
           }
           otelcol.processor.batch "default" {
@@ -48,10 +48,10 @@ spec:
               traces  = [otelcol.processor.batch.default.input]
             }
             grpc {
-              endpoint = 0.0.0.0:4317
+              endpoint = "0.0.0.0:4317"
             }
             http {
-              endpoint = 0.0.0.0:4318
+              endpoint = "0.0.0.0:4318"
             }
           }
           otelcol.exporter.loki "default" {
