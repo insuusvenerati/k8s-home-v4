@@ -3,3 +3,11 @@ kind: Kustomization
 resources:
   - radarr.yaml
   - ./service-entry.yaml
+configMapGenerator:
+  - name: radarr-grafana-dashboards
+    namespace: default
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
+      - ./dashboards/radarr-dashboard.json

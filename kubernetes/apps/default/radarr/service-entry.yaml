@@ -10,5 +10,5 @@ spec:
   ports:
     - number: 443
       name: https
-      protocol: TLS
+      protocol: HTTPS
   resolution: DNS
