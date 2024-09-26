@@ -112,6 +112,10 @@ spec:
       enablePrometheusMerge: true
       enableTracing: true
       ingressClass: istio-ingress
+      defaultProviders:
+        tracing: [otel-tracing]
+        metrics: [otel-tracing]
+        accessLogging: [otel-tracing]
       defaultConfig:
         proxyMetadata:
           ISTIO_META_DNS_CAPTURE: "true"
