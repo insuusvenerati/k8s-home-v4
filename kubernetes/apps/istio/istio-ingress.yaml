@@ -24,30 +24,30 @@ spec:
         io.cilium/lb-ipam-ips: "192.168.1.205"
     autoscaling:
       enabled: false
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: istio-egress
-  namespace: istio-system
-spec:
-  interval: 6h
-  dependsOn:
-    - name: istio-base
-      namespace: istio-system
-    - name: istiod
-      namespace: istio-system
-  chart:
-    spec:
-      chart: gateway
-      sourceRef:
-        kind: HelmRepository
-        name: istio
-        namespace: flux-system
-      interval: 6h
-  values:
-    name: istio-egressgateway
-    service:
-      type: ClusterIP
-    autoscaling:
-      enabled: false
+#---
+#apiVersion: helm.toolkit.fluxcd.io/v2
+#kind: HelmRelease
+#metadata:
+#  name: istio-egress
+#  namespace: istio-system
+#spec:
+#  interval: 6h
+#  dependsOn:
+#    - name: istio-base
+#      namespace: istio-system
+#    - name: istiod
+#      namespace: istio-system
+#  chart:
+#    spec:
+#      chart: gateway
+#      sourceRef:
+#        kind: HelmRepository
+#        name: istio
+#        namespace: flux-system
+#      interval: 6h
+#  values:
+#    name: istio-egressgateway
+#    service:
+#      type: ClusterIP
+#    autoscaling:
+#      enabled: false
