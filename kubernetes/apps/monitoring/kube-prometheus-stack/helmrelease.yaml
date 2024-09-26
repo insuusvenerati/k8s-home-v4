@@ -35,6 +35,11 @@ spec:
   values:
     alertmanager:
       enabled: true
+    defaultRules:
+      kubeControllerManager: false
+      kubeProxy: false
+      disabled:
+        KubeSchedulerDown: true
     grafana:
       image:
         # -- The Docker registry
