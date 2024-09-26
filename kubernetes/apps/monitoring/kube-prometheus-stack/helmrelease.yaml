@@ -87,19 +87,19 @@ spec:
     coreDns:
       enabled: true
       service:
-        enabled: false
+        enabled: true
         selector:
           k8s-app: kube-dns
     kubeEtcd:
       enabled: true
-#      endpoints:
-#        - 192.168.1.135
+      endpoints:
+        - 192.168.1.135
       service:
-        enabled: false
+        enabled: true
     kubeScheduler:
       enabled: true
       service:
-        enabled: false
+        enabled: true
         port: 10259
         targetPort: 10259
         selector:
@@ -109,7 +109,7 @@ spec:
     kubeProxy:
       enabled: true
       service:
-        enabled: false
+        enabled: true
         selector:
           k8s-app: kube-proxy
     prometheus:
