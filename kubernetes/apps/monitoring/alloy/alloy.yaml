@@ -29,23 +29,23 @@ spec:
         portName: http
       configMap:
         content: |
-          otelcol.exporter.otlp "istio-collector-exporter" {
+          otelcol.exporter.otlp "default" {
             client {
               endpoint = http://grafana-tempo.monitoring.svc.cluster.local:4317
             }
           }
-          otelcol.processor.batch "istio-collector-processor" {
+          otelcol.processor.batch "default" {
             output {
-              metrics = [otelcol.exporter.otlp.istio-collector-exporter.input]
-              logs    = [otelcol.exporter.otlp.istio-collector-exporter.input]
-              traces  = [otelcol.exporter.otlp.istio-collector-exporter.input]
+              metrics = [otelcol.exporter.otlp.default.input]
+              logs    = [otelcol.exporter.otlp.default.input]
+              traces  = [otelcol.exporter.otlp.default.input]
             }
           }
-          otelcol.receiver.otlp "istio-collector-receiver" {
+          otelcol.receiver.otlp "default" {
             output {
-              metrics = [otelcol.processor.batch.istio-collector-processor.input]
-              logs    = [otelcol.processor.batch.istio-collector-processor.input]
-              traces  = [otelcol.processor.batch.istio-collector-processor.input]
+              metrics = [otelcol.processor.batch.default.input]
+              logs    = [otelcol.processor.batch.default.input]
+              traces  = [otelcol.processor.batch.default.input]
             }
             grpc {
               endpoint = 0.0.0.0:4317
