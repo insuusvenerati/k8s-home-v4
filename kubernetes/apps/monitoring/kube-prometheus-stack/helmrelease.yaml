@@ -34,7 +34,7 @@ spec:
       valuesKey: kube-state-metrics-config.yaml
   values:
     alertmanager:
-      enabled: false
+      enabled: true
     grafana:
       image:
         # -- The Docker registry
