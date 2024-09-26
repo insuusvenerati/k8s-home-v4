@@ -11,3 +11,6 @@ spec:
   metrics:
     - providers:
         - name: otel-tracing
+  accessLogging:
+    - providers:
+        - name: otel-tracing
