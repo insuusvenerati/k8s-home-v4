@@ -77,7 +77,7 @@ spec:
     kubeControllerManager:
       enabled: true
       service:
-        enabled: false
+        enabled: true
         port: 10257
         targetPort: 10257
         selector:
