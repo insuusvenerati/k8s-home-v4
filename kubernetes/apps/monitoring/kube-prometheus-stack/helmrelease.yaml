@@ -80,17 +80,18 @@ spec:
         service:
           port: 10257
           targetPort: 10257
+          k8s-app: kube-controller-manager
         serviceMonitor:
           insecureSkipVerify: true
-          selector:
-            k8s-app: kube-controller-manager
       coreDns:
         enabled: true
+        service:
+          selector:
+            k8s-app: kube-dns
       kubeEtcd:
         enabled: true
         endpoints:
           - 192.168.1.135
-        service:
       kubeScheduler:
         enabled: true
         endpoints:
@@ -98,10 +99,15 @@ spec:
         service:
           port: 10259
           targetPort: 10259
+          selector:
+            k8s-app: kube-scheduler
         serviceMonitor:
           insecureSkipVerify: true
       kubeProxy:
-        enabled: false
+        enabled: true
+        service:
+          selector:
+           k8s-app: kube-proxy
     prometheus:
       prometheusSpec:
         retention: 24h
