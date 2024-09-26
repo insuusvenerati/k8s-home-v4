@@ -117,6 +117,7 @@ spec:
           ISTIO_META_DNS_CAPTURE: "true"
         tracing:
           sampling: 100.0
+        tracingServiceName: CANONICAL_NAME_ONLY
       accessLogFile: /dev/stdout
       extensionProviders:
         - name: otel-tracing
