@@ -67,44 +67,44 @@ spec:
           - secretName: grafana-tls
             hosts:
               - grafana.internal.${SECRET_DOMAIN}
-      kubeApiServer:
-        enabled: true
-        tlsConfig:
-          insecureSkipVerify: true
-      kubelet:
-        enabled: true
-      kubeControllerManager:
-        enabled: true
-        service:
-          port: 10257
-          targetPort: 10257
-          selector:
-            k8s-app: kube-controller-manager
-        serviceMonitor:
-          insecureSkipVerify: true
-      coreDns:
-        enabled: true
-        service:
-          selector:
-            k8s-app: kube-dns
-      kubeEtcd:
-        enabled: true
-        endpoints:
-          - 192.168.1.135
-      kubeScheduler:
-        enabled: true
-        service:
-          port: 10259
-          targetPort: 10259
-          selector:
-            k8s-app: kube-scheduler
-        serviceMonitor:
-          insecureSkipVerify: true
-      kubeProxy:
-        enabled: true
-        service:
-          selector:
-            k8s-app: kube-proxy
+    kubeApiServer:
+      enabled: true
+      tlsConfig:
+        insecureSkipVerify: true
+    kubelet:
+      enabled: true
+    kubeControllerManager:
+      enabled: true
+      service:
+        port: 10257
+        targetPort: 10257
+        selector:
+          k8s-app: kube-controller-manager
+      serviceMonitor:
+        insecureSkipVerify: true
+    coreDns:
+      enabled: true
+      service:
+        selector:
+          k8s-app: kube-dns
+    kubeEtcd:
+      enabled: true
+      endpoints:
+        - 192.168.1.135
+    kubeScheduler:
+      enabled: true
+      service:
+        port: 10259
+        targetPort: 10259
+        selector:
+          k8s-app: kube-scheduler
+      serviceMonitor:
+        insecureSkipVerify: true
+    kubeProxy:
+      enabled: true
+      service:
+        selector:
+          k8s-app: kube-proxy
     prometheus:
       prometheusSpec:
         retention: 24h
