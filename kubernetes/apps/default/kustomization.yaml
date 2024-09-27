@@ -27,3 +27,4 @@ resources:
 #  - ./network-policy.yaml
 #  - ./peer-auth-policy.yaml
   - ./tautulli
+  - ./radarr-new
