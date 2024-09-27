@@ -154,4 +154,5 @@ spec:
               - role: pod
             relabel_configs:
               - source_labels: [ __meta_kubernetes_pod_annotationpresent_sidecar_istio_io_status ]
+                regex: true
                 action: keep
