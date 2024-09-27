@@ -147,3 +147,11 @@ spec:
               - source_labels: [ __meta_kubernetes_pod_container_port_name ]
                 action: keep
                 regex: '.*-envoy-prom'
+          - job_name: 'istio-mesh'
+            metrics_path: /stats/prometheus
+            scheme: http
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - source_labels: [ __meta_kubernetes_pod_annotation_present_sidecar_istio_io_inject ]
+                action: keep
