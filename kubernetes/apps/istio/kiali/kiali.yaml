@@ -64,7 +64,7 @@ spec:
             health_check_url: ""
             in_cluster_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local
             is_core: false
-            url: https://grafana.internal.stiforr.com
+            url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local
           prometheus:
             url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
           istio:
