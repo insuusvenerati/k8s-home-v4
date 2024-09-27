@@ -110,7 +110,7 @@ spec:
       injectionURL: ""
     # https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig
     meshConfig:
-      enablePrometheusMerge: true
+      enablePrometheusMerge: false
       enableTracing: true
       ingressClass: istio-ingress
       defaultProviders:
