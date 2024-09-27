@@ -20,10 +20,9 @@ configMapGenerator:
         app.kubernetes.io/part-of: istio
         grafana_dashboard: "1"
     files:
-      - ./dashboards/control_plane.json
+      - ./dashboards/control-plane.json
       - ./dashboards/mesh.json
       - ./dashboards/performance.json
       - ./dashboards/service.json
-#      - ./dashboards/ztunnel.json
       - ./dashboards/workload.json
       - ./dashboards/grafana-loki-dashboard.json
