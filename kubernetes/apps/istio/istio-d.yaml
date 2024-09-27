@@ -115,7 +115,7 @@ spec:
       ingressClass: istio-ingress
       defaultProviders:
         tracing: [otel-tracing]
-        metrics: [otel-tracing]
+        metrics: [prometheus]
         accessLogging: [otel-tracing]
       defaultConfig:
         proxyMetadata:
