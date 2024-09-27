@@ -70,7 +70,7 @@ spec:
         existingClaim: media-pvc-ssd
         size: 250Gi
     metrics:
-      enabled: true
+      enabled: false
       exporter:
         image:
           # -- image repository
