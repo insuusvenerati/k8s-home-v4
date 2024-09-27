@@ -153,5 +153,5 @@ spec:
             kubernetes_sd_configs:
               - role: pod
             relabel_configs:
-              - source_labels: [ __meta_kubernetes_pod_annotation_present_sidecar_istio_io_inject ]
+              - source_labels: [ __meta_kubernetes_pod_annotationpresent_sidecar_istio_io_status ]
                 action: keep
