@@ -13,6 +13,10 @@ spec:
   releaseName: tautulli
   targetNamespace: default
   values:
+    global:
+      fallbackDefaults:
+        storageClass: openebs-hostpath
+        pvcSize: 10Gi
     image:
       pullPolicy: IfNotPresent
       repository: ghcr.io/tautulli/tautulli
@@ -34,6 +38,9 @@ spec:
     ingress:
       main:
         enabled: true
+        integrations:
+          traefik:
+            enabled: false
         primary: true
         required: true
         labels: { }
