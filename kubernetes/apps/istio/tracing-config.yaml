@@ -8,9 +8,6 @@ spec:
     - providers:
         - name: otel-tracing
       randomSamplingPercentage: 100
-  metrics:
-    - providers:
-        - name: otel-tracing
   accessLogging:
     - providers:
         - name: otel-tracing

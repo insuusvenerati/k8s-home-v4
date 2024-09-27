@@ -116,7 +116,6 @@ spec:
       defaultProviders:
         tracing: [otel-tracing]
         metrics: [prometheus]
-        accessLogging: [otel-tracing]
       defaultConfig:
         proxyMetadata:
           ISTIO_META_DNS_CAPTURE: "true"
