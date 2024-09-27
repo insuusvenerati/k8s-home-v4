@@ -79,3 +79,8 @@ spec:
           tag: v2.0.1
           # -- image pull policy
           pullPolicy: IfNotPresent
+        env:
+          # -- Set to true to enable gathering of additional metrics (slow)
+          additionalMetrics: true
+          # -- Set to true to enable gathering unknown queue items
+          unknownQueueItems: true
