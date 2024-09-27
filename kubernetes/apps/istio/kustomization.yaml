@@ -12,18 +12,18 @@ resources:
   - ./istio-otel-collector.yaml
   - ./tracing-config.yaml
   - ./prom-monitors.yaml
-#configMapGenerator:
-#  - name: istio-grafana-dashboards
-#    namespace: monitoring
-#    options:
-#      labels:
-#        app.kubernetes.io/part-of: istio
-#        grafana_dashboard: "1"
-#    files:
-#      - ./dashboards/control_plane.json
-#      - ./dashboards/mesh.json
-#      - ./dashboards/performance.json
-#      - ./dashboards/service.json
-##      - ./dashboards/ztunnel.json
-#      - ./dashboards/workload.json
-#      - ./dashboards/grafana-loki-dashboard.json
+configMapGenerator:
+  - name: istio-grafana-dashboards
+    namespace: monitoring
+    options:
+      labels:
+        app.kubernetes.io/part-of: istio
+        grafana_dashboard: "1"
+    files:
+      - ./dashboards/control_plane.json
+      - ./dashboards/mesh.json
+      - ./dashboards/performance.json
+      - ./dashboards/service.json
+#      - ./dashboards/ztunnel.json
+      - ./dashboards/workload.json
+      - ./dashboards/grafana-loki-dashboard.json
