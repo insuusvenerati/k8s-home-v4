@@ -7,7 +7,6 @@ resources:
 #  - ./hajimari/ks.yaml
   - ./pvc-ssd.yaml
   - ./sonarr
-  - ./radarr
   - ./overseerr
   - ./jackett
   #- ./tubearchivist
