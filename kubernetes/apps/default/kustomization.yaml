@@ -26,3 +26,4 @@ resources:
   - ./plex
 #  - ./network-policy.yaml
 #  - ./peer-auth-policy.yaml
+  - ./tautulli

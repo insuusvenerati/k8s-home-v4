@@ -108,6 +108,7 @@ spec:
       injectionCABundle: ""
       injectionPath: /inject
       injectionURL: ""
+    # https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig
     meshConfig:
       enablePrometheusMerge: true
       enableTracing: true

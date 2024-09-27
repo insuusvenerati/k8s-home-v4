@@ -55,7 +55,7 @@ spec:
               - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
                 value: /api/notification/,/api/ping/,/health
               - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                value: http://grafana-alloy.monitoring.svc.cluster.local:4317
+                value: http://istio-collector-collector.istio-system.svc.cluster.local:4317
               - name: OTEL_EXPORTER_OTLP_PROTOCOL
                 value: grpc
               - name: OTEL_EXPORTER_OTLP_COMPRESSION
