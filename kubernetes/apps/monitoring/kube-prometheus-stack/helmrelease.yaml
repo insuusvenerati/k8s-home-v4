@@ -63,7 +63,7 @@ spec:
       sidecar:
         prune: true
         datasources:
-          enabled: false
+          enabled: true
       ingress:
         enabled: true
         ingressClassName: internal
