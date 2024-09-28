@@ -28,18 +28,11 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/service-upstream: "true"
         hosts:
-          - host: &host radarr-new.internal.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
           - host: radarr.internal.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: radarr-new-tls
-            hosts:
-              - *host
           - secretName: radarr-tls
             hosts:
               - radarr.internal.${SECRET_DOMAIN}
