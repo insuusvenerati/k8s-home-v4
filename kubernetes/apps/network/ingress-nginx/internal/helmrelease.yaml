@@ -127,8 +127,7 @@ spec:
             "server_protocol": "$server_protocol",
             "pipe": "$pipe",
             "gzip_ratio": "$gzip_ratio",
-            "http_cf_ray": "$http_cf_ray",
-            "geoip_country_code": "$geoip_country_code"
+            "http_cf_ray": "$http_cf_ray"
           }
         proxy-body-size: 0
         proxy-buffer-size: 16k
