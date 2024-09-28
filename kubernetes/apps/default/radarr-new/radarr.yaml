@@ -32,6 +32,11 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+            backend:
+              service:
+                name: main
+                port:
+                  number: 7878
         tls:
           - secretName: radarr-tls
             hosts:
