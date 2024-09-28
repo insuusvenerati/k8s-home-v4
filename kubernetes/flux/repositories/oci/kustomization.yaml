@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./tautulli.yaml
   - ./radarr.yaml
+  - ./prowlarr.yaml
