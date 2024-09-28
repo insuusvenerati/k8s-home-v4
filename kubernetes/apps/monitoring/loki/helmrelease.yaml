@@ -24,6 +24,8 @@ spec:
           enabled: true
           serviceMonitor:
             enabled: false
+      serviceMonitor:
+        enabled: true
     loki:
       enabled: true
       image:
