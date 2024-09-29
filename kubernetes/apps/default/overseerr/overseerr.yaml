@@ -29,7 +29,7 @@ spec:
       instrumentation.opentelemetry.io/inject-nodejs: "default/nodejs-instrumentation"
     resources:
       limits:
-        cpu: 1
+        cpu: 2
         memory: 1Gi
       requests:
         cpu: 500m
@@ -40,6 +40,7 @@ spec:
       pullPolicy: IfNotPresent
     env:
       TZ: America/Chicago
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://grafana-tempo.monitoring.svc.cluster.local:4317
     persistence:
       config:
         enabled: true
