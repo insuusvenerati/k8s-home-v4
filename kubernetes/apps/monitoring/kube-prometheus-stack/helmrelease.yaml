@@ -121,6 +121,7 @@ spec:
           k8s-app: kube-proxy
     prometheus:
       prometheusSpec:
+        enableRemoteWriteReceiver: true
         retention: 24h
         resources:
           requests:
