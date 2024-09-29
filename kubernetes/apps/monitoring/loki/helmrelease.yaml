@@ -18,6 +18,8 @@ spec:
   releaseName: loki
   targetNamespace: monitoring
   values:
+    minio:
+      enabled: true
     loki:
       commonConfig:
         replication_factor: 1
