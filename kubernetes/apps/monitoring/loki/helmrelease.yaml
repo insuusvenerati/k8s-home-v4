@@ -19,8 +19,10 @@ spec:
   targetNamespace: monitoring
   values:
     minio:
-      enabled: true
+      enabled: false
     loki:
+      storage:
+        type: filesystem
       commonConfig:
         replication_factor: 1
       schemaConfig:
