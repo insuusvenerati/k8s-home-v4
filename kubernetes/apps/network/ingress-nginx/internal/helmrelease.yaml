@@ -25,8 +25,9 @@ spec:
     fullnameOverride: ingress-nginx-internal
     controller:
       podAnnotations:
-        linkerd.io/inject: disabled
         traffic.sidecar.istio.io/includeInboundPorts: ""
+        traffic.sidecar.istio.io/excludeInboundPorts: "80,443"
+        traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.96.0.0/16,10.69.0.0/16"
       labels:
         sidecar.istio.io/inject: "true"
       service:
