@@ -28,3 +28,4 @@ resources:
   - ./tautulli
   - ./radarr-new
   - ./prowlarr
+  - ./filebrowser
