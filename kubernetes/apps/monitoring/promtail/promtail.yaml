@@ -33,6 +33,17 @@ spec:
     config:
       clients:
         - url: http://loki-gateway/loki/api/v1/push
+      snippets:
+        extraScrapeConfigs: |
+          - job_name: nginx
+            static_configs:
+            - targets:
+                - localhost
+              labels:
+                job: nginx
+                host: nginx01
+                agent: promtail
+                __path__: /var/log/nginx/*log
     sidecar:
       configReloader:
         enabled: true
