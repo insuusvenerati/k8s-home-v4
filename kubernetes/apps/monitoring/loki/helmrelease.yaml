@@ -30,7 +30,7 @@ spec:
       enabled: true
       image:
         repository: grafana/loki
-        tag: 2.9.10
+        tag: 3.2.0
         pullPolicy: IfNotPresent
       isDefault: false
       serviceMonitor:
