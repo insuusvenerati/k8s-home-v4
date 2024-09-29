@@ -41,7 +41,7 @@ spec:
     ingress:
       main:
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
+          cert-manager.io/cluster-issuer: letsencrypt-production
         className: internal
         enabled: true
         hosts:
