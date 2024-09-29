@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: loki-stack
-      reconcileStrategy: Revision
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -30,7 +30,7 @@ spec:
       enabled: true
       image:
         repository: grafana/loki
-        tag: 3.2.0
+        tag: 2.9.10
         pullPolicy: IfNotPresent
       isDefault: false
       serviceMonitor:
