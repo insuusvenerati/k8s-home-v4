@@ -7,46 +7,47 @@ metadata:
 spec:
   chart:
     spec:
-      chart: loki-stack
+      chart: loki
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
+      version: 6.15.0
   interval: 1h0m0s
   releaseName: loki
   targetNamespace: monitoring
   values:
-    promtail:
-      enabled: true
-      sidecar:
-        configReloader:
-          enabled: true
-          serviceMonitor:
-            enabled: false
-      serviceMonitor:
-        enabled: true
     loki:
-      enabled: true
-      image:
-        repository: grafana/loki
-        tag: 2.9.10
-        pullPolicy: IfNotPresent
-      isDefault: false
-      serviceMonitor:
+      commonConfig:
+        replication_factor: 1
+      schemaConfig:
+        configs:
+          - from: 2024-04-01
+            store: tsdb
+            object_store: s3
+            schema: v13
+            index:
+              prefix: loki_index_
+              period: 24h
+      ingester:
+        chunk_encoding: snappy
+      tracing:
         enabled: true
-        additionalLabels:
-          app.kubernetes.io/part-of: kube-prometheus-stack
-      persistence:
-        enabled: false
-        accessModes:
-          - ReadWriteOnce
-        size: 10Gi
-        storageClassName: openebs-hostpath
-      config:
-        table_manager:
-          retention_deletes_enabled: true
-          retention_period: 12h
-        limits_config:
-          max_query_series: 100000
-          max_query_parallelism: 2
+      querier:
+        max_concurrent: 4
+    deploymentMode: SingleBinary
+    singleBinary:
+      replicas: 1
+      resources:
+        limits:
+          cpu: 3
+          memory: 4Gi
+        requests:
+          cpu: 2
+          memory: 2Gi
+      extraEnv:
+        - name: GOMEMLIMIT
+          value: 3750MiB
+    chunksCache:
+      writebackSizeLimit: 500MB
