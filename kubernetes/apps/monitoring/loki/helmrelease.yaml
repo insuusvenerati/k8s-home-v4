@@ -29,11 +29,14 @@ spec:
         configs:
           - from: "2024-04-01"
             store: tsdb
-            object_store: s3
+            object_store: filesystem
             schema: v13
             index:
               prefix: loki_index_
               period: 24h
+      storage_config:
+        filesystem:
+          directory: /tmp/loki/chunks
       ingester:
         chunk_encoding: snappy
       tracing:
@@ -64,7 +67,6 @@ spec:
       replicas: 0
     write:
       replicas: 0
-
     ingester:
       replicas: 0
     querier:
