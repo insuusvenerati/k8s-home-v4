@@ -81,3 +81,4 @@ spec:
     serviceMonitor:
       main:
         enabled: true
+        serviceName: main
