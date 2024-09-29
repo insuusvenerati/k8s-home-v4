@@ -129,6 +129,7 @@ spec:
               endpoint: 0.0.0.0:4318
       reportingEnabled: false
       repository: grafana/tempo
+      tag: ""
       resources: { }
       retention: 24h
       securityContext: { }
@@ -141,7 +142,6 @@ spec:
             path: /var/tempo/traces
           wal:
             path: /var/tempo/wal
-      tag: ""
       updateStrategy: RollingUpdate
     tempoQuery:
       enabled: true
