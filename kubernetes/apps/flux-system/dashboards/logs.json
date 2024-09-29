@@ -92,8 +92,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -249,15 +248,21 @@
           ]
         },
         "datasource": {
-          "uid": ""
+          "type": "loki",
+          "uid": "${DS_LOKI}"
         },
-        "definition": "label_values(app)",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "controller",
         "options": [],
-        "query": "label_values(app)",
+        "query": {
+          "label": "app",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "{namespace=\"$namespace\"}",
+          "type": 1
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -276,17 +281,23 @@
           ]
         },
         "datasource": {
-          "uid": ""
+          "type": "loki",
+          "uid": "${DS_LOKI}"
         },
-        "definition": "label_values(namespace)",
+        "definition": "",
         "hide": 0,
-        "includeAll": true,
-        "multi": true,
+        "includeAll": false,
+        "multi": false,
         "name": "namespace",
         "options": [],
-        "query": "label_values(namespace)",
+        "query": {
+          "label": "namespace",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
         "refresh": 1,
-        "regex": "",
+        "regex": "flux-system",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -299,15 +310,21 @@
           "value": "$__all"
         },
         "datasource": {
-          "uid": ""
+          "type": "loki",
+          "uid": "${DS_LOKI}"
         },
-        "definition": "label_values(stream)",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "stream",
         "options": [],
-        "query": "label_values(stream)",
+        "query": {
+          "label": "stream",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
