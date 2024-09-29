@@ -128,8 +128,6 @@ spec:
           opentelemetry:
             port: 4317
             service: istio-collector-collector.istio-system.svc.cluster.local
-            resource_detectors:
-              environment: {}
     ownerName: ""
     pilot:
       affinity: { }
