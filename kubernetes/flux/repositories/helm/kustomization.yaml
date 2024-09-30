@@ -29,3 +29,4 @@ resources:
   - ./uptrace.yaml
   - ./linkerd-smi.yaml
   - ./onechart.yaml
+  - ./authentik.yaml

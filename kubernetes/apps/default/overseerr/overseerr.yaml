@@ -40,7 +40,6 @@ spec:
       pullPolicy: IfNotPresent
     env:
       TZ: America/Chicago
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://grafana-tempo.monitoring.svc.cluster.local:4317
     persistence:
       config:
         enabled: true

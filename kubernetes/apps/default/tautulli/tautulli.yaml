@@ -46,6 +46,7 @@ spec:
         labels: { }
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/service-upstream: "true"
         ingressClassName: "internal"
         hosts:
           - host: &host tautulli.internal.${SECRET_DOMAIN}
