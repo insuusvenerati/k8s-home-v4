@@ -9,5 +9,4 @@ resources:
   - ./reloader/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./spegel/ks.yaml
-  - ./k8s-gateway-crd.yaml
   - ./k8s-otel-collector.yaml
