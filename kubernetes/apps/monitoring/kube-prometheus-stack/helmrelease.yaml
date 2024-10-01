@@ -20,7 +20,7 @@ spec:
   install:
     crds: Create
   upgrade:
-    crds: Create
+    crds: CreateReplace
   driftDetection:
     mode: enabled
     ignore:
