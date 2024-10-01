@@ -15,7 +15,7 @@ resources:
   - ./prowlarr
   - ./filebrowser
   - ./authentik
-#  - ./proxmox
+  - ./proxmox
   - ./influx
 
 #configMapGenerator:
