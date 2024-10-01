@@ -14,3 +14,45 @@ spec:
   sourceRef:
     kind: OCIRepository
     name: capacitor
+  patches:
+    - patch: |
+        rules:
+          - verbs:
+              - get
+              - watch
+              - list
+            apiGroups:
+              - networking.k8s.io
+              - apps
+              - ''
+            resources:
+              - pods
+              - pods/log
+              - ingresses
+              - deployments
+              - services
+              - secrets
+              - events
+              - configmaps
+          - verbs:
+              - get
+              - watch
+              - list
+              - patch
+            apiGroups:
+              - source.toolkit.fluxcd.io
+              - kustomize.toolkit.fluxcd.io
+              - helm.toolkit.fluxcd.io
+              - infra.contrib.fluxcd.io
+            resources:
+              - terraforms
+              - gitrepositories
+              - ocirepositories
+              - buckets
+              - helmrepositories
+              - helmcharts
+              - kustomizations
+              - helmreleases
+      target:
+        kind: ClusterRole
+        name: capacitor
