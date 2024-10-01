@@ -19,7 +19,6 @@ spec:
                 name: influxdb
                 port:
                   name: http
-                  number: 8086
   tls:
     - secretName: influxdb-tls
       hosts:
