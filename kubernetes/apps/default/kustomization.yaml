@@ -16,6 +16,7 @@ resources:
   - ./filebrowser
   - ./authentik
   - ./proxmox
+  - ./influx
 
 configMapGenerator:
   - name: general-dashboards
