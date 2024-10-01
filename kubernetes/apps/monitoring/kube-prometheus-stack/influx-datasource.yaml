@@ -23,4 +23,4 @@ data:
           tlsSkipVerify: true
           version: Flux
         secureJsonData:
-          token: ${INFLUXDB_API_TOKEN}
+          token: "${INFLUXDB_API_TOKEN}"
