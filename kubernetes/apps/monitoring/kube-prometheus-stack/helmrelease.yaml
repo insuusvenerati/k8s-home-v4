@@ -64,8 +64,7 @@ spec:
         prune: true
         datasources:
           enabled: true
-      envFromSecrets:
-        - name: influx-credentials
+      envFromSecret: influx-credentials
       ingress:
         enabled: true
         ingressClassName: internal
