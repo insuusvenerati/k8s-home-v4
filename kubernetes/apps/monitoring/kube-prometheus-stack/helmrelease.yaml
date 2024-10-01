@@ -64,7 +64,11 @@ spec:
         prune: true
         datasources:
           enabled: true
-      envFromSecret: influx-credentials
+      envValueFrom:
+        INFLUXDB_API_TOKEN:
+          secretKeyRef:
+            name: influx-credentials
+            key: INFLUXDB_API_TOKEN
       ingress:
         enabled: true
         ingressClassName: internal
@@ -139,22 +143,3 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
-#        additionalScrapeConfigs:
-#          - job_name: 'istiod'
-#            kubernetes_sd_configs:
-#              - role: endpoints
-#                namespaces:
-#                  names:
-#                    - istio-system
-#            relabel_configs:
-#              - source_labels: [ __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name ]
-#                action: keep
-#                regex: istiod;http-monitoring
-#          - job_name: 'envoy-stats'
-#            metrics_path: /stats/prometheus
-#            kubernetes_sd_configs:
-#              - role: pod
-#            relabel_configs:
-#              - source_labels: [ __meta_kubernetes_pod_container_port_name ]
-#                action: keep
-#                regex: '.*-envoy-prom'
