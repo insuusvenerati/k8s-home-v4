@@ -39,7 +39,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -93,7 +92,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -242,15 +242,15 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "notification-controller"
           ],
           "value": [
-            "$__all"
+            "notification-controller"
           ]
         },
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "loki"
         },
         "definition": "",
         "hide": 0,
@@ -283,7 +283,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "loki"
         },
         "definition": "",
         "hide": 0,
@@ -306,13 +306,17 @@
       {
         "allValue": ".+",
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "loki"
         },
         "definition": "",
         "hide": 0,
