@@ -29,6 +29,9 @@ spec:
       envFrom:
         - secretRef:
             name: &config authentik-config
+    authentik:
+      postgresql:
+        user: "authentik"
     server:
       metrics:
         enabled: true
