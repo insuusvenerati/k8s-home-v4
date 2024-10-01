@@ -18,11 +18,11 @@ resources:
 #  - ./proxmox
   - ./influx
 
-configMapGenerator:
-  - name: general-dashboards
-    namespace: default
-    options:
-      labels:
-        grafana_dashboard: "1"
-    files:
-      - ./general-dashboards/media-dashboard.json
+#configMapGenerator:
+#  - name: general-dashboards
+#    namespace: default
+#    options:
+#      labels:
+#        grafana_dashboard: "1"
+#    files:
+#      - ./general-dashboards/media-dashboard.json
