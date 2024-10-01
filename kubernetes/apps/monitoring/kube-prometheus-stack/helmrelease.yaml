@@ -137,13 +137,14 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-        podMonitorNamespaceSelector:
-          matchLabels: null
-        serviceMonitorSelector:
-          matchLabels: null
-        ruleSelector:
-          matchLabels: null
-        probeSelector:
-          matchLabels: null
-        scrapeConfigSelector:
-          matchLabels: null
+        additionalConfig:
+          podMonitorNamespaceSelector:
+            matchLabels: null
+          serviceMonitorSelector:
+            matchLabels: null
+          ruleSelector:
+            matchLabels: null
+          probeSelector:
+            matchLabels: null
+          scrapeConfigSelector:
+            matchLabels: null
