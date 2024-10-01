@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app authentik
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: authentik
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: flux-system
+      version: 2024.8.3
+  interval: 6h0m0s
+  releaseName: authentik
+  targetNamespace: default
+  values:
+    fullnameOverride: *app
+    global:
+      image:
+        repository: ghcr.io/goauthentik/server
+        tag: 2024.8.3
+      env:
+        - name: AUTHENTIK_DISABLE_UPDATE_CHECK
+          value: true
+      envFrom:
+        - secretRef:
+            name: &config authentik-config
+    server:
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/service-upstream: "true"
+        ingressClassName: internal
+        hosts: &hosts
+          - authentik.internal.${SECRET_DOMAIN}
+        paths:
+          - /
+        tls:
+          - secretName: authentik-tls
+            hosts: *hosts
+    postgresql:
+      enabled: true
+      auth:
+        existingSecret: *config
+        secretKeys:
+          adminPasswordKey: POSTGRES_PASSWORD
+          userPasswordKey: AUTHENTIK_POSTGRESQL__PASSWORD
+          replicationPasswordKey: AUTHENTIK_REDIS__PASSWORD
+      primary:
+        persistence:
+          enabled: true
+          storageClass: nfs-client-ssd
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+    redis:
+      auth:
+        enabled: true
+        existingSecret: *config
+        existingSecretPasswordKey: AUTHENTIK_REDIS__PASSWORD
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
