@@ -5,3 +5,4 @@ resources:
   - ./tautulli.yaml
   - ./radarr.yaml
   - ./prowlarr.yaml
+  - ./capacitor.yaml
