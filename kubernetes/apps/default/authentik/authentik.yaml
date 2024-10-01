@@ -67,6 +67,7 @@ spec:
         serviceMonitor:
           enabled: true
     redis:
+      enabled: true
       auth:
         enabled: true
         existingSecret: *config
