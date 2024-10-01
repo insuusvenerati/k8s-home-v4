@@ -75,6 +75,11 @@ spec:
           - secretName: grafana-tls
             hosts:
               - grafana.internal.${SECRET_DOMAIN}
+      persistence:
+        type: pvc
+        enabled: true
+        size: 5Gi
+        storageClasName: nfs-client-ssd
     kubeApiServer:
       enabled: true
       tlsConfig:
