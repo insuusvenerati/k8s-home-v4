@@ -5,7 +5,7 @@ resources:
   - ./namespace.yaml
   - ./webhooks/ks.yaml
   - ./pod-monitor.yaml
-  - ./capacitor/ks.yaml
+  - ./capacitor
 configMapGenerator:
   - name: flux-grafana-dashboards
     namespace: monitoring
