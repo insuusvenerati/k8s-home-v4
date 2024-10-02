@@ -48,14 +48,16 @@ spec:
               tag: v2.0.1
             args:
               - bazarr
-            envFrom:
-              - secretRef:
-                  name: radarr-apikey
             env:
               - name: URL
                 value: http://bazarr:6767
               - name: PORT
                 value: 6768
+              - APIKEY:
+                  valueFrom:
+                    secretKeyRef:
+                      name: bazarr-apikey
+                      key: APIKEY
     global:
       fullnameOverride: bazarr
       labels:
