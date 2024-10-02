@@ -9,3 +9,11 @@ resources:
   - ./ingress-nginx/ks.yaml
   - ./k8s-gateway/ks.yaml
 #  - ./peer-auth-policy.yaml
+configMapGenerator:
+  - name: network-dashboards
+    namespace: network
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
+      - ./dashboards/nginx-ingress.json
