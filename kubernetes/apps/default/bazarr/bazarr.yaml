@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -49,15 +50,13 @@ spec:
             args:
               - bazarr
             env:
-              - name: URL
-                value: http://bazarr:6767
-              - name: PORT
-                value: 6768
-                APIKEY:
-                  valueFrom:
-                    secretKeyRef:
-                      name: bazarr-apikey
-                      key: APIKEY
+              APIKEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: bazarr-apikey
+                    key: APIKEY
+              URL: http://bazarr:6767
+              PORT: 6768
     global:
       fullnameOverride: bazarr
       labels:
