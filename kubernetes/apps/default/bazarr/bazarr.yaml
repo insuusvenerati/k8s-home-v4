@@ -53,7 +53,7 @@ spec:
                 value: http://bazarr:6767
               - name: PORT
                 value: 6768
-              - APIKEY:
+                APIKEY:
                   valueFrom:
                     secretKeyRef:
                       name: bazarr-apikey
