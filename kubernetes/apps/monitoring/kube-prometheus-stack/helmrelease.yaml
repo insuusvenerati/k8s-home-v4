@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      version: 63.1.0
+      version: 62.7.0
   interval: 1h0m0s
   releaseName: kube-prometheus-stack
   targetNamespace: monitoring
@@ -137,19 +137,8 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-        podMonitorSelector:
-          matchLabels: {}
-        podMonitorNamespaceSelector:
-          matchLabels: {}
-        serviceMonitorSelector:
-          matchLabels: { }
-        serviceMonitorNamespaceSelector: {}
-        ruleSelector:
-          matchLabels: { }
-        ruleNamespaceSelector: {}
-        probeSelector:
-          matchLabels: { }
-        probeNamespaceSelector: {}
-        scrapeConfigSelector:
-          matchLabels: { }
-        scrapeConfigNamespaceSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
