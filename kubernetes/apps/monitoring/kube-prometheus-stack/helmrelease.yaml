@@ -137,13 +137,19 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
+        podMonitorSelector:
+          matchLabels: {}
         podMonitorNamespaceSelector:
-          matchLabels: { }
+          matchLabels: {}
         serviceMonitorSelector:
           matchLabels: { }
+        serviceMonitorNamespaceSelector: {}
         ruleSelector:
           matchLabels: { }
+        ruleNamespaceSelector: {}
         probeSelector:
           matchLabels: { }
+        probeNamespaceSelector: {}
         scrapeConfigSelector:
           matchLabels: { }
+        scrapeConfigNamespaceSelector: {}
