@@ -130,9 +130,25 @@ spec:
         selector:
           k8s-app: kube-proxy
     prometheus:
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+
       prometheusSpec:
         enableRemoteWriteReceiver: true
-        retention: 24h
+        persistentVolumeClaimRetentionPolicy:
+          whenDeleted: Retain
+          whenScaled: Retain
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: nfs-client-ssd
+              accessModes: ["ReadWriteMany"]
+              resources:
+                requests:
+                  storage: 50Gi
+        retention: 365d
         resources:
           requests:
             cpu: 200m
