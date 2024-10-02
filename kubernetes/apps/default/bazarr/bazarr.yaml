@@ -125,7 +125,7 @@ spec:
     serviceMonitor:
       exportarr:
         enabled: true
-        serviceName: exportarr
+        serviceName: bazarr-exportarr
         endpoints:
           - port: metrics
             scheme: http
