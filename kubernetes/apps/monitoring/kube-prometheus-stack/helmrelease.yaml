@@ -20,6 +20,7 @@ spec:
   install:
     crds: Create
   upgrade:
+    disableSchemaValidation: true
     crds: CreateReplace
   driftDetection:
     mode: enabled
