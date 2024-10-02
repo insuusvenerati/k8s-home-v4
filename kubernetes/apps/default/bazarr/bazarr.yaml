@@ -49,20 +49,13 @@ spec:
             args:
               - bazarr
             envFrom:
-              - secret: radarr-apikey
+              - secretRef:
+                  name: radarr-apikey
             env:
               - name: URL
                 value: http://bazarr:6767
               - name: PORT
                 value: 6768
-#            probes:
-#              livenessProbe: &probe
-#                httpGet:
-#                  path: /healthz
-#                  port: metrics
-#                failureThreshold: 5
-#                periodSeconds: 10
-#              readinessProbe: *probe
     global:
       fullnameOverride: bazarr
       labels:
