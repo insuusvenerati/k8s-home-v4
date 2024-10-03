@@ -64,10 +64,10 @@ spec:
         dashboards:
           enableNewTablePanelSyntax: true
           resource: both
+          folderAnnotation: grafana-dashboard-folder
           provider:
             allowUiUpdates: true
             foldersFromFilesStructure: true
-            folderAnnotation: grafana-dashboard-folder
       ingress:
         enabled: true
         ingressClassName: internal
