@@ -30,6 +30,8 @@ spec:
                 value: http://radarr:7878
               - name: PORT
                 value: 7879
+              - name: CONFIG
+                value: /config/config.xml
             envFrom:
               - secret: radarr-apikey
             image:
