@@ -28,18 +28,18 @@ spec:
       persistentStorage: true
       storageClass: nfs-client-ssd
       storageLimit: 5Gi
-    ingress:
-      enabled: true
-      className: internal
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        hajimari.io/icon: mdi:shark-fin
-        nginx.ingress.kubernetes.io/service-upstream: "true"
-      host: &host "kubeshark.internal.${SECRET_DOMAIN}"
-      tls:
-        - hosts:
-            - *host
-          secretName: kubeshark-tls
+      ingress:
+        enabled: true
+        className: internal
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          hajimari.io/icon: mdi:shark-fin
+          nginx.ingress.kubernetes.io/service-upstream: "true"
+        host: &host "kubeshark.internal.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+            secretName: kubeshark-tls
     resources:
       requests:
         cpu: 10m
