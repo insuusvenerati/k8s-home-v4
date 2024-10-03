@@ -32,6 +32,8 @@ spec:
                 value: 7879
               - name: CONFIG
                 value: /config/config.xml
+              - name: FORM_AUTH
+                value: true
             envFrom:
               - secret: radarr-apikey
             image:

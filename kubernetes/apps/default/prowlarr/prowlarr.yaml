@@ -29,6 +29,7 @@ spec:
               URL: http://prowlarr:9696
               PORT: 9697
               CONFIG: /config/config.xml
+              FORM_AUTH: true
               API_KEY:
                 valueFrom:
                   secretKeyRef:
