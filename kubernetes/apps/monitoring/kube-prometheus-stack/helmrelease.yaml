@@ -57,6 +57,8 @@ spec:
         registry: docker.io
         repository: grafana/grafana
         tag: 11.2.1
+      plugins:
+        - https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
       sidecar:
         prune: true
         datasources:
