@@ -17,6 +17,12 @@ spec:
   interval: 1h0m0s
   releaseName: loki
   targetNamespace: monitoring
+  install:
+    remediation:
+      retries: 10
+  upgrade:
+    remediation:
+      retries: 10
   values:
     monitoring:
       dashboards:
