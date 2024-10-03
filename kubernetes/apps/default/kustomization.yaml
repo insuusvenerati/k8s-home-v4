@@ -24,7 +24,7 @@ configMapGenerator:
     namespace: default
     options:
       annotations:
-        grafana-dashboard-folder: General
+        grafana-dashboard-folder: Media
       labels:
         grafana_dashboard: "1"
     files:
