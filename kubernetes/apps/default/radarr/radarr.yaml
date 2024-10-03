@@ -23,24 +23,26 @@ spec:
         containers:
           exportarr:
             enabled: true
+            args:
+              - radarr
             env:
-            - name: URL
-              value: http://radarr:7878
-            - name: PORT
-              value: 7879
+              - name: URL
+                value: http://radarr:7878
+              - name: PORT
+                value: 7879
             envFrom:
-            - secret: radarr-apikey
+              - secret: radarr-apikey
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
           radarr:
             env:
-            - name: TZ
-              value: America/Chicago
-            - name: PUID
-              value: 1000
-            - name: PGID
-              value: 1000
+              - name: TZ
+                value: America/Chicago
+              - name: PUID
+                value: 1000
+              - name: PGID
+                value: 1000
             image:
               repository: linuxserver/radarr
               tag: 5.11.0
@@ -60,16 +62,16 @@ spec:
         className: internal
         enabled: true
         hosts:
-        - host: radarr.internal.${SECRET_DOMAIN}
-          paths:
-          - path: /
-            pathType: Prefix
-            service:
-              identifier: radarr
+          - host: radarr.internal.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: radarr
         tls:
-        - hosts:
-          - radarr.internal.${SECRET_DOMAIN}
-          secretName: radarr-tls
+          - hosts:
+              - radarr.internal.${SECRET_DOMAIN}
+            secretName: radarr-tls
     persistence:
       config:
         accessMode: ReadWriteOnce
@@ -107,9 +109,9 @@ spec:
       exportarr:
         enabled: true
         endpoints:
-        - interval: 4m
-          path: /metrics
-          port: metrics
-          scheme: http
-          scrapeTimeout: 90s
+          - interval: 4m
+            path: /metrics
+            port: metrics
+            scheme: http
+            scrapeTimeout: 90s
         serviceName: radarr-exportarr
