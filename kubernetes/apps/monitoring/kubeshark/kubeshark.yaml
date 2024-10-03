@@ -30,8 +30,9 @@ spec:
       storageLimit: 5Gi
     ingress:
       enabled: true
-      className: nginx
+      className: internal
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
         hajimari.io/icon: mdi:shark-fin
         nginx.ingress.kubernetes.io/service-upstream: "true"
       host: &host "kubeshark.internal.${SECRET_DOMAIN}"
