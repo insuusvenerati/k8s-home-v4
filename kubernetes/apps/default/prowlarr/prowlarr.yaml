@@ -22,7 +22,7 @@ spec:
       main:
         containers:
           exportarr:
-            enabled: false
+            enabled: true
             args:
               - prowlarr
             env:
