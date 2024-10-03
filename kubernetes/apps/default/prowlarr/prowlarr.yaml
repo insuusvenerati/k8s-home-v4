@@ -114,7 +114,7 @@ spec:
       exportarr:
         enabled: true
         endpoints:
-          - interval: 4m
+          - interval: 30s
             path: /metrics
             port: metrics
             scheme: http
