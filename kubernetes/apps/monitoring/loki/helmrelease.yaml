@@ -50,8 +50,8 @@ spec:
       storage_config:
         filesystem:
           directory: /tmp/loki/chunks
-        pattern_ingester:
-          enabled: true
+      pattern_ingester:
+        enabled: true
       ingester:
         chunk_encoding: snappy
       tracing:
