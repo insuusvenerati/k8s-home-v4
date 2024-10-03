@@ -26,10 +26,13 @@ spec:
             args:
               - prowlarr
             env:
-              - name: URL
-                value: http://prowlarr:9696
-              - name: PORT
-                value: 9697
+              URL: http://prowlarr:9696
+              PORT: 9697
+              APIKEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: prowlarr-apikey
+                    key: APIKEY
             envFrom:
               - secret: prowlarr-apikey
             image:
