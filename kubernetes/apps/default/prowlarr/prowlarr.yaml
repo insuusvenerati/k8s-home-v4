@@ -28,11 +28,11 @@ spec:
             env:
               URL: http://prowlarr:9696
               PORT: 9697
-              APIKEY:
+              API_KEY:
                 valueFrom:
                   secretKeyRef:
                     name: prowlarr-apikey
-                    key: APIKEY
+                    key: API_KEY
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
