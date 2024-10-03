@@ -54,26 +54,26 @@ spec:
               - alertmanager.internal.${SECRET_DOMAIN}
     grafana:
       image:
-        # -- The Docker registry
         registry: docker.io
-        # -- Docker image repository
         repository: grafana/grafana
-        # Overrides the Grafana image tag whose default is the chart appVersion
         tag: 11.2.1
       sidecar:
         prune: true
         datasources:
           enabled: true
-      envValueFrom:
-        INFLUXDB_API_TOKEN:
-          secretKeyRef:
-            name: influx-credentials
-            key: INFLUXDB_API_TOKEN
+        dashboards:
+          enableNewTablePanelSyntax: true
+          resource: both
+          provider:
+            allowUiUpdates: true
+            foldersFromFilesStructure: true
+            folderAnnotation: grafana-dashboard-folder
       ingress:
         enabled: true
         ingressClassName: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/service-upstream: "true"
         hosts:
           - grafana.internal.${SECRET_DOMAIN}
         tls:

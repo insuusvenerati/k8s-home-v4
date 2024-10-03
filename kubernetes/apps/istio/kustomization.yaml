@@ -16,6 +16,8 @@ configMapGenerator:
   - name: istio-grafana-dashboards
     namespace: monitoring
     options:
+      annotations:
+        grafana-dashboard-folder: Istio
       labels:
         app.kubernetes.io/part-of: istio
         grafana_dashboard: "1"

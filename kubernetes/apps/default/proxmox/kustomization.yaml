@@ -4,6 +4,8 @@ configMapGenerator:
   - name: proxmox-dashboard
     namespace: default
     options:
+      annotations:
+        grafana-dashboard-folder: Infra
       labels:
         grafana_dashboard: "1"
     files:

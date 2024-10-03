@@ -23,6 +23,8 @@ configMapGenerator:
   - name: general-dashboards
     namespace: default
     options:
+      annotations:
+        grafana-dashboard-folder: General
       labels:
         grafana_dashboard: "1"
     files:

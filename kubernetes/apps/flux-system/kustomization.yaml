@@ -14,6 +14,8 @@ configMapGenerator:
       - dashboards/flux-control-plane.json
       - dashboards/flux-logs.json
     options:
+      annotations:
+        grafana-dashboard-folder: flux
       labels:
         grafana_dashboard: "1"
         app.kubernetes.io/part-of: flux

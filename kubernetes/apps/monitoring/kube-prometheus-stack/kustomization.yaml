@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - helmrelease.yaml
   - ./secret.sops.yaml
-  - ./influx-datasource.yaml
 configMapGenerator:
   - name: flux-kube-state-metrics-config
     namespace: monitoring
