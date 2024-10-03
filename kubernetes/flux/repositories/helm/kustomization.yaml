@@ -30,3 +30,4 @@ resources:
   - ./linkerd-smi.yaml
   - ./onechart.yaml
   - ./authentik.yaml
+  - ./kubeshark.yaml
