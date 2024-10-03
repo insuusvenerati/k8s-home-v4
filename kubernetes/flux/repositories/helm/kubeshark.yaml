@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://kubeshark.co/helm-repo
+  url: https://helm.kubeshark.co
