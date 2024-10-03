@@ -5,129 +5,113 @@ metadata:
   name: prowlarr
   namespace: default
 spec:
-  chartRef:
-    kind: OCIRepository
-    name: prowlarr
-    namespace: flux-system
-  interval: 6h0m0s
+  chart:
+    spec:
+      chart: app-template
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.4.0
+  interval: 12h0m0s
   releaseName: prowlarr
   targetNamespace: default
   values:
-    configmap:
-      dashboard:
-        data:
-          prowlarr.json: '{{ .Files.Get "dashboard.json" | indent 8 }}'
-        enabled: false
-        labels:
-          grafana_dashboard: "1"
-    exportarrImage:
-      pullPolicy: IfNotPresent
-      repository: ghcr.io/onedr0p/exportarr
-      tag: v2.0.1@sha256:727e7bc8f2f0934a2117978c59f4476b954018b849a010ea6cfb380bd6539644
-    image:
-      pullPolicy: IfNotPresent
-      repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 1.24.3.4754@sha256:9c88257656e4ac893d692abf38a784c80ef1638eb99fae376bdb48f75498ce52
-    metrics:
+    controllers:
       main:
-        enabled: true
-        endpoints:
-        - path: /metrics
-          port: metrics
-        prometheusRule:
-          enabled: false
-        targetSelector: metrics
-        type: servicemonitor
-    persistence:
-      config:
-        enabled: true
-        targetSelector:
-          main:
-            exportarr:
-              mountPath: /config
-              readOnly: true
-            main:
-              mountPath: /config
-    portal:
-      open:
-        enabled: true
-    securityContext:
-      container:
-        readOnlyRootFilesystem: false
-    service:
-      main:
-        ports:
-          main:
-            port: 9696
-      metrics:
-        enabled: '{{ .Values.metrics.main.enabled }}'
-        ports:
-          metrics:
+        containers:
+          exportarr:
             enabled: true
-            port: 9697
-        type: ClusterIP
-    updated: true
-    workload:
-      main:
-        podSpec:
-          containers:
-            exportarr:
-              args:
+            args:
               - prowlarr
-              enabled: '{{ .Values.metrics.main.enabled }}'
-              env:
-                CONFIG: /config/config.xml
-                INTERFACE: 0.0.0.0
-                PORT: '{{ .Values.service.metrics.ports.metrics.port }}'
-                URL: '{{ printf "http://%v:%v" (include "tc.v1.common.lib.chart.names.fullname"
-                  $) .Values.service.main.ports.main.port }}'
-              envFrom:
-                - secretRef:
-                    name: prowlarr-apikey
-                    expandObjectName: false
-              imageSelector: exportarrImage
-              probes:
-                liveness:
-                  enabled: true
-                  path: /healthz
-                  port: '{{ .Values.service.metrics.ports.metrics.port }}'
-                  type: http
-                readiness:
-                  enabled: true
-                  path: /healthz
-                  port: '{{ .Values.service.metrics.ports.metrics.port }}'
-                  type: http
-                startup:
-                  enabled: true
-                  path: /healthz
-                  port: '{{ .Values.service.metrics.ports.metrics.port }}'
-                  type: http
-            main:
-              env:
-                PROWLARR__AUTHENTICATION_METHOD: ""
-                PROWLARR__PORT: '{{ .Values.service.main.ports.main.port }}'
-              probes:
-                liveness:
-                  path: /ping
-                readiness:
-                  path: /ping
-                startup:
-                  type: tcp
-    ingress:
-      main:
+            env:
+              - name: URL
+                value: http://prowlarr:9696
+              - name: PORT
+                value: 9697
+            envFrom:
+              - secret: prowlarr-apikey
+            image:
+              repository: ghcr.io/onedr0p/exportarr
+              tag: v2.0.1
+          prowlarr:
+            env:
+              - name: TZ
+                value: America/Chicago
+              - name: PUID
+                value: 1000
+              - name: PGID
+                value: 1000
+            image:
+              repository: linuxserver/prowlarr
+              tag: 1.24.3
         enabled: true
+        type: deployment
+    global:
+      fullnameOverride: prowlarr
+      labels:
+        app: prowlarr
+    ingress:
+      prowlarr:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
+          nginx.ingress.kubernetes.io/otel-service-name: prowlarr
           nginx.ingress.kubernetes.io/service-upstream: "true"
+        className: internal
+        enabled: true
         hosts:
-          - host: &host prowlarr.internal.${SECRET_DOMAIN}
+          - host: prowlarr.internal.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: prowlarr
         tls:
-          - secretName: prowlarr-tls
-            hosts:
-              - *host
-        integrations:
-          traefik:
-            enabled: false
+          - hosts:
+              - prowlarr.internal.${SECRET_DOMAIN}
+            secretName: prowlarr-tls
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 1Gi
+        storageClass: nfs-client-ssd
+        type: persistentVolumeClaim
+      data:
+        enabled: true
+        existingClaim: media-pvc-ssd
+    service:
+      exportarr:
+        controller: main
+        enabled: true
+        ports:
+          metrics:
+            appProtocol: http
+            enabled: true
+            port: 9697
+            primary: false
+            protocol: HTTP
+        primary: false
+      prowlarr:
+        controller: main
+        enabled: true
+        ports:
+          http:
+            appProtocol: http
+            enabled: true
+            port: 9696
+            protocol: HTTP
+    serviceAccount:
+      create: true
+    serviceMonitor:
+      exportarr:
+        enabled: true
+        endpoints:
+          - interval: 4m
+            path: /metrics
+            port: metrics
+            scheme: http
+            scrapeTimeout: 90s
+        serviceName: prowlarr-exportarr
