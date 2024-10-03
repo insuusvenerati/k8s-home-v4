@@ -33,8 +33,6 @@ spec:
                   secretKeyRef:
                     name: prowlarr-apikey
                     key: APIKEY
-            envFrom:
-              - secret: prowlarr-apikey
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
