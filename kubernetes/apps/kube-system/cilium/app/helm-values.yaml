@@ -27,6 +27,13 @@ envoy:
     enabled: true
     serviceMonitor:
       enabled: false
+ingressController:
+  enabled: true
+  default: false
+  defaultSecretNamespace: network
+  defaultSecretName: stiforr-com-production-tls
+clustermesh:
+  useAPIServer: false
 ipam:
   mode: kubernetes
 ipv4NativeRoutingCIDR: "10.69.0.0/16"
