@@ -7,5 +7,11 @@ configMapGenerator:
   - name: spegel-helm-values
     files:
       - values.yaml=./helm-values.yaml
+  - name: spegel-dashboard
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
+      - ./dashboards/spegel.json
 configurations:
   - kustomizeconfig.yaml
