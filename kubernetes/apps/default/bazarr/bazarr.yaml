@@ -38,6 +38,8 @@ spec:
                 value: 1000
               - name: PGID
                 value: 1000
+              - name: ENABLE_ADDITIONAL_METRICS
+                value: "true"
             image:
               repository: linuxserver/bazarr
               tag: 1.4.5
