@@ -34,12 +34,18 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ww-dashboard
+        namespace: flux-system
   interval: 1h0m0s
+  upgrade:
+    remediation:
+      retries: 10
+  install:
+    remediation:
+      retries: 10
   values:
     adminUser:
       create: true
       createSecret: false
-
     ingress:
       enabled: true
       className: internal
