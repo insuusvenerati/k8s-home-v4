@@ -19,7 +19,7 @@ cni:
 endpointRoutes:
   enabled: true
 envoy:
-  enabled: true
+  enabled: false
   debug:
     admin:
       enabled: false
