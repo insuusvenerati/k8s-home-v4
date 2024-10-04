@@ -8,11 +8,12 @@ spec:
   chart:
     spec:
       chart: uptrace
-      reconcileStrategy: Revision
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: uptrace
         namespace: flux-system
+      version: 1.7.7
   interval: 6h0m0s
   releaseName: my-uptrace
   targetNamespace: observability
@@ -47,13 +48,13 @@ spec:
       className: "internal"
       enabled: true
       hosts:
-      - host: uptrace.internal.${SECRET_DOMAIN}
-        paths:
-        - path: /
-          pathType: Prefix
+        - host: uptrace.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - hosts:
-          - uptrace.internal.${SECRET_DOMAIN}
+            - uptrace.internal.${SECRET_DOMAIN}
           secretName: uptrace-tls
     nameOverride: ""
     otelcol:
@@ -98,10 +99,10 @@ spec:
       config:
         auth:
           users:
-          - email: uptrace@localhost
-            name: Anonymous
-            notify_by_email: true
-            password: uptrace
+            - email: uptrace@localhost
+              name: Anonymous
+              notify_by_email: true
+              password: uptrace
         ch:
           addr: uptrace-clickhouse:9000
           database: uptrace
@@ -127,44 +128,36 @@ spec:
           level: INFO
         metrics:
           drop_attrs:
-          - telemetry_sdk_language
-          - telemetry_sdk_name
-          - telemetry_sdk_version
+            - telemetry_sdk_language
+            - telemetry_sdk_name
+            - telemetry_sdk_version
         pg:
           addr: uptrace-postgresql:5432
           database: uptrace
           password: uptrace
           user: uptrace
         projects:
-        - group_by_env: false
-          group_funcs_by_service: false
-          id: 1
-          name: Uptrace
-          pinned_attrs:
-          - service_name
-          - host_name
-          - deployment_environment
-          prom_compat: true
-          token: project1_secret_token
-        - id: 3
-          name: Istio
-          pinned_attrs:
-            - service_name
-            - host_name
-            - deployment_environment
-          prom_compat: true
-          token: istio_secret_token
-        - id: 4
-          name: K8s
-          pinned_attrs:
-            - service_name
-            - host_name
-            - deployment_environment
-          prom_compat: true
-          token: k8s_secret_token
+          - group_by_env: false
+            group_funcs_by_service: false
+            id: 1
+            name: Uptrace
+            pinned_attrs:
+              - service_name
+              - host_name
+              - deployment_environment
+            prom_compat: true
+            token: project1_secret_token
+          - id: 3
+            name: Istio
+            pinned_attrs:
+              - service_name
+              - host_name
+              - deployment_environment
+            prom_compat: true
+            token: istio_secret_token
         secret_key: 102c1a557c314fc28198acd017960843
         site:
-          addr: 'http://localhost:14318/'
+          addr: "http://localhost:14318/"
         smtp_mailer:
           enabled: false
           from: uptrace@localhost
@@ -175,8 +168,8 @@ spec:
         spans: null
         uptrace_go: null
       env:
-      - name: K8S_NODE_NAME
-        value: controller
+        - name: K8S_NODE_NAME
+          value: controller
       envFrom: []
       image:
         pullPolicy: IfNotPresent
