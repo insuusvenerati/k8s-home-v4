@@ -38,13 +38,20 @@ spec:
   values:
     adminUser:
       create: true
-      username:
-        valueFrom:
-          secretKeyRef:
-            name: weave-gitops-admin-secret
-            key: username
-      passwordHash:
-        valueFrom:
-          secretKeyRef:
-            name: weave-gitops-admin-secret
-            key: passwordHash
+      username: admin
+
+    ingress:
+      enabled: true
+      className: internal
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        nginx.ingress.kubernetes.io/service-upstream: "true"
+      hosts:
+        - host: &host weave.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: weave-tls
+          hosts:
+            - *host
