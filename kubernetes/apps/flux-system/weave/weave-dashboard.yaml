@@ -43,9 +43,15 @@ spec:
     remediation:
       retries: 10
   values:
+    networkPolicy:
+      create: false
+    rbac:
+      create: true
+      additionalRules: []
     adminUser:
       create: true
       createSecret: false
+      createClusterRole: true
     ingress:
       enabled: true
       className: internal
