@@ -18,6 +18,7 @@ resources:
   - ./proxmox
   - ./influx
   - ./bazarr
+  - ./l7-visibility-policy.yaml
 
 configMapGenerator:
   - name: general-dashboards
