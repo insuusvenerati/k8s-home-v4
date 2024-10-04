@@ -30,6 +30,8 @@ spec:
               PORT: 9697
               CONFIG: /config/config.xml
               FORM_AUTH: true
+              ENABLE_ADDITIONAL_METRICS: true
+              DISABLE_SSL_VERIFY: true
               API_KEY:
                 valueFrom:
                   secretKeyRef:

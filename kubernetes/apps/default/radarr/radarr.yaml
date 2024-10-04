@@ -34,6 +34,10 @@ spec:
                 value: /config/config.xml
               - name: FORM_AUTH
                 value: true
+              - name: ENABLE_ADDITIONAL_METRICS
+                value: true
+              - name: DISABLE_SSL_VERIFY
+                value: true
             envFrom:
               - secret: radarr-apikey
             image:
