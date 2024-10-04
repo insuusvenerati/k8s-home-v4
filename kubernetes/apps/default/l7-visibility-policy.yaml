@@ -26,6 +26,8 @@ spec:
               protocol: TCP
             - port: "27017"
               protocol: TCP
+            - port: "5055"
+              protocol: TCP
           rules:
             http: [{}]
   egress:
