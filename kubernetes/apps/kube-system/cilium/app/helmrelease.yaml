@@ -25,7 +25,7 @@ spec:
       name: cilium-helm-values
   values:
     envoyConfig:
-      enabled: true
+      enabled: false
     hubble:
       enabled: true
       metrics:
