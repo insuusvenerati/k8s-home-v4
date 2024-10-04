@@ -30,13 +30,13 @@ spec:
       enabled: true
       metrics:
         enabled:
-          - dns:query
+          - dns
           - drop
           - tcp
           - flow
           - port-distribution
           - icmp
-          - http
+          - httpv2
         serviceMonitor:
           enabled: true
         dashboards:
