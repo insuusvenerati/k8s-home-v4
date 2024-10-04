@@ -98,7 +98,7 @@ spec:
           metrics:
             appProtocol: http
             enabled: true
-            port: 6768
+            port: 7879
             primary: false
             protocol: HTTP
         primary: false
