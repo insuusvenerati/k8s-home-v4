@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: spegel
-      version: v0.0.23
+      version: v0.0.24
       sourceRef:
         kind: HelmRepository
         name: spegel
@@ -25,6 +25,6 @@ spec:
       name: spegel-helm-values
   values:
     grafanaDashboard:
-      enabled: true
+      enabled: false
     serviceMonitor:
       enabled: true
