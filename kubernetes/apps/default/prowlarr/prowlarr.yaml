@@ -29,7 +29,7 @@ spec:
               URL: http://prowlarr:9696
               PORT: 9697
               CONFIG: /config/config.xml
-              FORM_AUTH: true
+              FORM_AUTH: false
               ENABLE_ADDITIONAL_METRICS: true
               DISABLE_SSL_VERIFY: true
               API_KEY:
