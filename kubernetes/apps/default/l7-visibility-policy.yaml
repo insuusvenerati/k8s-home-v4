@@ -12,7 +12,19 @@ spec:
               protocol: TCP
             - port: "443"
               protocol: TCP
+            - port: "8080"
+              protocol: TCP
+            - port: "8443"
+              protocol: TCP
+            - port: "3000"
+              protocol: TCP
+            - port: "5000"
+              protocol: TCP
             - port: "5432"
+              protocol: TCP
+            - port: "6379"
+              protocol: TCP
+            - port: "27017"
               protocol: TCP
           rules:
             http: [{}]
@@ -23,7 +35,19 @@ spec:
               protocol: TCP
             - port: "443"
               protocol: TCP
+            - port: "8080"
+              protocol: TCP
+            - port: "8443"
+              protocol: TCP
+            - port: "3000"
+              protocol: TCP
+            - port: "5000"
+              protocol: TCP
             - port: "5432"
+              protocol: TCP
+            - port: "6379"
+              protocol: TCP
+            - port: "27017"
               protocol: TCP
           rules:
             http: [{}]
