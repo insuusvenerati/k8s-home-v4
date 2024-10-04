@@ -120,5 +120,6 @@ spec:
             path: /metrics
             port: metrics
             scheme: http
-            scrapeTimeout: 90s
+            scrapeTimeout: 10s
+            scrapeInterval: 30s
         serviceName: prowlarr-exportarr
