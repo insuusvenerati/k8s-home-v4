@@ -38,8 +38,6 @@ spec:
                 value: 1000
               - name: PGID
                 value: 1000
-              - name: ENABLE_ADDITIONAL_METRICS
-                value: "true"
             image:
               repository: linuxserver/bazarr
               tag: 1.4.5
@@ -60,6 +58,7 @@ spec:
               URL: http://bazarr:6767
               PORT: 6768
               FORM_AUTH: false
+              ENABLE_ADDITIONAL_METRICS: "true"
             envFrom:
               - secret: bazarr-apikey
     global:
