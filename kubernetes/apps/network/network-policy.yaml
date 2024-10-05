@@ -1,35 +1,135 @@
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
-  name: network-namespace-policy
+  name: untitled-policy
   namespace: network
 spec:
-  podSelector: {}
-  policyTypes:
-    - Ingress
-    - Egress
-  ingress: []
+  endpointSelector: {}
+  ingress:
+    - {}
   egress:
-    - to:
-        - namespaceSelector: {}
-          podSelector:
-            matchLabels:
-              k8s-app: kube-dns
-      ports:
-        - port: 53
-          protocol: UDP
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-      ports:
-        - port: 443
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-      ports:
-        - port: 4317
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-      ports:
-        - port: 7844
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/component: main
+            k8s:app.kubernetes.io/instance: bazarr
+            k8s:app.kubernetes.io/name: bazarr
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "6767"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/instance: overseerr
+            k8s:app.kubernetes.io/name: overseerr
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "5055"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/instance: plex-media-server
+            k8s:app.kubernetes.io/managed-by: Helm
+            k8s:app.kubernetes.io/name: plex-media-server
+            k8s:app.kubernetes.io/version: 1.16.0
+            k8s:app: plex-media-server
+            k8s:helm.sh/chart: plex-media-server-0.4.0
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "32400"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/component: main
+            k8s:app.kubernetes.io/instance: prowlarr
+            k8s:app.kubernetes.io/name: prowlarr
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "9696"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/component: main
+            k8s:app.kubernetes.io/instance: radarr
+            k8s:app.kubernetes.io/name: radarr
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "7878"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/instance: sonarr
+            k8s:app.kubernetes.io/name: sonarr
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "8989"
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/component: main
+            k8s:app.kubernetes.io/instance: tubearchivist
+            k8s:app.kubernetes.io/name: tubearchivist
+            k8s:io.cilium.k8s.namespace.labels.istio-injection: disabled
+            k8s:io.cilium.k8s.namespace.labels.k8slens-edit-resource-version: v1
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: default
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: default
+      toPorts:
+        - ports:
+            - port: "8000"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "4317"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "7844"
