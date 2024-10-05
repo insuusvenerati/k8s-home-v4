@@ -1,12 +1,14 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: "all-ports-policy"
+  name: "cilium-service-mesh-policy"
   namespace: default
 spec:
   endpointSelector: {}
   ingress:
-    - toPorts:
+    - fromEndpoints:
+        - {}
+      toPorts:
         - ports:
             - port: "80"
               protocol: TCP
@@ -41,7 +43,9 @@ spec:
             - port: "8084"
               protocol: TCP
   egress:
-    - toPorts:
+    - toEndpoints:
+        - {}
+      toPorts:
         - ports:
             - port: "80"
               protocol: TCP
@@ -82,4 +86,14 @@ spec:
             - port: "9187"
               protocol: ANY
             - port: "9697"
+              protocol: TCP
+            - port: "6768"
+    - toEntities:
+        - "world"
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+        - ports:
+            - port: "53"
               protocol: TCP
