@@ -25,6 +25,7 @@ spec:
       name: cilium-helm-values
   values:
     policyAuditMode: true
+    policyEnforcementMode: "default"
     envoyConfig:
       enabled: true
     hubble:
