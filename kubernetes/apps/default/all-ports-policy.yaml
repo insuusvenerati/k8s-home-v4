@@ -1,7 +1,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: "cilium-service-mesh-policy"
+  name: "allow-all-ports-policy"
   namespace: default
 spec:
   endpointSelector: {}
@@ -10,92 +10,18 @@ spec:
         - {}
       toPorts:
         - ports:
-            - port: "80"
+            - port: "0"
               protocol: TCP
-            - port: "443"
-              protocol: TCP
-            - port: "8080"
-              protocol: TCP
-            - port: "8443"
-              protocol: TCP
-            - port: "3000"
-              protocol: TCP
-            - port: "5000"
-              protocol: TCP
-            - port: "5432" # PostgreSQL
-              protocol: TCP
-            - port: "6379" # Redis
-              protocol: TCP
-            - port: "27017"
-              protocol: TCP
-            - port: "5055"
-              protocol: TCP
-            - port: "9962"
-              protocol: TCP
-            - port: "9880"
-              protocol: TCP
-            - port: "10256"
-              protocol: TCP
-            - port: "7445"
-              protocol: TCP
-            - port: "20001"
-              protocol: TCP
-            - port: "8084"
-              protocol: TCP
-            - port: "32400"
-              protocol: TCP
+            - port: "0"
+              protocol: UDP
   egress:
     - toEndpoints:
         - {}
       toPorts:
         - ports:
-            - port: "80"
+            - port: "0"
               protocol: TCP
-            - port: "443"
-              protocol: TCP
-            - port: "8080"
-              protocol: TCP
-            - port: "8443"
-              protocol: TCP
-            - port: "3000"
-              protocol: TCP
-            - port: "5000"
-              protocol: TCP
-            - port: "5432" # PostgreSQL
-              protocol: TCP
-            - port: "6379" # Redis
-              protocol: TCP
-            - port: "27017"
-              protocol: TCP
-            - port: "5055"
-              protocol: TCP
-            - port: "9962"
-              protocol: TCP
-            - port: "9880"
-              protocol: TCP
-            - port: "10256"
-              protocol: TCP
-            - port: "7445"
-              protocol: TCP
-            - port: "20001"
-              protocol: TCP
-            - port: "8084"
-              protocol: TCP
-            - port: "32400"
-              protocol: TCP
-            - port: "9121"
-              protocol: ANY
-            - port: "9187"
-              protocol: ANY
-            - port: "9697"
-              protocol: TCP
-            - port: "6768"
-    - toEntities:
-        - "world"
-      toPorts:
-        - ports:
-            - port: "53"
+            - port: "0"
               protocol: UDP
-        - ports:
-            - port: "53"
-              protocol: TCP
+    - toEntities:
+        - "all"
