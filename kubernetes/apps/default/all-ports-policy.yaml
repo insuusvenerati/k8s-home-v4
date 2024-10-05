@@ -1,4 +1,4 @@
-apiVersion: "cilium.io/v2"
+apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: "all-ports-policy"
@@ -74,4 +74,12 @@ spec:
             - port: "20001"
               protocol: TCP
             - port: "8084"
+              protocol: TCP
+            - port: "32400"
+              protocol: TCP
+            - port: "9121"
+              protocol: ANY
+            - port: "9187"
+              protocol: ANY
+            - port: "9697"
               protocol: TCP
