@@ -17,8 +17,7 @@ spec:
             dns:
               - matchPattern: "*"
     - toEndpoints:
-        - matchLabels:
-            "k8s:io.kubernetes.pod.namespace": default
+        - {}
       toPorts:
         - ports:
             - port: "80"
@@ -30,7 +29,7 @@ spec:
 
   ingress:
     - fromEntities:
-      - all
+        - all
       toPorts:
         - ports:
             - port: "80"
