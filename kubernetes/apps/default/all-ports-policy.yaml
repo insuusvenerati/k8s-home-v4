@@ -4,13 +4,14 @@ metadata:
   name: allow-all-ingress
   namespace: default
 spec:
-  enableDefaultDeny:
-    egress: false
-    ingress: false
   endpointSelector: {}
   ingress:
-    - fromEndpoints:
-        - {}
-  egress:
-    - toEndpoints:
-        - {}
+    - fromEntities:
+        - cluster
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+          rules:
+            http:
+              - {} # This allows all HTTP traffic but enables L7 visibility
