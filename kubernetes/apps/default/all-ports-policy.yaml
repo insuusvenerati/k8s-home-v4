@@ -22,9 +22,9 @@ spec:
               protocol: TCP
             - port: "5000"
               protocol: TCP
-            - port: "5432"
+            - port: "5432" # PostgreSQL
               protocol: TCP
-            - port: "6379"
+            - port: "6379" # Redis
               protocol: TCP
             - port: "27017"
               protocol: TCP
@@ -41,6 +41,8 @@ spec:
             - port: "20001"
               protocol: TCP
             - port: "8084"
+              protocol: TCP
+            - port: "32400"
               protocol: TCP
   egress:
     - toEndpoints:
@@ -59,9 +61,9 @@ spec:
               protocol: TCP
             - port: "5000"
               protocol: TCP
-            - port: "5432"
+            - port: "5432" # PostgreSQL
               protocol: TCP
-            - port: "6379"
+            - port: "6379" # Redis
               protocol: TCP
             - port: "27017"
               protocol: TCP
