@@ -1,7 +1,7 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
-  name: "l7-visibility-all"
+  name: "all-ports-policy"
   namespace: default
 spec:
   endpointSelector: {}
@@ -28,8 +28,18 @@ spec:
               protocol: TCP
             - port: "5055"
               protocol: TCP
-          rules:
-            http: [{}]
+            - port: "9962"
+              protocol: TCP
+            - port: "9880"
+              protocol: TCP
+            - port: "10256"
+              protocol: TCP
+            - port: "7445"
+              protocol: TCP
+            - port: "20001"
+              protocol: TCP
+            - port: "8084"
+              protocol: TCP
   egress:
     - toPorts:
         - ports:
@@ -51,5 +61,17 @@ spec:
               protocol: TCP
             - port: "27017"
               protocol: TCP
-          rules:
-            http: [{}]
+            - port: "5055"
+              protocol: TCP
+            - port: "9962"
+              protocol: TCP
+            - port: "9880"
+              protocol: TCP
+            - port: "10256"
+              protocol: TCP
+            - port: "7445"
+              protocol: TCP
+            - port: "20001"
+              protocol: TCP
+            - port: "8084"
+              protocol: TCP
