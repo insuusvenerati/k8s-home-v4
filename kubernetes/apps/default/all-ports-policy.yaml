@@ -1,53 +1,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: allow-all-ingress
+  name: untitled-policy
   namespace: default
 spec:
-  enableDefaultDeny:
-    egress: false
-    ingress: false
-  endpointSelector:
-    matchLabels:
-      app.kubernetes.io/managed-by: Helm
-  egress:
-    - toPorts:
-        - ports:
-            - port: "53"
-              protocol: ANY
-          rules:
-            dns:
-              - matchPattern: "*"
-    - toEndpoints:
-        - matchLabels:
-            app.kubernetes.io/managed-by: Helm
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-            - port: "8080"
-              protocol: TCP
-          rules:
-            http: [{}]
-
-  ingress:
-    - fromEntities:
-        - all
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: ANY
-            - port: "443"
-              protocol: ANY
-            - port: "5432"
-              protocol: ANY
-            - port: "6379"
-              protocol: ANY
-            - port: "7878"
-              protocol: ANY
-            - port: "8000"
-              protocol: ANY
-            - port: "8989"
-              protocol: ANY
-        - rules:
-            http: [{}]
+  endpointSelector: {}
