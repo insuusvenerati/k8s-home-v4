@@ -7,9 +7,7 @@ spec:
   enableDefaultDeny:
     egress: false
     ingress: false
-  endpointSelector:
-    matchLabels:
-      "k8s:io.kubernetes.pod.namespace": default
+  endpointSelector: {}
   egress:
     - toPorts:
         - ports:
