@@ -24,7 +24,7 @@ spec:
     - kind: ConfigMap
       name: cilium-helm-values
   values:
-    policyAuditMode: false
+    policyAuditMode: true
     envoyConfig:
       enabled: true
     hubble:

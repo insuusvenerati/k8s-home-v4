@@ -12,11 +12,3 @@ spec:
     - {}
   egress:
     - {}
-  # L7 visibility for HTTP traffic
-  l7:
-    - ports:
-        - port: "80"
-          protocol: TCP
-      rules:
-        http:
-          - {}
