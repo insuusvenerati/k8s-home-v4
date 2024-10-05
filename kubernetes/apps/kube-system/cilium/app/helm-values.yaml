@@ -18,6 +18,10 @@ cni:
 # devices: eno+ eth+
 endpointRoutes:
   enabled: true
+policyAuditMode: true
+policyEnforcementMode: "never"
+envoyConfig:
+  enabled: true
 envoy:
   enabled: true
   debug:
