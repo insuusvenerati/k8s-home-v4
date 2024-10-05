@@ -7,10 +7,25 @@ spec:
   enableDefaultDeny:
     egress: false
     ingress: false
-  endpointSelector: {}
-  ingress:
-    - fromEndpoints:
-        - {}
+  endpointSelector:
+    matchLabels:
+      "k8s:io.kubernetes.pod.namespace": default
   egress:
+    - toPorts:
+        - ports:
+            - port: "53"
+              protocol: ANY
+          rules:
+            dns:
+              - matchPattern: "*"
     - toEndpoints:
-        - {}
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": default
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "8080"
+              protocol: TCP
+          rules:
+            http: [{}]
