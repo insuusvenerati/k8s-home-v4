@@ -1,27 +1,14 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: "allow-all-ports-policy"
+  name: allow-all-ingress
   namespace: default
 spec:
+  enableDefaultDeny: {}
   endpointSelector: {}
   ingress:
     - fromEndpoints:
         - {}
-      toPorts:
-        - ports:
-            - port: "0"
-              protocol: TCP
-            - port: "0"
-              protocol: UDP
   egress:
     - toEndpoints:
         - {}
-      toPorts:
-        - ports:
-            - port: "0"
-              protocol: TCP
-            - port: "0"
-              protocol: UDP
-    - toEntities:
-        - "all"
