@@ -2,29 +2,29 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  - ./istio.base.yaml
-  - ./istio-d.yaml
-  - ./istio-ingress.yaml
-  - ./ingress.yaml
-  - ./kiali
-  - ./ingress-class.yaml
-#  - ./jaeger
-  - ./istio-otel-collector.yaml
-  - ./tracing-config.yaml
-  - ./prom-monitors.yaml
-configMapGenerator:
-  - name: istio-grafana-dashboards
-    namespace: monitoring
-    options:
-      annotations:
-        grafana-dashboard-folder: Istio
-      labels:
-        app.kubernetes.io/part-of: istio
-        grafana_dashboard: "1"
-    files:
-      - ./dashboards/control-plane.json
-      - ./dashboards/mesh.json
-      - ./dashboards/performance.json
-      - ./dashboards/service.json
-      - ./dashboards/workload.json
-      - ./dashboards/grafana-loki-dashboard.json
+#   - ./istio.base.yaml
+#   - ./istio-d.yaml
+#   - ./istio-ingress.yaml
+#   - ./ingress.yaml
+#   - ./kiali
+#   - ./ingress-class.yaml
+# #  - ./jaeger
+#   - ./istio-otel-collector.yaml
+#   - ./tracing-config.yaml
+#   - ./prom-monitors.yaml
+# configMapGenerator:
+#   - name: istio-grafana-dashboards
+#     namespace: monitoring
+#     options:
+#       annotations:
+#         grafana-dashboard-folder: Istio
+#       labels:
+#         app.kubernetes.io/part-of: istio
+#         grafana_dashboard: "1"
+#     files:
+#       - ./dashboards/control-plane.json
+#       - ./dashboards/mesh.json
+#       - ./dashboards/performance.json
+#       - ./dashboards/service.json
+#       - ./dashboards/workload.json
+#       - ./dashboards/grafana-loki-dashboard.json
