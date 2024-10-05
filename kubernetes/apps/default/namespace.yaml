@@ -5,4 +5,4 @@ metadata:
   labels:
     #    istio.io/dataplane-mode: ambient
     #    istio.io/use-waypoint: waypoint
-    istio-injection: enabled
+    istio-injection: disabled
