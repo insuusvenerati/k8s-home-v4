@@ -4,7 +4,9 @@ metadata:
   name: allow-all-ingress
   namespace: default
 spec:
-  enableDefaultDeny: {}
+  enableDefaultDeny:
+    egress: false
+    ingress: false
   endpointSelector: {}
   ingress:
     - fromEndpoints:
