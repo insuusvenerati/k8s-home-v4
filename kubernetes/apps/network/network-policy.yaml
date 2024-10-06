@@ -4,10 +4,10 @@ metadata:
   name: network-policy
   namespace: network
 spec:
-  endpointSelector: {}
+  endpointSelector: { }
   ingress:
     - fromEntities:
-          - world
+        - world
     - toPorts:
         - ports:
             - port: "80"
@@ -16,15 +16,15 @@ spec:
               protocol: TCP
             - port: "4245"
               protocol: TCP
-            - port: "4317"
-              protocol: ANY
           rules:
-            http: [{}]
+            http: [ { } ]
   egress:
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
             k8s-app: kube-dns
+      toEntities:
+        - all
       toPorts:
         - ports:
             - port: "53"
@@ -32,3 +32,14 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: ingress-nginx-internal
+      toPorts:
+        - ports:
+            - port: "4317"
+              protocol: TCP
+          rules:
+            http: [{}]
+      toEntities:
+        - world
