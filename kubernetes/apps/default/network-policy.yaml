@@ -6,25 +6,13 @@ metadata:
 spec:
   endpointSelector: {}
   ingress:
-    - fromEndpoints:
-        - {}
-    - fromEntities:
-        - all
     - toPorts:
         - ports:
-            - port: "7878"
-              protocol: ANY
             - port: "5055"
-              protocol: ANY
+              protocol: TCP
           rules:
             http: [{}]
   egress:
-    - toEntities:
-        - cluster
-    - toEndpoints:
-        - {}
-    - toEntities:
-        - world
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
