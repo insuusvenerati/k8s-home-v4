@@ -34,7 +34,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/icon: mdi:shark-fin
-          nginx.ingress.kubernetes.io/service-upstream: "true"
+          nginx.ingress.kubernetes.io/service-upstream: "false"
         host: &host "kubeshark.internal.${SECRET_DOMAIN}"
         tls:
           - hosts:

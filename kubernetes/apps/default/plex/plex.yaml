@@ -53,7 +53,7 @@ spec:
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
-        nginx.ingress.kubernetes.io/service-upstream: "true"
+        nginx.ingress.kubernetes.io/service-upstream: "false"
       enabled: true
       ingressClassName: internal
       url: plex.internal.${SECRET_DOMAIN}

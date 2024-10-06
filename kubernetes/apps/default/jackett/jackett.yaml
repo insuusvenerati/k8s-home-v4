@@ -30,7 +30,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/group: Media
           hajimari.io/icon: mdi:rss
-          nginx.ingress.kubernetes.io/service-upstream: "true"
+          nginx.ingress.kubernetes.io/service-upstream: "false"
         hosts:
           - host: &host jackett.internal.${SECRET_DOMAIN}
             paths:

@@ -40,7 +40,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/group: Media
           hajimari.io/icon: mdi:television-classic
-          nginx.ingress.kubernetes.io/service-upstream: "true"
+          nginx.ingress.kubernetes.io/service-upstream: "false"
         hosts:
           - host: &host sonarr.internal.${SECRET_DOMAIN}
             paths:

@@ -144,7 +144,7 @@ spec:
         className: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          nginx.ingress.kubernetes.io/service-upstream: "true"
+          nginx.ingress.kubernetes.io/service-upstream: "false"
           nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
           nginx.ingress.kubernetes.io/otel-service-name: "tubearchivist"
         hosts:
