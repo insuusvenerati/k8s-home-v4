@@ -6,21 +6,25 @@ metadata:
 spec:
   endpointSelector: {}
   ingress:
-    - fromEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "443"
-          rules:
-            http:
-              - {} # Allow all HTTP requests, but enable visibility
     - fromEndpoints:
         - {}
     - fromEntities:
         - cluster
+    - fromEntities:
+        - world
+    - toPorts:
+        - ports:
+            - port: "7878"
+              protocol: ANY
+          rules:
+            http: [{}]
   egress:
     - toEntities:
         - cluster
+    - toEndpoints:
+        - {}
+    - toEntities:
+        - world
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
@@ -32,13 +36,3 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "443"
-          rules:
-            http:
-              - {} # Allow all HTTP requests, but enable visibility
-    - toEndpoints:
-        - {}

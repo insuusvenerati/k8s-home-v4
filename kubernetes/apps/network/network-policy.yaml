@@ -6,19 +6,25 @@ metadata:
 spec:
   endpointSelector: {}
   ingress:
-    - fromEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "443"
-          rules:
-            http:
-              - {} # Allow all HTTP requests, but enable visibility
     - fromEndpoints:
         - {}
     - fromEntities:
         - cluster
+    - fromEntities:
+        - world
+    - toPorts:
+        - ports:
+            - port: "80"
+              protocol: ANY
+            - port: "443"
+              protocol: ANY
+          rules:
+            http: [{}]
   egress:
+    - toEndpoints:
+        - {}
+    - toEntities:
+        - world
     - toEntities:
         - cluster
     - toEndpoints:
@@ -32,13 +38,3 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "443"
-          rules:
-            http:
-              - {} # Allow all HTTP requests, but enable visibility
-    - toEndpoints:
-        - {}
