@@ -9,12 +9,12 @@ spec:
     - fromEndpoints:
         - {}
     - fromEntities:
-        - cluster
-    - fromEntities:
-        - world
+        - all
     - toPorts:
         - ports:
             - port: "7878"
+              protocol: ANY
+            - port: "5055"
               protocol: ANY
           rules:
             http: [{}]

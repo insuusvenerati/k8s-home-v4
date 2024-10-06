@@ -9,9 +9,7 @@ spec:
     - fromEndpoints:
         - {}
     - fromEntities:
-        - cluster
-    - fromEntities:
-        - world
+        - all
     - toPorts:
         - ports:
             - port: "80"
