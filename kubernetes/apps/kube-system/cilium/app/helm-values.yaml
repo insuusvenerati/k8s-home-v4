@@ -19,7 +19,7 @@ cni:
 endpointRoutes:
   enabled: true
 policyAuditMode: true
-policyEnforcementMode: "never"
+#policyEnforcementMode: "never"
 envoyConfig:
   enabled: true
 envoy:
