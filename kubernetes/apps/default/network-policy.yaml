@@ -1,8 +1,8 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: default-policy
-  namespace: default
+  name: network-policy
+  namespace: network
 spec:
   endpointSelector: {}
   ingress:
@@ -11,6 +11,9 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+          rules:
+            http:
+              - {} # Allow all HTTP requests, but enable visibility
     - fromEndpoints:
         - {}
     - fromEntities:
@@ -34,5 +37,8 @@ spec:
       toPorts:
         - ports:
             - port: "443"
+          rules:
+            http:
+              - {} # Allow all HTTP requests, but enable visibility
     - toEndpoints:
         - {}
