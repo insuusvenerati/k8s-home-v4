@@ -16,6 +16,8 @@ spec:
               protocol: TCP
             - port: "4245"
               protocol: TCP
+            - port: "4317"
+              protocol: ANY
           rules:
             http: [{}]
   egress:
