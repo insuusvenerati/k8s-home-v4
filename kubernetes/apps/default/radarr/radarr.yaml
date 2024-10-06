@@ -90,16 +90,27 @@ spec:
       data:
         enabled: true
         existingClaim: media-pvc-ssd
-      custom-services.d:
+      custom-services:
         enabled: true
         type: persistentVolumeClaim
         storageClass: nfs-client-ssd
         accessMode: ReadWriteOnce
         size: 1Gi
-      custom-cont-init.d:
+        advancedMounts:
+          main:
+            radarr:
+              - path: /custom-services.d
+                readOnly: false
+      custom-cont-init:
         enabled: true
         type: configMap
         name: script-init
+        advancedMounts:
+          main:
+            radarr:
+              - path: /custom-cont-init.d
+                readOnly: false
+                subPath: scripts_init.bash
     service:
       exportarr:
         controller: main
