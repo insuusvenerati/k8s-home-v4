@@ -110,7 +110,7 @@ spec:
             radarr:
               - path: /custom-cont-init.d
                 readOnly: false
-                subPath: scripts_init.bash
+#                subPath: scripts_init.bash
     service:
       exportarr:
         controller: main
