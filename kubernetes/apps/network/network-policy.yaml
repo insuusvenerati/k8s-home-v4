@@ -4,7 +4,7 @@ metadata:
   name: network-policy
   namespace: network
 spec:
-  endpointSelector: { }
+  endpointSelector: {}
   ingress:
     - fromEntities:
         - world
@@ -28,7 +28,7 @@ spec:
               protocol: TCP
           rules:
             http:
-              - { }
+              - {}
     - fromEndpoints:
         - matchLabels:
             k8s:app.kubernetes.io/instance: kube-prometheus-stack-prometheus
@@ -54,34 +54,6 @@ spec:
           rules:
             dns:
               - matchPattern: "*"
-    - toEndpoints:
-        - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
-            k8s-app: kube-dns
-      toPorts:
-        - ports:
-            - port: "53"
-              protocol: UDP
-          rules:
-            dns:
-              - matchPattern: "*"
-    - toEndpoints:
-        - matchLabels:
-            k8s:app.kubernetes.io/component: controller
-            k8s:app.kubernetes.io/instance: ingress-nginx-external
-            k8s:app.kubernetes.io/managed-by: Helm
-            k8s:app.kubernetes.io/name: ingress-nginx
-            k8s:app.kubernetes.io/part-of: ingress-nginx
-            k8s:app.kubernetes.io/version: 1.11.2
-            k8s:helm.sh/chart: ingress-nginx-4.11.2
-            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: network
-            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
-            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
-            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/prune: disabled
-            k8s:io.kubernetes.pod.namespace: network
-      toPorts:
-        - ports:
-            - port: "443"
     - toEntities:
         - world
       toPorts:
@@ -95,7 +67,7 @@ spec:
               protocol: TCP
           rules:
             http:
-              - { }
+              - {}
     - toEntities:
         - world
       toPorts:
@@ -115,4 +87,29 @@ spec:
               protocol: TCP
           rules:
             http:
-              - { }
+              - {}
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/component: controller
+            k8s:app.kubernetes.io/instance: ingress-nginx-external
+            k8s:app.kubernetes.io/managed-by: Helm
+            k8s:app.kubernetes.io/name: ingress-nginx
+            k8s:app.kubernetes.io/part-of: ingress-nginx
+            k8s:app.kubernetes.io/version: 1.11.2
+            k8s:helm.sh/chart: ingress-nginx-4.11.2
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: network
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/prune: disabled
+            k8s:io.kubernetes.pod.namespace: network
+      toPorts:
+        - ports:
+            - port: "443"
