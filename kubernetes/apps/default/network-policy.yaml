@@ -6,6 +6,8 @@ metadata:
 spec:
   endpointSelector: {}
   ingress:
+    - fromEntities:
+      - cluster
     - toPorts:
         - ports:
             - port: "5055"

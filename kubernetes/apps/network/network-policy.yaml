@@ -6,6 +6,8 @@ metadata:
 spec:
   endpointSelector: {}
   ingress:
+    - fromEntities:
+          - world
     - toPorts:
         - ports:
             - port: "80"
