@@ -1,8 +1,8 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: network-policy
-  namespace: network
+  name: default-policy
+  namespace: default
 spec:
   endpointSelector: {}
   ingress:
