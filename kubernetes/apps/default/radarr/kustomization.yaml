@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./radarr.yaml
   - ./secret.sops.yaml
+  - ./scripts-init-cm.yaml
