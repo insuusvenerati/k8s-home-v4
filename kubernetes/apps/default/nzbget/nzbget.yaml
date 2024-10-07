@@ -29,9 +29,9 @@ spec:
             image:
               repository: lscr.io/linuxserver/nzbget
               tag: v24.3-ls162
-            securityContext:
-              runAsGroup: 1000
-              runAsUser: 1000
+#            securityContext:
+#              runAsGroup: 1000
+#              runAsUser: 1000
         enabled: true
         type: deployment
     global:
