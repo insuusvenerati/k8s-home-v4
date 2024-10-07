@@ -14,7 +14,7 @@ resources:
   - ./radarr
   - ./prowlarr
   - ./filebrowser
-  - ./authentik
+#  - ./authentik
   - ./proxmox
   - ./influx
   - ./bazarr
