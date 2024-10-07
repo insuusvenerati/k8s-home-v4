@@ -24,6 +24,8 @@ spec:
           nzbget:
             env:
               TZ: America/Chicago
+              PUID: 1000
+              PGID: 1000
             image:
               repository: lscr.io/linuxserver/nzbget
               tag: v24.3-ls162
