@@ -59,6 +59,9 @@ spec:
         size: 1Gi
         storageClass: nfs-client-ssd
         accessMode: ReadWriteOnce
+      data:
+        enabled: true
+        existingClaim: media-pvc-ssd
     service:
       autobrr:
         controller: main
