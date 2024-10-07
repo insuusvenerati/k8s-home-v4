@@ -43,14 +43,15 @@ spec:
         className: internal
         enabled: true
         hosts:
-        - host: autobrr.internal.${SECRET_DOMAIN}
+        - host: &host autobrr.internal.${SECRET_DOMAIN}
           paths:
           - path: /
             pathType: Prefix
             service:
               identifier: autobrr
         tls:
-        - hosts: autobrr.internal.${SECRET_DOMAIN}
+        - hosts:
+            - *host
           secretName: autobrr-tls
     persistence:
       config:
