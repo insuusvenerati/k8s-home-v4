@@ -20,6 +20,7 @@ resources:
   - ./bazarr
   # - ./network-policy.yaml
   - ./doplarr
+  - ./autobrr
 configMapGenerator:
   - name: general-dashboards
     namespace: default
