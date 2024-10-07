@@ -54,12 +54,12 @@ spec:
           secretName: nzbget-tls
     persistence:
       config:
-        data:
-          enabled: true
-          existingClaim: media-pvc-ssd
         enabled: true
         size: 1Gi
         storageClass: nfs-client-ssd
+      data:
+        enabled: true
+        existingClaim: media-pvc-ssd
     service:
       nzbget:
         controller: main
