@@ -1,8 +1,8 @@
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
-  name: istio-collector
-  namespace: istio-system
+  name: default
+  namespace: default
 spec:
   mode: deployment
   config:
