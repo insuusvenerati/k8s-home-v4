@@ -21,6 +21,7 @@ resources:
   # - ./network-policy.yaml
   - ./doplarr
   - ./autobrr
+  - ./nzbget
 configMapGenerator:
   - name: general-dashboards
     namespace: default
