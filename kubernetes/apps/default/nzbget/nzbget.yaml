@@ -50,7 +50,8 @@ spec:
             service:
               identifier: nzbget
         tls:
-        - hosts: nzbget.internal.${SECRET_DOMAIN}
+        - hosts:
+            - nzbget.internal.${SECRET_DOMAIN}
           secretName: nzbget-tls
     persistence:
       config:
