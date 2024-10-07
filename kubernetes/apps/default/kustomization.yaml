@@ -9,7 +9,7 @@ resources:
   - ./jackett
   - ./nfs-subdir-external-ssd
   - ./tubearchivist
-  - ./plex
+#  - ./plex
   - ./tautulli
   - ./radarr
   - ./prowlarr
