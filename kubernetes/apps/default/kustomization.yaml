@@ -19,7 +19,7 @@ resources:
   - ./influx
   - ./bazarr
   # - ./network-policy.yaml
-
+  - ./doplarr
 configMapGenerator:
   - name: general-dashboards
     namespace: default
