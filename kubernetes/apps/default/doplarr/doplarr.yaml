@@ -40,6 +40,11 @@ spec:
               SONARR__QUALITY_PROFILE: HD - 720p/1080p
               SONARR__ROOTFOLDER: /data/media/tv
               SONARR__URL: http://sonarr:8989
+              DISCORD__TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    key: TOKEN
+                    name: discord-token
             image:
               repository: ghcr.io/kiranshila/doplarr
               tag: v3.6.3
