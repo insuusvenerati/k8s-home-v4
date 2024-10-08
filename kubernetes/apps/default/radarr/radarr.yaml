@@ -54,6 +54,13 @@ spec:
             image:
               repository: linuxserver/radarr
               tag: 5.11.0
+            resources:
+              limits:
+                cpu: 500m
+                memory: 1Gi
+              requests:
+                cpu: 100m
+                memory: 500m
         enabled: true
         type: deployment
     global:
