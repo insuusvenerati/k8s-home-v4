@@ -17,10 +17,6 @@ spec:
   interval: 12h0m0s
   releaseName: homepage
   targetNamespace: default
-  install:
-    disableSchemaValidation: true
-  upgrade:
-    disableSchemaValidation: true
   values:
     controllers:
       main:
