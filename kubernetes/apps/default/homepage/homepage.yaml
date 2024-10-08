@@ -40,7 +40,7 @@ spec:
             volumeMounts:
               - name: config
                 mountPath: /app/config
-              - name: home-settings
+              - name: config-template
                 mountPath: /config-template
         containers:
           homepage:
@@ -92,10 +92,10 @@ spec:
             homepage:
               - path: /app/config
                 readOnly: false
-      settings:
+      config-template:
         enabled: true
         type: configMap
-        name: home-settings
+        name: config-template
     service:
       homepage:
         controller: main
