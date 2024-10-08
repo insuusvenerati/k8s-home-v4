@@ -87,7 +87,7 @@ spec:
           http:
             appProtocol: http
             enabled: true
-            port: 7878
+            port: 3000
             protocol: HTTP
     serviceAccount:
       create: true
