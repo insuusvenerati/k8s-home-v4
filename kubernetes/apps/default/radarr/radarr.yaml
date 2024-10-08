@@ -91,6 +91,7 @@ spec:
       existing-config:
         type: secret
         name: radarr-apikey
+        defaultMode: 0777
         advancedMounts:
           main:
             radarr:
