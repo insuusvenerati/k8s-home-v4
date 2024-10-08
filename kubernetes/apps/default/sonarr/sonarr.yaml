@@ -82,7 +82,7 @@ spec:
           gethomepage.dev/name: Sonarr
           gethomepage.dev/widget.type: "sonarr"
           gethomepage.dev/widget.url: http://sonarr:8989
-          gethomepage.dev/widget.key: "${APIKEY}"
+          gethomepage.dev/widget.key: ""
           gethomepage.dev/pod-selector: ""
         className: internal
         enabled: true
