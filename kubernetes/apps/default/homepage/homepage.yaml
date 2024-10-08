@@ -34,6 +34,11 @@ spec:
                   secretKeyRef:
                     name: radarr-apikey
                     key: API_KEY
+              - name: HOMEPAGE_VAR_SONARR_APIKEY
+                valueFrom:
+                  secretKeyRef:
+                    name: sonarr-apikey
+                    key: API_KEY
             image:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.9.10

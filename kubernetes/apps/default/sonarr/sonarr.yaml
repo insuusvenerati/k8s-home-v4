@@ -54,11 +54,6 @@ spec:
                 value: 1000
               - name: PGID
                 value: 1000
-              - name: HOMEPAGE_VAR_SONARR_API_KEY
-                valueFrom:
-                  secretKeyRef:
-                    name: sonarr-apikey
-                    key: API_KEY
             image:
               repository: linuxserver/sonarr
               tag: 4.0.9.2244-ls257
