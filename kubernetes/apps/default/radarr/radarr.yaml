@@ -88,6 +88,12 @@ spec:
               - radarr.internal.${SECRET_DOMAIN}
             secretName: radarr-tls
     persistence:
+      existing-config:
+        type: configMap
+        advancedMounts:
+          main:
+            radarr:
+              - path: /config/config.xml
       config:
         accessMode: ReadWriteOnce
         enabled: true
