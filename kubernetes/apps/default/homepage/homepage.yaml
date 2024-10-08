@@ -59,17 +59,17 @@ spec:
               - homepage.internal.${SECRET_DOMAIN}
             secretName: homepage-tls
     persistence:
-#      config:
-#        accessMode: ReadWriteOnce
-#        enabled: true
-#        size: 1Gi
-#        storageClass: nfs-client-ssd
-#        type: persistentVolumeClaim
-#        advancedMounts:
-#          main:
-#            homepage:
-#              - path: /app/config
-#                readOnly: false
+      config:
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 1Gi
+        storageClass: nfs-client-ssd
+        type: persistentVolumeClaim
+        advancedMounts:
+          main:
+            homepage:
+              - path: /app/config
+                readOnly: false
       settings:
         enabled: true
         type: configMap
