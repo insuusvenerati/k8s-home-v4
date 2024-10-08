@@ -21,27 +21,27 @@ spec:
     controllers:
       main:
         containers:
-          exportarr:
-            enabled: true
-            args:
-              - radarr
-            env:
-              - name: URL
-                value: http://radarr:7878
-              - name: PORT
-                value: 7879
-              - name: ENABLE_ADDITIONAL_METRICS
-                value: true
-              - name: DISABLE_SSL_VERIFY
-                value: true
-              - name: APIKEY
-                valueFrom:
-                  secretKeyRef:
-                    name: radarr-apikey
-                    key: APIKEY
-            image:
-              repository: ghcr.io/onedr0p/exportarr
-              tag: v2.0.1
+#          exportarr:
+#            enabled: true
+#            args:
+#              - radarr
+#            env:
+#              - name: URL
+#                value: http://radarr:7878
+#              - name: PORT
+#                value: 7879
+#              - name: ENABLE_ADDITIONAL_METRICS
+#                value: true
+#              - name: DISABLE_SSL_VERIFY
+#                value: true
+#              - name: APIKEY
+#                valueFrom:
+#                  secretKeyRef:
+#                    name: radarr-apikey
+#                    key: APIKEY
+#            image:
+#              repository: ghcr.io/onedr0p/exportarr
+#              tag: v2.0.1
           radarr:
             env:
               - name: TZ
