@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: radarr-config
+    namespace: default
 type: Opaque
 stringData:
     config.xml: ENC[AES256_GCM,data:4FdPgNdq0eqKBOmUAxqmwBNWXjFTQm2RxgqG4i3JmAcVUrLdO1av+rGJ6GZpDawkkX3Jox996JP02+/NKpdPPcrRhAMCHJf8WF87jjRd08Ms84J0ipYbdagSDR0rZp4z2A6fgmdFWVpKZgV9tpE9iJ+ymxGEa6OKzigb/UgkxCTwIFoyr1g1FOCJMJK341VfrxDD5zg8ks/ZZhcyDiDqwXYKF/EyjtC+M1t433/vFzpHCiib9dzczx7rSoZ2/jJjtJ65Eqebx0a0WzeWfOOk0P1DDPWK+2lHq4wM4qZ2llN2ufJJ+M4k/iQuzEH6dpSUaSQUdpSB14Q1bMB3NjTWDy0rF72irz8skHF7axLHc8t4o5YtQnzgbWP9FyA0bBaeMSeOPgW1Gj4QsL5sPXtnJjAAH4XEFyKqSs4hwe6NDSwSMci0BAiOdOE8Osq1LbSpFfn1+LyXL/cqYfoNS4iwcl9OoK9z2eSZ26dlnXmha5TOmfEQ9PT6SzxeoQsG4FFzVa09/5CoDQC4HZwjNG0fCh80k29jXY+vPqVTclbziVN1DjB+oYBaLf7GotrGdS8gaR6vSHnudj9Imn8=,iv:O8PyGGDhfwqi6Xs9bvbA3K5BtKAMRZStnX5K4/ioq5A=,tag:tiIXRh9rJ20nKOsrVhqyEg==,type:str]
