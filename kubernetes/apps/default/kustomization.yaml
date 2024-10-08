@@ -23,6 +23,7 @@ resources:
   - ./autobrr
   - ./nzbget
   - ./otel-collector.yaml
+  - ./homepage
 configMapGenerator:
   - name: general-dashboards
     namespace: default

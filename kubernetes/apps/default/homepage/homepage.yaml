@@ -1,0 +1,152 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: homepage
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: app-template
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.4.0
+  interval: 12h0m0s
+  releaseName: homepage
+  targetNamespace: default
+  values:
+    controllers:
+      main:
+        containers:
+          homepage:
+            env:
+              - name: TZ
+                value: America/Chicago
+              - name: PUID
+                value: 1000
+              - name: PGID
+                value: 1000
+            image:
+              repository: ghcr.io/gethomepage/homepage
+              tag: v0.9.10
+        enabled: true
+        type: deployment
+    global:
+      fullnameOverride: homepage
+      labels:
+        app: homepage
+    ingress:
+      homepage:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
+          nginx.ingress.kubernetes.io/otel-service-name: homepage
+          nginx.ingress.kubernetes.io/service-upstream: "false"
+        className: internal
+        enabled: true
+        hosts:
+          - host: homepage.internal.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: homepage
+        tls:
+          - hosts:
+              - homepage.internal.${SECRET_DOMAIN}
+            secretName: homepage-tls
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 1Gi
+        storageClass: nfs-client-ssd
+        type: persistentVolumeClaim
+        advancedMounts:
+          main:
+            homepage:
+              - path: /app/config
+                readOnly: false
+      settings:
+        enabled: true
+        type: configMap
+        name: home-settings
+        advancedMounts:
+          main:
+            homepage:
+              - path: /app/config
+                readOnly: false
+    service:
+      homepage:
+        controller: main
+        enabled: true
+        ports:
+          http:
+            appProtocol: http
+            enabled: true
+            port: 7878
+            protocol: HTTP
+    serviceAccount:
+      create: true
+    rawResources:
+      clusterrole:
+        enabled: true
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRole
+        spec:
+          rules:
+            - apiGroups:
+                - ""
+              resources:
+                - namespaces
+                - pods
+                - nodes
+              verbs:
+                - get
+                - list
+            - apiGroups:
+                - extensions
+                - networking.k8s.io
+              resources:
+                - ingresses
+              verbs:
+                - get
+                - list
+            - apiGroups:
+                - traefik.containo.us
+                - traefik.io
+              resources:
+                - ingressroutes
+              verbs:
+                - get
+                - list
+            - apiGroups:
+                - metrics.k8s.io
+              resources:
+                - nodes
+                - pods
+              verbs:
+                - get
+                - list
+            - apiGroups:
+                - apiextensions.k8s.io
+              resources:
+                - customresourcedefinitions/status
+              verbs:
+                - get
+      clusterrolebinding:
+        enabled: true
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        spec:
+          roleRef:
+            apiGroup: rbac.authorization.k8s.io
+            kind: ClusterRole
+            name: homepage-clusterrole
+          subjects:
+            - kind: ServiceAccount
+              name: homepage
+              namespace: default
