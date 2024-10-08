@@ -97,6 +97,7 @@ spec:
             radarr:
               - path: /config/config.xml
                 subPath: config.xml
+                readOnly: false
       config:
         accessMode: ReadWriteOnce
         enabled: true
