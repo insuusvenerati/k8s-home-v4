@@ -24,6 +24,7 @@ resources:
   - ./nzbget
   - ./otel-collector.yaml
   - ./homepage
+  - ./qbittorrent
 configMapGenerator:
   - name: general-dashboards
     namespace: default
