@@ -90,6 +90,7 @@ spec:
     persistence:
       existing-config:
         type: configMap
+        name: existing-config
         advancedMounts:
           main:
             radarr:
