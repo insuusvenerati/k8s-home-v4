@@ -86,7 +86,7 @@ spec:
     persistence:
       existing-config:
         type: secret
-        name: radarr-apikey
+        name: radarr-config
         defaultMode: 511
         advancedMounts:
           main:

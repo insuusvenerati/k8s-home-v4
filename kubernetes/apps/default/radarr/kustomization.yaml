@@ -4,3 +4,4 @@ resources:
   - ./radarr.yaml
   - ./secret.sops.yaml
   - ./scripts-init-cm.yaml
+  - ./radarr-config.sops.yaml
