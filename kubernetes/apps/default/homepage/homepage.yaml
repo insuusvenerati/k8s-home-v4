@@ -21,6 +21,22 @@ spec:
     controllers:
       main:
         containers:
+          initContainers:
+            copy-config:
+              image: busybox:latest
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  if [ ! -f /app/config/.initialized ]; then
+                    cp -n /config-template/* /app/config/
+                    touch /app/config/.initialized
+                  fi
+              volumeMounts:
+                - name: config
+                  mountPath: /app/config
+                - name: home-settings
+                  mountPath: /config-template
           homepage:
             env:
               - name: TZ
@@ -74,11 +90,6 @@ spec:
         enabled: true
         type: configMap
         name: home-settings
-        advancedMounts:
-          main:
-            homepage:
-              - path: /app/config
-                readOnly: false
     service:
       homepage:
         controller: main
