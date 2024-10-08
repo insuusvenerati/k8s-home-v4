@@ -38,7 +38,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: radarr-apikey
-                    key: API_KEY
+                    key: APIKEY
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
