@@ -30,10 +30,6 @@ spec:
                 value: http://radarr:7878
               - name: PORT
                 value: 7879
-              - name: CONFIG
-                value: /config/config.xml
-              - name: FORM_AUTH
-                value: false
               - name: ENABLE_ADDITIONAL_METRICS
                 value: true
               - name: DISABLE_SSL_VERIFY
@@ -91,7 +87,7 @@ spec:
       existing-config:
         type: secret
         name: radarr-apikey
-        defaultMode: 0777
+        defaultMode: 511
         advancedMounts:
           main:
             radarr:
@@ -127,7 +123,6 @@ spec:
             radarr:
               - path: /custom-cont-init.d
                 readOnly: false
-#                subPath: scripts_init.bash
     service:
       exportarr:
         controller: main
