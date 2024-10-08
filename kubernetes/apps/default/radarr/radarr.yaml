@@ -89,12 +89,13 @@ spec:
             secretName: radarr-tls
     persistence:
       existing-config:
-        type: configMap
-        name: existing-config
+        type: secret
+        name: radarr-apikey
         advancedMounts:
           main:
             radarr:
               - path: /config/config.xml
+                subPath: config.xml
       config:
         accessMode: ReadWriteOnce
         enabled: true
