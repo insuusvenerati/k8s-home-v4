@@ -70,15 +70,15 @@ spec:
             homepage:
               - path: /app/config
                 readOnly: false
-#      settings:
-#        enabled: true
-#        type: configMap
-#        name: home-settings
-#        advancedMounts:
-#          main:
-#            homepage:
-#              - path: /app/config
-#                readOnly: false
+      settings:
+        enabled: true
+        type: configMap
+        name: home-settings
+        advancedMounts:
+          main:
+            homepage:
+              - path: /app/config
+                readOnly: false
     service:
       homepage:
         controller: main
