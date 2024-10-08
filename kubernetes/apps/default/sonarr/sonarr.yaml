@@ -75,15 +75,6 @@ spec:
           nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
           nginx.ingress.kubernetes.io/otel-service-name: sonarr
           nginx.ingress.kubernetes.io/service-upstream: "false"
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Sonarr
-          gethomepage.dev/group: Media
-          gethomepage.dev/icon: sonarr.png
-          gethomepage.dev/name: Sonarr
-          gethomepage.dev/widget.type: "sonarr"
-          gethomepage.dev/widget.url: http://sonarr:8989
-          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
-          gethomepage.dev/pod-selector: ""
         className: internal
         enabled: true
         hosts:
