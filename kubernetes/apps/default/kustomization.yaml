@@ -25,6 +25,7 @@ resources:
   - ./otel-collector.yaml
   - ./homepage
   - ./qbittorrent
+  - ./adguard
 configMapGenerator:
   - name: general-dashboards
     namespace: default
