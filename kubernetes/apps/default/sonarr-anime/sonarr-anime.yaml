@@ -21,29 +21,29 @@ spec:
     controllers:
       main:
         containers:
-#          exportarr:
-#            enabled: true
-#            args:
-#              - sonarr
-#            env:
-#              - name: URL
-#                value: http://sonarr-anime:8989
-#              - name: PORT
-#                value: 7879
-#              - name: CONFIG
-#                value: /config/config.xml
-#              - name: ENABLE_ADDITIONAL_METRICS
-#                value: true
-#              - name: DISABLE_SSL_VERIFY
-#                value: true
-#              - name: APIKEY
-#                valueFrom:
-#                  secretKeyRef:
-#                    name: sonarr-anime-apikey
-#                    key: API_KEY
-#            image:
-#              repository: ghcr.io/onedr0p/exportarr
-#              tag: v2.0.1
+          exportarr:
+            enabled: true
+            args:
+              - sonarr
+            env:
+              - name: URL
+                value: http://sonarr-anime:8989
+              - name: PORT
+                value: 7879
+              - name: CONFIG
+                value: /config/config.xml
+              - name: ENABLE_ADDITIONAL_METRICS
+                value: true
+              - name: DISABLE_SSL_VERIFY
+                value: true
+              - name: APIKEY
+                valueFrom:
+                  secretKeyRef:
+                    name: sonarr-anime-apikey
+                    key: APIKEY
+            image:
+              repository: ghcr.io/onedr0p/exportarr
+              tag: v2.0.1
           sonarr:
             env:
               - name: TZ
