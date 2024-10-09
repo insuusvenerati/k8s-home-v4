@@ -33,6 +33,9 @@ spec:
                   cp /tmp/config.xml /config/config.xml
                   chown 1000:1000 /config/config.xml
                 fi
+            volumeMounts:
+              - name: existing-config
+                mountPath: /tmp/config.xml
         containers:
 #          exportarr:
 #            enabled: true
