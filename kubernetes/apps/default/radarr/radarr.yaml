@@ -92,16 +92,16 @@ spec:
               - radarr.internal.${SECRET_DOMAIN}
             secretName: radarr-tls
     persistence:
-#      existing-config:
-#        type: secret
-#        name: radarr-config
-#        defaultMode: 511
-#        advancedMounts:
-#          main:
-#            radarr:
-#              - path: /tmp/config.xml
-#                subPath: config.xml
-#                readOnly: false
+      existing-config:
+        type: configMap
+        name: radarr-config
+        defaultMode: 511
+        advancedMounts:
+          main:
+            radarr:
+              - path: /config/config.xml
+                subPath: config.xml
+                readOnly: false
       config:
         accessMode: ReadWriteOnce
         enabled: true
