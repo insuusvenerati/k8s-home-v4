@@ -56,7 +56,6 @@ spec:
                     key: API_KEY
               URL: http://bazarr:6767
               PORT: 6768
-              FORM_AUTH: false
               ENABLE_ADDITIONAL_METRICS: "true"
     global:
       fullnameOverride: bazarr

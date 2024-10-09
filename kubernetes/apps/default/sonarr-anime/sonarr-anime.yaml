@@ -119,17 +119,17 @@ spec:
               - path: /custom-cont-init.d
                 readOnly: false
     service:
-#      exportarr:
-#        controller: main
-#        enabled: true
-#        ports:
-#          metrics:
-#            appProtocol: http
-#            enabled: true
-#            port: 7879
-#            primary: false
-#            protocol: HTTP
-#        primary: false
+      exportarr:
+        controller: main
+        enabled: true
+        ports:
+          metrics:
+            appProtocol: http
+            enabled: true
+            port: 7879
+            primary: false
+            protocol: HTTP
+        primary: false
       sonarr-anime:
         controller: main
         enabled: true
@@ -141,13 +141,13 @@ spec:
             protocol: HTTP
     serviceAccount:
       create: false
-#    serviceMonitor:
-#      exportarr:
-#        enabled: true
-#        endpoints:
-#          - interval: 4m
-#            path: /metrics
-#            port: metrics
-#            scheme: http
-#            scrapeTimeout: 90s
-#        serviceName: sonarr-anime-exportarr
+    serviceMonitor:
+      exportarr:
+        enabled: true
+        endpoints:
+          - interval: 4m
+            path: /metrics
+            port: metrics
+            scheme: http
+            scrapeTimeout: 90s
+        serviceName: sonarr-anime-exportarr
