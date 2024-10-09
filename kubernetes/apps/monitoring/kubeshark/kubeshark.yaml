@@ -25,7 +25,7 @@ spec:
   values:
     fullnameOverride: "kubeshark"
     tap:
-      persistentStorage: true
+      persistentStorage: false
       storageClass: nfs-client-ssd
       storageLimit: 5Gi
       telemetry:
