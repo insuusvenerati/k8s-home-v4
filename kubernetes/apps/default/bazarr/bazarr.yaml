@@ -49,7 +49,7 @@ spec:
             args:
               - bazarr
             env:
-              API_KEY:
+              APIKEY:
                 valueFrom:
                   secretKeyRef:
                     name: bazarr-apikey
@@ -58,8 +58,6 @@ spec:
               PORT: 6768
               FORM_AUTH: false
               ENABLE_ADDITIONAL_METRICS: "true"
-            envFrom:
-              - secret: bazarr-apikey
     global:
       fullnameOverride: bazarr
       labels:
