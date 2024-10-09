@@ -33,7 +33,7 @@ spec:
                 TMP_CONFIG_FILE="/tmp/config.xml"
                 CONFIG_FILE="/config/config.xml"
 
-                if [[ ! -f "$CONFIG_FILE" ]]
+                if [[ ! -f "$CONFIG_FILE" ]]; then
                   echo "Config file doesn't exist. Copying from existing config"
                   cp /tmp/config.xml /config/config.xml
                   chown 1000:1000 /config/config.xml
