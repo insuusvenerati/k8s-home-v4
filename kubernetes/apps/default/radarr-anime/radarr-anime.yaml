@@ -29,22 +29,24 @@ spec:
               - /bin/sh
               - -c
               - |
-                # Path to the file containing the API key
                 APIKEY_FILE="/tmp/APIKEY"
+                TMP_CONFIG_FILE="/tmp/config.xml"
+                CONFIG_FILE="/config/config.xml"
 
-                # Check if the file exists and is readable
+                if [[ ! -f "$CONFIG_FILE" ]]
+                  echo "Config file doesn't exist. Copying from existing config"
+                  cp /tmp/config.xml /config/config.xml
+                  chown 1000:1000 /config/config.xml
+                  echo "Config copied successfully"
+                fi
+
                 if [[ ! -f "$APIKEY_FILE" || ! -r "$APIKEY_FILE" ]]; then
                   echo "Error: APIKEY file does not exist or is not readable."
                   exit 1
                 fi
 
-                # Extract the API key from the file
                 APIKEY=$(cat "$APIKEY_FILE")
 
-                # Path to your config file
-                CONFIG_FILE="/config/config.xml"
-
-                # Replace ${APIKEY} in the config file with the value from the APIKEY file
                 sed -i "s/\${APIKEY}/${APIKEY}/g" "$CONFIG_FILE"
 
                 echo "API key has been replaced successfully."
@@ -116,6 +118,14 @@ spec:
             secretName: radarr-anime-tls
     persistence:
       existing-config:
+        type: configMap
+        name: radarr-config
+        advancedMounts:
+          main:
+            copy-config:
+              - path: /tmp/config.xml
+                subPath: config.xml
+      apikey:
         type: secret
         name: radarr-apikey
         advancedMounts:
@@ -141,7 +151,7 @@ spec:
         size: 1Gi
         advancedMounts:
           main:
-            radarr-anime:
+            radarr:
               - path: /custom-services.d
                 readOnly: false
       custom-cont-init:
@@ -150,7 +160,7 @@ spec:
         name: script-init
         advancedMounts:
           main:
-            radarr-anime:
+            radarr:
               - path: /custom-cont-init.d
                 readOnly: false
     service:
