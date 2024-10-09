@@ -41,22 +41,22 @@ spec:
             image:
               repository: linuxserver/bazarr
               tag: 1.4.5
-          exportarr:
-            enabled: true
-            image:
-              repository: ghcr.io/onedr0p/exportarr
-              tag: v2.0.1
-            args:
-              - bazarr
-            env:
-              APIKEY:
-                valueFrom:
-                  secretKeyRef:
-                    name: bazarr-apikey
-                    key: API_KEY
-              URL: http://bazarr:6767
-              PORT: 6768
-              ENABLE_ADDITIONAL_METRICS: "true"
+#          exportarr:
+#            enabled: true
+#            image:
+#              repository: ghcr.io/onedr0p/exportarr
+#              tag: v2.0.1
+#            args:
+#              - bazarr
+#            env:
+#              APIKEY:
+#                valueFrom:
+#                  secretKeyRef:
+#                    name: bazarr-apikey
+#                    key: API_KEY
+#              URL: http://bazarr:6767
+#              PORT: 6768
+#              ENABLE_ADDITIONAL_METRICS: "true"
     global:
       fullnameOverride: bazarr
       labels:
