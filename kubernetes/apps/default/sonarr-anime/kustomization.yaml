@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - ./sonarr-anime.yaml
   - ./secret.sops.yaml
-  - ./sonarr-scripts.yaml
