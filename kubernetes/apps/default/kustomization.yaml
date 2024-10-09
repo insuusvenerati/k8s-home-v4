@@ -26,6 +26,7 @@ resources:
   - ./homepage
   - ./qbittorrent
   - ./adguard
+  - ./radarr-anime
 configMapGenerator:
   - name: general-dashboards
     namespace: default
