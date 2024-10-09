@@ -20,8 +20,8 @@ resources:
   - ./bazarr
   # - ./network-policy.yaml
   - ./doplarr
-  - ./autobrr
-  - ./nzbget
+#  - ./autobrr
+#  - ./nzbget
   - ./otel-collector.yaml
   - ./homepage
   - ./qbittorrent

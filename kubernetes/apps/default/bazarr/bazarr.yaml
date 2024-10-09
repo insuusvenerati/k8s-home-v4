@@ -30,7 +30,7 @@ spec:
         enabled: true
         type: deployment
         containers:
-          main:
+          bazarr:
             env:
               - name: TZ
                 value: America/Chicago
@@ -41,7 +41,6 @@ spec:
             image:
               repository: linuxserver/bazarr
               tag: 1.4.5
-            nameOverride: bazarr
           exportarr:
             enabled: true
             image:
@@ -80,7 +79,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: bazarr
         tls:
           - hosts:
               - bazarr.internal.${SECRET_DOMAIN}
@@ -96,7 +95,7 @@ spec:
         enabled: true
         existingClaim: media-pvc-ssd
     service:
-      main:
+      bazarr:
         controller: main
         enabled: true
         primary: true
