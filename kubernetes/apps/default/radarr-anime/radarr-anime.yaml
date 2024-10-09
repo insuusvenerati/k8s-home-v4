@@ -27,7 +27,7 @@ spec:
               - radarr
             env:
               - name: URL
-                value: http://radarr-anime:7878
+                value: http://radarr-anime:8888
               - name: PORT
                 value: 7879
               - name: ENABLE_ADDITIONAL_METRICS
@@ -135,7 +135,7 @@ spec:
           http:
             appProtocol: http
             enabled: true
-            port: 7878
+            port: 8888
             protocol: HTTP
     serviceAccount:
       create: true
