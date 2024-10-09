@@ -35,16 +35,22 @@ spec:
               - /bin/sh
               - -c
               - |
-                # Check if APIKEY is set
-                if [[ -z "${APIKEY}" ]]; then
-                echo "Error: APIKEY environment variable is not set."
-                exit 1
+                # Path to the file containing the API key
+                APIKEY_FILE="/tmp/APIKEY"
+
+                # Check if the file exists and is readable
+                if [[ ! -f "$APIKEY_FILE" || ! -r "$APIKEY_FILE" ]]; then
+                  echo "Error: APIKEY file does not exist or is not readable."
+                  exit 1
                 fi
+
+                # Extract the API key from the file
+                APIKEY=$(cat "$APIKEY_FILE")
 
                 # Path to your config file
                 CONFIG_FILE="/config/config.xml"
 
-                # Replace ${APIKEY} in the config file with the value of the environment variable APIKEY
+                # Replace ${APIKEY} in the config file with the value from the APIKEY file
                 sed -i "s/\${APIKEY}/${APIKEY}/g" "$CONFIG_FILE"
 
                 echo "API key has been replaced successfully."
@@ -121,16 +127,15 @@ spec:
               - radarr.internal.${SECRET_DOMAIN}
             secretName: radarr-tls
     persistence:
-#      existing-config:
-#        type: configMap
-#        name: radarr-config
-#        defaultMode: 511
-#        advancedMounts:
-#          main:
-#            radarr:
-#              - path: /tmp/config.xml
-#                subPath: config.xml
-#                readOnly: false
+      existing-config:
+        type: secret
+        name: radarr-apikey
+        advancedMounts:
+          main:
+            copy-config:
+              - path: /tmp/APIKEY
+                subPath: APIKEY
+                readOnly: false
       config:
         accessMode: ReadWriteOnce
         enabled: true
