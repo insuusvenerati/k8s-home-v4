@@ -28,6 +28,18 @@ spec:
       persistentStorage: true
       storageClass: nfs-client-ssd
       storageLimit: 5Gi
+      telemetry:
+        enabled: false
+      misc:
+        jsonTTL: 5m
+        pcapTTL: 10s
+        pcapErrorTTL: 60s
+        trafficSampleRate: 20
+        tcpStreamChannelTimeoutMs: 10000
+        tcpStreamChannelTimeoutShow: false
+        resolutionStrategy: auto
+        duplicateTimeframe: 200ms
+        detectDuplicates: false
       ingress:
         enabled: true
         className: internal
