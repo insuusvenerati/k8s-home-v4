@@ -20,36 +20,6 @@ spec:
   values:
     controllers:
       main:
-        initContainers:
-          copy-config:
-            image:
-              repository: busybox
-              tag: latest
-            command:
-              - /bin/sh
-              - -c
-              - |
-                APIKEY_FILE="/tmp/APIKEY"
-                TMP_CONFIG_FILE="/tmp/config.xml"
-                CONFIG_FILE="/config/config.xml"
-
-                if [[ ! -f "$CONFIG_FILE" ]]; then
-                  echo "Config file doesn't exist. Copying from existing config"
-                  cp /tmp/config.xml /config/config.xml
-                  chown 1000:1000 /config/config.xml
-                  echo "Config copied successfully"
-                fi
-
-                if [[ ! -f "$APIKEY_FILE" || ! -r "$APIKEY_FILE" ]]; then
-                  echo "Error: APIKEY file does not exist or is not readable."
-                  exit 1
-                fi
-
-                APIKEY=$(cat "$APIKEY_FILE")
-
-                sed -i "s/\${APIKEY}/${APIKEY}/g" "$CONFIG_FILE"
-
-                echo "API key has been replaced successfully."
         containers:
           exportarr:
             enabled: true
@@ -67,7 +37,7 @@ spec:
               - name: APIKEY
                 valueFrom:
                   secretKeyRef:
-                    name: radarr-apikey
+                    name: radarr-anime-apikey
                     key: APIKEY
             image:
               repository: ghcr.io/onedr0p/exportarr
@@ -117,23 +87,6 @@ spec:
               - radarr-anime.internal.${SECRET_DOMAIN}
             secretName: radarr-anime-tls
     persistence:
-      existing-config:
-        type: configMap
-        name: radarr-config
-        advancedMounts:
-          main:
-            copy-config:
-              - path: /tmp/config.xml
-                subPath: config.xml
-      apikey:
-        type: secret
-        name: radarr-apikey
-        advancedMounts:
-          main:
-            copy-config:
-              - path: /tmp/APIKEY
-                subPath: APIKEY
-                readOnly: false
       config:
         accessMode: ReadWriteOnce
         enabled: true
