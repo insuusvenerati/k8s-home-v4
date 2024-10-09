@@ -20,6 +20,35 @@ spec:
   values:
     controllers:
       main:
+        initContainers:
+          copy-config:
+            env:
+              - name: APIKEY
+                valueFrom:
+                  secretKeyRef:
+                    name: radarr-apikey
+                    key: APIKEY
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - /bin/sh
+              - -c
+              - |
+                # Check if APIKEY is set
+                if [[ -z "${APIKEY}" ]]; then
+                echo "Error: APIKEY environment variable is not set."
+                exit 1
+                fi
+
+                # Path to your config file
+                CONFIG_FILE="/config/config.xml"
+
+                # Replace ${APIKEY} in the config file with the value of the environment variable APIKEY
+                sed -i "s/\${APIKEY}/${APIKEY}/g" "$CONFIG_FILE"
+
+                echo "API key has been replaced successfully."
+
         containers:
 #          exportarr:
 #            enabled: true
