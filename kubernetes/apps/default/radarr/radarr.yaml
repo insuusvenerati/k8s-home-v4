@@ -21,6 +21,19 @@ spec:
     controllers:
       main:
         containers:
+          initContainers:
+            copy-config:
+              image:
+                repository: busybox
+                tag: latest
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  if [ ! -f /config/.init ]; then
+                    cp /tmp/config.xml /config/config.xml
+                    chown 1000:1000 /config/config.xml
+                  fi
 #          exportarr:
 #            enabled: true
 #            args:
@@ -99,7 +112,7 @@ spec:
         advancedMounts:
           main:
             radarr:
-              - path: /config/config.xml
+              - path: /tmp/config.xml
                 subPath: config.xml
                 readOnly: false
       config:
