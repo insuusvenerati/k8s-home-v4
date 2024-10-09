@@ -54,6 +54,9 @@ spec:
                 sed -i "s/\${APIKEY}/${APIKEY}/g" "$CONFIG_FILE"
 
                 echo "API key has been replaced successfully."
+                echo "Contents of config are now:"
+
+                cat /config/config.xml
 
         containers:
 #          exportarr:
