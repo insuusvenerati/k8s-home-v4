@@ -136,6 +136,7 @@ spec:
             appProtocol: http
             enabled: true
             port: 8888
+            targetPort: 7878
             protocol: HTTP
     serviceAccount:
       create: true
