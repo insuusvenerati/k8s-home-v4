@@ -8,5 +8,5 @@ spec:
   interval: 6h0m0s
   provider: generic
   ref:
-    tag: 18.5.4
+    tag: 18.7.1
   url: oci://tccr.io/truecharts/prowlarr
