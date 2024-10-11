@@ -148,6 +148,7 @@ spec:
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
+        lbipam.cilium.io/ips: "192.168.1.202"
       className: internal
       enabled: true
       hosts:
@@ -241,7 +242,7 @@ spec:
     service:
       http:
         annotations:
-          "lbipam.cilium.io/sharing-key": "git"
+          lbipam.cilium.io/sharing-key: "git"
         clusterIP: None
         externalIPs: null
         externalTrafficPolicy: null
@@ -256,7 +257,8 @@ spec:
         type: ClusterIP
       ssh:
         annotations:
-          "lbipam.cilium.io/sharing-key": "git"
+          lbipam.cilium.io/sharing-key: "git"
+          lbipam.cilium.io/ips: "192.168.1.202"
         clusterIP: None
         externalIPs: null
         externalTrafficPolicy: null
