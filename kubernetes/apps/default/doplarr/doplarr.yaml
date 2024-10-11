@@ -27,7 +27,7 @@ spec:
               RADARR__API:
                 valueFrom:
                   secretKeyRef:
-                    key: API_KEY
+                    key: APIKEY
                     name: radarr-apikey
               RADARR__QUALITY_PROFILE: HD - 720p/1080p
               RADARR__ROOTFOLDER: /data/media/movies

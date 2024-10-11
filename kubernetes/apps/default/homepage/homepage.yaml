@@ -33,7 +33,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: radarr-apikey
-                    key: API_KEY
+                    key: APIKEY
               - name: HOMEPAGE_VAR_SONARR_APIKEY
                 valueFrom:
                   secretKeyRef:
