@@ -1,0 +1,296 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: forgejo
+  namespace: forgejo
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: forgejo
+    namespace: flux-system
+  install:
+    createNamespace: true
+  interval: 24h0m0s
+  releaseName: forgejo
+  targetNamespace: forgejo
+  values:
+    affinity: { }
+    checkDeprecation: true
+    clusterDomain: cluster.local
+    containerSecurityContext:
+      capabilities:
+        add:
+          - SYS_CHROOT
+    deployment:
+      annotations: { }
+      env: [ ]
+      labels: { }
+      terminationGracePeriodSeconds: 60
+    dnsConfig: { }
+    extraContainerVolumeMounts: [ ]
+    extraDeploy: [ ]
+    extraInitVolumeMounts: [ ]
+    extraVolumeMounts: [ ]
+    extraVolumes: [ ]
+    gitea:
+      additionalConfigFromEnvs: [ ]
+      additionalConfigSources: [ ]
+      admin:
+        email: null
+        existingSecret: forgejo-admin-secret
+        password: null
+        passwordMode: keepUpdated
+        username: null
+      config:
+        APP_NAME: 'Forgejo: Beyond coding. We forge.'
+        RUN_MODE: prod
+        actions: { }
+        admin: { }
+        api: { }
+        attachment: { }
+        avatar: { }
+        cache: { }
+        camo: { }
+        cors: { }
+        cron: { }
+        database:
+          DB_TYPE: postgres
+        email.incoming: { }
+        federation: { }
+        git: { }
+        highlight.mapping: { }
+        i18n: { }
+        indexer:
+          ISSUE_INDEXER_TYPE: bleve
+          REPO_INDEXER_ENABLED: true
+        lfs: { }
+        log: { }
+        mailer: { }
+        markdown: { }
+        markup: { }
+        metrics: { }
+        migrations: { }
+        mirror: { }
+        oauth2: { }
+        oauth2_client: { }
+        openid: { }
+        other: { }
+        packages: { }
+        picture: { }
+        project: { }
+        proxy: { }
+        queue: { }
+        repo-avatar: { }
+        repository: { }
+        security: { }
+        server:
+          SSH_LISTEN_PORT: 2222
+          SSH_PORT: 22
+        service: { }
+        session: { }
+        ssh.minimum_key_sizes: { }
+        storage: { }
+        time: { }
+        ui: { }
+        webhook: { }
+      ldap: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 10
+        initialDelaySeconds: 200
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: http
+        timeoutSeconds: 1
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+          namespace: monitoring
+      oauth: [ ]
+      podAnnotations: { }
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: http
+        timeoutSeconds: 1
+      ssh:
+        logLevel: INFO
+      startupProbe:
+        enabled: false
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        tcpSocket:
+          port: http
+        timeoutSeconds: 1
+    global:
+      hostAliases: [ ]
+      imagePullSecrets: [ ]
+      imageRegistry: ""
+      storageClass: ""
+    image:
+      digest: ""
+      fullOverride: ""
+      pullPolicy: IfNotPresent
+      registry: code.forgejo.org
+      repository: forgejo/forgejo
+      rootless: true
+      tag: ""
+    imagePullSecrets: [ ]
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      className: internal
+      enabled: true
+      hosts:
+        - host: git.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - git.internal.${SECRET_DOMAIN}
+          secretName: forgejo-tls
+    initContainers:
+      resources:
+        limits: { }
+        requests:
+          cpu: 100m
+          memory: 128Mi
+    initPreScript: ""
+    namespaceOverride: ""
+    nodeSelector: { }
+    persistence:
+      accessModes:
+        - ReadWriteOnce
+      annotations:
+        helm.sh/resource-policy: keep
+      claimName: gitea-shared-storage
+      create: true
+      enabled: true
+      labels: { }
+      mount: true
+      size: 10Gi
+      storageClass: openebs-hostpath
+      subPath: null
+      volumeName: ""
+    podDisruptionBudget: { }
+    podSecurityContext:
+      fsGroup: 1000
+    postgresql:
+      enabled: true
+      global:
+        postgresql:
+          auth:
+            database: gitea
+            password: gitea
+            username: gitea
+          service:
+            ports:
+              postgresql: 5432
+      primary:
+        persistence:
+          size: 10Gi
+          storageClass: openebs-hostpath
+    postgresql-ha:
+      enabled: false
+      global:
+        postgresql:
+          database: gitea
+          password: gitea
+          username: gitea
+      pgpool:
+        adminPassword: changeme3
+      postgresql:
+        password: changeme4
+        postgresPassword: changeme1
+        repmgrPassword: changeme2
+      primary:
+        persistence:
+          size: 10Gi
+      service:
+        ports:
+          postgresql: 5432
+    priorityClassName: ""
+    redis:
+      architecture: standalone
+      enabled: true
+      global:
+        redis:
+          password: changeme
+      master:
+        count: 1
+    redis-cluster:
+      cluster:
+        nodes: 3
+        replicas: 0
+      enabled: false
+      usePassword: false
+    replicaCount: 1
+    resources: { }
+    schedulerName: ""
+    securityContext: { }
+    service:
+      http:
+        annotations:
+          "lbipam.cilium.io/sharing-key": "git"
+        clusterIP: None
+        externalIPs: null
+        externalTrafficPolicy: null
+        ipFamilies: null
+        ipFamilyPolicy: null
+        labels: { }
+        loadBalancerClass: null
+        loadBalancerIP: null
+        loadBalancerSourceRanges: [ ]
+        nodePort: null
+        port: 3000
+        type: ClusterIP
+      ssh:
+        annotations:
+          "lbipam.cilium.io/sharing-key": "git"
+        clusterIP: None
+        externalIPs: null
+        externalTrafficPolicy: null
+        hostPort: null
+        ipFamilies: null
+        ipFamilyPolicy: null
+        labels: { }
+        loadBalancerClass: null
+        loadBalancerIP: null
+        loadBalancerSourceRanges: [ ]
+        nodePort: null
+        port: 22
+        type: LoadBalancer
+    serviceAccount:
+      annotations: { }
+      automountServiceAccountToken: false
+      create: false
+      imagePullSecrets: [ ]
+      labels: { }
+      name: ""
+    signing:
+      enabled: false
+      existingSecret: ""
+      gpgHome: /data/git/.gnupg
+      privateKey: ""
+    strategy:
+      rollingUpdate:
+        maxSurge: 100%
+        maxUnavailable: 0
+      type: RollingUpdate
+    test:
+      enabled: true
+      image:
+        name: busybox
+        tag: latest
+    tolerations: [ ]
+    topologySpreadConstraints: [ ]
