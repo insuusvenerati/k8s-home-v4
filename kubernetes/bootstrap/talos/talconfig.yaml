@@ -43,7 +43,7 @@ nodes:
       - "@./patches/controller/cluster.yaml"
       - "@./patches/controller/disable-admission-controller.yaml"
       - "@./patches/controller/etcd.yaml"
-  - hostname: "controller-2"
+  - hostname: "worker"
     ipAddress: "192.168.1.171"
     installDisk: "/dev/sda"
     talosImageURL: factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515
@@ -74,6 +74,6 @@ controlPlane:
   patches:
     - "@./patches/controller/api-access.yaml"
     - "@./patches/controller/cluster.yaml"
-    - "@./patches/controller/disable-admission-controller.yaml"
+#    - "@./patches/controller/disable-admission-controller.yaml"
     - "@./patches/controller/etcd.yaml"
 
