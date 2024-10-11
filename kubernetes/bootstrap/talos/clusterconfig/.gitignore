@@ -1,3 +1,4 @@
 home-kubernetes-controller.yaml
 talosconfig
 home-kubernetes-controller-2.yaml
+home-kubernetes-worker.yaml
