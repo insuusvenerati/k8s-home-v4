@@ -241,8 +241,7 @@ spec:
     securityContext: { }
     service:
       http:
-        annotations:
-          lbipam.cilium.io/sharing-key: "git"
+        annotations: {}
         clusterIP: None
         externalIPs: null
         externalTrafficPolicy: null
@@ -257,7 +256,7 @@ spec:
         type: ClusterIP
       ssh:
         annotations:
-          lbipam.cilium.io/sharing-key: "git"
+          lbipam.cilium.io/sharing-key: "ingress"
           lbipam.cilium.io/ips: "192.168.1.202"
         clusterIP: None
         externalIPs: null
