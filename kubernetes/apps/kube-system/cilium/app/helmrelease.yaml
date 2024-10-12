@@ -29,23 +29,13 @@ spec:
       metrics:
         enableOpenMetrics: true
         enabled:
-          - dns
+          - dns:query;labelsContext=source_namespace,destination_namespace
           - drop
           - tcp
           - flow
           - port-distribution
           - icmp
-          - httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
-        #          - httpV2:
-        #              exemplars: true
-        #              labelsContext:
-        #                - source_ip
-        #                - source_namespace
-        #                - source_workload
-        #                - destination_ip
-        #                - destination_namespace
-        #                - destination_workload
-        #                - traffic_direction
+          - httpV2:exemplars=true;destinationContext=dns|ip;sourceContext=dns|ip;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
         serviceMonitor:
           enabled: true
         dashboards:
