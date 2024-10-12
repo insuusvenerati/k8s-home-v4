@@ -10,3 +10,4 @@ resources:
   - ./kubelet-csr-approver/ks.yaml
   - ./spegel/ks.yaml
   - ./network-policy-crd.yaml
+  - ./gateway-crds.yaml
