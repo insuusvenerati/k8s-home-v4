@@ -74,14 +74,14 @@ spec:
         enable-opentelemetry: "true"
         opentelemetry-operation-name: "HTTP $request_method $service_name $uri"
         opentelemetry-trust-incoming-span: "true"
-        otlp-collector-host: "istio-collector-collector.istio-system.svc.cluster.local"
+        otlp-collector-host: "default-collector.default.svc.cluster.local"
         otlp-collector-port: "4317"
         otel-max-queuesize: "2048"
         otel-schedule-delay-millis: "5000"
         otel-max-export-batch-size: "512"
         otel-service-name: "nginx-proxy" # Opentelemetry resource name
         otel-sampler: "AlwaysOn" # Also: AlwaysOff, TraceIdRatioBased
-        otel-sampler-ratio: "1.0"
+        otel-sampler-ratio: "0.5"
         otel-sampler-parent-based: "true"
         client-body-buffer-size: 100M
         client-body-timeout: 120
