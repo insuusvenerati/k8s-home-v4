@@ -27,6 +27,7 @@ spec:
     hubble:
       enabled: true
       metrics:
+        enableOpenMetrics: true
         enabled:
           - dns
           - drop
@@ -34,17 +35,17 @@ spec:
           - flow
           - port-distribution
           - icmp
-          - http
-#          - httpV2:
-#              exemplars: true
-#              labelsContext:
-#                - source_ip
-#                - source_namespace
-#                - source_workload
-#                - destination_ip
-#                - destination_namespace
-#                - destination_workload
-#                - traffic_direction
+          - httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
+        #          - httpV2:
+        #              exemplars: true
+        #              labelsContext:
+        #                - source_ip
+        #                - source_namespace
+        #                - source_workload
+        #                - destination_ip
+        #                - destination_namespace
+        #                - destination_workload
+        #                - traffic_direction
         serviceMonitor:
           enabled: true
         dashboards:
@@ -65,7 +66,7 @@ spec:
           className: internal
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt-production
-          hosts: ["hubble.internal.${SECRET_DOMAIN}"]
+          hosts: [ "hubble.internal.${SECRET_DOMAIN}" ]
           tls:
             - secretName: hubble-tls
               hosts:
