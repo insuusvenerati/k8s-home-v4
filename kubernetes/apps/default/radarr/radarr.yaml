@@ -18,8 +18,33 @@ spec:
   releaseName: radarr
   targetNamespace: default
   values:
+    networkpolicies:
+      main:
+        # -- Enables or disables the networkPolicy item. Defaults to true
+        enabled: true
+
+        # -- Configure which controller this networkPolicy should target
+        controller: main
+
+        # -- Define a custom podSelector for the networkPolicy. This takes precedence over targeting a controller.
+        # podSelector: {}
+
+        # -- The policyTypes for this networkPolicy
+        policyTypes:
+          - Ingress
+          - Egress
+
+        # -- The rulesets for this networkPolicy
+        # [[ref]](https://kubernetes.io/docs/concepts/services-networking/network-policies/#networkpolicy-resource)
+        rules:
+          # -- The ingress rules for this networkPolicy. Allows all ingress traffic by default.
+          ingress:
+            - { }
+          # -- The egress rules for this networkPolicy. Allows all egress traffic by default.
+          egress:
+            - { }
     controllers:
-      main: 
+      main:
         containers:
           exportarr:
             enabled: true
