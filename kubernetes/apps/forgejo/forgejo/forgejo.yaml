@@ -37,11 +37,9 @@ spec:
       additionalConfigFromEnvs: [ ]
       additionalConfigSources: [ ]
       admin:
-        email: null
+        email: norwood.sean@gmail.com
         existingSecret: forgejo-admin-secret
-        password: null
         passwordMode: keepUpdated
-        username: null
       config:
         APP_NAME: 'Forgejo: Beyond coding. We forge.'
         RUN_MODE: prod
