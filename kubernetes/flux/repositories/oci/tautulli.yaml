@@ -8,5 +8,5 @@ spec:
   interval: 6h0m0s
   provider: generic
   ref:
-    tag: 20.2.0
+    tag: 20.2.1
   url: oci://tccr.io/truecharts/tautulli
