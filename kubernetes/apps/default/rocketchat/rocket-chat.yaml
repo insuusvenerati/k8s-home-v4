@@ -38,7 +38,7 @@ spec:
       enabled: true
       federation:
         serveWellKnown: false
-      ingressClassName: internal
+      ingressClassName: external
       path: /
       pathType: Prefix
       tls:
