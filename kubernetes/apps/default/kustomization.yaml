@@ -29,6 +29,7 @@ resources:
   - ./radarr-anime
   - ./sonarr-anime
   - ./mastodon
+  - ./rocketchat
 configMapGenerator:
   - name: general-dashboards
     namespace: default
