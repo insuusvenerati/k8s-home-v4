@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: mastodon
-  namespace: flux-system
+  namespace: default
 spec:
   interval: 24h0m0s
   ref:
