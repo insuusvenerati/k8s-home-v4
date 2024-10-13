@@ -20,33 +20,13 @@ spec:
   values:
     affinity: { }
     deploymentLabels: { }
-    existingMongodbSecret: ""
+    existingMongodbSecret: mongodb-secret
     externalMongodbOplogUrl: null
     externalMongodbUrl: null
     extraEnv: null
     extraInitContainers: [ ]
     extraVolumeMounts: null
     extraVolumes: null
-    federation:
-      enabled: false
-      image:
-        registry: docker.io
-        repository: matrixdotorg
-        tag: latest
-      persistence:
-        accessModes:
-          - ReadWriteOnce
-        enabled: false
-        resources:
-          requests:
-            storage: 10Gi
-    global:
-      annotations: { }
-      tolerations: [ ]
-    hooks:
-      preUpgrade:
-        podAnnotations: { }
-        podLabels: { }
     host: chat.internal.${SECRET_DOMAIN}
     image:
       pullPolicy: IfNotPresent
