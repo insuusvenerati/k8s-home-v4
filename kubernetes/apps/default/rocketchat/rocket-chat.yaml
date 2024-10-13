@@ -35,6 +35,7 @@ spec:
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
+        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
       enabled: true
       federation:
         serveWellKnown: false
