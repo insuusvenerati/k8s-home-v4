@@ -19,9 +19,9 @@ spec:
     mastodon:
       persistence:
         assets:
-          existingClaim: mastodon-pvc
+          existingClaim: mastodon-assets
         system:
-          existingClaim: mastodon-pvc
+          existingClaim: mastodon-system
       secrets:
         existingSecret: mastodon-secret
     ingress:
