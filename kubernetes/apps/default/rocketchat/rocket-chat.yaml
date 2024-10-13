@@ -30,8 +30,7 @@ spec:
     host: chat.internal.${SECRET_DOMAIN}
     image:
       pullPolicy: IfNotPresent
-      repository: registry.rocket.chat/rocketchat/rocket.chat
-      tag: v4.3.0
+      repository: registry.rocket.chat/rocketchat/rocket.chat:v4.3.0
     imagePullSecrets: [ ]
     ingress:
       annotations:
