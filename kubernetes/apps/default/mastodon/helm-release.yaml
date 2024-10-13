@@ -17,6 +17,7 @@ spec:
       repository: ghcr.io/mastodon/mastodon
       pullPolicy: IfNotPresent
     mastodon:
+      local_domain: mastodon.internal.${SECRET_DOMAIN
       persistence:
         assets:
           existingClaim: mastodon-assets
