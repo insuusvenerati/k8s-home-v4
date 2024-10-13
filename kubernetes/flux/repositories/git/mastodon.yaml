@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 24h0m0s
   ref:
-    branch: mian
+    branch: main
   url: https://github.com/mastodon/chart
