@@ -16,6 +16,7 @@ spec:
     image:
       repository: ghcr.io/mastodon/mastodon
       pullPolicy: IfNotPresent
+      tag: v4.3.0
     mastodon:
       local_domain: mastodon.internal.${SECRET_DOMAIN}
       persistence:
