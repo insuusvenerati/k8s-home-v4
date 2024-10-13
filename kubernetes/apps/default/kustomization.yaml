@@ -28,6 +28,7 @@ resources:
   - ./adguard
   - ./radarr-anime
   - ./sonarr-anime
+  - ./mastodon
 configMapGenerator:
   - name: general-dashboards
     namespace: default

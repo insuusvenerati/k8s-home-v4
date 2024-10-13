@@ -1,0 +1,45 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mastodon
+  namespace: default
+spec:
+  chartRef:
+    kind: HelmChart
+    name: mastodon
+    namespace: default
+  interval: 24h
+  releaseName: mastodon
+  targetNamespace: default
+  values:
+    image:
+      repository: ghcr.io/mastodon/mastodon
+      pullPolicy: IfNotPresent
+    mastodon:
+      persistence:
+        assets:
+          existingClaim: mastodon-pvc
+        system:
+          existingClaim: mastodon-pvc
+      secrets:
+        existingSecret: mastodon-secret
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      ingressClassName: internal
+      hosts:
+        - host: mastodon.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+      tls:
+        - secretName: mastodon-tls
+          hosts:
+            - mastodon.internal.${SECRET_DOMAIN}
+    postgresql:
+      auth:
+        existingSecret: mastodon-secret
+    redis:
+      auth:
+        existingSecret: mastodon-secret
