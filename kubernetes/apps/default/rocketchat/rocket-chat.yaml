@@ -117,6 +117,7 @@ spec:
         databases:
           - rocketchat
         existingSecret: mongodb-secret
+        passwords: []
         usernames:
           - rocketchat
       enabled: true
