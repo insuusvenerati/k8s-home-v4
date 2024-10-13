@@ -31,3 +31,4 @@ resources:
   - ./onechart.yaml
   - ./authentik.yaml
   - ./kubeshark.yaml
+  - ./rocket-chat.yaml
