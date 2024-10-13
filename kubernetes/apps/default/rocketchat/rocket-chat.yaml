@@ -31,6 +31,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: registry.rocket.chat/rocketchat/rocket.chat
+      tag: v4.3.0
     imagePullSecrets: [ ]
     ingress:
       annotations:
