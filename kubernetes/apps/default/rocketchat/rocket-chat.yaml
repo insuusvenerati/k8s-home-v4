@@ -153,7 +153,7 @@ spec:
         enabled: true
     nats:
       nats:
-        image: nats:2.4-alpine
+        image: nats:2.10-alpine
     persistence:
       accessMode: ReadWriteMany
       enabled: true
