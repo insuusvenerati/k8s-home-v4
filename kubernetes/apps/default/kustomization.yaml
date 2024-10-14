@@ -6,7 +6,7 @@ resources:
   - ./pvc-ssd.yaml
   - ./sonarr
   - ./overseerr
-  - ./jackett
+#  - ./jackett
   - ./nfs-subdir-external-ssd
   - ./tubearchivist
 #  - ./plex
