@@ -19,6 +19,8 @@ spec:
       tag: v4.3.0
     mastodon:
       local_domain: mastodon.internal.${SECRET_DOMAIN}
+      streaming:
+        workers: 3
       persistence:
         assets:
           existingClaim: mastodon-assets
