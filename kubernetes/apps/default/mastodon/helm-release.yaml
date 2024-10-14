@@ -28,6 +28,8 @@ spec:
           existingClaim: mastodon-system
       secrets:
         existingSecret: mastodon-secret
+    elasticsearch:
+      enabled: false
     ingress:
       enabled: true
       annotations:
