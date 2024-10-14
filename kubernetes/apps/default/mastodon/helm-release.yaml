@@ -45,3 +45,8 @@ spec:
     redis:
       auth:
         existingSecret: mastodon-secret
+      master:
+        persistence:
+          enabled: true
+          storageClass: nfs-client-ssd
+          size: 1Gi
