@@ -10,7 +10,7 @@ spec:
   type: ExternalName
   ports:
     - port: 80
-      targetPort: 968
+      targetPort: 9618
       name: metrics
       protocol: TCP
       appProtocol: https
