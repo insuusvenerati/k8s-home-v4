@@ -23,8 +23,7 @@ spec:
         containers:
           uptime-kuma:
             command:
-              - --data-dir
-              - /data
+              - --data-dir=/data
             env:
               PGID: 1000
               PORT: 3001
