@@ -6,3 +6,8 @@ metadata:
 spec:
   externalName: adguard.stiforr.com
   type: ExternalName
+  ports:
+    - port: 443
+      name: https
+      protocol: TCP
+      appProtocol: https
