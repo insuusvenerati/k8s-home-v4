@@ -146,7 +146,7 @@ spec:
           volumeClaimTemplate:
             spec:
               storageClassName: nfs-client-ssd
-              accessModes: ["ReadWriteMany"]
+              accessModes: [ "ReadWriteMany" ]
               resources:
                 requests:
                   storage: 50Gi
@@ -160,3 +160,7 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
+        additionalScrapeConfigs:
+          - job_name: 'adguard'
+            static_configs:
+              - targets: [ '192.168.1.164:9618/metrics' ]
