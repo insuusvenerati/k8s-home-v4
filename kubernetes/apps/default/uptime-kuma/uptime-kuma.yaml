@@ -22,8 +22,6 @@ spec:
       main:
         containers:
           uptime-kuma:
-            command:
-              - --data-dir=/data
             env:
               PGID: 1000
               PORT: 3001
@@ -32,13 +30,13 @@ spec:
               pullPolicy: IfNotPresent
               repository: louislam/uptime-kuma
               tag: 1.23.15
-            probes:
-              liveness:
-                enabled: true
-              readiness:
-                enabled: true
-              startup:
-                enabled: true
+#            probes:
+#              liveness:
+#                enabled: true
+#              readiness:
+#                enabled: true
+#              startup:
+#                enabled: true
             resources:
               limits:
                 cpu: 200m
@@ -82,6 +80,9 @@ spec:
         size: 1Gi
         storageClass: openebs-hostpath
         type: persistentVolumeClaim
+        globalMounts:
+          - path: /app/data
+            readOnly: false
     service:
       uptime-kuma:
         controller: main
