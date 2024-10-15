@@ -9,8 +9,7 @@ spec:
   externalName: adguard.stiforr.com
   type: ExternalName
   ports:
-    - port: 80
-      targetPort: 9618
+    - port: 443
       name: metrics
       protocol: TCP
       appProtocol: https
