@@ -34,7 +34,7 @@ spec:
             image:
               repository: stiforr/tubearchivist
               tag: unstable
-              imagePullPolicy: Always
+              pullPolicy: Always
             env:
 #              - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
 #                value: true
