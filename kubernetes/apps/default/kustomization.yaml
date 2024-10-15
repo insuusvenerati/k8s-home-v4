@@ -22,7 +22,7 @@ resources:
   - ./doplarr
 #  - ./autobrr
 #  - ./nzbget
-  - ./otel-collector.yaml
+#  - ./otel-collector.yaml
 #  - ./homepage
   - ./qbittorrent
   - ./adguard

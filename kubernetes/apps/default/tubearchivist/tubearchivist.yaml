@@ -33,36 +33,37 @@ spec:
           main:
             image:
               repository: stiforr/tubearchivist
-              tag: v0.4.10.rc7
+              tag: unstable
+              imagePullPolicy: Always
             env:
-              - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-                value: true
-              - name: OTEL_DISABLED_INSTRUMENTATIONS
-                value: fs,elasticsearch
-              - name: OTEL_TRACES_EXPORTER
-                value: otlp
-              - name: OTEL_METRICS_EXPORTER
-                value: otlp
-              - name: OTEL_LOGS_EXPORTER
-                value: otlp
-              - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
-                value: DELTA
-              - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
-                value: base2_exponential_bucket_histogram
-              - name: OTEL_RESOURCE_ATTRIBUTES
-                value: service.name=tubearchivist,application=tubearchivist
-              - name: DJANGO_SETTINGS_MODULE
-                value: config.settings
-              - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
-                value: /api/notification/,/api/ping/,/health
-              - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                value: http://default-collector.default.svc.cluster.local:4317
-              - name: OTEL_EXPORTER_OTLP_PROTOCOL
-                value: grpc
-              - name: OTEL_EXPORTER_OTLP_COMPRESSION
-                value: gzip
-              - name: OTEL_PYTHON_LOG_CORRELATION
-                value: true
+#              - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+#                value: true
+#              - name: OTEL_DISABLED_INSTRUMENTATIONS
+#                value: fs,elasticsearch
+#              - name: OTEL_TRACES_EXPORTER
+#                value: otlp
+#              - name: OTEL_METRICS_EXPORTER
+#                value: otlp
+#              - name: OTEL_LOGS_EXPORTER
+#                value: otlp
+#              - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+#                value: DELTA
+#              - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
+#                value: base2_exponential_bucket_histogram
+#              - name: OTEL_RESOURCE_ATTRIBUTES
+#                value: service.name=tubearchivist,application=tubearchivist
+#              - name: DJANGO_SETTINGS_MODULE
+#                value: config.settings
+#              - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
+#                value: /api/notification/,/api/ping/,/health
+#              - name: OTEL_EXPORTER_OTLP_ENDPOINT
+#                value: http://default-collector.default.svc.cluster.local:4317
+#              - name: OTEL_EXPORTER_OTLP_PROTOCOL
+#                value: grpc
+#              - name: OTEL_EXPORTER_OTLP_COMPRESSION
+#                value: gzip
+#              - name: OTEL_PYTHON_LOG_CORRELATION
+#                value: true
               - name: TZ
                 value: America/Chicago
               - name: PUID
