@@ -5,10 +5,13 @@ metadata:
   name: tautulli
   namespace: default
 spec:
-  chartRef:
-    kind: OCIRepository
-    name: tautulli
-    namespace: flux-system
+  chart:
+    spec:
+      chart: tautulli
+      sourceRef:
+        kind: HelmRepository
+        name: tautulli
+        namespace: flux-system
   interval: 6h0m0s
   releaseName: tautulli
   targetNamespace: default
