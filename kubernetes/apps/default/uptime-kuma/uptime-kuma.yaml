@@ -44,9 +44,9 @@ spec:
               requests:
                 cpu: 100m
                 memory: 128Mi
-            securityContext:
-              runAsGroup: 1000
-              runAsUser: 1000
+#            securityContext:
+#              runAsGroup: 1000
+#              runAsUser: 1000
         enabled: true
         replicas: 1
         revisionHistoryLimit: 3
