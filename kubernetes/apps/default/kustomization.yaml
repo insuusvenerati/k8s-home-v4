@@ -10,7 +10,7 @@ resources:
   - ./nfs-subdir-external-ssd
   - ./tubearchivist
 #  - ./plex
-#  - ./tautulli
+  - ./tautulli
   - ./radarr
   - ./prowlarr
   - ./filebrowser

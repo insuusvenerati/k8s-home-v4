@@ -7,70 +7,90 @@ metadata:
 spec:
   chart:
     spec:
-      chart: tautulli
+      chart: app-template
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: tautulli
+        name: bjw-s
         namespace: flux-system
-  interval: 6h0m0s
+      version: 3.5.1
+  interval: 24h0m0s
   releaseName: tautulli
   targetNamespace: default
   values:
+    controllers:
+      main:
+        containers:
+          tautulli:
+            env:
+              PGID: 1000
+              PUID: 1000
+              TZ: America/Chicago
+            image:
+              pullPolicy: IfNotPresent
+              repository: ghcr.io/tautulli/tautulli
+              tag: v2.14.6
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+            resources:
+              limits:
+                cpu: 200m
+                memory: 256Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsGroup: 1000
+              runAsUser: 1000
+        enabled: true
+        replicas: 1
+        revisionHistoryLimit: 3
+        rollingUpdate:
+          unavailable: 1
+        strategy: RollingUpdate
+        type: deployment
     global:
-      fallbackDefaults:
-        storageClass: openebs-hostpath
-        pvcSize: 10Gi
-    image:
-      pullPolicy: IfNotPresent
-      repository: ghcr.io/tautulli/tautulli
-      tag: v2.14.5@sha256:6017b491d8e9100a97391b639fff5824ad36a315c69aae3c9ed78407994a626e
-    TZ: America/Chicago
-    persistence:
-      config:
-        enabled: true
-        mountPath: /config
-    portal:
-      open:
-        enabled: true
-    service:
-      main:
-        ports:
-          main:
-            port: 8181
-            targetPort: 8181
+      fullnameOverride: tautulli
     ingress:
-      main:
-        enabled: true
-        integrations:
-          traefik:
-            enabled: false
-        primary: true
-        required: true
-        labels: { }
+      tautulli:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          nginx.ingress.kubernetes.io/service-upstream: "false"
-        ingressClassName: "internal"
+        className: internal
+        enabled: true
         hosts:
-          - host: &host tautulli.internal.${SECRET_DOMAIN}
+          - host: tautulli.internal.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: tautulli
         tls:
-          - secretName: tautulli-tls
-            certificateIssuer: ""
-            hosts:
-              - *host
-    workload:
-      main:
-        podSpec:
-          containers:
-            main:
-              args:
-                - --config
-                - /config/config.ini
-                - --datadir
-                - /config
-              command:
-                - python
-                - Tautulli.py
+          - hosts:
+              - tautulli.internal.${SECRET_DOMAIN}
+            secretName: tautulli-tls
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 1Gi
+        storageClass: openebs-hostpath
+        type: persistentVolumeClaim
+    service:
+      tautulli:
+        controller: main
+        enabled: true
+        ports:
+          http:
+            appProtocol: http
+            enabled: true
+            port: 8181
+            primary: true
+            protocol: HTTP
+        primary: true
+    serviceAccount:
+      create: true
