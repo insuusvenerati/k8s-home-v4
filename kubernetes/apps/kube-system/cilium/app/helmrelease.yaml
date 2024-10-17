@@ -63,11 +63,12 @@ spec:
                 - hubble.internal.${SECRET_DOMAIN}
       tls:
         auto:
+          enabled: true
           method: certmanager
           certManagerIssuerRef:
             group: cert-manager.io
             kind: ClusterIssuer
-            name: ca-issuer
+            name: my-ca-issuer
     operator:
       prometheus:
         enabled: true
