@@ -9,5 +9,5 @@ resources:
   - ./reloader/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./spegel/ks.yaml
-  - ./network-policy-crd.yaml
-  - ./gateway-crds.yaml
+#  - ./network-policy-crd.yaml
+#  - ./gateway-crds.yaml
