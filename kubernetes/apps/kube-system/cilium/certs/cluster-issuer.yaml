@@ -1,31 +1,32 @@
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
-  name: selfsigned-issuer
+  name: self-signed
+  namespace: kube-system
 spec:
   selfSigned: {}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: my-selfsigned-ca
-  namespace: cert-manager
+  name: ca
+  namespace: kube-system
 spec:
   isCA: true
-  commonName: my-selfsigned-ca
-  secretName: root-secret
   privateKey:
     algorithm: ECDSA
     size: 256
+  secretName: ca
+  commonName: ca
   issuerRef:
-    name: selfsigned-issuer
-    kind: ClusterIssuer
-    group: cert-manager.io
+    name: self-signed
+    kind: Issuer
 ---
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
-  name: my-ca-issuer
+  name: ca-issuer
+  namespace: kube-system
 spec:
   ca:
-    secretName: root-secret
+    secretName: ca

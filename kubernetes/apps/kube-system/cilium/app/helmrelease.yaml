@@ -68,7 +68,7 @@ spec:
           certManagerIssuerRef:
             group: cert-manager.io
             kind: ClusterIssuer
-            name: my-ca-issuer
+            name: ca-issuer
     operator:
       prometheus:
         enabled: true
