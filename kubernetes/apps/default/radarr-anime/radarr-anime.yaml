@@ -73,7 +73,7 @@ spec:
           nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
           nginx.ingress.kubernetes.io/otel-service-name: radarr-anime
           nginx.ingress.kubernetes.io/service-upstream: "false"
-        className: internal
+        className: cilium
         enabled: true
         hosts:
           - host: radarr-anime.internal.${SECRET_DOMAIN}

@@ -40,7 +40,7 @@ spec:
       autobrr:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-        className: internal
+        className: cilium
         enabled: true
         hosts:
         - host: &host autobrr.internal.${SECRET_DOMAIN}

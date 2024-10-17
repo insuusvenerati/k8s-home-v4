@@ -42,7 +42,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/service-upstream: "false"
-        ingressClassName: internal
+        ingressClassName: cilium
         hosts: &hosts
           - authentik.internal.${SECRET_DOMAIN}
         paths:

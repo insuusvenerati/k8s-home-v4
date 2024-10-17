@@ -57,7 +57,7 @@ spec:
       tautulli:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-        className: internal
+        className: cilium
         enabled: true
         hosts:
           - host: tautulli.internal.${SECRET_DOMAIN}
