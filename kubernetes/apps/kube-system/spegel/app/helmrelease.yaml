@@ -25,6 +25,6 @@ spec:
       name: spegel-helm-values
   values:
     grafanaDashboard:
-      enabled: false
+      enabled: true
     serviceMonitor:
       enabled: true
