@@ -31,6 +31,7 @@ envoy:
     enabled: true
     serviceMonitor:
       enabled: true
+l7Proxy: true
 ingressController:
   enabled: true
   default: false
