@@ -55,34 +55,34 @@ spec:
             image:
               repository: linuxserver/radarr
               tag: 5.11.0
-              probes:
-               liveness:
-                 enabled: true
-                 custom: false
-                 type: TCP
-                 spec:
-                   initialDelaySeconds: 0
-                   periodSeconds: 10
-                   timeoutSeconds: 1
-                   failureThreshold: 3
-               readiness:
-                 enabled: true
-                 custom: false
-                 type: TCP
-                 spec:
-                   initialDelaySeconds: 0
-                   periodSeconds: 10
-                   timeoutSeconds: 1
-                   failureThreshold: 3
-               startup:
-                 enabled: true
-                 custom: false
-                 type: TCP
-                 spec:
-                   initialDelaySeconds: 0
-                   timeoutSeconds: 1
-                   periodSeconds: 5
-                   failureThreshold: 30
+            probes:
+             liveness:
+               enabled: true
+               custom: false
+               type: TCP
+               spec:
+                 initialDelaySeconds: 0
+                 periodSeconds: 10
+                 timeoutSeconds: 1
+                 failureThreshold: 3
+             readiness:
+               enabled: true
+               custom: false
+               type: TCP
+               spec:
+                 initialDelaySeconds: 0
+                 periodSeconds: 10
+                 timeoutSeconds: 1
+                 failureThreshold: 3
+             startup:
+               enabled: true
+               custom: false
+               type: TCP
+               spec:
+                 initialDelaySeconds: 0
+                 timeoutSeconds: 1
+                 periodSeconds: 5
+                 failureThreshold: 30
             resources:
               limits:
                 cpu: 500m
