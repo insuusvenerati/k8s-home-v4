@@ -160,7 +160,7 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
-        additionalScrapeConfigs:
-          - job_name: 'adguard'
-            static_configs:
-              - targets: [ '192.168.1.164:9618/metrics' ]
+#        additionalScrapeConfigs:
+#          - job_name: 'adguard'
+#            static_configs:
+#              - targets: [ '192.168.1.164:9618/metrics' ]
