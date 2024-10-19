@@ -1,0 +1,99 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: uptime-kuma
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: app-template
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.5.1
+  interval: 24h0m0s
+  releaseName: uptime-kuma
+  targetNamespace: default
+  values:
+    controllers:
+      main:
+        containers:
+          uptime-kuma:
+            env:
+              PGID: 1000
+              PORT: 3001
+              PUID: 1000
+            image:
+              pullPolicy: IfNotPresent
+              repository: louislam/uptime-kuma
+              tag: 1.23.15
+#            probes:
+#              liveness:
+#                enabled: true
+#              readiness:
+#                enabled: true
+#              startup:
+#                enabled: true
+            resources:
+              limits:
+                cpu: 200m
+                memory: 256Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+#            securityContext:
+#              runAsGroup: 1000
+#              runAsUser: 1000
+        enabled: true
+        replicas: 1
+        revisionHistoryLimit: 3
+        rollingUpdate:
+          unavailable: 1
+        strategy: RollingUpdate
+        type: deployment
+    global:
+      fullnameOverride: uptime-kuma
+    ingress:
+      uptime-kuma:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        className: cilium
+        enabled: true
+        hosts:
+        - host: uptime.internal.${SECRET_DOMAIN}
+          paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: uptime-kuma
+        tls:
+        - hosts:
+          - uptime.internal.${SECRET_DOMAIN}
+          secretName: uptime-tls
+    persistence:
+      data:
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 1Gi
+        storageClass: openebs-hostpath
+        type: persistentVolumeClaim
+        globalMounts:
+          - path: /app/data
+            readOnly: false
+    service:
+      uptime-kuma:
+        controller: main
+        enabled: true
+        ports:
+          http:
+            appProtocol: http
+            enabled: true
+            port: 3001
+            primary: true
+            protocol: HTTP
+        primary: true
+    serviceAccount:
+      create: true

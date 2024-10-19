@@ -1,0 +1,115 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: network-policy
+  namespace: network
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromEntities:
+        - world
+    - fromEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "1053"
+    - fromEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+            - port: "443"
+              protocol: TCP
+            - port: "4245"
+              protocol: TCP
+          rules:
+            http:
+              - {}
+    - fromEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/instance: kube-prometheus-stack-prometheus
+            k8s:app.kubernetes.io/managed-by: prometheus-operator
+            k8s:app.kubernetes.io/name: prometheus
+            k8s:app.kubernetes.io/version: 2.54.1
+            k8s:io.cilium.k8s.namespace.labels.app.kubernetes.io/component: monitoring
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: monitoring
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.kubernetes.pod.namespace: monitoring
+            k8s:operator.prometheus.io/name: kube-prometheus-stack-prometheus
+            k8s:operator.prometheus.io/shard: "0"
+            k8s:prometheus: kube-prometheus-stack-prometheus
+      toPorts:
+        - ports:
+            - port: "8080"
+  egress:
+    - toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "4317"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "4317"
+              protocol: TCP
+          rules:
+            http:
+              - {}
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "443"
+    - toEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "7844"
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/instance: ingress-nginx-internal
+      toPorts:
+        - ports:
+            - port: "4317"
+              protocol: TCP
+          rules:
+            http:
+              - {}
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+    - toEndpoints:
+        - matchLabels:
+            k8s:app.kubernetes.io/component: controller
+            k8s:app.kubernetes.io/instance: ingress-nginx-external
+            k8s:app.kubernetes.io/managed-by: Helm
+            k8s:app.kubernetes.io/name: ingress-nginx
+            k8s:app.kubernetes.io/part-of: ingress-nginx
+            k8s:app.kubernetes.io/version: 1.11.2
+            k8s:helm.sh/chart: ingress-nginx-4.11.2
+            k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name: network
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/name: cluster-apps
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/namespace: flux-system
+            k8s:io.cilium.k8s.namespace.labels.kustomize.toolkit.fluxcd.io/prune: disabled
+            k8s:io.kubernetes.pod.namespace: network
+      toPorts:
+        - ports:
+            - port: "443"

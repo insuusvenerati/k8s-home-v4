@@ -1,0 +1,187 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: my-uptrace
+  namespace: observability
+spec:
+  chart:
+    spec:
+      chart: uptrace
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: uptrace
+        namespace: flux-system
+      version: 1.7.7
+  interval: 6h0m0s
+  releaseName: my-uptrace
+  targetNamespace: observability
+  dependsOn:
+    - name: opentelemetry-operator
+      namespace: observability
+  values:
+    clickhouse:
+      affinity: {}
+      enabled: true
+      image:
+        pullPolicy: IfNotPresent
+        repository: clickhouse/clickhouse-server
+        tag: "23.11"
+      imagePullSecrets: []
+      nodeSelector: {}
+      persistence:
+        enabled: true
+        size: 8Gi
+        storageClassName: "openebs-hostpath"
+      replicaCount: 1
+      resources: {}
+      service:
+        http_port: 8123
+        tcp_port: 9000
+        type: ClusterIP
+      tolerations: []
+    fullnameOverride: "my-uptrace"
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      className: "internal"
+      enabled: true
+      hosts:
+        - host: uptrace.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - uptrace.internal.${SECRET_DOMAIN}
+          secretName: uptrace-tls
+    nameOverride: ""
+    otelcol:
+      affinity: {}
+      enabled: true
+      nodeSelector: {}
+      otlpExporter:
+        endpoint: http://localhost:14317
+        headers:
+          uptrace-dsn: http://project1_secret_token@localhost:14318?grpc=14317
+        tls:
+          insecure: true
+      resources: {}
+      tolerations: []
+    podAnnotations: {}
+    podSecurityContext: {}
+    postgresql:
+      affinity: {}
+      enabled: true
+      image:
+        pullPolicy: IfNotPresent
+        repository: postgres
+        tag: 15-alpine
+      imagePullSecrets: []
+      nodeSelector: {}
+      persistence:
+        enabled: true
+        size: 8Gi
+        storageClassName: "openebs-hostpath"
+      resources: {}
+      service:
+        port: 5432
+        type: ClusterIP
+      tolerations: []
+    securityContext: {}
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: ""
+    uptrace:
+      affinity: {}
+      config:
+        auth:
+          users:
+            - email: uptrace@localhost
+              name: Anonymous
+              notify_by_email: true
+              password: uptrace
+        ch:
+          addr: uptrace-clickhouse:9000
+          database: uptrace
+          max_execution_time: 30s
+          password: null
+          user: default
+        ch_schema:
+          compression: ZSTD(3)
+          metrics:
+            storage_policy: default
+            ttl_delete: 30 DAY
+          replicated: false
+          spans:
+            storage_policy: default
+            ttl_delete: 7 DAY
+        debug: false
+        listen:
+          grpc:
+            addr: :14317
+          http:
+            addr: :14318
+        logging:
+          level: INFO
+        metrics:
+          drop_attrs:
+            - telemetry_sdk_language
+            - telemetry_sdk_name
+            - telemetry_sdk_version
+        pg:
+          addr: uptrace-postgresql:5432
+          database: uptrace
+          password: uptrace
+          user: uptrace
+        projects:
+          - group_by_env: false
+            group_funcs_by_service: false
+            id: 1
+            name: Uptrace
+            pinned_attrs:
+              - service_name
+              - host_name
+              - deployment_environment
+            prom_compat: true
+            token: project1_secret_token
+          - id: 3
+            name: Istio
+            pinned_attrs:
+              - service_name
+              - host_name
+              - deployment_environment
+            prom_compat: true
+            token: istio_secret_token
+        secret_key: 102c1a557c314fc28198acd017960843
+        site:
+          addr: "http://localhost:14318/"
+        smtp_mailer:
+          enabled: false
+          from: uptrace@localhost
+          host: localhost
+          password: mailhog
+          port: 1025
+          username: mailhog
+        spans: null
+        uptrace_go: null
+      env:
+        - name: K8S_NODE_NAME
+          value: controller
+      envFrom: []
+      image:
+        pullPolicy: IfNotPresent
+        repository: uptrace/uptrace
+      imagePullSecrets: []
+      nodeSelector: {}
+      replicaCount: 1
+      resources: {}
+      service:
+        annotations: {}
+        grpc_port: 14317
+        http_port: 14318
+        loadBalancerSourceRanges: []
+        type: ClusterIP
+      tolerations: []

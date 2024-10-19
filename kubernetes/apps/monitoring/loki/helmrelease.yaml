@@ -1,0 +1,108 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: loki
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 6.16.0
+  interval: 1h0m0s
+  releaseName: loki
+  targetNamespace: monitoring
+  install:
+    remediation:
+      retries: 10
+  upgrade:
+    remediation:
+      retries: 10
+  values:
+    monitoring:
+      dashboards:
+        enabled: false
+      serviceMonitor:
+        enabled: true
+    minio:
+      enabled: false
+    loki:
+      auth_enabled: false
+      image:
+        registry: docker.io
+        repository: grafana/loki
+        tag: 3.2.0
+      storage:
+        type: filesystem
+      commonConfig:
+        replication_factor: 1
+      limits_config:
+        allow_structured_metadata: true
+        volume_enabled: true
+      schemaConfig:
+        configs:
+          - from: "2024-04-01"
+            store: tsdb
+            object_store: filesystem
+            schema: v13
+            index:
+              prefix: loki_index_
+              period: 24h
+      storage_config:
+        filesystem:
+          directory: /tmp/loki/chunks
+      pattern_ingester:
+        enabled: true
+      ingester:
+        chunk_encoding: snappy
+      tracing:
+        enabled: true
+      querier:
+        max_concurrent: 4
+    deploymentMode: SingleBinary
+    singleBinary:
+      replicas: 1
+      persistence:
+        storageClass: nfs-client-ssd
+      resources:
+        limits:
+          cpu: 3
+          memory: 4Gi
+        requests:
+          cpu: 2
+          memory: 2Gi
+      extraEnv:
+        - name: GOMEMLIMIT
+          value: 3750MiB
+    chunksCache:
+      writebackSizeLimit: 500MB
+    # Zero out replica counts of other deployment modes
+    backend:
+      replicas: 0
+    read:
+      replicas: 0
+    write:
+      replicas: 0
+    ingester:
+      replicas: 0
+    querier:
+      replicas: 0
+    queryFrontend:
+      replicas: 0
+    queryScheduler:
+      replicas: 0
+    distributor:
+      replicas: 0
+    compactor:
+      replicas: 0
+    indexGateway:
+      replicas: 0
+    bloomCompactor:
+      replicas: 0
+    bloomGateway:
+      replicas: 0

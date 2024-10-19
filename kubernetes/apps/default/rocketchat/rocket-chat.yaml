@@ -1,0 +1,188 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rocket-chat
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: rocketchat
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: rocket-chat
+        namespace: flux-system
+      version: 6.23.0
+  interval: 24h0m0s
+  releaseName: rocket-chat
+  targetNamespace: default
+  values:
+    affinity: { }
+    deploymentLabels: { }
+    existingMongodbSecret: mongodb-secret
+    externalMongodbOplogUrl: null
+    externalMongodbUrl: null
+    extraEnv: null
+    extraInitContainers: [ ]
+    extraVolumeMounts: null
+    extraVolumes: null
+    host: chat.internal.${SECRET_DOMAIN}
+    image:
+      pullPolicy: IfNotPresent
+      repository: registry.rocket.chat/rocketchat/rocket.chat
+    imagePullSecrets: [ ]
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+      enabled: true
+      federation:
+        serveWellKnown: false
+      ingressClassName: external
+      path: /
+      pathType: Prefix
+      tls:
+        - hosts:
+            - chat.internal.${SECRET_DOMAIN}
+          secretName: rocket-tls
+    livenessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 60
+      path: /health
+      periodSeconds: 15
+      successThreshold: 1
+      timeoutSeconds: 5
+    microservices:
+      account:
+        image:
+          pullPolicy: IfNotPresent
+          repository: rocketchat/account-service
+        replicas: 1
+        resources: { }
+        securityContext: { }
+        tolerations: [ ]
+      accountService: null
+      authorization:
+        image:
+          pullPolicy: IfNotPresent
+          repository: rocketchat/authorization-service
+        replicas: 1
+        resources: { }
+        securityContext: { }
+        tolerations: [ ]
+      authorizationService: null
+      ddpStreamer:
+        image:
+          pullPolicy: IfNotPresent
+          repository: rocketchat/ddp-streamer-service
+        replicas: 1
+        resources: { }
+        securityContext: { }
+        tolerations: [ ]
+      ddpStreamerService: null
+      enabled: false
+      heartbeatInterval: 10
+      heartbeatTimeout: 30
+      logLevel: warn
+      nats:
+        replicas: 1
+      natsService: null
+      presence:
+        image:
+          pullPolicy: IfNotPresent
+          repository: rocketchat/presence-service
+        replicas: 1
+        resources: { }
+        securityContext: { }
+        tolerations: [ ]
+      presenceService: null
+      streamHub:
+        image:
+          pullPolicy: IfNotPresent
+          repository: rocketchat/stream-hub-service
+        replicas: 1
+        resources: { }
+        securityContext: { }
+        tolerations: [ ]
+      streamHubService: null
+    minAvailable: 1
+    mongodb:
+      arbiter:
+        enabled: false
+        pdb:
+          minAvailable: 0
+      architecture: replicaset
+      auth:
+        databases:
+          - rocketchat
+        existingSecret: mongodb-secret
+        passwords: [empty]
+        usernames:
+          - rocketchat
+      enabled: true
+      initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
+      pdb:
+        minAvailable: 0
+      persistence:
+        accessMode: ReadWriteMany
+        enabled: true
+        size: 8Gi
+        storageClass: nfs-client-ssd
+      replicaCount: 1
+      volumePermissions:
+        enabled: true
+    nats:
+      nats:
+        image: nats:2.4-alpine
+    persistence:
+      accessMode: ReadWriteMany
+      enabled: true
+      size: 8Gi
+      storageClass: nfs-client-ssd
+    podAnnotations: { }
+    podAntiAffinity: ""
+    podAntiAffinityTopologyKey: kubernetes.io/hostname
+    podDisruptionBudget:
+      enabled: true
+    podLabels: { }
+    prometheusScraping:
+      enabled: true
+      port: 9100
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      path: /health
+      periodSeconds: 15
+      successThreshold: 1
+      timeoutSeconds: 5
+    replicaCount: 1
+    securityContext:
+      enabled: true
+      fsGroup: 999
+      runAsUser: 999
+    service:
+      annotations: { }
+      labels: { }
+      loadBalancerIP: ""
+      port: 80
+      type: ClusterIP
+    serviceAccount:
+      annotations: { }
+      create: true
+      name: null
+    serviceMonitor:
+      enabled: true
+      intervals:
+        - 30s
+      ports:
+        - metrics
+    smtp:
+      enabled: false
+      host: null
+      password: null
+      port: 587
+      username: null
+    tolerations: [ ]

@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: plex-media-server
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: plex-media-server
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: plex
+        namespace: flux-system
+  interval: 1h0m0s
+  releaseName: plex-media-server
+  targetNamespace: default
+  values:
+    extraEnv:
+      ALLOWED_NETWORKS: 192.168.1.0/24
+      PLEX_GID: "1000"
+      PLEX_UID: "1000"
+      PLEX_CLAIM: "claim-nwaQbqetDXyNWAN-dH8z"
+    # extraVolumeMounts:
+    #   - mountPath: /media
+    #     name: media-pvc-ssd
+    extraVolumes: []
+    fullnameOverride: "plex-media-server"
+    image:
+      pullPolicy: IfNotPresent
+      registry: index.docker.io
+      repository: plexinc/pms-docker
+      sha: ""
+      tag: latest
+    # initContainer:
+    #   image:
+    #     registry: index.docker.io
+    #     repository: alpine
+    #     # If unset use latest
+    #     tag: 3.18.0
+    #     sha: ""
+    #     pullPolicy: IfNotPresent
+    #   script: |-
+    #     #!/bin/sh
+    #     set -e
+    #     echo "Installing tubearchivist plex plugin"
+    #     apk add --no-cache wget
+    #     wget https://github.com/tubearchivist/tubearchivist-plex/archive/refs/heads/main.zip
+    #     unzip main.zip
+    #     mv tubearchivist-plex-main /config/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/tubearchivist.bundle
+    imagePullSecrets: []
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        nginx.ingress.kubernetes.io/service-upstream: "false"
+      enabled: true
+      ingressClassName: cilium
+      url: plex.internal.${SECRET_DOMAIN}
+    pms:
+      configExistingClaim: "media-pvc-ssd"
+      configStorage: 2Gi
+      resources: {}
+      storageClassName: nfs-client-ssd
+    service:
+      annotations: {}
+      port: 32400
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: false
+      create: true
+      name: ""

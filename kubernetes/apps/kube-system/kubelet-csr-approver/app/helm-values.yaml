@@ -1,0 +1,3 @@
+---
+providerRegex: ^(controller|worker)$
+bypassDnsResolution: true

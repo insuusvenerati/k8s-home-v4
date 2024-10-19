@@ -1,0 +1,118 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ingress-nginx-internal
+  namespace: network
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: 4.11.3
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: ingress-nginx-internal
+    controller:
+      podAnnotations:
+        traffic.sidecar.istio.io/includeInboundPorts: ""
+        traffic.sidecar.istio.io/excludeInboundPorts: "80,443"
+        traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.96.0.0/16,10.69.0.0/16"
+      labels:
+        sidecar.istio.io/inject: "false"
+      service:
+        annotations:
+          io.cilium/lb-ipam-ips: "192.168.1.202"
+          lbipam.cilium.io/sharing-key: "ingress"
+          lbipam.cilium.io/sharing-cross-namespace: "forgejo,network"
+        externalTrafficPolicy: Cluster
+      ingressClassResource:
+        name: internal
+        default: true
+        controllerValue: k8s.io/internal
+      opentelemetry:
+        enabled: true
+        name: opentelemetry
+        image:
+          registry: registry.k8s.io
+          image: ingress-nginx/opentelemetry-1.25.3
+          ## for backwards compatibility consider setting the full image url via the repository value below
+          ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
+          ## repository:
+          tag: v20240813-b933310d
+          digest: sha256:f7604ac0547ed64d79b98d92133234e66c2c8aade3c1f4809fed5eec1fb7f922
+          distroless: true
+        containerSecurityContext:
+          runAsNonRoot: true
+          # -- The image's default user, inherited from its base image `cgr.dev/chainguard/static`.
+          runAsUser: 65532
+          allowPrivilegeEscalation: false
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+        resources: { }
+      admissionWebhooks:
+        objectSelector:
+          matchExpressions:
+            - key: ingress-class
+              operator: In
+              values: [ "internal" ]
+      config:
+        enable-opentelemetry: "true"
+        opentelemetry-operation-name: "HTTP $request_method $service_name $uri"
+        opentelemetry-trust-incoming-span: "true"
+        otlp-collector-host: "default-collector.default.svc.cluster.local"
+        otlp-collector-port: "4317"
+        otel-max-queuesize: "2048"
+        otel-schedule-delay-millis: "5000"
+        otel-max-export-batch-size: "512"
+        otel-service-name: "nginx-proxy" # Opentelemetry resource name
+        otel-sampler: "AlwaysOn" # Also: AlwaysOff, TraceIdRatioBased
+        otel-sampler-ratio: "0.5"
+        otel-sampler-parent-based: "true"
+        client-body-buffer-size: 100M
+        client-body-timeout: 120
+        client-header-timeout: 120
+        enable-brotli: "true"
+        enable-real-ip: "true"
+        hsts-max-age: 31449600
+        keep-alive-requests: 10000
+        keep-alive: 120
+        log-format-escape-json: "true"
+        log-format-upstream: >
+          {"msec": "$msec", "connection": "$connection", "connection_requests": "$connection_requests", "pid": "$pid", "request_id": "$request_id",
+            "request_length": "$request_length", "remote_addr": "$remote_addr", "remote_user": "$remote_user", "remote_port": "$remote_port", "time_local": "$time_local",
+            "time_iso8601": "$time_iso8601", "request": "$request", "request_uri": "$request_uri", "args": "$args", "status": "$status", "body_bytes_sent": "$body_bytes_sent",
+            "bytes_sent": "$bytes_sent", "http_referer": "$http_referer", "http_user_agent": "$http_user_agent", "http_x_forwarded_for": "$http_x_forwarded_for", "http_host": "$http_host",
+            "server_name": "$server_name", "request_time": "$request_time", "upstream": "$upstream_addr", "upstream_connect_time": "$upstream_connect_time", "upstream_header_time": "$upstream_header_time",
+            "upstream_response_time": "$upstream_response_time", "upstream_response_length": "$upstream_response_length", "upstream_cache_status": "$upstream_cache_status", "ssl_protocol": "$ssl_protocol",
+            "ssl_cipher": "$ssl_cipher", "scheme": "$scheme", "request_method": "$request_method", "server_protocol": "$server_protocol", "pipe": "$pipe", "gzip_ratio": "$gzip_ratio", "http_cf_ray": "$http_cf_ray"}
+        proxy-body-size: 0
+        proxy-buffer-size: 16k
+        ssl-protocols: TLSv1.3 TLSv1.2
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+          namespaceSelector:
+            any: true
+      extraArgs:
+        default-ssl-certificate: "network/${SECRET_DOMAIN/./-}-production-tls"
+      resources:
+        requests:
+          cpu: 100m
+        limits:
+          memory: 500Mi

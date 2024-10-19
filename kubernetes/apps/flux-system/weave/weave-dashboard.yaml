@@ -1,0 +1,69 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  annotations:
+    metadata.weave.works/description:
+      This is the source location for the Weave GitOps
+      Dashboard's helm chart.
+  labels:
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/created-by: weave-gitops-cli
+    app.kubernetes.io/name: weave-gitops-dashboard
+    app.kubernetes.io/part-of: weave-gitops
+  name: ww-dashboard
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  type: oci
+  url: oci://ghcr.io/weaveworks/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  annotations:
+    metadata.weave.works/description:
+      This is the Weave GitOps Dashboard.  It provides
+      a simple way to get insights into your GitOps workloads.
+  name: ww-dashboard
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: weave-gitops
+      sourceRef:
+        kind: HelmRepository
+        name: ww-dashboard
+        namespace: flux-system
+  interval: 1h0m0s
+  upgrade:
+    remediation:
+      retries: 10
+  install:
+    remediation:
+      retries: 10
+  values:
+    networkPolicy:
+      create: false
+    rbac:
+      create: true
+      additionalRules: []
+    adminUser:
+      create: true
+      createSecret: false
+      createClusterRole: true
+    ingress:
+      enabled: true
+      className: internal
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        nginx.ingress.kubernetes.io/service-upstream: "false"
+      hosts:
+        - host: &host weave.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: weave-tls
+          hosts:
+            - *host

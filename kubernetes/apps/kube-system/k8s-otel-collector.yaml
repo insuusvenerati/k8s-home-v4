@@ -1,0 +1,30 @@
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: k8s-collector
+  namespace: kube-system
+spec:
+  mode: deployment
+  config:
+    receivers:
+      k8s_cluster:
+        auth_type: serviceAccount
+
+    exporters:
+      otlp/uptrace:
+        endpoint: my-uptrace.observability.svc.cluster.local:14317
+        headers: { 'uptrace-dsn': 'http://k8s_secret_token@localhost:14318?grpc=14317' }
+
+    processors:
+      resourcedetection:
+        detectors: [env, system]
+      cumulativetodelta: {}
+      batch:
+        timeout: 10s
+
+    service:
+      pipelines:
+        metrics:
+          receivers: [k8s_cluster]
+          processors: [cumulativetodelta, batch, resourcedetection]
+          exporters: [otlp/uptrace]

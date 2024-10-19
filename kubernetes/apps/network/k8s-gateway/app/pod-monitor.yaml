@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: k8s-gateway
+  namespace: network
+spec:
+  jobLabel: k8s-gateway
+  selector:
+    matchLabels:
+      k8s-app: k8s-gateway
+  namespaceSelector:
+    matchNames:
+      - network
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s

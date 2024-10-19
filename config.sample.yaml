@@ -188,6 +188,7 @@ bootstrap_cloudflare:
   #   in your nodes host network that is NOT being used. This is announced over L2.
   gateway_vip: ""
   # (Required) Options for Cloudflare Tunnel
+  # There's two methods to create a tunnel, via the CLI or the Cloudflare dashboard.
   #   1. Authenticate cloudflared to your domain with the following command:
   #     > cloudflared tunnel login
   #   2. Create the tunnel with the following command:

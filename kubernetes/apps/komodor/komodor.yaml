@@ -1,0 +1,254 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: komodor
+  namespace: komodor
+spec:
+  chart:
+    spec:
+      chart: komodor-agent
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: komodor
+        namespace: flux-system
+  install:
+    createNamespace: true
+  interval: 6h0m0s
+  releaseName: komodor
+  targetNamespace: komodor
+  values:
+    allowedResources:
+      admissionRegistrationResources: true
+      allowReadAll: true
+      argoWorkflows:
+        clusterWorkflowTemplates: true
+        cronWorkflows: true
+        workflowTemplates: true
+        workflows: true
+      authorizationResources: true
+      certificateSigningRequest: true
+      clusterRole: true
+      clusterRoleBinding: true
+      configMap: true
+      controllerRevision: true
+      cronjob: true
+      csiDriver: true
+      csiNode: true
+      csiStorageCapacity: true
+      customReadAPIGroups: []
+      daemonSet: true
+      deployment: true
+      endpointSlice: true
+      endpoints: true
+      event: true
+      flowControlResources: true
+      horizontalPodAutoscaler: true
+      ingress: true
+      ingressClass: true
+      job: true
+      lease: true
+      limitRange: true
+      metrics: true
+      namespace: true
+      networkPolicy: true
+      node: true
+      persistentVolume: true
+      persistentVolumeClaim: true
+      pod: true
+      podTemplate: true
+      policyResources: true
+      priorityClass: true
+      replicaSet: true
+      replicationController: true
+      resourceQuota: true
+      role: true
+      roleBinding: true
+      rollout: true
+      runtimeClass: true
+      secret: true
+      service: true
+      serviceAccount: true
+      statefulSet: true
+      storageClass: true
+      volumeAttachment: true
+    apiKey: null
+    apiKeySecret: komodor-secret
+    capabilities:
+      actions: true
+      events:
+        enableRWCache: true
+        namespacesDenylist: [portainer,monitoring]
+        redact: []
+        watchNamespace: all
+      helm: true
+      logs:
+        enabled: true
+        logsNamespacesAllowlist: []
+        logsNamespacesDenylist: [portainer,monitoring]
+        nameDenylist: []
+        redact: []
+      metrics: true
+      networkMapper: false
+      nodeEnricher: true
+      rbac: true
+      redaction:
+        secret:
+          enable: true
+      telemetry:
+        collectApiServerMetrics: false
+        enabled: true
+    clusterName: k8s-home
+    communications:
+      apiServerUrl: https://kubernetes.default.svc.cluster.local
+      mgmtServerHost: https://app.komodor.com
+      serverHost: https://app.komodor.com
+      tasksServerHost: https://app.komodor.com
+      telemetryServerHost: https://telemetry.komodor.com
+      wsHost: wss://app.komodor.com
+    components:
+      komodorAgent:
+        affinity: {}
+        annotations: {}
+        labels: {}
+        networkMapper:
+          image:
+            name: network-mapper
+            tag: v1.0.3
+          resources: {}
+        nodeSelector: {}
+        podAnnotations: {}
+        supervisor:
+          extraEnvVars: []
+          image:
+            name: komodor-agent
+            tag: null
+          ports:
+            healthCheck: 8089
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 256Mi
+        tolerations: []
+        watcher:
+          extraEnvVars: []
+          image:
+            name: komodor-agent
+            tag: null
+          ports:
+            healthCheck: 8090
+          resources:
+            limits:
+              cpu: 2
+              memory: 8Gi
+            requests:
+              cpu: 0.25
+              memory: 256Mi
+      komodorDaemon:
+        affinity: {}
+        annotations: {}
+        labels: {}
+        metrics:
+          extraEnvVars: []
+          image:
+            name: telegraf
+            tag: 1.31.3-alpine-v1
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 0.1
+              memory: 384Mi
+        metricsInit:
+          extraEnvVars: []
+          image:
+            name: komodor-agent
+            tag: null
+          resources: {}
+        networkSniffer:
+          image:
+            name: network-mapper-sniffer
+            tag: v1.0.3
+          resources: {}
+        nodeEnricher:
+          extraEnvVars: []
+          image:
+            name: komodor-agent
+            tag: null
+          resources:
+            limits:
+              cpu: 10m
+              memory: 100Mi
+            requests:
+              cpu: 1m
+              memory: 10Mi
+        nodeSelector: {}
+        podAnnotations: {}
+        tolerations: []
+      komodorDaemonWindows:
+        affinity: {}
+        annotations: {}
+        labels: {}
+        metrics:
+          extraEnvVars: []
+          image:
+            name: telegraf-windows
+            tag: 1.31.0-v1
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 0.1
+              memory: 384Mi
+        nodeSelector: {}
+        podAnnotations: {}
+        tolerations: []
+      komodorMetrics:
+        affinity: {}
+        annotations: {}
+        labels: {}
+        metrics:
+          extraEnvVars: []
+          image:
+            name: telegraf
+            tag: 1.31.3-alpine-v1
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 0.1
+              memory: 384Mi
+        metricsInit:
+          extraEnvVars: []
+          image:
+            name: komodor-agent
+            tag: null
+          resources: {}
+        nodeSelector: {}
+        podAnnotations: {}
+        tolerations: []
+    createNamespace: true
+    customCa:
+      enabled: false
+      secretName: null
+    imagePullSecret: null
+    imageRepo: public.ecr.aws/komodor-public
+    networkMapperImageVersion: v1.0.3
+    proxy:
+      enabled: false
+      http: null
+      https: null
+      komodorOnly: true
+      no_proxy: null
+    pullPolicy: IfNotPresent
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: null
+    tags: ""
+    telegrafImageVersion: 1.31.3-alpine-v1
+    telegrafWindowsImageVersion: 1.31.0-v1

@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nzbget
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: app-template
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.4.0
+  interval: 6h0m0s
+  releaseName: nzbget
+  targetNamespace: default
+  values:
+    controllers:
+      main:
+        containers:
+          nzbget:
+            env:
+              TZ: America/Chicago
+              PUID: 1000
+              PGID: 1000
+            image:
+              repository: lscr.io/linuxserver/nzbget
+              tag: v24.3-ls162
+#            securityContext:
+#              runAsGroup: 1000
+#              runAsUser: 1000
+        enabled: true
+        type: deployment
+    global:
+      fullnameOverride: nzbget
+      labels:
+        app: nzbget
+    ingress:
+      nzbget:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        className: cilium
+        enabled: true
+        hosts:
+        - host: nzbget.internal.${SECRET_DOMAIN}
+          paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: nzbget
+        tls:
+        - hosts:
+            - nzbget.internal.${SECRET_DOMAIN}
+          secretName: nzbget-tls
+    persistence:
+      config:
+        enabled: true
+        size: 1Gi
+        storageClass: nfs-client-ssd
+        accessMode: ReadWriteOnce
+      data:
+        enabled: true
+        existingClaim: media-pvc-ssd
+    service:
+      nzbget:
+        controller: main
+        enabled: true
+        ports:
+          http:
+            appProtocol: http
+            enabled: true
+            port: 6789
