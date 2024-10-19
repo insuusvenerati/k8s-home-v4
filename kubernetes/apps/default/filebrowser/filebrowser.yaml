@@ -28,9 +28,9 @@ spec:
             - name: TZ
               value: "America/Chicago"
             - name: PUID
-              value: "1000"
+              value: "0"
             - name: PGID
-              value: "1000"
+              value: "0"
             image:
               repository: filebrowser/filebrowser
               tag: v2.31.1-s6
