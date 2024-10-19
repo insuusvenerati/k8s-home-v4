@@ -24,6 +24,55 @@ spec:
     kind: OCIRepository
     name: flux-manifests
   patches:
+    - patch: |
+        # Allow Helm DNS lookups
+        - op: add
+          path: /spec/template/spec/containers/0/args/-
+          value: --feature-gates=AllowDNSLookups=true
+      target:
+        kind: Deployment
+        name: helm-controller
+    - patch: |
+        - op: add
+          path: '/spec/template/spec/volumes/-'
+          value:
+            name: persistent-data
+            persistentVolumeClaim:
+              claimName: gotk-pvc
+        - op: replace
+          path: '/spec/template/spec/containers/0/volumeMounts/0'
+          value:
+            name: persistent-data
+            mountPath: /data
+      target:
+        kind: Deployment
+        name: source-controller
+    - patch: |
+        - op: add
+          path: /spec/template/spec/containers/0/args/-
+          value: --helm-cache-max-size=10
+        - op: add
+          path: /spec/template/spec/containers/0/args/-
+          value: --helm-cache-ttl=60m
+        - op: add
+          path: /spec/template/spec/containers/0/args/-
+          value: --helm-cache-purge-interval=5m
+      target:
+        kind: Deployment
+        name: source-controller
+    - patch: |
+        - op: add
+          path: /spec/template/spec/containers/0/args/-
+          value: --concurrent=20
+        - op: replace
+          path: /spec/template/spec/volumes/0
+          value:
+            name: temp
+            emptyDir:
+              medium: Memory
+      target:
+        kind: Deployment
+        name: kustomize-controller
     # Remove the network policies
     - patch: |
         $patch: delete
@@ -39,13 +88,13 @@ spec:
     - patch: |
         - op: add
           path: /spec/template/spec/containers/0/args/-
-          value: --concurrent=8
-        - op: add
-          path: /spec/template/spec/containers/0/args/-
           value: --kube-api-qps=500
         - op: add
           path: /spec/template/spec/containers/0/args/-
           value: --kube-api-burst=1000
+        - op: add
+          path: /spec/template/spec/containers/0/args/-
+          value: --concurrent=10
         - op: add
           path: /spec/template/spec/containers/0/args/-
           value: --requeue-dependency=5s

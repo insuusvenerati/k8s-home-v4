@@ -16,15 +16,7 @@ cni:
 endpointRoutes:
   enabled: true
 envoy:
-  enabled: true
-  debug:
-    admin:
-      enabled: false
-  prometheus:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-l7Proxy: true
+  enabled: false
 ingressController:
   enabled: true
   default: false
@@ -33,9 +25,9 @@ ingressController:
   loadbalancerMode: shared
   service:
     annotations:
-      io.cilium/lb-ipam-ips: 192.168.1.205
-clustermesh:
-  useAPIServer: false
+      lbipam.cilium.io/ips: 192.168.1.205
+hubble:
+  enabled: false
 ipam:
   mode: kubernetes
 ipv4NativeRoutingCIDR: "10.69.0.0/16"
