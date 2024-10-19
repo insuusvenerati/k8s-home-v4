@@ -4,3 +4,19 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./webhooks/ks.yaml
+  - ./pod-monitor.yaml
+  - ./capacitor
+configMapGenerator:
+  - name: flux-grafana-dashboards
+    namespace: monitoring
+    files:
+      - dashboards/flux-cluster.json
+      - dashboards/flux-control-plane.json
+      - dashboards/flux-logs.json
+    options:
+      annotations:
+        grafana-dashboard-folder: flux
+      labels:
+        grafana_dashboard: "1"
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/component: monitoring

@@ -29,13 +29,13 @@ spec:
       enabled: true
       metrics:
         enabled:
-          - dns:query
+          - dns:query;labelsContext=source_namespace,destination_namespace
           - drop
-          - tcp
-          - flow
+          - tcp:destinationContext=dns|ip;sourceContext=dns|ip;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
+          - flow:destinationContext=dns|ip;sourceContext=dns|ip;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
           - port-distribution
           - icmp
-          - http
+          - httpV2:destinationContext=dns|ip;sourceContext=dns|ip;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
         serviceMonitor:
           enabled: true
         dashboards:
@@ -54,7 +54,21 @@ spec:
         ingress:
           enabled: true
           className: internal
-          hosts: ["hubble.${SECRET_DOMAIN}"]
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-production
+          hosts: [ "hubble.internal.${SECRET_DOMAIN}" ]
+          tls:
+            - secretName: hubble-tls
+              hosts:
+                - hubble.internal.${SECRET_DOMAIN}
+      tls:
+        auto:
+          enabled: true
+          method: certmanager
+          certManagerIssuerRef:
+            group: cert-manager.io
+            kind: Issuer
+            name: ca-issuer
     #% endif %#
     operator:
       prometheus:
