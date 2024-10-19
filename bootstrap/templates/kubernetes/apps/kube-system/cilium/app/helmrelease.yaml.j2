@@ -27,6 +27,7 @@ spec:
     #% if bootstrap_cloudflare.enabled %#
     hubble:
       enabled: true
+      enableOpenMetrics: true
       metrics:
         enabled:
           - dns:query;labelsContext=source_namespace,destination_namespace
@@ -53,7 +54,7 @@ spec:
         rollOutPods: true
         ingress:
           enabled: true
-          className: internal
+          className: cilium
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt-production
           hosts: [ "hubble.internal.${SECRET_DOMAIN}" ]
