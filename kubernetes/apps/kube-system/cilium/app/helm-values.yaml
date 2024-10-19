@@ -1,10 +1,7 @@
 ---
-socketLB:
-  hostNamespaceOnly: true
 autoDirectNodeRoutes: true
 bpf:
   masquerade: false # Required for Talos `.machine.features.hostDNS.forwardKubeDNSToHost`
-  tproxy: true
 cgroup:
   automount:
     enabled: false
@@ -17,10 +14,6 @@ cni:
 # NOTE: devices might need to be set if you have more than one active NIC on your hosts
 # devices: eno+ eth+
 endpointRoutes:
-  enabled: true
-policyAuditMode: true
-#policyEnforcementMode: "never"
-envoyConfig:
   enabled: true
 envoy:
   enabled: true
@@ -54,7 +47,7 @@ l2announcements:
   enabled: true
 loadBalancer:
   algorithm: maglev
-  mode: snat
+  mode: "hybrid"
 localRedirectPolicy: true
 operator:
   replicas: 1
