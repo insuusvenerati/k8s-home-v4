@@ -21,15 +21,6 @@ endpointRoutes:
   enabled: true
 envoy:
   enabled: false
-ingressController:
-  enabled: true
-  default: false
-  defaultSecretNamespace: network
-  defaultSecretName: stiforr-com-production-tls
-  loadbalancerMode: shared
-  service:
-    annotations:
-      lbipam.cilium.io/ips: 192.168.1.205
 hubble:
   enabled: false
 ipam:
