@@ -13,8 +13,16 @@ repositories:
     url: https://coredns.github.io/helm
   - name: postfinance
     url: https://postfinance.github.io/kubelet-csr-approver
+  - name: openebs
+    url: https://openebs.github.io/openebs
 
 releases:
+  - name: openebs
+    namespace: openebs-system
+    chart: openebs
+    version: 4.1.1
+    values:
+      - ../apps/openebs-system/openebs/app/helm-values.yaml
   - name: prometheus-operator-crds
     namespace: observability
     chart: oci://ghcr.io/prometheus-community/charts/prometheus-operator-crds

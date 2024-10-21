@@ -76,6 +76,20 @@ nodes:
 
 # Global patches
 patches:
+  - # Force nameserver
+    |-
+    machine:
+      network:
+        nameservers:
+          - 1.1.1.1
+          - 1.0.0.1
+  - # Configure NTP
+    |-
+    machine:
+      time:
+        disabled: false
+        servers:
+          - time.cloudflare.com
   - "@./patches/global/cluster-discovery.yaml"
   - "@./patches/global/containerd.yaml"
   - "@./patches/global/disable-search-domain.yaml"
@@ -89,6 +103,5 @@ controlPlane:
   patches:
     - "@./patches/controller/api-access.yaml"
     - "@./patches/controller/cluster.yaml"
-    - "@./patches/controller/disable-admission-controller.yaml"
     - "@./patches/controller/etcd.yaml"
 
