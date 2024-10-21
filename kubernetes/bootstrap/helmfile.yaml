@@ -19,8 +19,10 @@ repositories:
 releases:
   - name: openebs
     namespace: openebs-system
-    chart: openebs
+    chart: openebs/openebs
     version: 4.1.1
+    needs:
+      - kube-system/cilium
     values:
       - ../apps/openebs-system/openebs/app/helm-values.yaml
   - name: prometheus-operator-crds
