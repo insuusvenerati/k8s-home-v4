@@ -36,3 +36,4 @@ spec:
   accessModes:
     - ReadWriteMany
   volumeName: media-pv-ssd
+  storageClassName: ""
