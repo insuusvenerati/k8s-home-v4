@@ -61,7 +61,7 @@ spec:
                custom: false
                type: TCP
                spec:
-                 initialDelaySeconds: 0
+                 initialDelaySeconds: 1
                  periodSeconds: 10
                  timeoutSeconds: 1
                  failureThreshold: 3
@@ -70,7 +70,7 @@ spec:
                custom: false
                type: TCP
                spec:
-                 initialDelaySeconds: 0
+                 initialDelaySeconds: 1
                  periodSeconds: 10
                  timeoutSeconds: 1
                  failureThreshold: 3
@@ -79,7 +79,7 @@ spec:
                custom: false
                type: TCP
                spec:
-                 initialDelaySeconds: 60
+                 initialDelaySeconds: 90
                  timeoutSeconds: 1
                  periodSeconds: 5
                  failureThreshold: 30
