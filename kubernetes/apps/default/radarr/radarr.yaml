@@ -61,25 +61,25 @@ spec:
                custom: false
                type: TCP
                spec:
-                 initialDelaySeconds: 1
+                 initialDelaySeconds: 120
                  periodSeconds: 10
                  timeoutSeconds: 1
-                 failureThreshold: 3
+                 failureThreshold: 5
              readiness:
                enabled: true
                custom: false
                type: TCP
                spec:
-                 initialDelaySeconds: 1
+                 initialDelaySeconds: 120
                  periodSeconds: 10
                  timeoutSeconds: 1
-                 failureThreshold: 3
+                 failureThreshold: 5
              startup:
                enabled: false
                custom: false
                type: TCP
                spec:
-                 initialDelaySeconds: 90
+                 initialDelaySeconds: 120
                  timeoutSeconds: 1
                  periodSeconds: 5
                  failureThreshold: 30
