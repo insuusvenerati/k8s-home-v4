@@ -18,27 +18,16 @@ spec:
   releaseName: rocket-chat
   targetNamespace: default
   values:
-    affinity: { }
-    deploymentLabels: { }
     existingMongodbSecret: mongodb-secret
-    externalMongodbOplogUrl: null
-    externalMongodbUrl: null
-    extraEnv: null
-    extraInitContainers: [ ]
-    extraVolumeMounts: null
-    extraVolumes: null
     host: chat.internal.${SECRET_DOMAIN}
     image:
       pullPolicy: IfNotPresent
       repository: registry.rocket.chat/rocketchat/rocket.chat
-    imagePullSecrets: [ ]
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
       enabled: true
-      federation:
-        serveWellKnown: false
       ingressClassName: external
       path: /
       pathType: Prefix
@@ -55,58 +44,7 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     microservices:
-      account:
-        image:
-          pullPolicy: IfNotPresent
-          repository: rocketchat/account-service
-        replicas: 1
-        resources: { }
-        securityContext: { }
-        tolerations: [ ]
-      accountService: null
-      authorization:
-        image:
-          pullPolicy: IfNotPresent
-          repository: rocketchat/authorization-service
-        replicas: 1
-        resources: { }
-        securityContext: { }
-        tolerations: [ ]
-      authorizationService: null
-      ddpStreamer:
-        image:
-          pullPolicy: IfNotPresent
-          repository: rocketchat/ddp-streamer-service
-        replicas: 1
-        resources: { }
-        securityContext: { }
-        tolerations: [ ]
-      ddpStreamerService: null
       enabled: false
-      heartbeatInterval: 10
-      heartbeatTimeout: 30
-      logLevel: warn
-      nats:
-        replicas: 1
-      natsService: null
-      presence:
-        image:
-          pullPolicy: IfNotPresent
-          repository: rocketchat/presence-service
-        replicas: 1
-        resources: { }
-        securityContext: { }
-        tolerations: [ ]
-      presenceService: null
-      streamHub:
-        image:
-          pullPolicy: IfNotPresent
-          repository: rocketchat/stream-hub-service
-        replicas: 1
-        resources: { }
-        securityContext: { }
-        tolerations: [ ]
-      streamHubService: null
     minAvailable: 1
     mongodb:
       arbiter:
