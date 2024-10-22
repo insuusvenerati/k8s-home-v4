@@ -44,7 +44,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: sonarr-apikey
-                    key: API_KEY
+                    key: APIKEY
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
