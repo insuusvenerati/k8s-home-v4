@@ -6,29 +6,29 @@ resources:
   - ./pvc-ssd.yaml
   - ./sonarr
   - ./overseerr
-#  - ./jackett
+  #  - ./jackett
   - ./nfs-subdir-external-ssd
   - ./tubearchivist
-#  - ./plex
+  #  - ./plex
   - ./tautulli
   - ./radarr
   - ./prowlarr
   - ./filebrowser
-#  - ./authentik
+  #  - ./authentik
   - ./proxmox
   - ./influx
   - ./bazarr
   # - ./network-policy.yaml
   - ./doplarr
-#  - ./autobrr
-#  - ./nzbget
-#  - ./otel-collector.yaml
-#  - ./homepage
+  #  - ./autobrr
+  #  - ./nzbget
+  #  - ./otel-collector.yaml
+  #  - ./homepage
   - ./qbittorrent
   - ./adguard
-  - ./radarr-anime
-  - ./sonarr-anime
-#  - ./mastodon
+  # - ./radarr-anime
+  # - ./sonarr-anime
+  #  - ./mastodon
   - ./rocketchat
   - ./uptime-kuma
 configMapGenerator:
