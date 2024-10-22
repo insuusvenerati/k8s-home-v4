@@ -32,11 +32,11 @@ spec:
               FORM_AUTH: false
               ENABLE_ADDITIONAL_METRICS: true
               DISABLE_SSL_VERIFY: true
-              API_KEY:
+              APIKEY:
                 valueFrom:
                   secretKeyRef:
                     name: prowlarr-apikey
-                    key: API_KEY
+                    key: APIKEY
             envFrom:
               - secret: prowlarr-apikey
             image:
