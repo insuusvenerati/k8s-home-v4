@@ -99,7 +99,7 @@ spec:
       custom-services:
         enabled: true
         type: persistentVolumeClaim
-        storageClass: nfs-client-ssd
+        storageClass: openebs-hostpath
         accessMode: ReadWriteOnce
         size: 1Gi
         advancedMounts:

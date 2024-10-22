@@ -172,13 +172,11 @@ spec:
     persistence:
       cache:
         enabled: true
-        type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        storageClass: nfs-client-ssd
-        size: 10Gi
+        storageClass: openebs-hostpath
+        size: 5Gi
       youtube:
         enabled: true
-        type: persistentVolumeClaim
         existingClaim: media-pvc-ssd
         globalMounts:
           - path: /youtube
@@ -187,8 +185,8 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        storageClass: nfs-client-ssd
-        size: 10Gi
+        storageClass: openebs-hostpath
+        size: 2Gi
         advancedMounts:
           elasticsearch:
             elasticsearch:
@@ -198,7 +196,7 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        storageClass: nfs-client-ssd
+        storageClass: openebs-hostpath
         size: 1Gi
         advancedMounts:
           redis:
