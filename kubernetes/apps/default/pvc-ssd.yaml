@@ -9,19 +9,16 @@ spec:
     storage: 500Gi
   accessModes:
     - ReadWriteMany
-    - ReadWriteOnce
-    - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs-client-ssd
-  mountOptions:
-    - nolock
-    - nfsvers=4.1
-    - noacl
-    - nocto
-    - noatime
-    - nodiratime
-    - rsize=32768
-    - wsize=32768
+#  mountOptions:
+#    - nolock
+#    - nfsvers=4.1
+#    - noacl
+#    - nocto
+#    - noatime
+#    - nodiratime
+#    - rsize=32768
+#    - wsize=32768
   nfs:
     path: /srv/nfs
     server: 192.168.1.230
@@ -38,4 +35,4 @@ spec:
       storage: 500Gi
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-client-ssd
+  volumeName: media-pv-ssd
