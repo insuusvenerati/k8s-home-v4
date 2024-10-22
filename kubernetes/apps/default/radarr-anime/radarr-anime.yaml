@@ -21,8 +21,8 @@ spec:
     controllers:
       main:
         containers:
-
-            enabled: true
+          exportarr:
+            enabled: false
             args:
               - radarr
             env:
