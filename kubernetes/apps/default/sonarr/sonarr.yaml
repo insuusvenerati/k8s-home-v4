@@ -24,7 +24,7 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           exportarr:
-            enabled: true
+            enabled: false
             args:
               - sonarr
             env:

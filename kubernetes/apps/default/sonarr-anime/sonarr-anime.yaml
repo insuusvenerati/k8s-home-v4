@@ -22,7 +22,7 @@ spec:
       main:
         containers:
           exportarr:
-            enabled: true
+            enabled: false
             args:
               - sonarr
             env:
