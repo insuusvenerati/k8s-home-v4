@@ -35,7 +35,7 @@ spec:
               SONARR__API:
                 valueFrom:
                   secretKeyRef:
-                    key: API_KEY
+                    key: APIKEY
                     name: sonarr-apikey
               SONARR__QUALITY_PROFILE: HD - 720p/1080p
               SONARR__ROOTFOLDER: /data/media/tv
