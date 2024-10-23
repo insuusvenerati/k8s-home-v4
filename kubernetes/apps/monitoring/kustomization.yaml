@@ -8,3 +8,4 @@ resources:
   - ./promtail
   # - ./tempo
 #  - ./kubeshark
+  - ./robusta

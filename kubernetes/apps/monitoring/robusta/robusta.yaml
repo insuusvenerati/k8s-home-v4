@@ -1,0 +1,59 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: robusta
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: robusta
+      interval: 24h0m0s
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: robusta
+        namespace: flux-system
+      version: 0.18.0
+  interval: 24h0m0s
+  releaseName: robusta
+  targetNamespace: monitoring
+  values:
+    clusterName: home-kubernetes
+    enableHolmesGPT: false
+    enablePlatformPlaybooks: true
+    enablePrometheusStack: false
+    globalConfig:
+      account_id: '{{ env.ACCOUNT_ID }}'
+      grafana_api_key: '{{ env.GRAFANA_TOKEN }}'
+      grafana_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
+      prometheus_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+      signing_key: '{{ env.SIGNING_KEY }}'
+    isSmallCluster: true
+    runner:
+      additional_env_vars:
+      - name: GRAFANA_KEY
+        valueFrom:
+          secretKeyRef:
+            key: GRAFANA_TOKEN
+            name: robusta-secrets
+      - name: SIGNING_KEY
+        valueFrom:
+          secretKeyRef:
+            key: SIGNING_KEY
+            name: robusta-secrets
+      - name: ACCOUNT_ID
+        valueFrom:
+          secretKeyRef:
+            key: ACCOUNT_ID
+            name: robusta-secrets
+      - name: SINK_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: SINK_TOKEN
+            name: robusta-secrets
+      sendAdditionalTelemetry: false
+    sinksConfig:
+    - robusta_sink:
+        name: robusta_ui_sink
+        token: '{{ env.SINK_TOKEN }}'
