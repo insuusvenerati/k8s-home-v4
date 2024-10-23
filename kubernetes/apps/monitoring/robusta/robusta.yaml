@@ -31,6 +31,7 @@ spec:
     enableHolmesGPT: false
     enablePlatformPlaybooks: true
     enablePrometheusStack: false
+    enabledManagedConfiguration: true
     globalConfig:
       account_id: '{{ env.ACCOUNT_ID }}'
       grafana_api_key: '{{ env.GRAFANA_KEY }}'

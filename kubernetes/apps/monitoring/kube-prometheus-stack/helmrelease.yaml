@@ -43,6 +43,22 @@ spec:
     defaultRules:
       rules:
         kubeProxy: false
+        alertmanager: false
+        etcd: false
+        configReloaders: false
+        general: false
+        kubeApiserverSlos: false
+        kubeControllerManager: false
+        kubernetesApps: false
+        kubernetesResources: false
+        kubernetesStorage: false
+        kubernetesSystem: false
+        kubeSchedulerAlerting: false
+        kubeStateMetrics: false
+        network: false
+        nodeExporterAlerting: false
+        prometheus: false
+        prometheusOperator: false
       labels:
         cluster_name: home-kubernetes
     alertmanager:
@@ -169,10 +185,9 @@ spec:
           k8s-app: kube-proxy
     prometheus:
       thanosService:
-        enabled: true
+        enabled: false
       thanosServiceMonitor:
-        enabled: true
-
+        enabled: false
       prometheusSpec:
         enableRemoteWriteReceiver: true
         persistentVolumeClaimRetentionPolicy:
