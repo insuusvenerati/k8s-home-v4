@@ -28,6 +28,23 @@ spec:
         name: cluster-user-secrets
         optional: true
   patches:
+    - target:
+        group: helm.toolkit.fluxcd.io
+        kind: HelmRelease
+        labelSelector: substitution.flux.home.arpa/disabled notin (true)
+      patch: |-
+        apiVersion: helm.toolkit.fluxcd.io/v2
+        kind: HelmRelease
+        metadata:
+          name: not-used
+        spec:
+          interval: 12h0m0s
+          install:
+            remediation:
+              remediateLastFailure: true
+          upgrade:
+            remediation:
+              remediateLastFailure: true
     - patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
         kind: Kustomization
