@@ -18,6 +18,14 @@ spec:
   interval: 24h0m0s
   releaseName: robusta
   targetNamespace: monitoring
+  install:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
   values:
     clusterName: home-kubernetes
     enableHolmesGPT: false
