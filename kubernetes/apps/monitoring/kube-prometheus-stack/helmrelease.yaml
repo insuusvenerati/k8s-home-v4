@@ -19,8 +19,14 @@ spec:
   targetNamespace: monitoring
   install:
     crds: Create
+    remediation:
+      retries: 5
+      remediateLastFailure: true
   upgrade:
     crds: CreateReplace
+    remediation:
+      retries: 5
+      remediateLastFailure: true
   driftDetection:
     mode: enabled
     ignore:
@@ -39,6 +45,24 @@ spec:
         kubeProxy: false
     alertmanager:
       enabled: true
+      config:
+        route:
+          routes:
+            - receiver: 'robusta'
+              group_by: [ 'namespace' ]
+              group_wait: 1s
+              group_interval: 1s
+              matchers:
+                - severity =~ ".*"
+              repeat_interval: 4h
+              continue: true
+          receiver: 'default-receiver'
+        receivers:
+          - name: 'robusta'
+            webhook_configs:
+              - url: 'http://robusta-runner.monitoring.svc.cluster.local/api/alerts'
+                send_resolved: true #
+          - name: 'default-receiver'
       ingress:
         enabled: true
         ingressClassName: internal
