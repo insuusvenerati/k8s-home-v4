@@ -28,10 +28,14 @@ spec:
       remediateLastFailure: true
   values:
     clusterName: home-kubernetes
-    enableHolmesGPT: false
     enablePlatformPlaybooks: true
     enablePrometheusStack: false
     enabledManagedConfiguration: true
+    enableHolmesGPT: true
+    holmes:
+      additionalEnvVars:
+        - name: ROBUSTA_AI
+          value: "true"
     globalConfig:
       alertmanager_url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
       alertmanager_flavor: grafana
