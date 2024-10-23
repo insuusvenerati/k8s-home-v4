@@ -36,6 +36,11 @@ spec:
       additionalEnvVars:
         - name: ROBUSTA_AI
           value: "true"
+        - name: ROBUSTA_UI_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: SINK_TOKEN
+              name: robusta-secrets
     globalConfig:
       alertmanager_url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
       alertmanager_flavor: grafana
