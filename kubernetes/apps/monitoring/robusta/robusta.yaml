@@ -33,10 +33,14 @@ spec:
     enablePrometheusStack: false
     enabledManagedConfiguration: true
     globalConfig:
+      alertmanager_url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
+      alertmanager_flavor: grafana
       account_id: '{{ env.ACCOUNT_ID }}'
       grafana_api_key: '{{ env.GRAFANA_KEY }}'
       grafana_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
       prometheus_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+      prometheus_additional_labels:
+        cluster: home-kubernetes
       signing_key: '{{ env.SIGNING_KEY }}'
     isSmallCluster: true
     runner:
