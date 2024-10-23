@@ -49,14 +49,14 @@ spec:
       enabled: true
       alertmanagerSpec:
         storage:
-         volumeClaimTemplate:
-           selector: {}
-           spec:
-             storageClassName: openebs-hostpath
-             accessModes: ["ReadWriteOnce"]
-             resources:
-               requests:
-                 storage: 1Gi
+          volumeClaimTemplate:
+            selector: { }
+            spec:
+              storageClassName: openebs-hostpath
+              accessModes: [ "ReadWriteOnce" ]
+              resources:
+                requests:
+                  storage: 1Gi
       config:
         route:
           routes:
