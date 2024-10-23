@@ -81,4 +81,4 @@ spec:
         user_id: '{{ env.ROCKETCHAT_USER_ID }}'
         channel: notifs
         token: '{{ env.ROCKETCHAT_TOKEN }}'
-        server_url: <Server URL>
+        server_url: http://rocket-chat-rocketchat.default.svc.cluster.local
