@@ -32,3 +32,4 @@ resources:
   - ./authentik.yaml
   - ./kubeshark.yaml
   - ./rocket-chat.yaml
+  - ./robusta.yaml
