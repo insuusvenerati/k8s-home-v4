@@ -43,8 +43,20 @@ spec:
     defaultRules:
       rules:
         kubeProxy: false
+      labels:
+        cluster_name: home-kubernetes
     alertmanager:
       enabled: true
+      alertmanagerSpec:
+        storage:
+         volumeClaimTemplate:
+           selector: {}
+           spec:
+             storageClassName: openebs-hostpath
+             accessModes: ["ReadWriteOnce"]
+             resources:
+               requests:
+                 storage: 1Gi
       config:
         route:
           routes:
