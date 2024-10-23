@@ -60,8 +60,24 @@ spec:
           secretKeyRef:
             key: SINK_TOKEN
             name: robusta-secrets
+      - name: ROCKETCHAT_USER_ID
+        valueFrom:
+          secretKeyRef:
+            key: ROCKETCHAT_USER_ID
+            name: robusta-secrets
+      - name: ROCKETCHAT_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: ROCKETCHAT_TOKEN
+            name: robusta-secrets
       sendAdditionalTelemetry: false
     sinksConfig:
     - robusta_sink:
         name: robusta_ui_sink
         token: '{{ env.SINK_TOKEN }}'
+    - rocketchat_sink:
+        name: main_rocketchat_sink
+        user_id: '{{ env.ROCKETCHAT_USER_ID }}'
+        channel: notifs
+        token: '{{ env.ROCKETCHAT_TOKEN }}'
+        server_url: <Server URL>
