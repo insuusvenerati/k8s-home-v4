@@ -25,7 +25,7 @@ spec:
     enablePrometheusStack: false
     globalConfig:
       account_id: '{{ env.ACCOUNT_ID }}'
-      grafana_api_key: '{{ env.GRAFANA_TOKEN }}'
+      grafana_api_key: '{{ env.GRAFANA_KEY }}'
       grafana_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
       prometheus_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       signing_key: '{{ env.SIGNING_KEY }}'
