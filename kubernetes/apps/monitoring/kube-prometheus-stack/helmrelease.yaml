@@ -50,7 +50,7 @@ spec:
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
-            selector: { }
+#            selector: { }
             spec:
               storageClassName: openebs-hostpath
               accessModes: [ "ReadWriteOnce" ]
