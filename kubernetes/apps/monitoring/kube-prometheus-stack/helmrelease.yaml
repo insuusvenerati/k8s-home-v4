@@ -183,7 +183,16 @@ spec:
         enabled: true
         selector:
           k8s-app: kube-proxy
+    prometheusOperator:
+      enabled: true
+      networkPolicy:
+        enabled: false
+        flavor: cilium
     prometheus:
+      enabled: false
+      networkPolicy:
+        enabled: false
+        flavor: cilium
       thanosService:
         enabled: false
       thanosServiceMonitor:
@@ -196,11 +205,11 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: nfs-client-ssd
-              accessModes: [ "ReadWriteMany" ]
+              storageClassName: openebs-hostpath
+              accessModes: [ "ReadWriteOnce" ]
               resources:
                 requests:
-                  storage: 50Gi
+                  storage: 10Gi
         retention: 365d
         resources:
           requests:
