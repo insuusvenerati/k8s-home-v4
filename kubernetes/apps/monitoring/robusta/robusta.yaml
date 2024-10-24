@@ -35,6 +35,17 @@ spec:
     holmes:
       registry: docker.io/stiforr
       image: holmes:latest
+      customClusterRoleRules:
+        - apiGroups:
+            - "source.toolkit.fluxcd.io"
+            - "kustomize.toolkit.fluxcd.io"
+            - "helm.toolkit.fluxcd.io"
+          resources:
+            - "*"
+          verbs:
+            - "get"
+            - "list"
+            - "watch"
       toolsets:
         - name: "flux_cli"
           prerequisites:
