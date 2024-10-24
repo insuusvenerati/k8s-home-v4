@@ -24,7 +24,7 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           exportarr:
-            enabled: false
+            enabled: true
             args:
               - sonarr
             env:
@@ -32,19 +32,27 @@ spec:
                 value: http://sonarr:8989
               - name: PORT
                 value: 7879
-              - name: CONFIG
-                value: /config/config.xml
               - name: FORM_AUTH
-                value: false
+                value: true
+              - name: AUTH_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: sonarr-apikey
+                    key: AUTH_PASSWORD
+              - name: AUTH_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: sonarr-apikey
+                    key: AUTH_USERNAME
               - name: ENABLE_ADDITIONAL_METRICS
                 value: true
               - name: DISABLE_SSL_VERIFY
                 value: true
-              - name: APIKEY
-                valueFrom:
-                  secretKeyRef:
-                    name: sonarr-apikey
-                    key: APIKEY
+#              - name: APIKEY
+#                valueFrom:
+#                  secretKeyRef:
+#                    name: sonarr-apikey
+#                    key: APIKEY
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
