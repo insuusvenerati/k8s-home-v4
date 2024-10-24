@@ -34,6 +34,8 @@ spec:
                 value: 7879
               - name: FORM_AUTH
                 value: true
+              - name: CONFIG
+                value: /config/config.xml
               - name: AUTH_PASSWORD
                 valueFrom:
                   secretKeyRef:
