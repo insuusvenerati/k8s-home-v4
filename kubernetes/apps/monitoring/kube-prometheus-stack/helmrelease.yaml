@@ -189,7 +189,7 @@ spec:
         enabled: false
         flavor: cilium
     prometheus:
-      enabled: false
+      enabled: true
       networkPolicy:
         enabled: false
         flavor: cilium
