@@ -33,6 +33,16 @@ spec:
     enabledManagedConfiguration: true
     enableHolmesGPT: true
     holmes:
+      registry: docker.io/stiforr
+      image: holmes:latest
+      toolsets:
+        - name: "flux_cli"
+          prerequisites:
+            - command: "flux --version"
+          tools:
+            - name: "flux_get"
+              description: "Get a fluxcd resource"
+              command: "flux get '{{ resource_type }}' '{{ resource_name }}' --all-namespaces"
       additionalEnvVars:
         - name: ROBUSTA_AI
           value: "true"
@@ -44,54 +54,54 @@ spec:
     globalConfig:
       alertmanager_url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
       alertmanager_flavor: grafana
-      account_id: '{{ env.ACCOUNT_ID }}'
-      grafana_api_key: '{{ env.GRAFANA_KEY }}'
+      account_id: "{{ env.ACCOUNT_ID }}"
+      grafana_api_key: "{{ env.GRAFANA_KEY }}"
       grafana_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
       prometheus_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       prometheus_additional_labels:
         cluster: home-kubernetes
-      signing_key: '{{ env.SIGNING_KEY }}'
+      signing_key: "{{ env.SIGNING_KEY }}"
     isSmallCluster: true
     runner:
       additional_env_vars:
-      - name: GRAFANA_KEY
-        valueFrom:
-          secretKeyRef:
-            key: GRAFANA_TOKEN
-            name: robusta-secrets
-      - name: SIGNING_KEY
-        valueFrom:
-          secretKeyRef:
-            key: SIGNING_KEY
-            name: robusta-secrets
-      - name: ACCOUNT_ID
-        valueFrom:
-          secretKeyRef:
-            key: ACCOUNT_ID
-            name: robusta-secrets
-      - name: SINK_TOKEN
-        valueFrom:
-          secretKeyRef:
-            key: SINK_TOKEN
-            name: robusta-secrets
-      - name: ROCKETCHAT_USER_ID
-        valueFrom:
-          secretKeyRef:
-            key: ROCKETCHAT_USER_ID
-            name: robusta-secrets
-      - name: ROCKETCHAT_TOKEN
-        valueFrom:
-          secretKeyRef:
-            key: ROCKETCHAT_TOKEN
-            name: robusta-secrets
+        - name: GRAFANA_KEY
+          valueFrom:
+            secretKeyRef:
+              key: GRAFANA_TOKEN
+              name: robusta-secrets
+        - name: SIGNING_KEY
+          valueFrom:
+            secretKeyRef:
+              key: SIGNING_KEY
+              name: robusta-secrets
+        - name: ACCOUNT_ID
+          valueFrom:
+            secretKeyRef:
+              key: ACCOUNT_ID
+              name: robusta-secrets
+        - name: SINK_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: SINK_TOKEN
+              name: robusta-secrets
+        - name: ROCKETCHAT_USER_ID
+          valueFrom:
+            secretKeyRef:
+              key: ROCKETCHAT_USER_ID
+              name: robusta-secrets
+        - name: ROCKETCHAT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: ROCKETCHAT_TOKEN
+              name: robusta-secrets
       sendAdditionalTelemetry: false
     sinksConfig:
-    - robusta_sink:
-        name: robusta_ui_sink
-        token: '{{ env.SINK_TOKEN }}'
-    - rocketchat_sink:
-        name: main_rocketchat_sink
-        user_id: '{{ env.ROCKETCHAT_USER_ID }}'
-        channel: notifs
-        token: '{{ env.ROCKETCHAT_TOKEN }}'
-        server_url: http://rocket-chat-rocketchat.default.svc.cluster.local
+      - robusta_sink:
+          name: robusta_ui_sink
+          token: "{{ env.SINK_TOKEN }}"
+      - rocketchat_sink:
+          name: main_rocketchat_sink
+          user_id: "{{ env.ROCKETCHAT_USER_ID }}"
+          channel: notifs
+          token: "{{ env.ROCKETCHAT_TOKEN }}"
+          server_url: http://rocket-chat-rocketchat.default.svc.cluster.local
