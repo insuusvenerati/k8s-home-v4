@@ -33,8 +33,8 @@ spec:
     enabledManagedConfiguration: true
     enableHolmesGPT: true
     holmes:
-      registry: docker.io/stiforr
-      image: holmes:latest
+#      registry: docker.io/stiforr
+#      image: holmes:latest
       customClusterRoleRules:
         - apiGroups:
             - "source.toolkit.fluxcd.io"
@@ -46,14 +46,14 @@ spec:
             - "get"
             - "list"
             - "watch"
-      toolsets:
-        - name: "flux_cli"
-          prerequisites:
-            - command: "flux --version"
-          tools:
-            - name: "flux_get"
-              description: "Get a fluxcd resource"
-              command: "flux get '{{ resource_type }}' '{{ resource_name }}' --all-namespaces"
+#      toolsets:
+#        - name: "flux_cli"
+#          prerequisites:
+#            - command: "flux --version"
+#          tools:
+#            - name: "flux_get"
+#              description: "Get a fluxcd resource"
+#              command: "flux get '{{ resource_type }}' '{{ resource_name }}' --all-namespaces"
       additionalEnvVars:
         - name: ROBUSTA_AI
           value: "true"
