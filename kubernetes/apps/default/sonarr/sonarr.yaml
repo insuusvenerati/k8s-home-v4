@@ -33,7 +33,7 @@ spec:
               - name: PORT
                 value: 7879
               - name: FORM_AUTH
-                value: true
+                value: false
               - name: CONFIG
                 value: /config/config.xml
               - name: AUTH_PASSWORD
@@ -50,11 +50,11 @@ spec:
                 value: true
               - name: DISABLE_SSL_VERIFY
                 value: true
-#              - name: APIKEY
-#                valueFrom:
-#                  secretKeyRef:
-#                    name: sonarr-apikey
-#                    key: APIKEY
+              - name: APIKEY
+                valueFrom:
+                  secretKeyRef:
+                    name: sonarr-apikey
+                    key: APIKEY
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
