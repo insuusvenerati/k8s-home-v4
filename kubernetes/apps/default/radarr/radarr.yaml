@@ -54,7 +54,7 @@ spec:
                 value: 1000
             image:
               repository: linuxserver/radarr
-              tag: 5.12.2
+              tag: 5.14.0
             probes:
              liveness:
                enabled: false
