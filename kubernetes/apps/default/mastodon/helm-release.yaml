@@ -16,7 +16,7 @@ spec:
     image:
       repository: ghcr.io/mastodon/mastodon
       pullPolicy: IfNotPresent
-      tag: v4.3.0
+      tag: v4.3.1
     mastodon:
       local_domain: mastodon.internal.${SECRET_DOMAIN}
       streaming:
