@@ -24,7 +24,7 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           exportarr:
-            enabled: false
+            enabled: true
             args:
               - radarr
             env:
@@ -36,11 +36,23 @@ spec:
                 value: true
               - name: DISABLE_SSL_VERIFY
                 value: true
-              - name: APIKEY
+              - name: CONFIG
+                value: /config/config.xml
+              - name: AUTH_PASSWORD
                 valueFrom:
                   secretKeyRef:
-                    name: radarr-apikey
-                    key: APIKEY
+                    name: radarr-secret
+                    key: AUTH_PASSWORD
+              - name: AUTH_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: radarr-secret
+                    key: AUTH_USERNAME
+#              - name: APIKEY
+#                valueFrom:
+#                  secretKeyRef:
+#                    name: radarr-apikey
+#                    key: APIKEY
             image:
               repository: ghcr.io/onedr0p/exportarr
               tag: v2.0.1
@@ -56,33 +68,33 @@ spec:
               repository: linuxserver/radarr
               tag: 5.14.0
             probes:
-             liveness:
-               enabled: false
-               custom: false
-               type: TCP
-               spec:
-                 initialDelaySeconds: 120
-                 periodSeconds: 10
-                 timeoutSeconds: 1
-                 failureThreshold: 5
-             readiness:
-               enabled: false
-               custom: false
-               type: TCP
-               spec:
-                 initialDelaySeconds: 120
-                 periodSeconds: 10
-                 timeoutSeconds: 1
-                 failureThreshold: 5
-             startup:
-               enabled: false
-               custom: false
-               type: TCP
-               spec:
-                 initialDelaySeconds: 120
-                 timeoutSeconds: 1
-                 periodSeconds: 5
-                 failureThreshold: 30
+              liveness:
+                enabled: true
+                custom: false
+                type: TCP
+                spec:
+                  initialDelaySeconds: 120
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 5
+              readiness:
+                enabled: true
+                custom: false
+                type: TCP
+                spec:
+                  initialDelaySeconds: 120
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 5
+              startup:
+                enabled: false
+                custom: false
+                type: TCP
+                spec:
+                  initialDelaySeconds: 120
+                  timeoutSeconds: 1
+                  periodSeconds: 5
+                  failureThreshold: 30
             resources:
               limits:
                 cpu: 1000m
@@ -167,8 +179,6 @@ spec:
             enabled: true
             port: 7878
             protocol: HTTP
-    serviceAccount:
-      create: true
     serviceMonitor:
       exportarr:
         enabled: true
