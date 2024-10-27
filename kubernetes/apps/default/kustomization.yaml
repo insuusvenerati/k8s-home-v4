@@ -31,6 +31,8 @@ resources:
   #  - ./mastodon
   - ./rocketchat
   - ./uptime-kuma
+  - ./flux-alerts.yaml
+  - ./discord-webhook.sops.yaml
 configMapGenerator:
   - name: general-dashboards
     namespace: default
