@@ -186,7 +186,7 @@ spec:
             value: {{ include "mailu.database.roundcube.username" . }}
         persistence:
           accessMode: ReadWriteOnce
-          enabled: false
+          enabled: true
           size: 8Gi
           storageClass: openebs-hostpath
     oletools:
