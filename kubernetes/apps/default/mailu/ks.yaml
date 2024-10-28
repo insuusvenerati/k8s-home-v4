@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-mailu
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/disabled: true
+    substitution.flux.home.arpa/disabled: false
 spec:
   interval: 24h
   prune: true
