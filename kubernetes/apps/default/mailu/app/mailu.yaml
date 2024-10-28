@@ -401,7 +401,7 @@ spec:
       enabled: true
       existingSecret: mailu-secret
       existingSecretPasswordKey: user-password
-      mode: ifmissing
+      mode: update
       password: ""
       username: stiforr
     kubeVersion: ""
