@@ -33,6 +33,7 @@ resources:
   - ./uptime-kuma
   - ./flux-alerts.yaml
   - ./discord-webhook.sops.yaml
+  - ./mailu
 configMapGenerator:
   - name: general-dashboards
     namespace: default
