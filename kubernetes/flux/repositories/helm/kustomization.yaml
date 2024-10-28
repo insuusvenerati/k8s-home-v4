@@ -33,3 +33,4 @@ resources:
 #  - ./kubeshark.yaml
   - ./rocket-chat.yaml
   - ./robusta.yaml
+  - ./mailu.yaml
