@@ -17,6 +17,11 @@ spec:
   interval: 24h0m0s
   releaseName: mailu
   targetNamespace: default
+  valuesFrom:
+    - kind: ConfigMap
+      name: mailu-config
+      optional: false
+      valuesKey: mailu-values.yaml
   values:
     admin:
       affinity: { }
@@ -186,38 +191,13 @@ spec:
     dmarc:
       rua: ""
       ruf: ""
-    domain: internal.${SECRET_DOMAIN}
     dovecot:
-      affinity: { }
-      compression: ""
-      compressionLevel: 6
-      containerSecurityContext:
-        enabled: false
-        runAsNonRoot: false
-        runAsUser: 1001
       enabled: true
-      extraContainers: [ ]
-      extraEnvVars: [ ]
-      extraEnvVarsCM: ""
-      extraEnvVarsSecret: ""
-      extraVolumeMounts: [ ]
-      extraVolumes: [ ]
-      hostAliases: [ ]
       image:
         pullPolicy: IfNotPresent
         repository: mailu/dovecot
         tag: ""
-      initContainers: [ ]
-      livenessProbe:
-        enabled: true
-        failureThreshold: 3
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        successThreshold: 1
-        timeoutSeconds: 10
       logLevel: ""
-      nodeSelector: { }
-      overrides: { }
       persistence:
         accessModes:
           - ReadWriteOnce
@@ -225,66 +205,7 @@ spec:
         claimNameOverride: ""
         size: 1Gi
         storageClass: openebs-hostpath
-      podAnnotations: { }
-      podLabels: { }
-      podSecurityContext:
-        enabled: false
-        fsGroup: 1001
-      priorityClassName: ""
-      readinessProbe:
-        enabled: true
-        failureThreshold: 3
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        successThreshold: 1
-        timeoutSeconds: 10
-      resources:
-        limits: { }
-        requests: { }
-      revisionHistoryLimit: 3
-      schedulerName: ""
-      service:
-        annotations: { }
-      startupProbe:
-        enabled: false
-        failureThreshold: 3
-        initialDelaySeconds: 10
-        periodSeconds: 10
-        successThreshold: 1
-        timeoutSeconds: 10
-      terminationGracePeriodSeconds: 2
-      tolerations: [ ]
-      topologySpreadConstraints: [ ]
-      updateStrategy:
-        type: RollingUpdate
     existingSecret: mailu-secret
-    externalDatabase:
-      database: mailu
-      enabled: false
-      existingSecret: ""
-      existingSecretDatabaseKey: database
-      existingSecretPasswordKey: password
-      existingSecretUsernameKey: username
-      host: ""
-      password: ""
-      port: 3306
-      type: ""
-      username: mailu
-    externalRedis:
-      adminQuotaDbId: 1
-      adminRateLimitDbId: 2
-      enabled: false
-      host: ""
-      port: 6379
-      rspamdDbId: 0
-    externalRelay:
-      existingSecret: ""
-      host: ""
-      networks: [ ]
-      password: ""
-      passwordKey: relay-password
-      username: ""
-      usernameKey: relay-username
     fetchmail:
       affinity: { }
       containerSecurityContext:
@@ -447,9 +368,6 @@ spec:
       imagePullSecrets: [ ]
       imageRegistry: ""
       storageClass: nfs-client-ssd
-    hostnames:
-      - mail.internal.${SECRET_DOMAIN}
-      - imap.internal.${SECRET_DOMAIN}
     imageRegistry: ghcr.io
     ingress:
       annotations:
@@ -480,7 +398,6 @@ spec:
       tls: true
       tlsFlavorOverride: ""
     initialAccount:
-      domain: stiforr.internal.${SECRET_DOMAIN}
       enabled: true
       existingSecret: mailu-secret
       existingSecretPasswordKey: user-password
@@ -1061,5 +978,3 @@ spec:
         and update your profile.
       enabled: true
       subject: Welcome to Mailu
-    wildcardSenders:
-      - notif.internal.${SECRET_DOMAIN}
