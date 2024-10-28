@@ -6,7 +6,7 @@ metadata:
 data:
   mailu-values.yaml: |
     domain: internal.${SECRET_DOMAIN}
-    hostnames: |
+    hostnames:
       - mail.internal.${SECRET_DOMAIN}
       - imap.internal.${SECRET_DOMAIN}
     initialAccount:
