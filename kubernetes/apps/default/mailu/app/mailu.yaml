@@ -1,0 +1,1065 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mailu
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: mailu
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: mailu
+        namespace: flux-system
+      version: 2.1.1
+  interval: 24h0m0s
+  releaseName: mailu
+  targetNamespace: default
+  values:
+    admin:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: true
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/admin
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 1Gi
+        storageClass: openebs-hostpath
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 250m
+          memory: 250Mi
+        requests:
+          cpu: 125m
+          memory: 125Mi
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+      uri: /admin
+    affinity: { }
+    api:
+      enabled: false
+      existingSecret: ""
+      existingSecretTokenKey: api-token
+      token: ""
+      webPath: /api
+    authRequireTokens: false
+    clamav:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: false
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        registry: docker.io
+        repository: clamav/clamav-debian
+        tag: 1.2.0-6
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        dataSource: { }
+        enabled: true
+        existingClaim: ""
+        labels: { }
+        selector: { }
+        size: 2Gi
+        storageClass: ""
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: { }
+        requests: { }
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 60
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    clusterDomain: cluster.local
+    commonAnnotations: { }
+    commonLabels: { }
+    credentialRounds: 12
+    customization:
+      logoBackground: ""
+      logoUrl: ""
+      siteName: Mailu
+      website: https://mailu.io
+    database:
+      mysql:
+        roundcubePassword: ""
+      postgresql:
+        roundcubePassword: ""
+    dmarc:
+      rua: ""
+      ruf: ""
+    domain: internal.${SECRET_DOMAIN}
+    dovecot:
+      affinity: { }
+      compression: ""
+      compressionLevel: 6
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: true
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/dovecot
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      logLevel: ""
+      nodeSelector: { }
+      overrides: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 1Gi
+        storageClass: openebs-hostpath
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    existingSecret: mailu-secret
+    externalDatabase:
+      database: mailu
+      enabled: false
+      existingSecret: ""
+      existingSecretDatabaseKey: database
+      existingSecretPasswordKey: password
+      existingSecretUsernameKey: username
+      host: ""
+      password: ""
+      port: 3306
+      type: ""
+      username: mailu
+    externalRedis:
+      adminQuotaDbId: 1
+      adminRateLimitDbId: 2
+      enabled: false
+      host: ""
+      port: 6379
+      rspamdDbId: 0
+    externalRelay:
+      existingSecret: ""
+      host: ""
+      networks: [ ]
+      password: ""
+      passwordKey: relay-password
+      username: ""
+      usernameKey: relay-username
+    fetchmail:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      delay: 600
+      enabled: false
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/fetchmail
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 20Gi
+        storageClass: ""
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    front:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      externalService:
+        annotations: { }
+        enabled: false
+        externalTrafficPolicy: Local
+        loadBalancerIP: ""
+        ports:
+          imap: false
+          imaps: true
+          manageSieve: true
+          pop3: false
+          pop3s: true
+          smtp: true
+          smtps: true
+          submission: false
+        type: ClusterIP
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      hostPort:
+        enabled: true
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/nginx
+        tag: ""
+      initContainers: [ ]
+      kind: Deployment
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      logLevel: ""
+      nodeSelector: { }
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 1
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      replicaCount: 1
+      resources:
+        limits:
+          cpu: 500m
+          memory: 500Mi
+        requests:
+          cpu: 250m
+          memory: 250Mi
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 30
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    fullnameOverride: ""
+    global:
+      database:
+        roundcube:
+          database: roundcube
+          existingSecret: mailu-secret
+          existingSecretPasswordKey: roundcube-password
+          password: ""
+          username: roundcube
+      imagePullSecrets: [ ]
+      imageRegistry: ""
+      storageClass: nfs-client-ssd
+    hostnames:
+      - mail.internal.${SECRET_DOMAIN}
+      - imap.internal.${SECRET_DOMAIN}
+    imageRegistry: ghcr.io
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      apiVersion: ""
+      enabled: true
+      existingSecret: ""
+      extraHosts: [ ]
+      extraPaths: [ ]
+      extraRules: [ ]
+      extraTls: [ ]
+      ingressClassName: cilium
+      path: /
+      pathType: ImplementationSpecific
+      proxyProtocol:
+        imap: false
+        imaps: false
+        manageSieve: false
+        pop3: false
+        pop3s: false
+        smtp: false
+        smtps: false
+        submission: false
+      realIpFrom: ""
+      realIpHeader: X-Forwarded-For
+      secrets: [ ]
+      selfSigned: false
+      tls: true
+      tlsFlavorOverride: ""
+    initialAccount:
+      domain: stiforr.internal.${SECRET_DOMAIN}
+      enabled: true
+      existingSecret: mailu-secret
+      existingSecretPasswordKey: user-password
+      mode: ifmissing
+      password: ""
+      username: stiforr
+    kubeVersion: ""
+    letsencryptShortchain: false
+    limits:
+      authRatelimit:
+        exemption: ""
+        exemptionLength: 86400
+        ip: 60/hour
+        ipv4Mask: 24
+        ipv6Mask: 56
+        user: 100/day
+      messageRatelimit:
+        exemption: ""
+        value: 200/day
+      messageSizeLimitInMegabytes: 50
+    logLevel: WARNING
+    mailuVersion: ""
+    mariadb:
+      architecture: standalone
+      auth:
+        database: mailu
+        existingSecret: mailu-secret
+        password: ""
+        rootPassword: ""
+        username: mailu
+      enabled: true
+      initdbScripts:
+        create_roundcube_database.sh: |
+          #!/bin/bash
+          # set -o errexit
+          # set -o nounset
+          # set -o pipefail
+          echo "Checking for DB initialisation"
+          if [ -S /opt/bitnami/mariadb/tmp/mysql.sock ]; then
+            echo "Running DB initialisation..."
+            /opt/bitnami/mariadb/bin/mysql --user="root" --password="${MARIADB_ROOT_PASSWORD}" <<SQL
+            --
+            -- Initialisation script for roundcube database
+            --
+            CREATE DATABASE IF NOT EXISTS ${ROUNDCUBE_DB_NAME};
+            GRANT ALL PRIVILEGES ON ${ROUNDCUBE_DB_NAME}.* TO '${ROUNDCUBE_DB_USER}'@'%' IDENTIFIED BY '${ROUNDCUBE_DB_PW}';
+            FLUSH PRIVILEGES;
+          SQL
+            echo "DB initialisation complete"
+          else
+            echo "Not running initialisation, exiting..."
+          fi
+      primary:
+        extraEnvVars: |
+          - name: ROUNDCUBE_DB_PW
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "mailu.database.roundcube.secretName" . }}
+                key: {{ include "mailu.database.roundcube.secretKey" . }}
+          - name: ROUNDCUBE_DB_NAME
+            value: {{ include "mailu.database.roundcube.name" . }}
+          - name: ROUNDCUBE_DB_USER
+            value: {{ include "mailu.database.roundcube.username" . }}
+        persistence:
+          accessMode: ReadWriteOnce
+          enabled: false
+          size: 8Gi
+          storageClass: openebs-hostpath
+    nameOverride: ""
+    networkPolicy:
+      enabled: false
+      ingressController:
+        namespace: ingress-nginx
+        podSelector: |
+          matchLabels:
+            app.kubernetes.io/name: ingress-nginx
+            app.kubernetes.io/instance: ingress-nginx
+            app.kubernetes.io/component: controller
+    oletools:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: false
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/oletools
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      logLevel: ""
+      nodeSelector: { }
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    permanentSessionLifetime: 2592000
+    persistence:
+      accessModes:
+        - ReadWriteOnce
+      annotations: { }
+      claimNameOverride: ""
+      existingClaim: ""
+      hostPath: ""
+      single_pvc: true
+      size: 10Gi
+      storageClass: nfs-client-ssd
+    postfix:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/postfix
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      overrides: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 1Gi
+        storageClass: openebs-hostpath
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: true
+        failureThreshold: 30
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    postgresql:
+      architecture: standalone
+      auth:
+        database: mailu
+        enablePostgresUser: true
+        existingSecret: ""
+        password: ""
+        postgresPassword: changeme
+        secretKeys:
+          adminPasswordKey: postgres-password
+          replicationPasswordKey: replication-password
+          userPasswordKey: password
+        username: mailu
+      enabled: false
+      primary:
+        extraEnvVars: |
+          - name: ROUNDCUBE_DB_PW
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "mailu.database.roundcube.secretName" . }}
+                key: {{ include "mailu.database.roundcube.secretKey" . }}
+          - name: ROUNDCUBE_DB_NAME
+            value: {{ include "mailu.database.roundcube.name" . }}
+          - name: ROUNDCUBE_DB_USER
+            value: {{ include "mailu.database.roundcube.username" . }}
+        initdb:
+          scripts:
+            create_roundcube_database.sh: |
+              #!/bin/bash
+              # set -o errexit
+              # set -o nounset
+              # set -o pipefail
+              info "Running DB initialisation..."
+              info "Creating database ${ROUNDCUBE_DB_NAME}..."
+              echo "CREATE DATABASE \"$ROUNDCUBE_DB_NAME\"" | postgresql_execute "" "postgres" "$POSTGRES_POSTGRES_PASSWORD"
+              info "Creating user ${ROUNDCUBE_DB_USER}"
+              echo "CREATE ROLE \"${ROUNDCUBE_DB_USER}\" WITH LOGIN CREATEDB PASSWORD '${ROUNDCUBE_DB_PW}';" | postgresql_execute "" "postgres" "$POSTGRES_POSTGRES_PASSWORD"
+              info "Granting access to \"${ROUNDCUBE_DB_USER}\" to the database \"${ROUNDCUBE_DB_NAME}\""
+              echo "GRANT ALL PRIVILEGES ON DATABASE \"${ROUNDCUBE_DB_NAME}\" TO \"${ROUNDCUBE_DB_USER}\"\;" | postgresql_execute "" "postgres" "$POSTGRES_POSTGRES_PASSWORD"
+              echo "ALTER DATABASE \"${ROUNDCUBE_DB_NAME}\" OWNER TO \"${ROUNDCUBE_DB_USER}\"\;" | postgresql_execute "" "postgres" "$POSTGRES_POSTGRES_PASSWORD"
+              info "Setting ownership for the 'public' schema database \"${ROUNDCUBE_DB_NAME}\" to \"${ROUNDCUBE_DB_USER}\""
+              echo "ALTER SCHEMA public OWNER TO \"${ROUNDCUBE_DB_USER}\"\;" | postgresql_execute "$ROUNDCUBE_DB_NAME" "postgres" "$POSTGRES_POSTGRES_PASSWORD"
+        persistence:
+          accessMode: ReadWriteOnce
+          enabled: false
+          size: 8Gi
+          storageClass: ""
+    postmaster: postmaster
+    proxyAuth:
+      create: "false"
+      header: X-Auth-Email
+      whitelist: ""
+    recipientDelimiter: +
+    redis:
+      architecture: standalone
+      auth:
+        enabled: false
+      enabled: true
+      master:
+        count: 1
+        enabled: true
+        persistence:
+          accessModes:
+            - ReadWriteOnce
+          annotations: { }
+          enabled: true
+          existingClaim: ""
+          size: 8Gi
+          storageClass: ""
+          subPath: ""
+      replica:
+        count: 0
+    rspamd:
+      affinity: { }
+      antivirusAction: discard
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: false
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/rspamd
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      overrides: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 1Gi
+        storageClass: ""
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: true
+        failureThreshold: 90
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    secretKey: ""
+    sessionCookieSecure: true
+    sessionTimeout: 3600
+    subnet: 10.69.0.0/16
+    subnet6: ""
+    tika:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: false
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        registry: docker.io
+        repository: apache/tika
+        tag: 2.9.2.1-full
+      initContainers: [ ]
+      languages:
+        - en
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      logLevel: ""
+      nodeSelector: { }
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    timezone: America/Chicago
+    tls:
+      deferOnError: ""
+      inboundEnforce: ""
+      outboundLevel: ""
+    tolerations: [ ]
+    webdav:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: false
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/radicale
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 20Gi
+        storageClass: ""
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      updateStrategy:
+        type: RollingUpdate
+    webmail:
+      affinity: { }
+      containerSecurityContext:
+        enabled: false
+        runAsNonRoot: false
+        runAsUser: 1001
+      enabled: true
+      extraContainers: [ ]
+      extraEnvVars: [ ]
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      hostAliases: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: mailu/webmail
+        tag: ""
+      initContainers: [ ]
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      logLevel: ""
+      nodeSelector: { }
+      persistence:
+        accessModes:
+          - ReadWriteOnce
+        annotations: { }
+        claimNameOverride: ""
+        size: 2Gi
+        storageClass: openebs-hostpath
+      podAnnotations: { }
+      podLabels: { }
+      podSecurityContext:
+        enabled: false
+        fsGroup: 1001
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: { }
+        requests: { }
+      revisionHistoryLimit: 3
+      roundcubePlugins:
+        - archive
+        - zipdownload
+        - markasjunk
+        - managesieve
+        - enigma
+        - carddav
+        - mailu
+      schedulerName: ""
+      service:
+        annotations: { }
+      startupProbe:
+        enabled: false
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      terminationGracePeriodSeconds: 2
+      tolerations: [ ]
+      topologySpreadConstraints: [ ]
+      type: roundcube
+      updateStrategy:
+        type: RollingUpdate
+      uri: /webmail
+    welcomeMessage:
+      body: Welcome to Mailu, your new email service. Please change your password
+        and update your profile.
+      enabled: true
+      subject: Welcome to Mailu
+    wildcardSenders:
+      - notif.internal.${SECRET_DOMAIN}
