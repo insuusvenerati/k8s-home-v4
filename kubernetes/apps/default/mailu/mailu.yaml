@@ -15,6 +15,14 @@ spec:
         namespace: flux-system
       version: 2.1.1
   interval: 24h0m0s
+  install:
+    remediation:
+      remediateLastFailure: true
+      retries: 5
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 5
   releaseName: mailu
   targetNamespace: default
   values:
@@ -142,8 +150,6 @@ spec:
       auth:
         database: mailu
         existingSecret: mailu-secret
-        password: ""
-        rootPassword: ""
         username: mailu
       enabled: true
       initdbScripts:
