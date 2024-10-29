@@ -24,7 +24,7 @@ spec:
           doplarr:
             env:
               DISCORD__REQUESTED_MSG_STYLE: :embed
-              OVERSEERR__URL: http://overseerr:5055
+              OVERSEERR__URL: http://overseerr:80
               OVERSEERR__API:
                 valueFrom:
                   secretKeyRef:
