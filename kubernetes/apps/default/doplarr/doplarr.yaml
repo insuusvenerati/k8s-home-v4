@@ -30,7 +30,7 @@ spec:
                   secretKeyRef:
                     name: doplarr-secret
                     key: API_KEY
-              OVERSEERR__DEFAULT_ID: 126149318766886912
+              OVERSEERR__DEFAULT_ID: '126149318766886912'
 #              RADARR__API:
 #                valueFrom:
 #                  secretKeyRef:
