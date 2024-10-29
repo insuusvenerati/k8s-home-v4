@@ -28,7 +28,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     key: APIKEY
-                    name: radarr-apikey
+                    name: radarr-secret
               RADARR__QUALITY_PROFILE: HD - 720p/1080p
               RADARR__ROOTFOLDER: /data/media/movies
               RADARR__URL: http://radarr:7878
