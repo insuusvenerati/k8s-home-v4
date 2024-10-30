@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: adguard-configuration
+    namespace: network
+data:
+    password: ENC[AES256_GCM,data:1W6kpPqTk4MMVBIn,iv:QgiIMUvmTWREGFP6PztJoCGeVczeSyh2pCcpDyWfQMc=,tag:hWOti0ZFIKrkiEFxhwSX/w==,type:str]
+    url: ENC[AES256_GCM,data:cfCNShCE8jbs2MctRKouV1EF9RRtRUvuS5o8gg==,iv:8FSmdcQa4j5DaRf5X86205XQEQdYwB91wSj+a7PwyAA=,tag:WihUe64rKkUpyZUiTkKCaw==,type:str]
+    user: ENC[AES256_GCM,data:1M7w0gtjUTMtZrqI,iv:Rd1lurq0WTgFazspOHVgY/XkB3YUxK1Pm75QWwPd4is=,tag:wzlM/aKpqswByRFQFAhSDw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1qd2k83kj5ket4qp63rfa456pt5amx5j58sx0dk204crfsmjqvpks4jucs2
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDR0REeHJSYktBREhNeWNI
+            OFN5Ylk0RFhyZUUvRUpwV2JtZlBjSGV4MkhBCms4T0ZOZEIwL0V3clRLRXZ5Vmhq
+            OEc5ZEV3ZzNaeU1LeUJjTmFCUjlaNlkKLS0tIDFoZHdlaUN0MjVtano0Y0s1OXY2
+            ZlNiTGF5UFl5ZWVFMVlaclNtT0NDdUUK1W0e0BWgQsWxjrolPGthRjuU2z7i05Sf
+            HyCnj7v6IRcj6MQVNr+BBpfhgGLaCyrW4k0ViDda60QeTA5EbChoCQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-10-30T20:01:10Z"
+    mac: ENC[AES256_GCM,data:mnYbi//ELEl14r14Ox+1UN172b2HXZVdJxuvNZt3t5arq+g7wlJa7iuI0Y06PfqM0s76a4MInUTyqpIzcffOwA0k0kjGi2UkOBWtGfnCkAxCX4bb3t5SuhpgRi2VyBGy9F9hqxyJovMCA8oHRm3wl0JLF3tzbIlSWyvlKJeaelQ=,iv:fYy+vDN6il4wO15seHyKgaDnURnKqV65FD6zvQ1xlA0=,tag:Cb9aqwO68WYCXNIuWLbeZw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.9.1
