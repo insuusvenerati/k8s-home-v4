@@ -34,10 +34,10 @@ spec:
           - "/metadata/annotations/prometheus-operator-validated"
         target:
           kind: PrometheusRule
-#  valuesFrom:
-#    - kind: ConfigMap
-#      name: flux-kube-state-metrics-config
-#      valuesKey: kube-state-metrics-config.yaml
+  valuesFrom:
+    - kind: ConfigMap
+      name: flux-kube-state-metrics-config
+      valuesKey: kube-state-metrics-config.yaml
   values:
     namespaceOverride: "monitoring"
     defaultRules:
