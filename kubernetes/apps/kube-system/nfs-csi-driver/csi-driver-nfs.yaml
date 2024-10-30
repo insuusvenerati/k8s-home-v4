@@ -27,6 +27,7 @@ spec:
     controller:
       dnsPolicy: Default
       defaultOnDeletePolicy: retain
+      runOnControlPlane: true
     node:
       dnsPolicy: Default
     storageClass:
