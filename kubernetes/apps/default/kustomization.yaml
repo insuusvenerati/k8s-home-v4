@@ -11,7 +11,7 @@ resources:
   - ./tubearchivist
   #  - ./plex
   - ./tautulli
-  - ./radarr
+  #- ./radarr
   - ./prowlarr
   - ./filebrowser
   #  - ./authentik
