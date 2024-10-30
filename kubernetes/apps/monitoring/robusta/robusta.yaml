@@ -69,10 +69,10 @@ spec:
 #      grafana_api_key: "{{ env.GRAFANA_KEY }}"
       grafana_url: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000
       prometheus_url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-      prometheus_additional_labels:
-        cluster: home-kubernetes
+#      prometheus_additional_labels:
+#        cluster: home-kubernetes
       signing_key: "{{ env.SIGNING_KEY }}"
-    isSmallCluster: true
+    isSmallCluster: false
     runner:
       additional_env_vars:
         - name: GRAFANA_KEY
