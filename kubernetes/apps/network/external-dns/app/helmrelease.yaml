@@ -58,7 +58,7 @@ spec:
 #      - --webhook-provider-url=http://localhost:8888
     policy: sync
     sources: [ "crd", "ingress" ]
-    txtPrefix: adguard.
+    txtPrefix: k8s.
     txtOwnerId: default
     domainFilters: [ "${SECRET_DOMAIN}" ]
     serviceMonitor:
