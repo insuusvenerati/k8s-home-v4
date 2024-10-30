@@ -54,8 +54,8 @@ spec:
                 key: password
           - name: DRY_RUN
             value: "false"
-    extraArgs:
-      - --webhook-provider-url=http://localhost:8888
+#    extraArgs:
+#      - --webhook-provider-url=http://localhost:8888
     policy: sync
     sources: [ "crd", "ingress" ]
     txtPrefix: k8s.
