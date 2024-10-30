@@ -17,6 +17,12 @@ spec:
   interval: 12h0m0s
   releaseName: radarr
   targetNamespace: default
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
