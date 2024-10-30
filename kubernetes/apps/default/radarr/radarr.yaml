@@ -70,7 +70,7 @@ spec:
                 custom: false
                 type: TCP
                 spec:
-                  initialDelaySeconds: 120
+                  initialDelaySeconds: 240
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 5
@@ -79,7 +79,7 @@ spec:
                 custom: false
                 type: TCP
                 spec:
-                  initialDelaySeconds: 120
+                  initialDelaySeconds: 240
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 5
@@ -94,10 +94,10 @@ spec:
                   failureThreshold: 30
             resources:
               limits:
-                cpu: 1000m
+                cpu: 1500m
                 memory: 1Gi
               requests:
-                cpu: 100m
+                cpu: 1000m
                 memory: 500m
         enabled: true
         type: deployment
