@@ -27,8 +27,8 @@ spec:
   values:
     fullnameOverride: *app
     provider:
-      name: adguard
-      adguard:
+      name: webhook
+      webhook:
         image:
           repository: ghcr.io/muhlba91/external-dns-provider-adguard
           tag: v8.0.0
