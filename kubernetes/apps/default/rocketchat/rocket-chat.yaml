@@ -19,108 +19,20 @@ spec:
   targetNamespace: default
   values:
     existingMongodbSecret: mongodb-secret
-    host: chat.internal.${SECRET_DOMAIN}
-    image:
-      pullPolicy: IfNotPresent
-      repository: registry.rocket.chat/rocketchat/rocket.chat
+    host: &host chat.internal.${SECRET_DOMAIN}
+    persistence:
+      enabled: true
+      storageClass: nfs-csi
+      size: 8Gi
     ingress:
+      enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
-        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-      enabled: true
-      ingressClassName: external
-      path: /
-      pathType: Prefix
       tls:
-        - hosts:
-            - chat.internal.${SECRET_DOMAIN}
-          secretName: rocket-tls
-    livenessProbe:
-      enabled: true
-      failureThreshold: 3
-      initialDelaySeconds: 60
-      path: /health
-      periodSeconds: 15
-      successThreshold: 1
-      timeoutSeconds: 5
-    microservices:
-      enabled: false
-    minAvailable: 1
+        - secretName: rocket-tls
+          hosts:
+            - *host
     mongodb:
-      arbiter:
-        enabled: false
-        pdb:
-          minAvailable: 0
-      architecture: replicaset
-      auth:
-        databases:
-          - rocketchat
-        existingSecret: mongodb-secret
-        passwords: [empty]
-        usernames:
-          - rocketchat
-      enabled: true
-      initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
-      pdb:
-        minAvailable: 0
       persistence:
-        accessMode: ReadWriteMany
-        enabled: true
+        storageClass: nfs-csi
         size: 8Gi
-        storageClass: nfs-client-ssd
-      replicaCount: 1
-      volumePermissions:
-        enabled: true
-    nats:
-      nats:
-        image: nats:2.4-alpine
-    persistence:
-      accessMode: ReadWriteMany
-      enabled: true
-      size: 8Gi
-      storageClass: nfs-client-ssd
-    podAnnotations: { }
-    podAntiAffinity: ""
-    podAntiAffinityTopologyKey: kubernetes.io/hostname
-    podDisruptionBudget:
-      enabled: true
-    podLabels: { }
-    prometheusScraping:
-      enabled: true
-      port: 9100
-    readinessProbe:
-      enabled: true
-      failureThreshold: 3
-      initialDelaySeconds: 10
-      path: /health
-      periodSeconds: 15
-      successThreshold: 1
-      timeoutSeconds: 5
-    replicaCount: 1
-    securityContext:
-      enabled: true
-      fsGroup: 999
-      runAsUser: 999
-    service:
-      annotations: { }
-      labels: { }
-      loadBalancerIP: ""
-      port: 80
-      type: ClusterIP
-    serviceAccount:
-      annotations: { }
-      create: true
-      name: null
-    serviceMonitor:
-      enabled: true
-      intervals:
-        - 30s
-      ports:
-        - metrics
-    smtp:
-      enabled: false
-      host: null
-      password: null
-      port: 587
-      username: null
-    tolerations: [ ]
