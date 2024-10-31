@@ -38,6 +38,6 @@ spec:
         size: 8Gi
       auth:
         usernames: [ rocketchat ]
-        passwords: [ ]
+        passwords: [ rocketchat ]
         databases: [ rocketchat ]
         existingSecret: mongodb-secret
