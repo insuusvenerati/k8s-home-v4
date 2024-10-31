@@ -36,3 +36,5 @@ spec:
       persistence:
         storageClass: nfs-csi
         size: 8Gi
+      auth:
+        existingSecret: mongodb-secret
