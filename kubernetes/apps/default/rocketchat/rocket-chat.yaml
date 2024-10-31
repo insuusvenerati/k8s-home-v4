@@ -37,7 +37,7 @@ spec:
         storageClass: nfs-csi
         size: 8Gi
       auth:
-        usernames: [ ]
+        usernames: [ rocketchat ]
         passwords: [ ]
         databases: [ rocketchat ]
         existingSecret: mongodb-secret
