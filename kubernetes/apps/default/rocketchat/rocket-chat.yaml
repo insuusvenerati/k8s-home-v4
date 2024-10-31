@@ -29,6 +29,7 @@ spec:
       size: 8Gi
     ingress:
       enabled: true
+      ingressClassName: cilium
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       tls:
