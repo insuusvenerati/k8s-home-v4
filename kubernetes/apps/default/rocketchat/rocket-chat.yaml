@@ -18,6 +18,9 @@ spec:
   releaseName: rocket-chat
   targetNamespace: default
   values:
+    global:
+      annotations:
+        secret.reloader.stakater.com/reload: "mongodb-secret"
     existingMongodbSecret: mongodb-secret
     host: &host chat.internal.${SECRET_DOMAIN}
     persistence:
