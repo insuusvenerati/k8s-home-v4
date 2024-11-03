@@ -23,6 +23,10 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
+          sonarr-youtubedl:
+            image:
+              repository: stiforr/sonarr-youtubedl
+              tag: latest
           exportarr:
             enabled: true
             args:
@@ -103,6 +107,16 @@ spec:
               - sonarr.internal.${SECRET_DOMAIN}
             secretName: sonarr-tls
     persistence:
+      sonarr-youtubedl-config:
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 1Gi
+        storageClass: nfs-csi
+        advancedMounts:
+          main:
+            sonarr-youtubedl:
+              - path: /config
+                readOnly: false
       config:
         accessMode: ReadWriteOnce
         enabled: true
