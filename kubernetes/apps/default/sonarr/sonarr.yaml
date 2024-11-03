@@ -115,7 +115,7 @@ spec:
         advancedMounts:
           main:
             sonarr-youtubedl:
-              - path: /config
+              - path: /sonarr-youtubedl-config
                 readOnly: false
       config:
         accessMode: ReadWriteOnce
