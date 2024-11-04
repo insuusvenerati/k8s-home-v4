@@ -70,9 +70,6 @@ spec:
               repository: linuxserver/sonarr
               tag: 4.0.10.2544-ls258
             resources:
-              limits:
-                cpu: 500m
-                memory: 1Gi
               requests:
                 cpu: 100m
                 memory: 500m
@@ -113,7 +110,7 @@ spec:
         enabled: true
         existingClaim: media-pvc-ssd
       custom-services:
-        enabled: true
+        enabled: false
         type: persistentVolumeClaim
         storageClass: openebs-hostpath
         accessMode: ReadWriteOnce
@@ -124,7 +121,7 @@ spec:
               - path: /custom-services.d
                 readOnly: false
       custom-cont-init:
-        enabled: true
+        enabled: false
         type: configMap
         name: sonarr-scripts
         advancedMounts:
