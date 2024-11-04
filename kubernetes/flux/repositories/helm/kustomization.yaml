@@ -35,3 +35,4 @@ resources:
   - ./robusta.yaml
 #  - ./mailu.yaml
   - ./csi-driver-nfs.yaml
+  - ./kubeflame.yaml

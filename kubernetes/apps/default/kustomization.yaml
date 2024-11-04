@@ -34,6 +34,7 @@ resources:
   - ./flux-alerts.yaml
   - ./discord-webhook.sops.yaml
 #  - ./mailu/ks.yaml
+  - ./lutho
 configMapGenerator:
   - name: general-dashboards
     namespace: default
