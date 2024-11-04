@@ -17,6 +17,14 @@ spec:
   interval: 24h
   releaseName: lutho
   targetNamespace: default
+  install:
+    remediation:
+      remediateLastFailure: true
+      retries: 5
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 5
   values:
     image:
       repository: stiforr/lutho
