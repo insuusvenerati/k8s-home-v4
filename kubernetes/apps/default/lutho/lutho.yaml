@@ -21,7 +21,7 @@ spec:
     image:
       repository: stiforr/lutho
       pullPolicy: Always
-      tag: ""
+      tag: latest
     ingress:
       enabled: true
       className: internal
