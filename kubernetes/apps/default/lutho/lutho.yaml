@@ -18,6 +18,10 @@ spec:
   releaseName: lutho
   targetNamespace: default
   values:
+    image:
+      repository: stiforr/lutho
+      pullPolicy: Always
+      tag: ""
     ingress:
       enabled: true
       className: internal
