@@ -90,9 +90,6 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 5
             resources:
-#              limits:
-#                cpu: 1500m
-#                memory: 1Gi
               requests:
                 cpu: 1000m
                 memory: 500m
@@ -133,7 +130,7 @@ spec:
         enabled: true
         existingClaim: media-pvc-ssd
       custom-services:
-        enabled: true
+        enabled: false
         type: persistentVolumeClaim
         storageClass: openebs-hostpath
         accessMode: ReadWriteOnce
@@ -144,7 +141,7 @@ spec:
               - path: /custom-services.d
                 readOnly: false
       custom-cont-init:
-        enabled: true
+        enabled: false
         type: configMap
         name: script-init
         advancedMounts:
@@ -155,7 +152,7 @@ spec:
     service:
       exportarr:
         controller: main
-        enabled: true
+        enabled: false
         ports:
           metrics:
             appProtocol: http
@@ -175,7 +172,7 @@ spec:
             protocol: HTTP
     serviceMonitor:
       exportarr:
-        enabled: true
+        enabled: false
         endpoints:
           - interval: 4m
             path: /metrics
