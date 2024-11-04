@@ -32,7 +32,7 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           exportarr:
-            enabled: false
+            enabled: true
             args:
               - radarr
             env:
@@ -72,20 +72,20 @@ spec:
               tag: nightly-version-5.15.0.9397
             probes:
               liveness:
-                enabled: false
+                enabled: true
                 custom: false
                 type: TCP
                 spec:
-                  initialDelaySeconds: 240
+                  initialDelaySeconds: 5
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 5
               readiness:
-                enabled: false
+                enabled: true
                 custom: false
                 type: TCP
                 spec:
-                  initialDelaySeconds: 240
+                  initialDelaySeconds: 5
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 5
@@ -152,7 +152,7 @@ spec:
     service:
       exportarr:
         controller: main
-        enabled: false
+        enabled: true
         ports:
           metrics:
             appProtocol: http
@@ -172,7 +172,7 @@ spec:
             protocol: HTTP
     serviceMonitor:
       exportarr:
-        enabled: false
+        enabled: true
         endpoints:
           - interval: 4m
             path: /metrics
