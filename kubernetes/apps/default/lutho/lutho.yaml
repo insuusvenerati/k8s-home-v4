@@ -20,8 +20,7 @@ spec:
   values:
     ingress:
       enabled: true
-      className: cilium
-      annotationsPrefix: ""
+      className: internal
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       host: lutho.internal.${SECRET_DOMAIN}
