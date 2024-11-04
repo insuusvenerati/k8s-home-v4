@@ -29,7 +29,7 @@ spec:
     image:
       repository: stiforr/lutho
       pullPolicy: Always
-      tag: testing-1
+      tag: testing-2
     ingress:
       enabled: true
       className: internal
