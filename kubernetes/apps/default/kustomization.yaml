@@ -17,7 +17,7 @@ resources:
   #  - ./authentik
   - ./proxmox
   - ./influx
-  - ./bazarr
+#  - ./bazarr
   # - ./network-policy.yaml
   - ./doplarr
   #  - ./autobrr
@@ -29,8 +29,8 @@ resources:
   # - ./radarr-anime
   # - ./sonarr-anime
   #  - ./mastodon
-  - ./rocketchat
-  - ./uptime-kuma
+#  - ./rocketchat
+#  - ./uptime-kuma
   - ./flux-alerts.yaml
   - ./discord-webhook.sops.yaml
 #  - ./mailu/ks.yaml
