@@ -22,21 +22,26 @@ spec:
       main:
         containers:
           exportarr:
-            enabled: false
+            enabled: true
             args:
               - prowlarr
             env:
               URL: http://prowlarr:9696
               PORT: 9697
               CONFIG: /config/config.xml
-              FORM_AUTH: false
+              FORM_AUTH: true
               ENABLE_ADDITIONAL_METRICS: true
               DISABLE_SSL_VERIFY: true
-              APIKEY:
+              AUTH_PASSWORD:
                 valueFrom:
                   secretKeyRef:
                     name: prowlarr-apikey
-                    key: APIKEY
+                    key: AUTH_PASSWORD
+              AUTH_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: prowlarr-apikey
+                    key: AUTH_USERNAME
             envFrom:
               - secret: prowlarr-apikey
             image:
