@@ -36,7 +36,7 @@ spec:
       annotations:
         storageclass.kubernetes.io/is-default-class: "false"
       parameters:
-        server: 192.168.1.230
+        server: 192.168.2.230
         share: /srv/nfs
         subDir: kubernetes
         mountPermissions: "0"
