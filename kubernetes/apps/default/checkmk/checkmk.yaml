@@ -26,6 +26,9 @@ spec:
            cert-manager.io/cluster-issuer: letsencrypt-production
          hosts:
            - host: &host checkmk-cluster-collector.internal.${SECRET_DOMAIN}
+             paths:
+               - path: /
+                 pathType: Prefix
          tls:
            - secretName: checkmk-tls
              hosts:
