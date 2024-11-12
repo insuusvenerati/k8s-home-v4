@@ -32,7 +32,7 @@ spec:
       loadbalancerMode: shared
       service:
         annotations:
-          lbipam.cilium.io/ips: 192.168.1.205
+          lbipam.cilium.io/ips: 192.168.2.205
     hubble:
       enabled: true
       metrics:
