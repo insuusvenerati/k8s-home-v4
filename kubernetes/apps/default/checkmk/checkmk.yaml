@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: checkmk
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: checkmk
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: checkmk
+        namespace: flux-system
+      version: 1.6.0
+  interval: 24h0m0s
+  releaseName: checkmk
+  targetNamespace: default
+  values:
+     clusterCollector:
+       ingress:
+         enabled: true
+         className: internal
+         annotations:
+           cert-manager.io/cluster-issuer: letsencrypt-production
+         hosts:
+           - host: &host checkmk-cluster-collector.internal.${SECRET_DOMAIN}
+         tls:
+           - secretName: checkmk-tls
+             hosts:
+               - *host

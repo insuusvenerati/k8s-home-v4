@@ -36,3 +36,4 @@ resources:
 #  - ./mailu.yaml
   - ./csi-driver-nfs.yaml
   - ./kubeflame.yaml
+  - ./checkmk.yaml

@@ -35,6 +35,7 @@ resources:
   - ./discord-webhook.sops.yaml
 #  - ./mailu/ks.yaml
   - ./lutho
+  - ./checkmk
 configMapGenerator:
   - name: general-dashboards
     namespace: default

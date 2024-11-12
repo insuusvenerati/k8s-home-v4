@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: checkmk
+  namespace: flux-system
+spec:
+  interval: 24h0m0s
+  url: https://checkmk.github.io/checkmk_kube_agent
