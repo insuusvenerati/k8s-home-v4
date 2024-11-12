@@ -21,7 +21,7 @@ spec:
 #    - wsize=32768
   nfs:
     path: /srv/nfs
-    server: 192.168.1.230
+    server: 192.168.2.230
     readOnly: false
 ---
 apiVersion: v1
