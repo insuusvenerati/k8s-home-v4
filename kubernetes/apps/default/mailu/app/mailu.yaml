@@ -46,7 +46,7 @@ spec:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
-      ingressClassName: cilium
+      ingressClassName: internal
     redis:
       master:
         persistence:

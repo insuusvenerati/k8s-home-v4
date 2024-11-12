@@ -71,7 +71,7 @@ spec:
           nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
           nginx.ingress.kubernetes.io/otel-service-name: bazarr
           nginx.ingress.kubernetes.io/service-upstream: "false"
-        className: cilium
+        className: internal
         enabled: true
         hosts:
           - host: bazarr.internal.${SECRET_DOMAIN}

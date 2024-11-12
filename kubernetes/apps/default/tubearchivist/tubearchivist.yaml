@@ -142,7 +142,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: cilium
+        className: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/service-upstream: "false"

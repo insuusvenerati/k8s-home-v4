@@ -60,7 +60,7 @@ spec:
       uptime-kuma:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-        className: cilium
+        className: internal
         enabled: true
         hosts:
         - host: uptime.internal.${SECRET_DOMAIN}

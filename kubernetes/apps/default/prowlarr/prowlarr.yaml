@@ -71,7 +71,7 @@ spec:
           nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
           nginx.ingress.kubernetes.io/otel-service-name: prowlarr
           nginx.ingress.kubernetes.io/service-upstream: "false"
-        className: cilium
+        className: internal
         enabled: true
         hosts:
           - host: prowlarr.internal.${SECRET_DOMAIN}

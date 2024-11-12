@@ -27,7 +27,7 @@ spec:
       type: ClusterIP
     ingress:
       enabled: true
-      ingressClassName: cilium
+      ingressClassName: internal
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         nginx.ingress.kubernetes.io/service-upstream: "false"
