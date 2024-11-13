@@ -114,5 +114,5 @@ data:
           - size: full
             widgets:
               - type: iframe
-                source: https://domain.com
+                source: https://cmk.stiforr.com/home/check_mk/index.py?start_url=%2Fhome%2Fcheck_mk%2Fdashboard.py%3Fhost%3Dkubernetes%26kubernetes_cluster%3Dhome-kubernetes%26name%3Dkubernetes_cluster%26site%3Dhome
                 height: 800
