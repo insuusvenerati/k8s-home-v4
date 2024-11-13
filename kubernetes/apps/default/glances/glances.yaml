@@ -32,7 +32,7 @@ spec:
               repository: glanceapp/glance
               tag: v0.6.2
             args:
-              - --config /config/glance.yml
+              - "--config /config/glance.yml"
     serviceAccount:
       create: true
     service:
