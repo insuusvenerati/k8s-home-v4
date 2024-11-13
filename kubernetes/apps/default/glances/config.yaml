@@ -10,12 +10,7 @@ data:
         columns:
           - size: small
             widgets:
-              - type: search
-                search-engine: duckduckgo
-                bangs:
-                  - title: YouTube
-                    shortcut: "!yt"
-                    url: https://www.youtube.com/results?search_query={QUERY}
+
               - type: calendar
 
               - type: rss
@@ -42,6 +37,12 @@ data:
 
           - size: full
             widgets:
+              - type: search
+                search-engine: duckduckgo
+                bangs:
+                  - title: YouTube
+                    shortcut: "!yt"
+                    url: https://www.youtube.com/results?search_query={QUERY}
               - type: hacker-news
 
               - type: videos
