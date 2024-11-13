@@ -5,114 +5,68 @@ metadata:
   namespace: default
 data:
   glance.yml: |
-    server:
-      assets-path: /app/assets
-    branding:
-      custom-footer: |
-        <p>Mera Khabar, Mera Prayogashaala.</p>
-      logo-text:
-
-    theme:
-      background-color: 0 0 15
-      primary-color: 220 13 91
-      contrast-multiplier: 1.1
-
     pages:
-      - name: Khabar
-        show-mobile-header: true
+      - name: Home
         columns:
           - size: small
             widgets:
               - type: calendar
-              - type: weather
-                location: Pune, India
-                units: metric
-                hour-format: 12h
-              - type: lobsters
-                cache: 6h
-                sort-by: hot
-                tags:
-                  - linux
-                  - android
-                  - css
-                  - javascript
-                  - ai
-                  - hardware
-                  - web
-                  - privacy
-                  - vcs
-                limit: 20
-                collapse-after: 5
+
+              - type: rss
+                limit: 10
+                collapse-after: 3
+                cache: 3h
+                feeds:
+                  - url: https://ciechanow.ski/atom.xml
+                  - url: https://www.joshwcomeau.com/rss.xml
+                    title: Josh Comeau
+                  - url: https://samwho.dev/rss.xml
+                  - url: https://awesomekling.github.io/feed.xml
+                  - url: https://ishadeed.com/feed.xml
+                    title: Ahmad Shadeed
+
+              - type: twitch-channels
+                channels:
+                  - theprimeagen
+                  - cohhcarnage
+                  - christitustech
+                  - blurbs
+                  - asmongold
+                  - jembawls
 
           - size: full
             widgets:
-              - type: search
-                search-engine: https://s.domain.com/search?q={QUERY}
+              - type: hacker-news
+
               - type: videos
-                limit: 100
-                style: grid-cards
-                collapse-after-rows: 2
-                video-url-template: https://yt.domain.com/watch?v={VIDEO-ID}
                 channels:
-                  - UCwqusr8YDwM-3mEYTDeJHzw # Republic TV
-                  - UCYPvAwZP8pZhSMW8qs7cVCw # India Today
-                  - UCIvaYmXn910QMdemBG3v1pQ # Zee News
-                  - UCXIJgqnII2ZOINSWNOGFThA # Fox News
-                  - UC5O114-PQNYkurlTg6hekZw # United Nations
-                  - UCGTUbwceCMibvpbd2NaIP7A # The Weather Channel
-                  - UCYxRlFDqcWM4y7FfpiAN3KQ # The White House
-              - type: rss
-                cache: 61m
-                style: detailed-list
-                collapse-after: 20
-                limit: 200
-                title: News
-                feeds:
-                  - url: https://www.republicworld.com/rss/latest.xml
-                    title: Republic World
-                  - url: https://www.indiatoday.in/rss/home
-                    title: India Today
-                  - url: https://zeenews.india.com/rss/india-national-news.xml
-                    title: Zee News
-                  - url: https://moxie.foxnews.com/google-publisher/latest.xml
-                    title: Fox News
-                  - url: https://www.nasa.gov/news-release/feed/
-                    title: NASA Releases
-                  - url: https://www.nasa.gov/feeds/iotd-feed/
-                    title: NASA Image Of The Day
-                  - url: https://rsshub.app/reuters/world/us
-                    title: Reuters World News
+                  - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+                  - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
+                  - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
+
+              - type: reddit
+                subreddit: selfhosted
 
           - size: small
             widgets:
-              - type: clock
-                hour-format: 24h
-                timezones:
-                  - timezone: America/Chicago
-                    label: Chicago
-                  - timezone: America/Los_Angeles
-                    label: Los Angeles
-                  - timezone: Asia/Kolkata
-                    label: New Delhi
-              - type: reddit
-                cache: 2h
-                subreddit: worldnews
-                sort-by: top
-                top-period: day
-                limit: 25
-                collapse-after: 5
-              - type: reddit
-                cache: 12h
-                subreddit: indiaspeaks
-                sort-by: top
-                top-period: day
-                limit: 25
-                collapse-after: 5
-      - name: Prayogashaala
-        slug: prayogashaala
-        columns:
-          - size: full
-            widgets:
-              - type: iframe
-                source: https://cmk.stiforr.com/home/check_mk/index.py?start_url=%2Fhome%2Fcheck_mk%2Fdashboard.py%3Fhost%3Dkubernetes%26kubernetes_cluster%3Dhome-kubernetes%26name%3Dkubernetes_cluster%26site%3Dhome
-                height: 800
+              - type: weather
+                location: London, United Kingdom
+
+              - type: markets
+                markets:
+                  - symbol: SPY
+                    name: S&P 500
+                  - symbol: BTC-USD
+                    name: Bitcoin
+                  - symbol: NVDA
+                    name: NVIDIA
+                  - symbol: AAPL
+                    name: Apple
+                  - symbol: MSFT
+                    name: Microsoft
+                  - symbol: GOOGL
+                    name: Google
+                  - symbol: AMD
+                    name: AMD
+                  - symbol: RDDT
+                    name: Reddit
