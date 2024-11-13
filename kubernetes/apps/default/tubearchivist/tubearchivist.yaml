@@ -26,9 +26,6 @@ spec:
         enabled: true
         type: deployment
         replicas: 1
-#        pod:
-#          annotations:
-#            instrumentation.opentelemetry.io/inject-python: "default/python-instrumentation"
         containers:
           main:
             image:
@@ -36,34 +33,6 @@ spec:
               tag: unstable
               pullPolicy: Always
             env:
-#              - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-#                value: true
-#              - name: OTEL_DISABLED_INSTRUMENTATIONS
-#                value: fs,elasticsearch
-#              - name: OTEL_TRACES_EXPORTER
-#                value: otlp
-#              - name: OTEL_METRICS_EXPORTER
-#                value: otlp
-#              - name: OTEL_LOGS_EXPORTER
-#                value: otlp
-#              - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
-#                value: DELTA
-#              - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
-#                value: base2_exponential_bucket_histogram
-#              - name: OTEL_RESOURCE_ATTRIBUTES
-#                value: service.name=tubearchivist,application=tubearchivist
-#              - name: DJANGO_SETTINGS_MODULE
-#                value: config.settings
-#              - name: OTEL_PYTHON_DJANGO_EXCLUDED_URLS
-#                value: /api/notification/,/api/ping/,/health
-#              - name: OTEL_EXPORTER_OTLP_ENDPOINT
-#                value: http://default-collector.default.svc.cluster.local:4317
-#              - name: OTEL_EXPORTER_OTLP_PROTOCOL
-#                value: grpc
-#              - name: OTEL_EXPORTER_OTLP_COMPRESSION
-#                value: gzip
-#              - name: OTEL_PYTHON_LOG_CORRELATION
-#                value: true
               - name: TZ
                 value: America/Chicago
               - name: PUID
@@ -145,9 +114,6 @@ spec:
         className: internal
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          nginx.ingress.kubernetes.io/service-upstream: "false"
-          nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
-          nginx.ingress.kubernetes.io/otel-service-name: "tubearchivist"
         hosts:
           - host: tubearchivist.internal.${SECRET_DOMAIN}
             paths:
