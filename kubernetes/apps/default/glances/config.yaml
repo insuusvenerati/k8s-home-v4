@@ -37,5 +37,5 @@ data:
           - size: full
             widgets:
               - type: iframe
-                source: https://grafana.internal.stiforr.com/d/WURH98Y4k/media-dashboard?from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=prometheus&var-prowlarr_instance=$__all&var-sabnzbd_instance=$__all&var-radarr_instance=$__all&var-sonarr_instance=$__all&var-lidarr_instance=$__all&var-readarr_instance=$__all&var-bazarr_instance=$__all&refresh=30s
+                source: https://grafana.internal.stiforr.com/d/WURH98Y4k/media-dashboard?from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=prometheus&var-prowlarr_instance=$__all&var-sabnzbd_instance=$__all&var-radarr_instance=$__all&var-sonarr_instance=$__all&var-lidarr_instance=$__all&var-readarr_instance=$__all&var-bazarr_instance=$__all&refresh=30s&kiosk
                 height: 800
