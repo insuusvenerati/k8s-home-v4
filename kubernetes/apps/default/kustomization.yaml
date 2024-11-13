@@ -36,6 +36,7 @@ resources:
 #  - ./mailu/ks.yaml
   - ./lutho
   - ./checkmk
+  - ./glances
 configMapGenerator:
   - name: general-dashboards
     namespace: default
