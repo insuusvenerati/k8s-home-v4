@@ -72,9 +72,8 @@ spec:
         advancedMounts:
           main:
             glances:
-              - path: /config/glance.yml
+              - path: /config
                 readOnly: true
-                subPath: glance.yml
     rbac:
       roles:
         glance-role:
