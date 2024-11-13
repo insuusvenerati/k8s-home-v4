@@ -68,7 +68,7 @@ spec:
       config:
         enabled: true
         type: configMap
-        name: glances-config
+        name: glance.yml
     rbac:
       roles:
         glance-role:
