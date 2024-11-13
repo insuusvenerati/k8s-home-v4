@@ -111,6 +111,8 @@ spec:
         tag: 11.3.0
       plugins:
         - https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
+      env:
+        GF_SECURITY_ALLOW_EMBEDDING: true
       sidecar:
         prune: true
         datasources:
