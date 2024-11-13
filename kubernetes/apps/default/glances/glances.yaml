@@ -74,6 +74,7 @@ spec:
             glances:
               - path: /config
                 readOnly: true
+                subPath: glance.yml
     rbac:
       roles:
         glance-role:
