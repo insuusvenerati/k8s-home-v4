@@ -68,7 +68,13 @@ spec:
       config:
         enabled: true
         type: configMap
-        name: glance.yml
+        name: glances-config
+        advancedMounts:
+          main:
+            glances:
+              - path: /config/glance.yml
+                readOnly: true
+                subPath: glance.yml
     rbac:
       roles:
         glance-role:
