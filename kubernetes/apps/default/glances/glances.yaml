@@ -36,7 +36,7 @@ spec:
     service:
       *app:
         enabled: true
-        controller: *app
+        controller: main
         primary: true
         ports:
           http:
