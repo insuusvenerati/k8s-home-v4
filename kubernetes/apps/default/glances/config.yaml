@@ -31,3 +31,11 @@ data:
             widgets:
               - type: weather
                 location: ${SECRET_LOCATION}
+
+      - name: Grafana
+        columns:
+          - size: full
+            widgets:
+              - type: iframe
+                source: http://grafana.internal.stiforr.com:3000/d/WURH98Y4k/media-dashboard?from=2024-11-12T20:12:20.469Z&to=2024-11-13T20:12:20.469Z&timezone=browser&var-DS_PROMETHEUS=prometheus&var-prowlarr_instance=$__all&var-sabnzbd_instance=$__all&var-radarr_instance=$__all&var-sonarr_instance=$__all&var-lidarr_instance=$__all&var-readarr_instance=$__all&var-bazarr_instance=$__all&refresh=30s
+                height: 800
