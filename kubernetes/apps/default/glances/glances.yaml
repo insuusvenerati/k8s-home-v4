@@ -37,7 +37,7 @@ spec:
     serviceAccount:
       create: true
     service:
-      *app:
+      glances:
         enabled: true
         controller: main
         primary: true
@@ -47,7 +47,7 @@ spec:
             primary: true
             port: 8080
     ingress:
-      *app:
+      glances:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
