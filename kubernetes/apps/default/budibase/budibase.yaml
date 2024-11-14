@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: budibase
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: budibase
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: budibase
+        namespace: flux-system
+      version: 3.0.233
+  interval: 24h0m0s
+  releaseName: budibase
+  targetNamespace: default
+  values:
+    ingress:
+      enabled: true
+      className: internal
+      hosts:
+        - host: &host apps.internal.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: proxy-service
+                  port:
+                    number: 10000
+      tls:
+        - secretName: budibase-tls
+          hosts:
+            - *host
+    globals:
+      enableAnalytics: "0"
+      cookieDomain: *host
+      platformUrl: *host
+    services:
+      objectStore:
+        storage: 10Gi
+        storageClass: nfs-client-ssd
+    couchdb:
+      persistentVolume:
+        enabled: true
+        storageClass: nfs-client-ssd
+        size: 5Gi

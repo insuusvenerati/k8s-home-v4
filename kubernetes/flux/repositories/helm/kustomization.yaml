@@ -31,9 +31,10 @@ resources:
   - ./onechart.yaml
 #  - ./authentik.yaml
 #  - ./kubeshark.yaml
-  - ./rocket-chat.yaml
+#  - ./rocket-chat.yaml
   - ./robusta.yaml
 #  - ./mailu.yaml
   - ./csi-driver-nfs.yaml
   - ./kubeflame.yaml
   - ./checkmk.yaml
+  - ./budibase.yaml

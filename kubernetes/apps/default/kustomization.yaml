@@ -37,6 +37,7 @@ resources:
   - ./lutho
   - ./checkmk
   - ./glances
+  - ./budibase
 configMapGenerator:
   - name: general-dashboards
     namespace: default
