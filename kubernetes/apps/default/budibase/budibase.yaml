@@ -21,6 +21,8 @@ spec:
     ingress:
       enabled: true
       className: internal
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - host: &host apps.internal.${SECRET_DOMAIN}
           paths:
