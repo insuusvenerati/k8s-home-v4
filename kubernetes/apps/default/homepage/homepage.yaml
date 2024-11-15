@@ -68,7 +68,7 @@ spec:
         type: persistentVolumeClaim
         storageClass: nfs-client-ssd
         size: 1Gi
-        name: home-settings
+        accessMode: ReadWriteMany
         globalMounts:
           - path: /app/config
             readOnly: false
