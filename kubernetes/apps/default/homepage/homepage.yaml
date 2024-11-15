@@ -35,16 +35,6 @@ spec:
                 value: 1000
               - name: PGID
                 value: 1000
-              - name: HOMEPAGE_VAR_RADARR_APIKEY
-                valueFrom:
-                  secretKeyRef:
-                    name: radarr-apikey
-                    key: APIKEY
-              - name: HOMEPAGE_VAR_SONARR_APIKEY
-                valueFrom:
-                  secretKeyRef:
-                    name: sonarr-apikey
-                    key: API_KEY
             image:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.9.12
