@@ -61,7 +61,7 @@ data:
                 height: 800
 
       - name: Homepage
-        columes:
+        columns:
           - size: full
             widgets:
               - type: iframe
