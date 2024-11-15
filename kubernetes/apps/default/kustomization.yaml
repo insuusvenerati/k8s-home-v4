@@ -23,7 +23,7 @@ resources:
   #  - ./autobrr
   #  - ./nzbget
   #  - ./otel-collector.yaml
-  #  - ./homepage
+  - ./homepage
   - ./qbittorrent
   - ./adguard
   # - ./radarr-anime

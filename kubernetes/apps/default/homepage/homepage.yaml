@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.4.0
+      version: 3.5.1
   interval: 12h0m0s
   releaseName: homepage
   targetNamespace: default
@@ -41,7 +41,7 @@ spec:
                     key: API_KEY
             image:
               repository: ghcr.io/gethomepage/homepage
-              tag: v0.9.11
+              tag: v0.9.12
         enabled: true
         type: deployment
     global:
@@ -52,9 +52,6 @@ spec:
       homepage:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          nginx.ingress.kubernetes.io/enable-opentelemetry: "true"
-          nginx.ingress.kubernetes.io/otel-service-name: homepage
-          nginx.ingress.kubernetes.io/service-upstream: "false"
         className: internal
         enabled: true
         hosts:
@@ -70,16 +67,21 @@ spec:
             secretName: homepage-tls
     persistence:
       config:
-        accessMode: ReadWriteOnce
-        enabled: true
-        size: 1Gi
-        storageClass: nfs-client-ssd
-        type: persistentVolumeClaim
-        advancedMounts:
-          main:
-            homepage:
-              - path: /app/config
-                readOnly: false
+        type: configMap
+        name: homepage-config
+        globalMounts:
+          - subPath: bookmarks.yaml
+            path: /app/config/bookmarks.yaml
+          - subPath: docker.yaml
+            path: /app/config/docker.yaml
+          - subPath: kubernetes.yaml
+            path: /app/config/kubernetes.yaml
+          - subPath: services.yaml
+            path: /app/config/services.yaml
+          - subPath: settings.yaml
+            path: /app/config/settings.yaml
+          - subPath: widgets.yaml
+            path: /app/config/widgets.yaml
     service:
       homepage:
         controller: main
@@ -92,12 +94,11 @@ spec:
             protocol: HTTP
     serviceAccount:
       create: true
-    rawResources:
-      clusterrole:
-        enabled: true
-        apiVersion: rbac.authorization.k8s.io/v1
-        kind: ClusterRole
-        spec:
+    rbac:
+      roles:
+        homepage:
+          enabled: true
+          type: ClusterRole
           rules:
             - apiGroups:
                 - ""
@@ -118,7 +119,6 @@ spec:
                 - list
             - apiGroups:
                 - traefik.containo.us
-                - traefik.io
               resources:
                 - ingressroutes
               verbs:
@@ -132,22 +132,11 @@ spec:
               verbs:
                 - get
                 - list
-            - apiGroups:
-                - apiextensions.k8s.io
-              resources:
-                - customresourcedefinitions/status
-              verbs:
-                - get
-      clusterrolebinding:
-        enabled: true
-        apiVersion: rbac.authorization.k8s.io/v1
-        kind: ClusterRoleBinding
-        spec:
+      bindings:
+        homepage:
+          enabled: true
+          type: ClusterRoleBinding
           roleRef:
-            apiGroup: rbac.authorization.k8s.io
-            kind: ClusterRole
-            name: homepage-clusterrole
+            identifier: homepage
           subjects:
-            - kind: ServiceAccount
-              name: homepage
-              namespace: default
+            - identifier: default
