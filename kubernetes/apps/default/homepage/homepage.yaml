@@ -44,6 +44,8 @@ spec:
               tag: v0.9.12
         enabled: true
         type: deployment
+        annotations:
+          configmap.reloader.stakater.com/reload: "home-settings"
     global:
       fullnameOverride: homepage
       labels:
