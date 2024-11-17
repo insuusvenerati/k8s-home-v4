@@ -659,3 +659,4 @@ wiki
 /robusta/Chart.yaml
 /robusta/generated_values.yaml
 /robusta/values.yaml
+/http-client.private.env.json
