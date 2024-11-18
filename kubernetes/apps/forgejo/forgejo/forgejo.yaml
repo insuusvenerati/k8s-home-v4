@@ -15,30 +15,13 @@ spec:
   releaseName: forgejo
   targetNamespace: forgejo
   values:
-    affinity: { }
     checkDeprecation: true
     clusterDomain: cluster.local
-    containerSecurityContext:
-      capabilities:
-        add:
-          - SYS_CHROOT
-    deployment:
-      annotations: { }
-      env: [ ]
-      labels: { }
-      terminationGracePeriodSeconds: 60
-    dnsConfig: { }
-    extraContainerVolumeMounts: [ ]
-    extraDeploy: [ ]
-    extraInitVolumeMounts: [ ]
-    extraVolumeMounts: [ ]
-    extraVolumes: [ ]
     gitea:
-      additionalConfigFromEnvs: [ ]
-      additionalConfigSources: [ ]
+      additionalConfigSources:
+        - secret:
+            secretName: forgejo-app-ini
       admin:
-        email: norwood.sean@gmail.com
-        existingSecret: forgejo-admin-secret
         passwordMode: keepUpdated
       config:
         APP_NAME: 'Forgejo: Beyond coding. We forge.'
@@ -92,57 +75,12 @@ spec:
         time: { }
         ui: { }
         webhook: { }
-      ldap: [ ]
-      livenessProbe:
-        enabled: true
-        failureThreshold: 10
-        initialDelaySeconds: 200
-        periodSeconds: 10
-        successThreshold: 1
-        tcpSocket:
-          port: http
-        timeoutSeconds: 1
       metrics:
         enabled: true
         serviceMonitor:
           enabled: true
           namespace: monitoring
       oauth: [ ]
-      podAnnotations: { }
-      readinessProbe:
-        enabled: true
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 10
-        successThreshold: 1
-        tcpSocket:
-          port: http
-        timeoutSeconds: 1
-      ssh:
-        logLevel: INFO
-      startupProbe:
-        enabled: false
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 10
-        successThreshold: 1
-        tcpSocket:
-          port: http
-        timeoutSeconds: 1
-    global:
-      hostAliases: [ ]
-      imagePullSecrets: [ ]
-      imageRegistry: ""
-      storageClass: ""
-    image:
-      digest: ""
-      fullOverride: ""
-      pullPolicy: IfNotPresent
-      registry: code.forgejo.org
-      repository: forgejo/forgejo
-      rootless: true
-      tag: ""
-    imagePullSecrets: [ ]
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
@@ -157,15 +95,6 @@ spec:
         - hosts:
             - git.internal.${SECRET_DOMAIN}
           secretName: forgejo-tls
-    initContainers:
-      resources:
-        limits: { }
-        requests:
-          cpu: 100m
-          memory: 128Mi
-    initPreScript: ""
-    namespaceOverride: ""
-    nodeSelector: { }
     persistence:
       accessModes:
         - ReadWriteOnce
@@ -174,15 +103,9 @@ spec:
       claimName: gitea-shared-storage
       create: true
       enabled: true
-      labels: { }
       mount: true
       size: 10Gi
       storageClass: nfs-client-ssd
-      subPath: null
-      volumeName: ""
-    podDisruptionBudget: { }
-    podSecurityContext:
-      fsGroup: 1000
     postgresql:
       enabled: true
       global:
@@ -198,26 +121,6 @@ spec:
         persistence:
           size: 10Gi
           storageClass: nfs-client-ssd
-    postgresql-ha:
-      enabled: false
-      global:
-        postgresql:
-          database: gitea
-          password: gitea
-          username: gitea
-      pgpool:
-        adminPassword: changeme3
-      postgresql:
-        password: changeme4
-        postgresPassword: changeme1
-        repmgrPassword: changeme2
-      primary:
-        persistence:
-          size: 10Gi
-      service:
-        ports:
-          postgresql: 5432
-    priorityClassName: ""
     redis:
       architecture: standalone
       enabled: true
@@ -233,9 +136,6 @@ spec:
       enabled: false
       usePassword: false
     replicaCount: 1
-    resources: { }
-    schedulerName: ""
-    securityContext: { }
     service:
       http:
         annotations: {}
@@ -269,27 +169,8 @@ spec:
         nodePort: null
         port: 22
         type: LoadBalancer
-    serviceAccount:
-      annotations: { }
-      automountServiceAccountToken: false
-      create: false
-      imagePullSecrets: [ ]
-      labels: { }
-      name: ""
     signing:
       enabled: false
       existingSecret: ""
       gpgHome: /data/git/.gnupg
       privateKey: ""
-    strategy:
-      rollingUpdate:
-        maxSurge: 100%
-        maxUnavailable: 0
-      type: RollingUpdate
-    test:
-      enabled: true
-      image:
-        name: busybox
-        tag: latest
-    tolerations: [ ]
-    topologySpreadConstraints: [ ]
