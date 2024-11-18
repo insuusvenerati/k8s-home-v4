@@ -11,9 +11,14 @@ spec:
     namespace: flux-system
   install:
     createNamespace: true
+    remediation:
+      retries: 5
   interval: 24h0m0s
   releaseName: forgejo
   targetNamespace: forgejo
+  upgrade:
+    remediation:
+      retries: 5
   values:
     checkDeprecation: true
     clusterDomain: cluster.local
