@@ -177,7 +177,7 @@ spec:
       labels: { }
       mount: true
       size: 10Gi
-      storageClass: openebs-hostpath
+      storageClass: nfs-client-ssd
       subPath: null
       volumeName: ""
     podDisruptionBudget: { }
@@ -197,7 +197,7 @@ spec:
       primary:
         persistence:
           size: 10Gi
-          storageClass: openebs-hostpath
+          storageClass: nfs-client-ssd
     postgresql-ha:
       enabled: false
       global:
