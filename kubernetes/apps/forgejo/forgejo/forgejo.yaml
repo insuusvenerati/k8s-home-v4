@@ -18,6 +18,8 @@ spec:
     checkDeprecation: true
     clusterDomain: cluster.local
     gitea:
+      podAnnotations:
+        secret.reloader.stakater.com/reload: "forgejo-app-ini"
       additionalConfigSources:
         - secret:
             secretName: forgejo-app-ini
