@@ -106,6 +106,8 @@ spec:
       mount: true
       size: 10Gi
       storageClass: nfs-client-ssd
+    postgresql-ha:
+      enabled: false
     postgresql:
       enabled: true
       global:
