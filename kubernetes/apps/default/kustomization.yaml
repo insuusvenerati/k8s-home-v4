@@ -24,8 +24,8 @@ resources:
   #  - ./nzbget
   #  - ./otel-collector.yaml
   - ./homepage
-  - ./qbittorrent
-  - ./adguard
+#  - ./qbittorrent
+#  - ./adguard
   # - ./radarr-anime
   # - ./sonarr-anime
   #  - ./mastodon
