@@ -166,7 +166,7 @@ spec:
     kubeEtcd:
       enabled: true
       endpoints:
-        - 192.168.2.135
+        - 192.168.1.135
       service:
         enabled: true
     kubeScheduler:
@@ -223,9 +223,6 @@ spec:
         probeSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
         additionalScrapeConfigs:
-          - job_name: 'adguard'
-            static_configs:
-              - targets: [ '192.168.2.164:9618' ]
           - job_name: 'qbittorrent'
             static_configs:
-              - targets: ['192.168.2.230:8000']
+              - targets: ['192.168.1.230:8000']
