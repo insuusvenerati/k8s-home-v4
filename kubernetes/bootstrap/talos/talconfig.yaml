@@ -28,7 +28,7 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "bc:24:11:eb:3a:9a"
+          hardwareAddr: "bc:24:11:b5:cb:a6"
         dhcp: false
         addresses:
           - "192.168.1.11/24"
@@ -56,7 +56,7 @@ nodes:
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "bc:24:11:eb:34:34"
+          hardwareAddr: "bc:24:11:44:3d:08"
         dhcp: false
         addresses:
           - "192.168.1.12/24"
@@ -80,6 +80,6 @@ controlPlane:
   patches:
     - "@./patches/controller/api-access.yaml"
     - "@./patches/controller/cluster.yaml"
-#    - "@./patches/controller/disable-admission-controller.yaml"
+    - "@./patches/controller/disable-admission-controller.yaml"
     - "@./patches/controller/etcd.yaml"
 
