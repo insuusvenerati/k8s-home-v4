@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: linuxserver/jackett
-      tag: 0.22.671
+      tag: 0.22.1018
     env:
       TZ: America/Chicago
     ingress:
