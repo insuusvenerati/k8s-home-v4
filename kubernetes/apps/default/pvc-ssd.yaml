@@ -20,8 +20,8 @@ spec:
 #    - rsize=32768
 #    - wsize=32768
   nfs:
-    path: /srv/nfs
-    server: 192.168.1.230
+    path: /mnt/storage-pool/media
+    server: 192.168.1.171
     readOnly: false
 ---
 apiVersion: v1

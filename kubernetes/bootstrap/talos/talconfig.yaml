@@ -3,17 +3,19 @@
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
 talosVersion: v1.8.3
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.31.2
+kubernetesVersion: v1.31.3
 
 clusterName: "home-kubernetes"
-endpoint: https://192.168.1.2:6443
+endpoint: https://192.168.1.10:6443
+
 clusterPodNets:
   - "10.69.0.0/16"
 clusterSvcNets:
   - "10.96.0.0/16"
+
 additionalApiServerCertSans: &sans
-  - "192.168.1.2"
-  - 127.0.0.1 # KubePrism
+  - "192.168.1.10"
+  - "127.0.0.1"
 additionalMachineCertSans: *sans
 
 # Disable built-in Flannel to use Cilium
@@ -28,7 +30,7 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "bc:24:11:b5:cb:a6"
+          hardwareAddr: "bc:24:11:fe:37:72"
         dhcp: false
         addresses:
           - "192.168.1.11/24"
@@ -37,41 +39,22 @@ nodes:
             gateway: "192.168.1.254"
         mtu: 1500
         vip:
-          ip: "192.168.1.2"
-    extensionServices:
-      - name: tailscale
-        configFiles:
-        environment:
-          - TS_AUTHKEY=${TS_AUTHKEY}
-          - TS_ROUTES=${TS_ROUTES}
+          ip: "192.168.1.10"
     patches:
       - "@./patches/controller/api-access.yaml"
       - "@./patches/controller/cluster.yaml"
       - "@./patches/controller/disable-admission-controller.yaml"
       - "@./patches/controller/etcd.yaml"
-  - hostname: "worker"
-    ipAddress: "192.168.1.12"
-    installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515
-    controlPlane: false
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:44:3d:08"
-        dhcp: false
-        addresses:
-          - "192.168.1.12/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.1.254"
-        mtu: 1500
 
 # Global patches
 patches:
   - "@./patches/global/cluster-discovery.yaml"
   - "@./patches/global/containerd.yaml"
   - "@./patches/global/disable-search-domain.yaml"
+  - "@./patches/global/dns.yaml"
   - "@./patches/global/hostdns.yaml"
   - "@./patches/global/kubelet.yaml"
+  - "@./patches/global/ntp.yaml"
   - "@./patches/global/openebs-local.yaml"
   - "@./patches/global/sysctl.yaml"
 
