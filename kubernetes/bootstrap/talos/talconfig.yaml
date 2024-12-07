@@ -26,7 +26,7 @@ nodes:
   - hostname: "controller"
     ipAddress: "192.168.1.11"
     installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515
+    talosImageURL: factory.talos.dev/installer/7d4c31cbd96db9f90c874990697c523482b2bae27fb4631d5583dcd9c281b1ff
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -40,6 +40,12 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.1.10"
+    extensionServices:
+      - name: tailscale
+        configFiles:
+        environment:
+          - TS_AUTHKEY=${TS_AUTHKEY}
+          - TS_ROUTES=${TS_ROUTES}
     patches:
       - "@./patches/controller/api-access.yaml"
       - "@./patches/controller/cluster.yaml"
