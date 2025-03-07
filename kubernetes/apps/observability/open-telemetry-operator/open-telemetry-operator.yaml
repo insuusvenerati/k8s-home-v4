@@ -107,7 +107,7 @@ spec:
       featureGates: ""
       image:
         repository: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator
-        tag: 0.109.0
+        tag: v0.120.0
       leaderElection:
         enabled: true
       opampBridgeImage:
