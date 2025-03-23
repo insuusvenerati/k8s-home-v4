@@ -8,5 +8,5 @@ spec:
   interval: 24h0m0s
   provider: generic
   ref:
-    tag: 10.1.1
+    tag: 11.0.5
   url: oci://code.forgejo.org/forgejo-helm/forgejo
