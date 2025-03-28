@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: open-telemetry
         namespace: flux-system
-      version: 0.74.2
+      version: 0.84.1
   interval: 6h0m0s
   releaseName: opentelemetry-operator
   targetNamespace: observability
