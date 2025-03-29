@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: rocket-chat
         namespace: flux-system
-      version: 6.23.2
+      version: 6.24.0
   interval: 24h0m0s
   releaseName: rocket-chat
   targetNamespace: default
