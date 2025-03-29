@@ -108,7 +108,7 @@ spec:
       image:
         registry: docker.io
         repository: grafana/grafana
-        tag: 11.3.0
+        tag: 11.6.0
       plugins:
         - https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
       env:
