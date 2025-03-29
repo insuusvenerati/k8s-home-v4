@@ -58,7 +58,7 @@ spec:
                     key: AUTH_USERNAME
             image:
               repository: ghcr.io/onedr0p/exportarr
-              tag: v2.0.1
+              tag: v2.1.0
           radarr:
             env:
               - name: TZ
