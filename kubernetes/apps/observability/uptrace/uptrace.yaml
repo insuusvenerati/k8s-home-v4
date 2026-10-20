@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: uptrace
         namespace: flux-system
-      version: 1.7.7
+      version: 2.0.2
   interval: 6h0m0s
   releaseName: my-uptrace
   targetNamespace: observability
